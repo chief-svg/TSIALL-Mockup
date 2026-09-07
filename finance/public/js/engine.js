@@ -338,6 +338,48 @@ window.ENGINE = (() => {
     return { income, bills, living: days * P.living.perDay };
   }
 
+  // ------------------------------------------------------------- near term
+  // Day-by-day path of total debt and checking for the next N days: interest
+  // accrues daily*, planned payments and loan bills step debt down, paychecks
+  // step cash up, bills and $150/day living step cash down.
+  function nearTerm(ctx, sched, ledger, days = 42) {
+    const today = ctx.today, end = F.addDays(today, days);
+    const debts = ctx.accounts.filter(a => a.isDebt && a.balance < 0);
+    const bal = Object.fromEntries(debts.map(a => [a.id, -a.balance]));
+    const apr = Object.fromEntries(debts.map(a => [a.id, (a.apr || 0) / 365]));
+    const chk = ctx.byId[P.checkingId];
+    let cash = chk ? chk.balance : 0;
+    const onDate = {}; // date → { pay: [{account, amount, label, kill}], income: [{amount, label}], bills: [{amount, label, account}] }
+    const slot = d => onDate[d] || (onDate[d] = { pay: [], income: [], bills: [] });
+    for (const i of sched.items) {
+      if (i.status === 'done' || i.status === 'missed' || i.date < today || i.date > end) continue;
+      if (i.status === 'sent') continue; // already left checking; posts on the card shortly
+      slot(i.date).pay.push({ account: i.account, amount: i.amount, label: i.acct ? i.acct.short : 'buffer', kill: !!i.kill });
+    }
+    const months = new Set(); for (let d = today; d <= end; d = F.addDays(d, 1)) months.add(d.slice(0, 7));
+    for (const ym of months) {
+      const cur = ledger && ledger.ym === ym;
+      for (const inc of P.income) { const d = clampDay(ym, inc.day); if (d < today || d > end) continue; if (cur && ledger.incomes.find(x => x.day === inc.day && !x.date && x.tx)) continue; slot(d).income.push({ amount: inc.amount, label: inc.label }); }
+      for (const o of P.oneTimeIncome) { if (o.date.slice(0, 7) !== ym || o.date < today || o.date > end) continue; if (cur && ledger.incomes.find(x => x.date === o.date && x.tx)) continue; slot(o.date).income.push({ amount: o.amount, label: o.label }); }
+      for (const b of P.bills) { if (b.endsAfter && ym + '-01' > b.endsAfter) continue; const d = clampDay(ym, b.day); if (d < today || d > end) continue; if (cur && ledger.bills.find(x => x.label === b.label && x.tx)) continue; slot(d).bills.push({ amount: b.amount, label: b.label, account: b.account || null }); }
+    }
+    const series = [], events = [];
+    for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
+      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.perDay; }
+      const s = onDate[d];
+      if (s) {
+        for (const i of s.income) cash += i.amount;
+        for (const b of s.bills) { cash -= b.amount; if (b.account && bal[b.account] != null) bal[b.account] = Math.max(0, bal[b.account] - b.amount); }
+        for (const p of s.pay) { cash -= p.amount; if (p.account && bal[p.account] != null) bal[p.account] = Math.max(0, bal[p.account] - p.amount); }
+        if (s.pay.length || s.income.length) events.push({ date: d, x: k, pay: s.pay.reduce((a, p) => a + p.amount, 0), income: s.income.reduce((a, i) => a + i.amount, 0), targets: [...new Set(s.pay.map(p => p.label))], kills: s.pay.filter(p => p.kill).map(p => p.label) });
+      }
+      series.push({ date: d, x: k, debt: -Object.values(bal).reduce((a, b) => a + b, 0), cash });
+    }
+    const live = Object.entries(ctx.snapshots || {}).filter(([d]) => d >= today && d <= end).map(([d, v]) => ({ date: d, x: F.daysBetween(today, d), debt: v.debt, cash: v.cash }));
+    const minCash = Math.min(...series.map(s => s.cash));
+    return { series, events, live, start: series[0], end: series[series.length - 1], minCash, minCashDate: (series.find(s => s.cash === minCash) || {}).date, days };
+  }
+
   // -------------------------------------------------------------- snapshots
   // One point per day of live totals; persisted by the app via STORE.
   function recordSnapshot(ctx, snapshots) {
@@ -432,5 +474,5 @@ window.ENGINE = (() => {
     return returns.map(r => ({ r, cells: cashes.map(c => ({ c, crossed: millionPath({ ...base, annualReturn: r, monthlyCash: c }).crossed })) }));
   }
 
-  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween };
+  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween };
 })();

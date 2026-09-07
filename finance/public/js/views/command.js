@@ -134,7 +134,7 @@ VIEWS.command = {
       ] },
       options: {
         maintainAspectRatio: false, interaction: { mode: 'nearest', axis: 'x', intersect: false },
-        scales: { x: { type: 'linear', min: 0, max: pts[pts.length - 1].x, grid: { display: false }, border: { display: false }, ticks: { callback: v => { const p = pts.find(q => Math.abs(q.x - v) < 8); return p ? p.label.replace('Now', '') : ''; }, autoSkip: false, maxRotation: 0, stepSize: 30 } }, y: CH.yMoney() },
+        scales: { x: { type: 'linear', min: 0, max: pts[pts.length - 1].x, grid: { display: false }, border: { display: false }, ticks: { callback: v => { const p = pts.find(q => Math.abs(q.x - v) < 8); return p ? p.label.replace('Now', '') : ''; }, autoSkip: true, maxTicksLimit: window.innerWidth < 640 ? 5 : 14, maxRotation: 0, stepSize: 30 } }, y: CH.yMoney() },
         plugins: { tooltip: { callbacks: { title: items => { const x = items[0].parsed.x; return F.fmtDate(F.addDays(PLAN.planStart, Math.round(x))); }, label: i => ` ${i.dataset.label}: ${F.money(i.parsed.y)}` } },
           guides: { markers: [{ x: pr.xToday, label: 'today', color: 'rgba(232,230,223,.5)' }, pr.crossing ? { x: pr.crossing.x, label: 'crosses zero', color: CH.colors.net, dy: 14 } : null].filter(Boolean) } }
       }

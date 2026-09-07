@@ -27,7 +27,8 @@ window.APP = (() => {
     const spend = ENGINE.spendingTree(ctx, living.from, ctx.today);
     const proj = ENGINE.projectionSeries(ctx);
     const funds = ENGINE.fundsCheck(ctx, sched, ledger);
-    return { sched, ledger, sims, living, spend, proj, funds };
+    const near = ENGINE.nearTerm(ctx, sched, ledger, 42);
+    return { sched, ledger, sims, living, spend, proj, funds, near };
   }
 
   function rebuild() {
