@@ -1464,7 +1464,7 @@ VIEWS.accounts = {
 // artifact `mcp` capability (no key, no proxy); overrides and snapshots live in
 // the artifact database (`db`); screenshots are read by Claude (`sample`).
 (function () {
-  const SERVER = 'PocketSmith_Complete_Access';
+  const SERVER = 'PocketSmith Complete Access';
   const TOOLS = { accounts: 'list_accounts', categories: 'list_categories', transactions: 'list_transactions', events: 'list_events' };
   const has = typeof window.claude === 'object' && window.claude && typeof window.claude.use === 'function';
   const use = name => has ? window.claude.use(name).catch(() => null) : Promise.resolve(null);
