@@ -1,0 +1,436 @@
+[
+ {
+  "id": "1-2026-09-15",
+  "category": {
+   "id": 35694788,
+   "title": "Salary",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "debits_are_deductions",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": 35694428,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": 8800,
+  "amount_in_base_currency": 8800,
+  "currency_code": "usd",
+  "date": "2026-09-15",
+  "colour": null,
+  "note": "Jessica paycheck (mid-month) \u2014 estimated net",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 1,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "2-2026-09-15",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -5500,
+  "amount_in_base_currency": -5500,
+  "currency_code": "usd",
+  "date": "2026-09-15",
+  "colour": null,
+  "note": "\u2192 Citi 3208",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 2,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "3-2026-09-20",
+  "category": {
+   "id": 35694803,
+   "title": "Loan Payments",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": true,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -800,
+  "amount_in_base_currency": -800,
+  "currency_code": "usd",
+  "date": "2026-09-20",
+  "colour": null,
+  "note": "SoFi personal loan payment",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 3,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "4-2026-09-27",
+  "category": {
+   "id": 35694788,
+   "title": "Salary",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "debits_are_deductions",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": 35694428,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": 26000,
+  "amount_in_base_currency": 26000,
+  "currency_code": "usd",
+  "date": "2026-09-27",
+  "colour": null,
+  "note": "Sabino paycheck \u2014 estimated net",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 4,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "5-2026-09-27",
+  "category": {
+   "id": 35694788,
+   "title": "Salary",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "debits_are_deductions",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": 35694428,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": 10000,
+  "amount_in_base_currency": 10000,
+  "currency_code": "usd",
+  "date": "2026-09-27",
+  "colour": null,
+  "note": "Relocation reimbursement (one-time)",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 5,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "6-2026-09-27",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -26500,
+  "amount_in_base_currency": -26500,
+  "currency_code": "usd",
+  "date": "2026-09-27",
+  "colour": null,
+  "note": "\u2192 Kill Citi 3208 + Amex personal Plat + start Biz Plat",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 6,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "7-2026-09-28",
+  "category": {
+   "id": 35694803,
+   "title": "Loan Payments",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": true,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -750,
+  "amount_in_base_currency": -750,
+  "currency_code": "usd",
+  "date": "2026-09-28",
+  "colour": null,
+  "note": "Student loan payment",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 7,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "8-2026-09-30",
+  "category": {
+   "id": 35694788,
+   "title": "Salary",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "debits_are_deductions",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": 35694428,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": 8800,
+  "amount_in_base_currency": 8800,
+  "currency_code": "usd",
+  "date": "2026-09-30",
+  "colour": null,
+  "note": "Jessica paycheck (month-end) \u2014 estimated net",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 8,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "9-2026-09-30",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -8000,
+  "amount_in_base_currency": -8000,
+  "currency_code": "usd",
+  "date": "2026-09-30",
+  "colour": null,
+  "note": "\u2192 Amex Biz Plat",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 9,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "10-2026-10-01",
+  "category": {
+   "id": 35694793,
+   "title": "Rent",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": true,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -6850,
+  "amount_in_base_currency": -6850,
+  "currency_code": "usd",
+  "date": "2026-10-01",
+  "colour": null,
+  "note": "Rent",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 10,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "11-2026-10-08",
+  "category": {
+   "id": 35694798,
+   "title": "Car Payment",
+   "colour": null,
+   "is_transfer": false,
+   "is_bill": true,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -610,
+  "amount_in_base_currency": -610,
+  "currency_code": "usd",
+  "date": "2026-10-08",
+  "colour": null,
+  "note": "Car payment",
+  "repeat_type": "monthly",
+  "repeat_interval": 1,
+  "series_id": 11,
+  "infinite_series": true,
+  "is_transfer": false
+ },
+ {
+  "id": "12-2026-10-15",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -5500,
+  "amount_in_base_currency": -5500,
+  "currency_code": "usd",
+  "date": "2026-10-15",
+  "colour": null,
+  "note": "\u2192 Amex Biz Plat",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 12,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "13-2026-10-27",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -16500,
+  "amount_in_base_currency": -16500,
+  "currency_code": "usd",
+  "date": "2026-10-27",
+  "colour": null,
+  "note": "\u2192 Biz Plat $2,100 + Biz Gold $14,400",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 13,
+  "infinite_series": false,
+  "is_transfer": false
+ },
+ {
+  "id": "14-2026-10-30",
+  "category": {
+   "id": 35694808,
+   "title": "Card Paydown",
+   "colour": "#d32f2f",
+   "is_transfer": false,
+   "is_bill": false,
+   "refund_behaviour": "credits_are_refunds",
+   "rollover_type": null,
+   "children": [],
+   "parent_id": null,
+   "roll_up": false
+  },
+  "scenario": {
+   "id": 1,
+   "account_id": 5486598,
+   "title": "Adv Plus Banking"
+  },
+  "amount": -8000,
+  "amount_in_base_currency": -8000,
+  "currency_code": "usd",
+  "date": "2026-10-30",
+  "colour": null,
+  "note": "\u2192 Biz Gold $5,000 + Citi 8018 $3,000",
+  "repeat_type": "once",
+  "repeat_interval": 1,
+  "series_id": 14,
+  "infinite_series": false,
+  "is_transfer": false
+ }
+]

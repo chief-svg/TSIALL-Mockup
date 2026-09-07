@@ -1,0 +1,8 @@
+# Secrets — never commit the PocketSmith developer key
+finance/.env
+finance/config.js
+finance/public/config.js
+
+node_modules/
+finance/.cache/
+.DS_Store

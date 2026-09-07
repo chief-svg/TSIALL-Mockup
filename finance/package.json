@@ -1,0 +1,12 @@
+{
+  "name": "sabino-finance-command",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal finance command center: live PocketSmith data + debt-payoff → wealth plan",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "demo": "DEMO=1 node server.js"
+  },
+  "engines": { "node": ">=18" }
+}

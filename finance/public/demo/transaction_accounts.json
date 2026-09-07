@@ -1,0 +1,197 @@
+[
+ {
+  "id": 5621000,
+  "account_id": 5486598,
+  "name": "Adv Plus Banking",
+  "number": "1538",
+  "type": "bank",
+  "current_balance": 1025.72,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Bank of America",
+   "colour": "#CC7A96"
+  }
+ },
+ {
+  "id": 5621005,
+  "account_id": 5486593,
+  "name": "BankAmericard Platinum Plus Mastercard",
+  "number": "8598",
+  "type": "credits",
+  "current_balance": 0.0,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Bank of America",
+   "colour": "#CC7A96"
+  }
+ },
+ {
+  "id": 5621010,
+  "account_id": 5486653,
+  "name": "Citi AAdvantage Executive World Legend Mastercard",
+  "number": "8018",
+  "type": "credits",
+  "current_balance": -17119.14,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Citibank Online",
+   "colour": "#7F4694"
+  }
+ },
+ {
+  "id": 5621015,
+  "account_id": 5486658,
+  "name": "Citi AAdvantage Platinum Select World Elite Mastercard",
+  "number": "3208",
+  "type": "credits",
+  "current_balance": -19497.07,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Citibank Online",
+   "colour": "#7F4694"
+  }
+ },
+ {
+  "id": 5621020,
+  "account_id": 5486668,
+  "name": "Platinum Card",
+  "number": "1001",
+  "type": "credits",
+  "current_balance": -10801.51,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621025,
+  "account_id": 5486673,
+  "name": "Additional Gold Card",
+  "number": "1016",
+  "type": "credits",
+  "current_balance": -180.0,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621030,
+  "account_id": 5486678,
+  "name": "Business Platinum Card",
+  "number": "1007",
+  "type": "credits",
+  "current_balance": -16718.31,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621035,
+  "account_id": 5486683,
+  "name": "Business Gold Card",
+  "number": "1000",
+  "type": "credits",
+  "current_balance": -18998.69,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621040,
+  "account_id": 5486688,
+  "name": "Blue Cash Everyday",
+  "number": "1002",
+  "type": "credits",
+  "current_balance": -29.99,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621045,
+  "account_id": 5486693,
+  "name": "Blue Cash Everyday",
+  "number": "2011",
+  "type": "credits",
+  "current_balance": 0.0,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "American Express",
+   "colour": "#7381CA"
+  }
+ },
+ {
+  "id": 5621050,
+  "account_id": 5486703,
+  "name": "CREDIT CARD",
+  "number": "0011",
+  "type": "credits",
+  "current_balance": -12962.08,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Chase",
+   "colour": "#009E79"
+  }
+ },
+ {
+  "id": 5621055,
+  "account_id": 5486708,
+  "name": "SoFi Personal Loan",
+  "number": "7085",
+  "type": "loans",
+  "current_balance": -13736.53,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "SoFi",
+   "colour": "#609FC7"
+  }
+ },
+ {
+  "id": 5621060,
+  "account_id": 5486718,
+  "name": "AUTO LOAN ...7205",
+  "number": "7205",
+  "type": "loans",
+  "current_balance": -10518.34,
+  "current_balance_date": "2026-09-07",
+  "currency_code": "usd",
+  "institution": {
+   "id": 1,
+   "title": "Wells Fargo",
+   "colour": "#D8B95B"
+  }
+ }
+]
