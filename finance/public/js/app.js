@@ -39,7 +39,7 @@ window.APP = (() => {
     state.raw = raw;
     Object.assign(state.meta, meta);
     rebuild();
-    if (!meta.stale) { state.snapshots = ENGINE.recordSnapshot(state.ctx, state.snapshots); STORE.set('snapshots', state.snapshots); rebuild(); }
+    if (!meta.stale && !meta.partial) { state.snapshots = ENGINE.recordSnapshot(state.ctx, state.snapshots); STORE.set('snapshots', state.snapshots); rebuild(); }
     render();
     if (!state.popupShown) { state.popupShown = true; showUpcoming(); }
   }
@@ -75,12 +75,15 @@ window.APP = (() => {
     // A shared cache newer than what is on screen (e.g. from the scheduled sync) paints right away
     if (cached && cached.payload && (!state.meta.fetchedAt || cached.at > state.meta.fetchedAt.getTime())) applyData(cached.payload, { mode: 'live', stale: true, syncing: true, fetchedAt: new Date(cached.at), cachedAt: new Date(cached.at), error: null });
     API.onProgress = progress;
+    API.onPartial = raw => { if (raw && raw.accounts && raw.accounts.length) applyData(raw, { mode: 'live', stale: false, syncing: true, partial: true, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null }); };
     try {
       if (API.clearMem) API.clearMem();
       const health = await API.health();
       const raw = await API.loadAll({ userId: P.userId, txStart, txEnd: F.addDays(today, 1), evStart: today, evEnd: F.addDays(today, 60) });
-      STORE.set('cache', { at: Date.now(), payload: compact(raw) });
-      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, syncing: false, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null });
+      const failed = raw.failed || [];
+      if (!failed.length) STORE.set('cache', { at: Date.now(), payload: compact(raw) });
+      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, syncing: false, partial: failed.length > 0, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null });
+      if (failed.length) toast(`Balances are live, but ${failed.map(f => f.key).join(', ')} could not be loaded: ${failed[0].message}`);
     } catch (err) {
       console.error(err);
       if (cached && cached.payload) {
@@ -118,6 +121,7 @@ window.APP = (() => {
     else if (m.mode === 'error') { b.className = 'badge err'; b.textContent = 'Offline'; }
     else if (m.stale) { b.className = 'badge stale'; b.textContent = 'Stale · cached'; }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
+    else if (m.partial) { b.className = 'badge stale'; b.textContent = 'Live · partial'; }
     else { b.className = 'badge live'; b.textContent = 'Live · PocketSmith'; }
     document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `as of ${F.fmtTime(m.fetchedAt)}` : '';
     document.getElementById('refresh').disabled = state.loading;

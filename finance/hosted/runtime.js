@@ -24,7 +24,16 @@
   function pages(res) { const m = /Page\s+(\d+)\s+of\s+(\d+)/i.exec(text(res) || (typeof res.payload === 'string' ? res.payload : '')); return m ? { page: Number(m[1]), pages: Number(m[2]) } : null; }
 
   const timeout = ms => (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(ms) : undefined;
-  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false, signal: timeout(45000) }); }
+  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false, signal: timeout(180000) }); }
+  // One retry on cancellation / transient upstream trouble
+  async function attempt(mcp, tool, input) {
+    try { return await call(mcp, tool, input); }
+    catch (err) {
+      const c = err && err.code;
+      if (c === 'cancelled' || c === 'server_unavailable' || (err && err.retryable)) { prog(`Retrying ${tool.replace('list_', '')}…`); return call(mcp, tool, input); }
+      throw err;
+    }
+  }
   const prog = m => { try { if (window.API && window.API.onProgress) window.API.onProgress(m); } catch { /* ignore */ } };
 
   window.API = {
@@ -35,30 +44,38 @@
       const mcp = await mcpP;
       if (!mcp) { const e = new Error('This page can only reach PocketSmith when opened inside claude.ai.'); e.code = 'no_runtime'; throw e; }
       const wrap = p => p.catch(err => { const e = new Error(copyFor(err)); e.code = err && err.code; e.raw = err; throw e; });
-      prog('Pulling accounts, categories, calendar, transactions…');
+      // 1. Balances first — the one call that must succeed. Paint as soon as it lands.
+      prog('Pulling account balances…');
+      const accounts = unwrap(await wrap(attempt(mcp, TOOLS.accounts, { user_id: userId })));
+      const acc = Array.isArray(accounts) ? accounts : [];
+      const failed = [];
+      const soft = (key, p) => p.then(unwrap).catch(err => { failed.push({ key, message: copyFor(err) }); console.warn('partial:', key, err); return null; });
+      if (window.API.onPartial) { try { window.API.onPartial({ accounts: acc, categories: [], transactions: [], events: [], fetchedAt: Date.now(), partial: true }); } catch (e) { console.warn(e); } }
+      // 2. Everything else in parallel; a failure here degrades, it does not blank the page.
+      prog('Categories, calendar, transactions…');
       const txInput = page => ({ user_id: userId, start_date: txStart, end_date: txEnd, per_page: 100, page });
-      const [accounts, categories, events, first] = await Promise.all([
-        wrap(call(mcp, TOOLS.accounts, { user_id: userId })).then(unwrap),
-        wrap(call(mcp, TOOLS.categories, { user_id: userId })).then(unwrap),
-        wrap(call(mcp, TOOLS.events, { user_id: userId, start_date: evStart, end_date: evEnd })).then(unwrap).catch(() => []),
-        wrap(call(mcp, TOOLS.transactions, txInput(1)))
+      const [categories, events, firstRes] = await Promise.all([
+        soft('categories', attempt(mcp, TOOLS.categories, { user_id: userId })),
+        soft('events', attempt(mcp, TOOLS.events, { user_id: userId, start_date: evStart, end_date: evEnd })),
+        attempt(mcp, TOOLS.transactions, txInput(1)).catch(err => { failed.push({ key: 'transactions', message: copyFor(err) }); return null; })
       ]);
       const transactions = [];
-      const firstList = unwrap(first); transactions.push(...(Array.isArray(firstList) ? firstList : []));
-      const pg = pages(first);
-      const total = pg ? Math.min(pg.pages, 40) : (transactions.length >= 100 ? 2 : 1);
-      if (total > 1) {
-        prog(`Transactions: ${total} pages…`);
-        if (pg) {
-          // Known page count → fetch the rest in parallel
-          const rest = await Promise.all(Array.from({ length: total - 1 }, (_, i) => wrap(call(mcp, TOOLS.transactions, txInput(i + 2))).then(unwrap)));
-          for (const l of rest) transactions.push(...(Array.isArray(l) ? l : []));
-        } else {
-          for (let page = 2; page <= 40; page++) { const l = unwrap(await wrap(call(mcp, TOOLS.transactions, txInput(page)))); const list = Array.isArray(l) ? l : []; transactions.push(...list); if (list.length < 100) break; }
+      if (firstRes) {
+        const firstList = unwrap(firstRes); transactions.push(...(Array.isArray(firstList) ? firstList : []));
+        const pg = pages(firstRes);
+        const total = pg ? Math.min(pg.pages, 40) : (transactions.length >= 100 ? 2 : 1);
+        if (total > 1) {
+          prog(`Transactions: ${total} pages…`);
+          if (pg) {
+            const rest = await Promise.all(Array.from({ length: total - 1 }, (_, i) => soft('transactions p' + (i + 2), attempt(mcp, TOOLS.transactions, txInput(i + 2)))));
+            for (const l of rest) transactions.push(...(Array.isArray(l) ? l : []));
+          } else {
+            for (let page = 2; page <= 40; page++) { const l = await soft('transactions p' + page, attempt(mcp, TOOLS.transactions, txInput(page))); const list = Array.isArray(l) ? l : []; transactions.push(...list); if (list.length < 100) break; }
+          }
         }
       }
       prog('Building views…');
-      return { accounts: Array.isArray(accounts) ? accounts : [], categories: Array.isArray(categories) ? categories : [], transactions, events: Array.isArray(events) ? events : [], fetchedAt: Date.now() };
+      return { accounts: acc, categories: Array.isArray(categories) ? categories : [], transactions, events: Array.isArray(events) ? events : [], fetchedAt: Date.now(), failed };
     },
     setupCopy(err) {
       const code = err && err.code;
@@ -69,7 +86,8 @@
         approval_required: ['Approve the connector request', 'Confirm the PocketSmith prompt from claude.ai, then tap Resync.'],
         server_unavailable: ['PocketSmith is not answering', 'The connector timed out or returned an error. Tap Resync in a minute — cached balances stay visible when available.'],
         auth_expired: ['Reconnect PocketSmith', 'The connector’s login expired. claude.ai → Settings → Connectors → reconnect PocketSmith, then Resync.'],
-        rate_limited: ['Too many requests', 'PocketSmith throttled the connector. Wait a minute, then Resync.']
+        rate_limited: ['Too many requests', 'PocketSmith throttled the connector. Wait a minute, then Resync.'],
+        cancelled: ['PocketSmith took too long', 'The connector did not answer within three minutes, even after a retry. Tap Resync — the first call after approving access is often the slow one.']
       }[code] || ['Could not load PocketSmith', err && err.message ? err.message : 'Unknown error'];
       return `<div class="setup"><h1 class="serif" style="font-weight:300;font-size:34px">${fix[0]}</h1><p class="muted" style="margin:10px 0 18px">${fix[1]}</p>
         <div class="panel"><div class="kv"><span class="k">Error</span><span class="v">${code || 'unknown'}</span><span class="k">Detail</span><span class="v small">${(err && err.message || '').replace(/[<>]/g, '')}</span></div>
@@ -79,7 +97,7 @@
   };
   function copyFor(err) {
     const code = err && err.code;
-    return ({ server_not_connected: 'PocketSmith connector is not added in claude.ai', not_granted: 'PocketSmith access was not allowed for this page', approval_required: 'PocketSmith access needs your approval', server_unavailable: 'PocketSmith did not respond', auth_expired: 'PocketSmith login expired — reconnect in claude.ai', rate_limited: 'PocketSmith rate limit hit', not_in_manifest: 'Page manifest is missing a tool', tool_error: 'PocketSmith returned an error: ' + (err.message || '') })[code] || (err && err.message) || String(err);
+    return ({ server_not_connected: 'PocketSmith connector is not added in claude.ai', not_granted: 'PocketSmith access was not allowed for this page', approval_required: 'PocketSmith access needs your approval', server_unavailable: 'PocketSmith did not respond', auth_expired: 'PocketSmith login expired — reconnect in claude.ai', rate_limited: 'PocketSmith rate limit hit', not_in_manifest: 'Page manifest is missing a tool', tool_error: 'PocketSmith returned an error: ' + (err.message || ''), cancelled: 'PocketSmith took too long to answer (timed out)' })[code] || (err && err.message) || String(err);
   }
 
   // ---- db-backed store (overrides + snapshots follow the user across devices)
