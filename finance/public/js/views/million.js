@@ -26,10 +26,10 @@ VIEWS.million = {
       </div>
 
       <div class="grid g32">
-        <div class="panel"><div class="ph"><h3>Total across all accounts</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Total</span><span><i style="background:${CH.colors.live}"></i>Cash (EF)</span><span><i style="background:${CH.colors.savings}"></i>Taxable + IRA/HSA</span><span><i style="background:${CH.colors.amber}"></i>401(k)</span></span></div>
+        <div class="panel"><div class="ph"><h3>Total across all accounts</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Total</span><span><i style="background:${CH.colors.live}"></i>Cash (EF)</span><span><i style="background:${CH.colors.savings}"></i>Taxable + IRA/HSA</span><span><i style="background:#9085e9"></i>401(k)</span></span></div>
           <div style="height:380px;position:relative"><canvas id="c-million"></canvas></div></div>
         <div>
-          <div class="panel flush"><div class="ph"><h3>Milestones</h3></div><table><thead><tr><th class="num">Level</th><th class="num">Month</th><th class="num">From now</th></tr></thead><tbody>${milestoneRows}</tbody></table></div>
+          <div class="panel flush"><div class="ph"><h3>Milestones</h3></div><div class="table-wrap narrow-ok"><table><thead><tr><th class="num">Level</th><th class="num">Month</th><th class="num">From now</th></tr></thead><tbody>${milestoneRows}</tbody></table></div></div>
           <div class="panel" style="margin-top:14px"><div class="ph"><h3>Composition at the crossing</h3></div>
             ${cross ? `<div class="kv"><span class="k">Contributed (cash + 401k)</span><span class="v">${F.money(contribTotal)}</span><span class="k">Dec ’26 buffer</span><span class="v">${F.money(13000)}</span><span class="k">Growth</span><span class="v pos">${F.money(growth)}</span><span class="k">Cash (EF)</span><span class="v">${F.money(cross.cash)}</span><span class="k">Taxable + IRA/HSA</span><span class="v">${F.money(cross.invested)}</span><span class="k">401(k)</span><span class="v">${F.money(cross.retirement)}</span></div>` : '<div class="muted">Raise a lever to bring the crossing inside the 20-year horizon.</div>'}</div>
         </div>
@@ -37,7 +37,7 @@ VIEWS.million = {
 
       <div class="grid g32" style="margin-top:18px">
         <div class="panel flush"><div class="ph"><h3>Sensitivity · month $1M is crossed</h3><span class="small muted">rows: return · columns: monthly cash</span></div>
-          <table><thead><tr><th></th>${sens[0].cells.map(c => `<th class="num">${F.money(c.c)}/mo</th>`).join('')}</tr></thead><tbody>${sensRows}</tbody></table>
+          <div class="table-wrap"><table><thead><tr><th></th>${sens[0].cells.map(c => `<th class="num">${F.money(c.c)}/mo</th>`).join('')}</tr></thead><tbody>${sensRows}</tbody></table></div>
           <div class="note" style="padding:12px 20px">Monthly cash matters more than return in the first three years — each extra $1,000/mo pulls the date forward roughly a month. Return compounds later.</div></div>
         <div class="panel"><div class="ph"><h3>What accelerates it</h3></div>
           <div class="note" style="line-height:1.8">
@@ -73,12 +73,12 @@ VIEWS.million = {
         { label: 'Total', data: rows.map(r => r.total), borderColor: CH.colors.net, borderWidth: 2.5, fill: false, order: 0 },
         { label: 'Cash (EF)', data: rows.map(r => r.cash), borderColor: CH.colors.live, backgroundColor: 'rgba(57,135,229,.35)', fill: true, stack: 's', borderWidth: 1, order: 3 },
         { label: 'Taxable + IRA/HSA', data: rows.map(r => r.invested), borderColor: CH.colors.savings, backgroundColor: 'rgba(25,158,112,.35)', fill: true, stack: 's', borderWidth: 1, order: 2 },
-        { label: '401(k)', data: rows.map(r => r.retirement), borderColor: CH.colors.amber, backgroundColor: 'rgba(217,140,31,.35)', fill: true, stack: 's', borderWidth: 1, order: 1 }
+        { label: '401(k)', data: rows.map(r => r.retirement), borderColor: '#9085e9', backgroundColor: 'rgba(144,133,233,.35)', fill: true, stack: 's', borderWidth: 1, order: 1 }
       ] },
       options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         scales: { x: CH.xClean({ ticks: { maxTicksLimit: 12, callback: (v, i) => labels[i] && labels[i].endsWith('-01') ? labels[i].slice(0, 4) : '' } }), y: { ...CH.yMoney(), stacked: true, min: Math.min(0, rows[0].total) } },
         plugins: { tooltip: { callbacks: { title: i => F.fmtMonth(labels[i[0].dataIndex]), label: i => ` ${i.dataset.label}: ${F.money(i.parsed.y)}` } },
-          guides: { zero: true, markers: [R.crossed ? { x: idx(R.crossed), label: `$1M · ${F.fmtMonth(R.crossed)}`, color: CH.colors.net, align: 'right' } : null, R.milestones[500000] ? { x: idx(R.milestones[500000]), label: '$500k', color: 'rgba(232,230,223,.45)' } : null].filter(Boolean) } } }
+          guides: { zero: true, markers: [R.crossed ? { x: idx(R.crossed), label: `$1M · ${F.fmtMonth(R.crossed)}`, color: CH.colors.net, align: idx(R.crossed) > labels.length * 0.5 ? 'right' : 'left' } : null, R.milestones[500000] ? { x: idx(R.milestones[500000]), label: `$500k · ${F.fmtMonth(R.milestones[500000])}`, color: 'rgba(232,230,223,.45)', align: 'right', dy: 16 } : null].filter(Boolean) } } }
     });
   }
 };

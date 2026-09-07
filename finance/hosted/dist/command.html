@@ -64,7 +64,7 @@ main{max-width:1480px;margin:auto;padding:26px 28px 80px}
 
 /* ---- tables ---- */
 table{width:100%;border-collapse:collapse;font-size:12.5px} th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hair)} th{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap} td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums} tr:last-child td{border-bottom:0}
-tbody tr:hover td{background:rgba(232,230,223,.025)} .table-wrap{overflow-x:auto} td .sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+tbody tr:hover td{background:rgba(232,230,223,.025)} .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch} td .sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 tr.group td{background:rgba(201,133,0,.06);border-top:1px solid var(--hair2)} tr.group td .date{font-family:var(--serif);font-size:15px}
 tr.dead td{opacity:.55} tr.past td{color:var(--muted)}
 tr.hl td{background:rgba(201,133,0,.09)}
@@ -130,7 +130,7 @@ tr.hl td{background:rgba(201,133,0,.09)}
 .toast{position:fixed;bottom:22px;right:22px;background:var(--panel2);border:1px solid var(--hair2);padding:10px 14px;border-radius:6px;font-size:12px;box-shadow:0 20px 40px -20px rgba(0,0,0,.8);z-index:30}
 
 @media (max-width:1100px){.g3,.g4{grid-template-columns:1fr 1fr}.hero-grid{grid-template-columns:1fr}.strip-inner{grid-template-columns:repeat(3,1fr);row-gap:14px}.stat:nth-child(3){border-right:0}}
-@media (max-width:760px){.top-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:10px}nav.tabs{order:3;width:100%;overflow-x:auto;height:40px;align-items:center;margin-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}nav.tabs::-webkit-scrollbar{display:none}nav.tabs a{flex:0 0 auto;white-space:nowrap}.table-wrap table{min-width:720px}.brand .sub{display:none}main{padding:18px 16px 60px}.g2,.g3,.g4,.g32,.g23,.g21,.g12{grid-template-columns:1fr}.strip-inner{grid-template-columns:1fr 1fr;padding:12px 16px}.stat{padding:0 12px;border-right:0}.cardrow{grid-template-columns:1fr 1fr}.next{grid-template-columns:1fr}.huge{font-size:44px}}
+@media (max-width:760px){.top-inner{height:auto;flex-wrap:wrap;padding:10px 16px;gap:10px}nav.tabs{order:3;width:100%;overflow-x:auto;height:40px;align-items:center;margin-left:0;scrollbar-width:none;-webkit-overflow-scrolling:touch}nav.tabs::-webkit-scrollbar{display:none}nav.tabs a{flex:0 0 auto;white-space:nowrap}.table-wrap table{min-width:720px}.table-wrap.narrow-ok table{min-width:0}.brand .sub{display:none}main{padding:18px 16px 60px}.g2,.g3,.g4,.g32,.g23,.g21,.g12{grid-template-columns:1fr}.strip-inner{grid-template-columns:1fr 1fr;padding:12px 16px}.stat{padding:0 12px;border-right:0}.cardrow{grid-template-columns:1fr 1fr}.next{grid-template-columns:1fr}.huge{font-size:44px}}
 
 /* ---- modal (upcoming payments) ---- */
 .modal-bg{position:fixed;inset:0;background:rgba(4,6,10,.72);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:50;padding:16px}
@@ -1333,7 +1333,7 @@ VIEWS.after = {
       <div class="grid g32">
         <div class="panel"><div class="ph"><h3>Waterfall · a typical month from ${A.efCompleteMonth ? F.fmtMonth(A.rows[A.rows.indexOf(A.rows.find(r => r.ym === A.efCompleteMonth)) + 1]?.ym || A.efCompleteMonth) : 'Mar ’27'}</h3><span class="num">${F.money(post.monthlyCapacity)} / mo</span></div>
           <div style="display:flex;height:22px;border-radius:4px;overflow:hidden;gap:2px;background:var(--bg)">${wf.filter(w => w.v > 0).map(w => `<div title="${F.esc(w.k)} ${F.money(w.v)}" style="flex:${w.v};background:${w.c}"></div>`).join('')}</div>
-          <div style="margin-top:16px">${wf.map((w, i) => `<div class="cardrow" style="grid-template-columns:24px 170px 1fr 110px"><div class="num muted">${i + 1}</div><div class="name"><span class="sw" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${w.c};margin-right:8px"></span>${w.k}</div><div class="note">${w.note}</div><div class="num right">${w.v ? F.money(w.v) : '—'}</div></div>`).join('')}</div>
+          <div class="table-wrap" style="margin-top:16px"><div style="min-width:640px">${wf.map((w, i) => `<div class="cardrow" style="grid-template-columns:24px 170px 1fr 110px"><div class="num muted">${i + 1}</div><div class="name"><span class="sw" style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${w.c};margin-right:8px"></span>${w.k}</div><div class="note">${w.note}</div><div class="num right">${w.v ? F.money(w.v) : '—'}</div></div>`).join('')}</div></div>
           <div class="hr"></div>
           <div class="grid g2 note"><div><b>Jessica’s 401(k)</b> — ${F.money(post.jessica401k.annual)}/yr, ${post.jessica401k.note}. Shown as a note, not a cash-flow line.</div><div><b>Sabino’s 401(k)</b> — eligible ${F.fmtDate(elig)}${UI.ast()} (<span class="num gold">${daysTo401k} days</span>). Front-load ${F.money(post.sabino401k.annual)} over the remaining ${monthsLeft2027} months of 2027 ≈ <span class="num">${F.money(post.sabino401k.annual / monthsLeft2027)}/mo</span> from payroll; take-home drops by roughly that less the tax saving${UI.ast()}.</div></div>
         </div>
@@ -1385,10 +1385,10 @@ VIEWS.million = {
       </div>
 
       <div class="grid g32">
-        <div class="panel"><div class="ph"><h3>Total across all accounts</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Total</span><span><i style="background:${CH.colors.live}"></i>Cash (EF)</span><span><i style="background:${CH.colors.savings}"></i>Taxable + IRA/HSA</span><span><i style="background:${CH.colors.amber}"></i>401(k)</span></span></div>
+        <div class="panel"><div class="ph"><h3>Total across all accounts</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Total</span><span><i style="background:${CH.colors.live}"></i>Cash (EF)</span><span><i style="background:${CH.colors.savings}"></i>Taxable + IRA/HSA</span><span><i style="background:#9085e9"></i>401(k)</span></span></div>
           <div style="height:380px;position:relative"><canvas id="c-million"></canvas></div></div>
         <div>
-          <div class="panel flush"><div class="ph"><h3>Milestones</h3></div><table><thead><tr><th class="num">Level</th><th class="num">Month</th><th class="num">From now</th></tr></thead><tbody>${milestoneRows}</tbody></table></div>
+          <div class="panel flush"><div class="ph"><h3>Milestones</h3></div><div class="table-wrap narrow-ok"><table><thead><tr><th class="num">Level</th><th class="num">Month</th><th class="num">From now</th></tr></thead><tbody>${milestoneRows}</tbody></table></div></div>
           <div class="panel" style="margin-top:14px"><div class="ph"><h3>Composition at the crossing</h3></div>
             ${cross ? `<div class="kv"><span class="k">Contributed (cash + 401k)</span><span class="v">${F.money(contribTotal)}</span><span class="k">Dec ’26 buffer</span><span class="v">${F.money(13000)}</span><span class="k">Growth</span><span class="v pos">${F.money(growth)}</span><span class="k">Cash (EF)</span><span class="v">${F.money(cross.cash)}</span><span class="k">Taxable + IRA/HSA</span><span class="v">${F.money(cross.invested)}</span><span class="k">401(k)</span><span class="v">${F.money(cross.retirement)}</span></div>` : '<div class="muted">Raise a lever to bring the crossing inside the 20-year horizon.</div>'}</div>
         </div>
@@ -1396,7 +1396,7 @@ VIEWS.million = {
 
       <div class="grid g32" style="margin-top:18px">
         <div class="panel flush"><div class="ph"><h3>Sensitivity · month $1M is crossed</h3><span class="small muted">rows: return · columns: monthly cash</span></div>
-          <table><thead><tr><th></th>${sens[0].cells.map(c => `<th class="num">${F.money(c.c)}/mo</th>`).join('')}</tr></thead><tbody>${sensRows}</tbody></table>
+          <div class="table-wrap"><table><thead><tr><th></th>${sens[0].cells.map(c => `<th class="num">${F.money(c.c)}/mo</th>`).join('')}</tr></thead><tbody>${sensRows}</tbody></table></div>
           <div class="note" style="padding:12px 20px">Monthly cash matters more than return in the first three years — each extra $1,000/mo pulls the date forward roughly a month. Return compounds later.</div></div>
         <div class="panel"><div class="ph"><h3>What accelerates it</h3></div>
           <div class="note" style="line-height:1.8">
@@ -1432,12 +1432,12 @@ VIEWS.million = {
         { label: 'Total', data: rows.map(r => r.total), borderColor: CH.colors.net, borderWidth: 2.5, fill: false, order: 0 },
         { label: 'Cash (EF)', data: rows.map(r => r.cash), borderColor: CH.colors.live, backgroundColor: 'rgba(57,135,229,.35)', fill: true, stack: 's', borderWidth: 1, order: 3 },
         { label: 'Taxable + IRA/HSA', data: rows.map(r => r.invested), borderColor: CH.colors.savings, backgroundColor: 'rgba(25,158,112,.35)', fill: true, stack: 's', borderWidth: 1, order: 2 },
-        { label: '401(k)', data: rows.map(r => r.retirement), borderColor: CH.colors.amber, backgroundColor: 'rgba(217,140,31,.35)', fill: true, stack: 's', borderWidth: 1, order: 1 }
+        { label: '401(k)', data: rows.map(r => r.retirement), borderColor: '#9085e9', backgroundColor: 'rgba(144,133,233,.35)', fill: true, stack: 's', borderWidth: 1, order: 1 }
       ] },
       options: { maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
         scales: { x: CH.xClean({ ticks: { maxTicksLimit: 12, callback: (v, i) => labels[i] && labels[i].endsWith('-01') ? labels[i].slice(0, 4) : '' } }), y: { ...CH.yMoney(), stacked: true, min: Math.min(0, rows[0].total) } },
         plugins: { tooltip: { callbacks: { title: i => F.fmtMonth(labels[i[0].dataIndex]), label: i => ` ${i.dataset.label}: ${F.money(i.parsed.y)}` } },
-          guides: { zero: true, markers: [R.crossed ? { x: idx(R.crossed), label: `$1M · ${F.fmtMonth(R.crossed)}`, color: CH.colors.net, align: 'right' } : null, R.milestones[500000] ? { x: idx(R.milestones[500000]), label: '$500k', color: 'rgba(232,230,223,.45)' } : null].filter(Boolean) } } }
+          guides: { zero: true, markers: [R.crossed ? { x: idx(R.crossed), label: `$1M · ${F.fmtMonth(R.crossed)}`, color: CH.colors.net, align: idx(R.crossed) > labels.length * 0.5 ? 'right' : 'left' } : null, R.milestones[500000] ? { x: idx(R.milestones[500000]), label: `$500k · ${F.fmtMonth(R.milestones[500000])}`, color: 'rgba(232,230,223,.45)', align: 'right', dy: 16 } : null].filter(Boolean) } } }
     });
   }
 };
