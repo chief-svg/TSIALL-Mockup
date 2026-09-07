@@ -11,7 +11,7 @@ window.UI = {
 window.APP = (() => {
   const ROUTES = [
     ['command', 'Command', '1'], ['payoff', 'Payoff', '2'], ['spending', 'Spending', '3'], ['projection', 'Projection', '4'],
-    ['after', 'After Debt', '5'], ['allocate', 'Allocate', '6'], ['million', 'Path to $1M', '7'], ['accounts', 'Accounts', '8']
+    ['after', 'After Debt', '5'], ['allocate', 'Allocate', '6'], ['donuts', 'Donuts', '7'], ['million', 'Path to $1M', '8'], ['accounts', 'Accounts', '9']
   ];
   const PREF_KEY = 'fd.prefs.v1';
   const state = { ctx: null, d: null, raw: null, overrides: {}, snapshots: {}, meta: { mode: 'live', stale: false, syncing: true, fetchedAt: null, error: null, cachedAt: null }, prefs: loadPrefs(), loading: false, popupShown: false, progress: '' };

@@ -5,7 +5,7 @@ This repo has two unrelated things: the **Texas State Insurance mockup** (`index
 ## Finance app — key components
 - `finance/public/js/plan.js` — **all** constants (accounts/roles/APRs, income, bills, payment schedule, waterfall, projection, $1M levers, plan-start balances). Change numbers here, never in views.
 - `finance/public/js/engine.js` — pure logic (classify, match ±5d/±15%, simulate with daily APR, buffer sweeps tails, funds check, projection/drift, allocation, million path). Testable in Node: `global.window=global; require(format, plan, engine)`.
-- `finance/public/js/app.js` — controller: cached-first boot, refresh, header/strip, popup (next two payments), overrides API, routing (`#/command|payoff|spending|projection|after|allocate|million|accounts`, keys 1–8, `r` = resync).
+- `finance/public/js/app.js` — controller: cached-first boot, refresh, header/strip, popup (next two payments), overrides API, routing (`#/command|payoff|spending|projection|after|allocate|donuts|million|accounts`, keys 1–9, `r` = resync).
 - `finance/public/js/store.js` — async KV (localStorage locally; hosted swaps in artifact db for `overrides`/`snapshots`, cache = newer of local/db).
 - `finance/public/js/views/*.js` — one file per page; `VIEWS.x = {render(S), mount(S, root)}`.
 - `finance/server.js` — GET-only proxy, key from gitignored `finance/.env` (`POCKETSMITH_KEY`). `npm start` / `npm run demo` (`DEMO=1`, fixtures in `public/demo/`).
