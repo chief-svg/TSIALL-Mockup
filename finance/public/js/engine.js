@@ -413,23 +413,29 @@ window.ENGINE = (() => {
   function allocationTable(opts = {}) {
     const post = P.post;
     const hsaOn = opts.hsaOn ?? post.hsa.defaultOn;
-    const efStart = opts.efStart ?? 0; // live savings balances counted toward the EF
-    const buffer = 13000;              // Dec ’26 cash buffer from the projection*
-    let ef = efStart + (opts.includeBuffer === false ? 0 : buffer);
+    const efStart = opts.efStart ?? 0;                 // live savings balances counted toward the EF
+    const buffer = opts.includeBuffer === false ? 0 : 13000; // Dec ’26 cash buffer from the projection*
+    const capacity = typeof opts.capacity === 'function' ? opts.capacity : () => (opts.capacity ?? post.monthlyCapacity);
+    const startMonth = opts.startMonth || post.startMonth;
+    const months = opts.months || 12;
+    let ef = efStart + buffer;
     const rows = [];
-    const [sy, sm] = post.startMonth.split('-').map(Number);
-    let rothYTD = 0, hsaYTD = 0;
-    for (let k = 0; k < 12; k++) {
+    const [sy, sm] = startMonth.split('-').map(Number);
+    let rothYTD = 0, hsaYTD = 0, year = null;
+    for (let k = 0; k < months; k++) {
       const m = new Date(sy, sm - 1 + k, 1);
       const ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`;
-      let cash = post.monthlyCapacity;
+      if (year !== m.getFullYear()) { year = m.getFullYear(); rothYTD = 0; hsaYTD = 0; }
+      const cap = Math.max(0, Number(capacity(ym)) || 0);
+      let cash = cap;
       const toEF = Math.min(Math.max(0, post.emergencyFund.target - ef), cash); ef += toEF; cash -= toEF;
       const efDone = ef >= post.emergencyFund.target - 0.5;
       const roth = efDone ? Math.min(post.roth.monthly, cash, Math.max(0, post.roth.annualEach * 2 - rothYTD)) : 0; rothYTD += roth; cash -= roth;
       const hsa = efDone && hsaOn ? Math.min(post.hsa.monthly, cash, Math.max(0, post.hsa.annual - hsaYTD)) : 0; hsaYTD += hsa; cash -= hsa;
       const brokerage = Math.max(0, cash);
-      const sabino401k = ym >= post.sabino401k.eligibleDate.slice(0, 7) ? post.sabino401k.annual / (12 - (Number(post.sabino401k.eligibleDate.slice(5, 7)) - 1)) : 0;
-      rows.push({ ym, toEF, ef, efDone, roth, hsa, brokerage, sabino401k, jessica401k: post.jessica401k.annual / 12 });
+      const eligM = Number(post.sabino401k.eligibleDate.slice(5, 7));
+      const sabino401k = ym >= post.sabino401k.eligibleDate.slice(0, 7) ? (m.getFullYear() === Number(post.sabino401k.eligibleDate.slice(0, 4)) ? post.sabino401k.annual / (12 - (eligM - 1)) : post.sabino401k.annual / 12) : 0;
+      rows.push({ ym, capacity: cap, toEF, ef, efDone, roth, hsa, brokerage, sabino401k, jessica401k: post.jessica401k.annual / 12 });
     }
     const rothMonthsLeft = rows.filter(r => r.efDone).length;
     return { rows, hsaOn, efStart, rothCatchUp: rothMonthsLeft ? (post.roth.annualEach * 2) / rothMonthsLeft : null, efCompleteMonth: (rows.find(r => r.efDone) || {}).ym || null };
