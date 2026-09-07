@@ -60,6 +60,7 @@ VIEWS.command = {
         <div class="ring">${ring(liv.ratio, liv.status)}<div class="c"><div><div class="p">${(liv.ratio * 100).toFixed(0)}%</div><div class="xs muted">of pace</div></div></div></div>
         <div class="kv">
           <span class="k"><b>Left to spend today</b></span><span class="v ${liv.todayLeft > 0 ? 'pos' : 'neg'}" style="font-size:16px">${F.money(liv.todayLeft)}</span>
+          <span class="k">Tomorrow, if nothing more today</span><span class="v">${F.money(liv.tomorrowLeft)}</span>
           <span class="k">Spent so far</span><span class="v">${F.money(liv.actual)}</span>
           <span class="k">Budget to date</span><span class="v">${F.money(liv.budgetToDate)}</span>
           <span class="k">Variance</span><span class="v ${liv.budgetToDate - liv.actual >= 0 ? 'pos' : 'neg'}">${F.signed(liv.budgetToDate - liv.actual)}</span>
