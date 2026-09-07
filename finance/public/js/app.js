@@ -14,7 +14,7 @@ window.APP = (() => {
     ['after', 'After Debt', '5'], ['million', 'Path to $1M', '6'], ['accounts', 'Accounts', '7']
   ];
   const PREF_KEY = 'fd.prefs.v1';
-  const state = { ctx: null, d: null, raw: null, overrides: {}, snapshots: {}, meta: { mode: 'live', stale: false, fetchedAt: null, error: null, cachedAt: null }, prefs: loadPrefs(), loading: false, popupShown: false };
+  const state = { ctx: null, d: null, raw: null, overrides: {}, snapshots: {}, meta: { mode: 'live', stale: false, syncing: true, fetchedAt: null, error: null, cachedAt: null }, prefs: loadPrefs(), loading: false, popupShown: false, progress: '' };
 
   function loadPrefs() { try { return JSON.parse(localStorage.getItem(PREF_KEY) || '{}'); } catch { return {}; } }
   function setPref(k, v) { state.prefs[k] = v; try { localStorage.setItem(PREF_KEY, JSON.stringify(state.prefs)); } catch { /* ignore */ } }
@@ -49,29 +49,46 @@ window.APP = (() => {
     return { ...raw, transactions: (raw.transactions || []).map(t => ({ id: t.id, date: t.date, amount: t.amount, payee: t.payee, original_payee: t.original_payee, memo: t.memo, type: t.type, status: t.status, is_transfer: t.is_transfer, category: t.category ? { id: t.category.id, title: t.category.title, is_transfer: t.category.is_transfer, is_bill: t.category.is_bill } : null, transaction_account: t.transaction_account ? { id: t.transaction_account.id, account_id: t.transaction_account.account_id } : null })) };
   }
 
+  function progress(msg) { state.progress = msg || ''; renderHeader(); const el = document.getElementById('load-progress'); if (el) el.textContent = state.progress; }
+
+  // Paint whatever this device synced last, immediately, then go live.
+  async function boot() {
+    const [cached, ov, sn] = await Promise.all([STORE.local.get('cache'), STORE.local.get('overrides'), STORE.local.get('snapshots')]);
+    if (cached && cached.payload) {
+      state.overrides = ov || {}; state.snapshots = sn || {};
+      applyData(cached.payload, { mode: 'live', stale: true, syncing: true, fetchedAt: new Date(cached.at), cachedAt: new Date(cached.at), error: null });
+    } else {
+      document.getElementById('main').innerHTML = `<div class="empty"><h2 class="serif">Loading live data…</h2><div class="muted" id="load-progress">${F.esc(state.progress || 'Connecting…')}</div></div>`;
+    }
+    progress(window.READY ? 'Waiting for claude.ai to grant access…' : 'Connecting…');
+    await (window.READY || Promise.resolve());
+    refresh();
+  }
+
   async function refresh() {
     if (state.loading) return;
-    state.loading = true; renderHeader();
+    state.loading = true; state.meta.syncing = true; renderHeader();
     const P = window.PLAN, today = F.today();
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
     const [overrides, snapshots, cached] = await Promise.all([STORE.get('overrides'), STORE.get('snapshots'), STORE.get('cache')]);
     state.overrides = overrides || {}; state.snapshots = snapshots || {};
+    API.onProgress = progress;
     try {
       if (API.clearMem) API.clearMem();
       const health = await API.health();
       const raw = await API.loadAll({ userId: P.userId, txStart, txEnd: F.addDays(today, 1), evStart: today, evEnd: F.addDays(today, 60) });
       STORE.set('cache', { at: Date.now(), payload: compact(raw) });
-      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null });
+      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, syncing: false, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null });
     } catch (err) {
       console.error(err);
       if (cached && cached.payload) {
-        applyData(cached.payload, { mode: 'live', stale: true, fetchedAt: new Date(cached.at), error: err.message, cachedAt: new Date(cached.at) });
+        applyData(cached.payload, { mode: 'live', stale: true, syncing: false, fetchedAt: new Date(cached.at), error: err.message, cachedAt: new Date(cached.at) });
         toast(`Resync failed — showing data from ${F.fmtDate(F.toISO(new Date(cached.at)), { year: false })} ${F.fmtTime(new Date(cached.at))}. ${err.message}`);
       } else {
-        state.meta.error = err.message; state.meta.mode = 'error';
+        state.meta.error = err.message; state.meta.mode = 'error'; state.meta.syncing = false;
         renderHeader(); renderSetup(err);
       }
-    } finally { state.loading = false; renderHeader(); }
+    } finally { state.loading = false; state.meta.syncing = false; progress(''); renderHeader(); }
   }
 
   // ---- balance overrides (fail-safe) -----------------------------------------
@@ -95,12 +112,12 @@ window.APP = (() => {
     document.getElementById('tabs').innerHTML = ROUTES.map(([id, label, k]) => `<a href="#/${id}" class="${id === r ? 'on' : ''}"><span class="k">${k}</span>${label}</a>`).join('');
     const b = document.getElementById('mode-badge');
     const m = state.meta;
-    if (state.loading) { b.className = 'badge'; b.textContent = 'Syncing…'; }
+    if (state.loading || m.syncing) { b.className = 'badge'; b.textContent = 'Syncing…'; }
     else if (m.mode === 'error') { b.className = 'badge err'; b.textContent = 'Offline'; }
     else if (m.stale) { b.className = 'badge stale'; b.textContent = 'Stale · cached'; }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
     else { b.className = 'badge live'; b.textContent = 'Live · PocketSmith'; }
-    document.getElementById('refreshed').textContent = m.fetchedAt ? `as of ${F.fmtTime(m.fetchedAt)}` : '';
+    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `as of ${F.fmtTime(m.fetchedAt)}` : '';
     document.getElementById('refresh').disabled = state.loading;
     document.title = `${ROUTES.find(x => x[0] === r)[1]} · Command`;
   }
@@ -198,7 +215,7 @@ window.APP = (() => {
     const r = ROUTES.find(x => x[2] === e.key); if (r) location.hash = '#/' + r[0];
     if (e.key === 'r' && !e.metaKey && !e.ctrlKey) refresh();
   });
-  (window.READY || Promise.resolve()).then(refresh);
+  boot();
 
   return { state, refresh, render, setPref, toast, setOverrides, clearOverride, showUpcoming };
 })();

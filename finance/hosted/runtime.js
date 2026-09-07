@@ -23,28 +23,41 @@
   }
   function pages(res) { const m = /Page\s+(\d+)\s+of\s+(\d+)/i.exec(text(res) || (typeof res.payload === 'string' ? res.payload : '')); return m ? { page: Number(m[1]), pages: Number(m[2]) } : null; }
 
-  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false }); }
+  const timeout = ms => (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(ms) : undefined;
+  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false, signal: timeout(45000) }); }
+  const prog = m => { try { if (window.API && window.API.onProgress) window.API.onProgress(m); } catch { /* ignore */ } };
 
   window.API = {
     sourceLabel: 'PocketSmith connector (your claude.ai login)',
     async health() { const mcp = await mcpP; return { ok: true, demo: false, connector: !!mcp }; },
     async loadAll({ userId, txStart, txEnd, evStart, evEnd }) {
+      prog('Connecting to PocketSmith…');
       const mcp = await mcpP;
       if (!mcp) { const e = new Error('This page can only reach PocketSmith when opened inside claude.ai.'); e.code = 'no_runtime'; throw e; }
       const wrap = p => p.catch(err => { const e = new Error(copyFor(err)); e.code = err && err.code; e.raw = err; throw e; });
-      const [accounts, categories, events] = await Promise.all([
+      prog('Pulling accounts, categories, calendar, transactions…');
+      const txInput = page => ({ user_id: userId, start_date: txStart, end_date: txEnd, per_page: 100, page });
+      const [accounts, categories, events, first] = await Promise.all([
         wrap(call(mcp, TOOLS.accounts, { user_id: userId })).then(unwrap),
         wrap(call(mcp, TOOLS.categories, { user_id: userId })).then(unwrap),
-        wrap(call(mcp, TOOLS.events, { user_id: userId, start_date: evStart, end_date: evEnd })).then(unwrap).catch(() => [])
+        wrap(call(mcp, TOOLS.events, { user_id: userId, start_date: evStart, end_date: evEnd })).then(unwrap).catch(() => []),
+        wrap(call(mcp, TOOLS.transactions, txInput(1)))
       ]);
       const transactions = [];
-      for (let page = 1; page <= 40; page++) {
-        const res = await wrap(call(mcp, TOOLS.transactions, { user_id: userId, start_date: txStart, end_date: txEnd, per_page: 100, page }));
-        const arr = unwrap(res); const list = Array.isArray(arr) ? arr : [];
-        transactions.push(...list);
-        const pg = pages(res);
-        if (pg ? page >= pg.pages : list.length < 100) break;
+      const firstList = unwrap(first); transactions.push(...(Array.isArray(firstList) ? firstList : []));
+      const pg = pages(first);
+      const total = pg ? Math.min(pg.pages, 40) : (transactions.length >= 100 ? 2 : 1);
+      if (total > 1) {
+        prog(`Transactions: ${total} pages…`);
+        if (pg) {
+          // Known page count → fetch the rest in parallel
+          const rest = await Promise.all(Array.from({ length: total - 1 }, (_, i) => wrap(call(mcp, TOOLS.transactions, txInput(i + 2))).then(unwrap)));
+          for (const l of rest) transactions.push(...(Array.isArray(l) ? l : []));
+        } else {
+          for (let page = 2; page <= 40; page++) { const l = unwrap(await wrap(call(mcp, TOOLS.transactions, txInput(page)))); const list = Array.isArray(l) ? l : []; transactions.push(...list); if (list.length < 100) break; }
+        }
       }
+      prog('Building views…');
       return { accounts: Array.isArray(accounts) ? accounts : [], categories: Array.isArray(categories) ? categories : [], transactions, events: Array.isArray(events) ? events : [], fetchedAt: Date.now() };
     },
     setupCopy(err) {
