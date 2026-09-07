@@ -6,8 +6,10 @@ window.ENGINE = (() => {
   const P = window.PLAN;
 
   // ---------------------------------------------------------------- accounts
-  function buildAccounts(apiAccounts) {
+  function buildAccounts(apiAccounts, overrides = {}) {
     return (apiAccounts || []).map(a => {
+      const ov = overrides && overrides[a.id];
+      const useOv = ov && typeof ov.balance === 'number' && (!a.current_balance_date || (ov.asOf || '') >= a.current_balance_date);
       const meta = P.accounts[a.id] || {};
       const type = a.type || '';
       const isDebt = /credit|loan|mortgage/.test(type) || (meta.role && ['target', 'straggler', 'display', 'loan'].includes(meta.role));
@@ -23,8 +25,11 @@ window.ENGINE = (() => {
         order: meta.order ?? 99,
         apr: meta.apr ?? null,
         payoffQuote: !!meta.payoffQuote,
-        balance: Number(a.current_balance || 0),
-        balanceDate: a.current_balance_date,
+        balance: useOv ? ov.balance : Number(a.current_balance || 0),
+        balanceDate: useOv ? ov.asOf : a.current_balance_date,
+        feedBalance: Number(a.current_balance || 0),
+        feedDate: a.current_balance_date,
+        override: useOv ? ov : null,
         institution: ta.institution ? ta.institution.title : '',
         colour: ta.institution ? ta.institution.colour : null,
         number: ta.number || '',
@@ -95,10 +100,10 @@ window.ENGINE = (() => {
   }
 
   function buildContext(data) {
-    const accounts = buildAccounts(data.accounts);
+    const accounts = buildAccounts(data.accounts, data.overrides || {});
     const byId = Object.fromEntries(accounts.map(a => [a.id, a]));
     const catIndex = indexCategories(data.categories);
-    const ctx = { accounts, byId, catIndex, categories: data.categories || [], today: F.today(), events: data.events || [] };
+    const ctx = { accounts, byId, catIndex, categories: data.categories || [], today: F.today(), events: data.events || [], snapshots: data.snapshots || {}, overrides: data.overrides || {} };
     ctx.txs = (data.transactions || []).map(t => ({ ...t, amount: Number(t.amount), kind: classify(t, ctx), acctId: t.transaction_account && t.transaction_account.account_id }))
       .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
     ctx.totals = totals(accounts);
@@ -334,19 +339,17 @@ window.ENGINE = (() => {
   }
 
   // -------------------------------------------------------------- snapshots
-  const SNAP_KEY = 'fd.snapshots.v1';
-  function loadSnapshots() { try { return JSON.parse(localStorage.getItem(SNAP_KEY) || '{}'); } catch { return {}; } }
-  function recordSnapshot(ctx) {
-    const s = loadSnapshots();
+  // One point per day of live totals; persisted by the app via STORE.
+  function recordSnapshot(ctx, snapshots) {
+    const s = { ...(snapshots || ctx.snapshots || {}) };
     s[ctx.today] = { debt: ctx.totals.debt, cash: ctx.totals.cash, savings: ctx.totals.savings, net: ctx.totals.net, at: Date.now() };
-    try { localStorage.setItem(SNAP_KEY, JSON.stringify(s)); } catch { /* ignore */ }
     return s;
   }
 
   function projectionSeries(ctx) {
     const x0 = P.planStart;
     const pts = P.projection.map(p => ({ ...p, x: F.daysBetween(x0, p.date), net: p.debt + p.savings }));
-    const snaps = loadSnapshots();
+    const snaps = ctx.snapshots || {};
     const live = Object.entries(snaps).sort().map(([date, v]) => ({ date, x: F.daysBetween(x0, date), debt: v.debt, savings: v.savings + v.cash, net: v.net }));
     // Plan-vs-reality: interpolate the plan debt at today
     const tx = F.daysBetween(x0, ctx.today);
@@ -429,5 +432,5 @@ window.ENGINE = (() => {
     return returns.map(r => ({ r, cells: cashes.map(c => ({ c, crossed: millionPath({ ...base, annualReturn: r, monthlyCash: c }).crossed })) }));
   }
 
-  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, loadSnapshots, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween };
+  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween };
 })();

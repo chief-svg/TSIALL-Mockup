@@ -16,6 +16,10 @@ No dependencies — Node 18+ only. Get a key at PocketSmith → profile icon →
 
 Want to look around without a key? `npm run demo` serves bundled fixtures (real account structure, synthetic transactions).
 
+## Hosted version (phone)
+
+`node hosted/build.js` bundles the same app into `hosted/dist/command.html` for publishing as a claude.ai artifact. That build swaps the local proxy for the viewer's own **PocketSmith connector** (through the artifact `mcp` runtime — no key, your claude.ai login), keeps manual balance overrides and daily snapshots in the artifact database so they follow you across devices, and reads balance **screenshots** with Claude where the viewer allows images. Open the published link in the Claude app or claude.ai, allow PocketSmith when asked, then use *Add to Home Screen*. Every open re-pulls PocketSmith; **Resync** forces a fresh pull; the **Accounts** page has the fail-safe (screenshots or typed balances); a popup on each load shows the next two scheduled payments.
+
 ## Pages
 
 | Key | Page | What it answers |
@@ -28,7 +32,7 @@ Want to look around without a key? `npm run demo` serves bundled fixtures (real 
 | 6 | **Path to $1M** | Levers (cash, return, yield, 401(k)s, match), crossing month, milestones, sensitivity grid |
 | 7 | **Accounts** | Every account with live balance, role, APR, death date |
 
-`R` refreshes. A `*` marks an assumption or estimate.
+`R` resyncs. A `*` marks an assumption or estimate. A manual balance (typed or read from a screenshot) overrides the feed until the feed reports a newer date.
 
 ## Where things live
 
@@ -36,6 +40,7 @@ Want to look around without a key? `npm run demo` serves bundled fixtures (real 
 - `public/js/engine.js` — classification, matching, simulation, projection, allocation, $1M path. Pure functions; unit-testable in Node.
 - `public/js/views/*.js` — one file per page.
 - `server.js` — 100-line proxy + static server. `DEMO=1` swaps in `public/demo/*.json`.
+- `hosted/runtime.js` + `hosted/build.js` — the claude.ai artifact build (connector, db, screenshot reading).
 
 ## How matching works
 

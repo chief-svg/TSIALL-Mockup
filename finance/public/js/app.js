@@ -1,4 +1,4 @@
-// App controller: data load, derived state, routing, header.
+// App controller: data load, derived state, routing, header, upcoming-payments popup, balance overrides.
 window.VIEWS = window.VIEWS || {};
 window.UI = {
   chip: (status, label) => `<span class="chip ${F.esc(status)}">${F.esc(label || status)}</span>`,
@@ -14,7 +14,7 @@ window.APP = (() => {
     ['after', 'After Debt', '5'], ['million', 'Path to $1M', '6'], ['accounts', 'Accounts', '7']
   ];
   const PREF_KEY = 'fd.prefs.v1';
-  const state = { ctx: null, d: null, raw: null, meta: { mode: 'live', stale: false, fetchedAt: null, error: null, cachedAt: null }, prefs: loadPrefs(), loading: false };
+  const state = { ctx: null, d: null, raw: null, overrides: {}, snapshots: {}, meta: { mode: 'live', stale: false, fetchedAt: null, error: null, cachedAt: null }, prefs: loadPrefs(), loading: false, popupShown: false };
 
   function loadPrefs() { try { return JSON.parse(localStorage.getItem(PREF_KEY) || '{}'); } catch { return {}; } }
   function setPref(k, v) { state.prefs[k] = v; try { localStorage.setItem(PREF_KEY, JSON.stringify(state.prefs)); } catch { /* ignore */ } }
@@ -30,13 +30,23 @@ window.APP = (() => {
     return { sched, ledger, sims, living, spend, proj, funds };
   }
 
+  function rebuild() {
+    state.ctx = ENGINE.buildContext({ ...state.raw, overrides: state.overrides, snapshots: state.snapshots });
+    state.d = derive(state.ctx);
+  }
+
   function applyData(raw, meta) {
     state.raw = raw;
-    state.ctx = ENGINE.buildContext(raw);
-    if (!meta.stale) ENGINE.recordSnapshot(state.ctx);
-    state.d = derive(state.ctx);
     Object.assign(state.meta, meta);
+    rebuild();
+    if (!meta.stale) { state.snapshots = ENGINE.recordSnapshot(state.ctx, state.snapshots); STORE.set('snapshots', state.snapshots); rebuild(); }
     render();
+    if (!state.popupShown) { state.popupShown = true; showUpcoming(); }
+  }
+
+  // Keep the cached payload small: only fields the engine reads.
+  function compact(raw) {
+    return { ...raw, transactions: (raw.transactions || []).map(t => ({ id: t.id, date: t.date, amount: t.amount, payee: t.payee, original_payee: t.original_payee, memo: t.memo, type: t.type, status: t.status, is_transfer: t.is_transfer, category: t.category ? { id: t.category.id, title: t.category.title, is_transfer: t.category.is_transfer, is_bill: t.category.is_bill } : null, transaction_account: t.transaction_account ? { id: t.transaction_account.id, account_id: t.transaction_account.account_id } : null })) };
   }
 
   async function refresh() {
@@ -44,23 +54,37 @@ window.APP = (() => {
     state.loading = true; renderHeader();
     const P = window.PLAN, today = F.today();
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
-    const cached = API.loadCache();
+    const [overrides, snapshots, cached] = await Promise.all([STORE.get('overrides'), STORE.get('snapshots'), STORE.get('cache')]);
+    state.overrides = overrides || {}; state.snapshots = snapshots || {};
     try {
-      API.clearMem();
+      if (API.clearMem) API.clearMem();
       const health = await API.health();
       const raw = await API.loadAll({ userId: P.userId, txStart, txEnd: F.addDays(today, 1), evStart: today, evEnd: F.addDays(today, 60) });
-      API.saveCache(raw);
-      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, fetchedAt: new Date(raw.fetchedAt), error: null });
+      STORE.set('cache', { at: Date.now(), payload: compact(raw) });
+      applyData(raw, { mode: health.demo ? 'demo' : 'live', stale: false, fetchedAt: new Date(raw.fetchedAt || Date.now()), error: null });
     } catch (err) {
       console.error(err);
       if (cached && cached.payload) {
         applyData(cached.payload, { mode: 'live', stale: true, fetchedAt: new Date(cached.at), error: err.message, cachedAt: new Date(cached.at) });
-        toast(`Live refresh failed — showing data cached ${F.fmtTime(new Date(cached.at))}. ${err.message}`);
+        toast(`Resync failed — showing data from ${F.fmtDate(F.toISO(new Date(cached.at)), { year: false })} ${F.fmtTime(new Date(cached.at))}. ${err.message}`);
       } else {
         state.meta.error = err.message; state.meta.mode = 'error';
         renderHeader(); renderSetup(err);
       }
     } finally { state.loading = false; renderHeader(); }
+  }
+
+  // ---- balance overrides (fail-safe) -----------------------------------------
+  async function setOverrides(list) {
+    for (const o of list) { if (o && o.id && typeof o.balance === 'number') state.overrides[o.id] = { balance: o.balance, asOf: o.asOf || F.today(), source: o.source || 'manual', note: o.note || '', at: Date.now() }; }
+    await STORE.set('overrides', state.overrides);
+    if (state.raw) { rebuild(); render(); }
+    toast(`${list.length} balance${list.length === 1 ? '' : 's'} updated`);
+  }
+  async function clearOverride(id) {
+    if (id === '*') state.overrides = {}; else delete state.overrides[id];
+    await STORE.set('overrides', state.overrides);
+    if (state.raw) { rebuild(); render(); }
   }
 
   // ---- render --------------------------------------------------------------
@@ -71,7 +95,7 @@ window.APP = (() => {
     document.getElementById('tabs').innerHTML = ROUTES.map(([id, label, k]) => `<a href="#/${id}" class="${id === r ? 'on' : ''}"><span class="k">${k}</span>${label}</a>`).join('');
     const b = document.getElementById('mode-badge');
     const m = state.meta;
-    if (state.loading) { b.className = 'badge'; b.textContent = 'Refreshing'; }
+    if (state.loading) { b.className = 'badge'; b.textContent = 'Syncing…'; }
     else if (m.mode === 'error') { b.className = 'badge err'; b.textContent = 'Offline'; }
     else if (m.stale) { b.className = 'badge stale'; b.textContent = 'Stale · cached'; }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
@@ -88,10 +112,11 @@ window.APP = (() => {
     const t = state.ctx.totals, d = state.d;
     const days = F.daysBetween(state.ctx.today, d.sims.debtFree || PLAN.debtFreeDate);
     const drift = d.proj.drift;
+    const ovCount = state.ctx.accounts.filter(a => a.override).length;
     el.innerHTML = `
       <div class="stat"><div class="eyebrow">Net position</div><div class="v ${t.net < 0 ? 'neg' : 'pos'}">${F.money(t.net)}</div><div class="s">cash + savings + debt</div></div>
       <div class="stat"><div class="eyebrow">Total debt</div><div class="v neg">${F.money(t.debt)}</div><div class="s">cards ${F.money(t.cards)} · loans ${F.money(t.loans)}</div></div>
-      <div class="stat"><div class="eyebrow">Cash</div><div class="v">${F.money(t.cash)}</div><div class="s">BofA checking</div></div>
+      <div class="stat"><div class="eyebrow">Cash</div><div class="v">${F.money(t.cash)}</div><div class="s">BofA checking${ovCount ? ` · <a href="#/accounts" class="blue">${ovCount} manual balance${ovCount > 1 ? 's' : ''}</a>` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Savings & invested</div><div class="v">${F.money(t.savings)}</div><div class="s">${t.savings ? 'non-operating balances' : 'nothing yet — starts Jan ’27'}</div></div>
       <div class="stat"><div class="eyebrow">Plan drift</div><div class="v ${drift > 500 ? 'neg' : drift < -500 ? 'pos' : ''}">${F.signed(drift)}</div><div class="s">${drift > 500 ? 'more debt than plan today' : drift < -500 ? 'ahead of plan today' : 'on plan today'}</div></div>
       <div class="stat"><div class="eyebrow">Debt-free</div><div class="v gold">${days} d</div><div class="s">${F.fmtDate(d.sims.debtFree || PLAN.debtFreeDate)}${d.sims.debtFree ? '' : ' (plan)'}</div></div>`;
@@ -102,7 +127,7 @@ window.APP = (() => {
     const main = document.getElementById('main');
     if (!state.ctx) return;
     const v = VIEWS[route()];
-    const S = { ctx: state.ctx, d: state.d, meta: state.meta, prefs: state.prefs, setPref, raw: state.raw };
+    const S = { ctx: state.ctx, d: state.d, meta: state.meta, prefs: state.prefs, setPref, raw: state.raw, overrides: state.overrides };
     main.innerHTML = v.render(S) + footer();
     if (v.mount) v.mount(S, main);
     window.scrollTo({ top: 0 });
@@ -110,12 +135,13 @@ window.APP = (() => {
 
   function footer() {
     const m = state.meta;
-    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : 'PocketSmith API via local proxy'} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
+    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : API.sourceLabel || 'PocketSmith API via local proxy'} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
   }
 
   function renderSetup(err) {
     document.getElementById('strip').innerHTML = ''; document.querySelector('.strip').classList.add('hidden');
-    document.getElementById('main').innerHTML = `
+    const custom = API.setupCopy ? API.setupCopy(err) : null;
+    document.getElementById('main').innerHTML = custom || `
       <div class="setup">
         <h1 class="serif" style="font-weight:300;font-size:34px">Connect PocketSmith</h1>
         <p class="muted" style="margin:10px 0 18px">${F.esc(err.message)}</p>
@@ -123,12 +149,40 @@ window.APP = (() => {
           <ol style="margin:0;padding-left:18px;line-height:1.9">
             <li>PocketSmith → profile icon → <b>Security &amp; integrations → Manage developer keys → Create Key</b></li>
             <li>In <span class="mono">finance/</span>: copy <span class="mono">.env.example</span> → <span class="mono">.env</span> and paste the key as <span class="mono">POCKETSMITH_KEY=…</span> (it is gitignored)</li>
-            <li>Restart the server (<span class="mono">npm start</span>) and hit Refresh.</li>
+            <li>Restart the server (<span class="mono">npm start</span>) and hit Resync.</li>
           </ol>
           <div class="hr"></div>
           <div class="note">No key handy? Run <span class="mono">npm run demo</span> to explore the UI with bundled fixtures. The proxy only ever forwards GET requests — the app cannot modify anything in PocketSmith.</div>
         </div>
       </div>`;
+  }
+
+  // ---- upcoming payments popup ----------------------------------------------
+  function showUpcoming() {
+    if (!state.d) return;
+    const groups = state.d.sched.groups.filter(g => g.status !== 'done').slice(0, 2);
+    if (!groups.length) return;
+    const bg = document.createElement('div'); bg.className = 'modal-bg'; bg.setAttribute('role', 'dialog'); bg.setAttribute('aria-modal', 'true');
+    bg.innerHTML = `<div class="modal">
+      <div class="eyebrow">Next two payments</div>
+      <h2>${state.meta.stale ? 'Balances are from cache — ' : ''}${groups[0].daysUntil <= 0 ? 'A payment is due now' : `Next payment in ${groups[0].daysUntil} day${groups[0].daysUntil === 1 ? '' : 's'}`}</h2>
+      <div class="upc">${groups.map((g, i) => {
+        const fund = state.d.funds.find(f => f.date === g.date);
+        const need = g.items.filter(x => x.status !== 'done').reduce((s, x) => s + x.amount, 0);
+        return `<div class="item ${i === 0 ? 'first' : ''}">
+          <div class="top"><div><div class="amt gold">${F.money(need)}</div><div class="when">${F.weekday(g.date)} ${F.fmtDate(g.date)} · ${g.daysUntil === 0 ? 'today' : g.daysUntil > 0 ? `in ${g.daysUntil}d` : `${-g.daysUntil}d overdue`}${g.kills.length ? ` · ☠ ${g.kills.join(', ')}` : ''}</div></div>
+          <div class="right">${UI.chip(g.status)}${fund ? `<div class="xs ${fund.ok ? 'pos' : 'neg'}" style="margin-top:6px">${fund.ok ? 'funds covered' : 'short ' + F.money(-fund.gap)}${UI.ast()}</div>` : ''}</div></div>
+          <div class="lines">${g.items.filter(x => x.status !== 'done').map(x => `<div><span>${x.acct ? F.esc(x.acct.short) : 'Interest buffer'}${x.acct ? ` <span class="muted xs">live ${F.money(x.acct.balance)}</span>` : ''}</span><span class="num">${F.money(x.amount)}</span></div>`).join('')}</div>
+        </div>`; }).join('')}</div>
+      <div class="actions"><a class="btn sm" href="#/payoff" id="upc-open">Open schedule</a><button class="btn sm primary" id="upc-ok">Got it</button></div>
+    </div>`;
+    const close = () => bg.remove();
+    bg.addEventListener('click', e => { if (e.target === bg) close(); });
+    bg.querySelector('#upc-ok').addEventListener('click', close);
+    bg.querySelector('#upc-open').addEventListener('click', close);
+    document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
+    document.body.appendChild(bg);
+    bg.querySelector('#upc-ok').focus();
   }
 
   function toast(msg) {
@@ -144,7 +198,7 @@ window.APP = (() => {
     const r = ROUTES.find(x => x[2] === e.key); if (r) location.hash = '#/' + r[0];
     if (e.key === 'r' && !e.metaKey && !e.ctrlKey) refresh();
   });
-  refresh();
+  (window.READY || Promise.resolve()).then(refresh);
 
-  return { state, refresh, render, setPref, toast };
+  return { state, refresh, render, setPref, toast, setOverrides, clearOverride, showUpcoming };
 })();
