@@ -59,11 +59,12 @@ VIEWS.command = {
       <div class="gauge">
         <div class="ring">${ring(liv.ratio, liv.status)}<div class="c"><div><div class="p">${(liv.ratio * 100).toFixed(0)}%</div><div class="xs muted">of pace</div></div></div></div>
         <div class="kv">
+          <span class="k"><b>Left to spend today</b></span><span class="v ${liv.todayLeft > 0 ? 'pos' : 'neg'}" style="font-size:16px">${F.money(liv.todayLeft)}</span>
           <span class="k">Spent so far</span><span class="v">${F.money(liv.actual)}</span>
           <span class="k">Budget to date</span><span class="v">${F.money(liv.budgetToDate)}</span>
           <span class="k">Variance</span><span class="v ${liv.budgetToDate - liv.actual >= 0 ? 'pos' : 'neg'}">${F.signed(liv.budgetToDate - liv.actual)}</span>
           <span class="k">Left this month</span><span class="v">${F.money(liv.remaining)}</span>
-          <span class="k">Per day for ${liv.daysLeft} days</span><span class="v ${liv.perDayLeft < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(liv.perDayLeft)}</span>
+          <span class="k">Per day, today + ${liv.daysLeft} days</span><span class="v ${liv.perDayInclToday < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</span>
         </div>
       </div>
       <div class="note" style="margin-top:12px">$${PLAN.living.perDay}/day · everything that isn’t a bill, debt payment, or transfer. ${liv.pendingCount ? `${liv.pendingCount} pending` : ''}</div>

@@ -165,7 +165,11 @@ window.ENGINE = (() => {
     const byPayee = {};
     for (const tx of living) { const k = (tx.payee || '?').replace(/\s+/g, ' ').trim().slice(0, 28); byPayee[k] = (byPayee[k] || 0) + -tx.amount; }
     const topPayees = Object.entries(byPayee).sort((a, b) => b[1] - a[1]).slice(0, 8);
-    return { from, to, elapsed, dim, per, actual, budgetToDate, budgetMonth, ratio, status, daysLeft, remaining, perDayLeft: daysLeft > 0 ? remaining / daysLeft : 0, series, txCount, pendingCount, topPayees, txs: living };
+    const spentToday = byDay[day] || 0;
+    const todayLeft = Math.max(0, budgetToDate - actual);          // what can still go out today and stay on pace
+    const overBy = Math.max(0, actual - budgetToDate);
+    const perDayInclToday = remaining / (daysLeft + 1);            // even split of what is left across today + remaining days
+    return { from, to, elapsed, dim, per, actual, budgetToDate, budgetMonth, ratio, status, daysLeft, remaining, perDayLeft: daysLeft > 0 ? remaining / daysLeft : 0, spentToday, todayLeft, overBy, perDayInclToday, series, txCount, pendingCount, topPayees, txs: living };
   }
 
   // ------------------------------------------------------------ month ledger

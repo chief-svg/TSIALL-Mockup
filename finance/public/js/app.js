@@ -141,7 +141,7 @@ window.APP = (() => {
     if (!state.ctx) { el.innerHTML = ''; return; }
     const t = state.ctx.totals, d = state.d;
     const days = F.daysBetween(state.ctx.today, d.sims.debtFree || PLAN.debtFreeDate);
-    const drift = d.proj.drift;
+    const drift = d.proj.drift; const liv = d.living;
     const ovCount = state.ctx.accounts.filter(a => a.override).length;
     const feedDate = state.ctx.accounts.map(a => a.feedDate).filter(Boolean).sort().pop();
     el.innerHTML = `
@@ -149,7 +149,7 @@ window.APP = (() => {
       <div class="stat"><div class="eyebrow">Total debt</div><div class="v neg">${F.money(t.debt)}</div><div class="s">cards ${F.money(t.cards)} · loans ${F.money(t.loans)}${feedDate ? ` · bank feeds ${F.fmtDate(feedDate, { year: false })}` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Cash</div><div class="v">${F.money(t.cash)}</div><div class="s">BofA checking${ovCount ? ` · <a href="#/accounts" class="blue">${ovCount} manual balance${ovCount > 1 ? 's' : ''}</a>` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Savings & invested</div><div class="v">${F.money(t.savings)}</div><div class="s">${t.savings ? 'non-operating balances' : 'nothing yet — starts Jan ’27'}</div></div>
-      <div class="stat"><div class="eyebrow">Plan drift</div><div class="v ${drift > 500 ? 'neg' : drift < -500 ? 'pos' : ''}">${F.signed(drift)}</div><div class="s">${drift > 500 ? 'more debt than plan today' : drift < -500 ? 'ahead of plan today' : 'on plan today'}</div></div>
+      <div class="stat"><div class="eyebrow">Spend today</div><div class="v ${liv.todayLeft > 0 ? (liv.todayLeft < PLAN.living.perDay * 0.5 ? 'amber' : 'pos') : 'neg'}">${F.money(liv.todayLeft)}</div><div class="s">${liv.todayLeft > 0 ? `left today on the $${PLAN.living.perDay}/day pace · spent ${F.money(liv.spentToday)} so far` : `over pace by ${F.money(liv.overBy)}`} · ${F.money(Math.max(0, liv.perDayInclToday))}/day lands the month</div></div>
       <div class="stat"><div class="eyebrow">Debt-free</div><div class="v gold">${days} d</div><div class="s">${F.fmtDate(d.sims.debtFree || PLAN.debtFreeDate)}${d.sims.debtFree ? '' : ' (plan)'}</div></div>`;
   }
 
@@ -195,6 +195,8 @@ window.APP = (() => {
     if (!groups.length) return;
     const bg = document.createElement('div'); bg.className = 'modal-bg'; bg.setAttribute('role', 'dialog'); bg.setAttribute('aria-modal', 'true');
     bg.innerHTML = `<div class="modal">
+      <div class="eyebrow">Today</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--hair)"><div><span class="num ${state.d.living.todayLeft > 0 ? 'pos' : 'neg'}" style="font-size:24px">${F.money(state.d.living.todayLeft)}</span> <span class="small muted">${state.d.living.todayLeft > 0 ? 'left to spend today' : 'over pace by ' + F.money(state.d.living.overBy)}</span></div><div class="xs muted right">$${PLAN.living.perDay}/day · ${F.money(Math.max(0, state.d.living.perDayInclToday))}/day for the rest of ${F.fmtMonth(state.d.living.from)}</div></div>
       <div class="eyebrow">Next two payments</div>
       <h2>${state.meta.stale ? 'Balances are from cache — ' : ''}${groups[0].daysUntil <= 0 ? 'A payment is due now' : `Next payment in ${groups[0].daysUntil} day${groups[0].daysUntil === 1 ? '' : 's'}`}</h2>
       <div class="upc">${groups.map((g, i) => {

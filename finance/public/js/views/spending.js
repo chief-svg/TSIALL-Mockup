@@ -20,7 +20,7 @@ VIEWS.spending = {
     const recent = liv.txs.slice(0, 40).map(t => `<tr><td class="num muted">${F.fmtDate(t.date, { year: false })}</td><td>${F.esc((t.payee || '').slice(0, 44))}${t.status === 'pending' ? ' <span class="chip">pending</span>' : ''}</td><td class="small muted">${F.esc(t.category ? t.category.title : 'Uncategorized')}</td><td class="small muted">${F.esc(ctx.byId[t.acctId] ? ctx.byId[t.acctId].short : '')}</td><td class="num ${t.amount > 0 ? 'pos' : ''}">${F.money(t.amount)}</td></tr>`).join('');
 
     return `<div class="page-head"><div><h1>Spending</h1><p>PocketSmith’s live category tree with month-to-date actuals, and the $${PLAN.living.perDay}/day living allowance against reality. Bills, debt payments and transfers are separated out so “living” means living.</p></div>
-        <div class="right"><div class="eyebrow">Living · ${F.fmtMonth(liv.from)}</div><div class="big ${liv.status === 'green' ? 'pos' : liv.status === 'amber' ? 'amber' : 'neg'}">${F.money(liv.actual)}</div><div class="small muted">vs ${F.money(liv.budgetToDate)} budget to date · ${(liv.ratio * 100).toFixed(0)}% of pace</div></div></div>
+        <div class="right"><div class="eyebrow">Left to spend today</div><div class="big ${liv.todayLeft > 0 ? 'pos' : 'neg'}">${F.money(liv.todayLeft)}</div><div class="small muted">${F.money(liv.actual)} spent MTD vs ${F.money(liv.budgetToDate)} budget · ${(liv.ratio * 100).toFixed(0)}% of pace · ${F.money(Math.max(0, liv.perDayInclToday))}/day lands the month</div></div></div>
 
       <div class="grid g32">
         <div class="panel"><div class="ph"><h3>Allowance pace</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Actual, cumulative</span><span><i style="background:rgba(232,230,223,.4)"></i>$${PLAN.living.perDay}/day budget</span></span></div>
@@ -28,7 +28,7 @@ VIEWS.spending = {
           <div class="grid g4" style="margin-top:14px;gap:10px">
             <div><div class="eyebrow">Status</div><div>${UI.chip(liv.status, liv.status === 'green' ? 'on pace' : liv.status === 'amber' ? 'over pace' : 'well over')}</div></div>
             <div><div class="eyebrow">Left this month</div><div class="num">${F.money(liv.remaining)}</div></div>
-            <div><div class="eyebrow">Per day, ${liv.daysLeft} days left</div><div class="num ${liv.perDayLeft < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(liv.perDayLeft)}</div></div>
+            <div><div class="eyebrow">Per day, today + ${liv.daysLeft} left</div><div class="num ${liv.perDayInclToday < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</div></div>
             <div><div class="eyebrow">Month budget</div><div class="num">${F.money(liv.budgetMonth)}</div></div>
           </div></div>
         <div class="panel flush"><div class="ph"><h3>Where living went</h3><span class="small muted">top merchants MTD</span></div><table><tbody>${top || '<tr><td class="muted center">No living spend yet this month</td></tr>'}</tbody></table></div>
