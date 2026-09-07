@@ -2,7 +2,11 @@
 
 A Claude Code Routine keeps the hosted app fresh without opening it: every day it pulls PocketSmith through your connector, writes the data and the day's debt snapshot into the artifact's database, and sends a push notification with the next two payments.
 
-## Set-up (one time, in claude.ai)
+## Current arrangement
+
+The daily sync is scheduled as a Routine that fires **into the original build session** (which holds the PocketSmith tools), every day at 00:00 UTC (7pm Central Daylight Time). It pulls PocketSmith, runs `sync-compact.js`, writes `state/cache` and `state/snapshots` into the artifact database, and sends a push notification with the summary. The first run seeded the database on 2026-09-07. If that session is ever archived, recreate the Routine from the claude.ai Routines screen using the set-up below.
+
+## Set-up (fallback, in claude.ai)
 
 1. Open **claude.ai → Code → Routines**. A paused Routine named **“Finance command center · 7pm PocketSmith sync”** is already there (created from the build session).
 2. Open it and **attach the PocketSmith connector** (Connectors section). Enable **push notifications** if not already on.
