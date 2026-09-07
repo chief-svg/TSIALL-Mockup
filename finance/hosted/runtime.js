@@ -87,12 +87,16 @@
         server_unavailable: ['PocketSmith is not answering', 'The connector timed out or returned an error. Tap Resync in a minute — cached balances stay visible when available.'],
         auth_expired: ['Reconnect PocketSmith', 'The connector’s login expired. claude.ai → Settings → Connectors → reconnect PocketSmith, then Resync.'],
         rate_limited: ['Too many requests', 'PocketSmith throttled the connector. Wait a minute, then Resync.'],
-        cancelled: ['PocketSmith took too long', 'The connector did not answer within three minutes, even after a retry. Tap Resync — the first call after approving access is often the slow one.']
+        cancelled: ['PocketSmith took too long', 'The connector did not answer within three minutes, even after a retry. Tap Resync — the first call after approving access is often the slow one.'],
+        upstream_error: /no reply from shell/i.test(err && err.message || '')
+          ? ['This viewer can’t reach connectors yet', 'claude.ai granted PocketSmith access but never carried the call — that happens in the Claude mobile app’s artifact viewer. Open this same link in Safari or Chrome (signed in to claude.ai) and add it to your home screen from there. Once the 7pm sync routine is running, this page shows its data even where the connector can’t be reached.']
+          : ['PocketSmith returned an error', err && err.message ? err.message : 'Unknown upstream error']
       }[code] || ['Could not load PocketSmith', err && err.message ? err.message : 'Unknown error'];
+      const shellHint = code === 'upstream_error' && /no reply from shell/i.test(err && err.message || '') ? '<div class="callout" style="margin-top:14px"><b>Quick check:</b> copy this page’s link (Share → Copy link), paste it into Safari, and see if balances load there. If they do, the app viewer is the problem and the home-screen icon should be made from Safari.</div>' : '';
       return `<div class="setup"><h1 class="serif" style="font-weight:300;font-size:34px">${fix[0]}</h1><p class="muted" style="margin:10px 0 18px">${fix[1]}</p>
         <div class="panel"><div class="kv"><span class="k">Error</span><span class="v">${code || 'unknown'}</span><span class="k">Detail</span><span class="v small">${(err && err.message || '').replace(/[<>]/g, '')}</span></div>
         <div class="hr"></div><div class="note">Reads only: this page lists accounts, categories, transactions and calendar events. It never changes anything in PocketSmith. Balances you enter by hand or from screenshots are stored with this page, not sent to PocketSmith.</div>
-        <div style="margin-top:14px"><button class="btn primary" onclick="APP.refresh()">Resync</button></div></div></div>`;
+        <div style="margin-top:14px"><button class="btn primary" onclick="APP.refresh()">Resync</button></div></div>${shellHint}</div>`;
     }
   };
   function copyFor(err) {
