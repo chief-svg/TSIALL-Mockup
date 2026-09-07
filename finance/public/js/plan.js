@@ -53,7 +53,8 @@ window.PLAN = {
   billPayeePatterns: [/standard ins/i, /insurance/i],
 
   // ---- Living allowance ---------------------------------------------------
-  living: { perDay: 150, amberAt: 1.0, redAt: 1.15 },
+  // Flat monthly living allowance (chosen 2026-09-07; was $150/day). Daily pace = monthly ÷ days in that month.
+  living: { monthly: 4500, amberAt: 1.0, redAt: 1.15 },
 
   // ---- Payment matching tolerance ----------------------------------------
   match: { days: 5, pct: 0.15 },

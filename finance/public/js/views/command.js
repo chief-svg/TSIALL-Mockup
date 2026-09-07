@@ -65,10 +65,10 @@ VIEWS.command = {
           <span class="k">Budget to date</span><span class="v">${F.money(liv.budgetToDate)}</span>
           <span class="k">Variance</span><span class="v ${liv.budgetToDate - liv.actual >= 0 ? 'pos' : 'neg'}">${F.signed(liv.budgetToDate - liv.actual)}</span>
           <span class="k">Left this month</span><span class="v">${F.money(liv.remaining)}</span>
-          <span class="k">Per day, today + ${liv.daysLeft} days</span><span class="v ${liv.perDayInclToday < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</span>
+          <span class="k">Per day, today + ${liv.daysLeft} days</span><span class="v ${liv.perDayInclToday < liv.per * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</span>
         </div>
       </div>
-      <div class="note" style="margin-top:12px">$${PLAN.living.perDay}/day · everything that isn’t a bill, debt payment, or transfer. ${liv.pendingCount ? `${liv.pendingCount} pending` : ''}</div>
+      <div class="note" style="margin-top:12px">${F.money(PLAN.living.monthly)}/month (${F.money(liv.per)}/day this month) · everything that isn’t a bill, debt payment, or transfer. ${liv.pendingCount ? `${liv.pendingCount} pending` : ''}</div>
     </div>`;
 
     const L = d.ledger;

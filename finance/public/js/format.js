@@ -42,5 +42,6 @@ window.F = (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 
-  return { money, signed, compact, pct, toISO, parseISO, today, addDays, daysBetween, monthStart, monthEnd, daysInMonth, fmtDate, fmtMonth, weekday, fmtTime, esc, clamp, MONTHS };
+  const perDay = iso => (window.PLAN ? window.PLAN.living.monthly : 0) / daysInMonth(iso || today());
+  return { money, signed, compact, pct, perDay, toISO, parseISO, today, addDays, daysBetween, monthStart, monthEnd, daysInMonth, fmtDate, fmtMonth, weekday, fmtTime, esc, clamp, MONTHS };
 })();

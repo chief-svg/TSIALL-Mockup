@@ -22,7 +22,7 @@ VIEWS.donuts = {
     const car = bill('Car payment (WF)'); if (active(car)) { s.car = car.amount; if (paid('Car payment (WF)')) notes.car = 'paid'; }
     const sofi = bill('SoFi loan payment'); if (active(sofi)) { s.loans += sofi.amount; }
     const stu = bill('Student loan'); if (active(stu)) { s.student = stu.amount; if (paid('Student loan')) notes.student = 'paid'; }
-    s.living = P.living.perDay * dim; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
+    s.living = P.living.monthly; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
     let cardsDone = 0, loansDone = 0;
     for (const it of d.sched.items) {
       if (it.date.slice(0, 7) !== ym) continue;
@@ -53,7 +53,7 @@ VIEWS.donuts = {
       </div>`;
     const totals = this.SLICES.map(x => ({ ...x, v: rows.reduce((a, r) => a + r.s[x.key], 0) }));
     const grand = totals.reduce((a, x) => a + x.v, 0);
-    return `<div class="page-head"><div><h1>Donuts</h1><p>Every month from now through ${F.fmtMonth('2027-12')}: where the month’s cash goes. Rent, car, SoFi and student loan on their due days; the $${PLAN.living.perDay}/day living allowance; planned card and loan payoffs from the schedule; and from ${F.fmtMonth(PLAN.post.startMonth)} the savings put-away from the Allocate page. The current month shows what has already been paid.</p></div>
+    return `<div class="page-head"><div><h1>Donuts</h1><p>Every month from now through ${F.fmtMonth('2027-12')}: where the month’s cash goes. Rent, car, SoFi and student loan on their due days; the flat ${F.money(PLAN.living.monthly)} living allowance; planned card and loan payoffs from the schedule; and from ${F.fmtMonth(PLAN.post.startMonth)} the savings put-away from the Allocate page. The current month shows what has already been paid.</p></div>
       <div class="right"><div class="eyebrow">${months.length} months · total out</div><div class="big">${F.money(grand)}</div><div class="small muted">vs ${F.money(rows.reduce((a, r) => a + r.income, 0))} income${UI.ast()}</div></div></div>
       <div class="controls"><div class="legend">${this.SLICES.map(x => `<span><i class="dot" style="background:${x.color}"></i>${x.label}</span>`).join('')}</div></div>
       <div class="grid g3" id="dn-grid">${rows.map(card).join('')}</div>

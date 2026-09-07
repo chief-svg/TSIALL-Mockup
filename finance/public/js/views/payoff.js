@@ -50,7 +50,7 @@ VIEWS.payoff = {
         <div>
           <div class="panel"><div class="ph"><h3>Funds check${UI.ast()}</h3></div>
             <table><thead><tr><th>Pay date</th><th class="num">Available</th><th class="num">Need</th><th>Result</th></tr></thead><tbody>${d.funds.map(f => `<tr><td class="num">${F.fmtDate(f.date, { year: false })}<span class="sub">+${F.money(f.income)} income · −${F.money(f.bills)} bills · −${F.money(f.living)} living</span></td><td class="num">${F.money(f.available)}</td><td class="num">${F.money(f.need)}</td><td>${f.ok ? UI.chip('ok', 'covered') : UI.chip('gap', 'short ' + F.money(-f.gap))}</td></tr>`).join('')}</tbody></table>
-            <div class="note" style="margin-top:10px">Checking balance + unmatched expected income − unmatched bills − $${PLAN.living.perDay}/day living, rolled forward date by date. Net-pay figures are estimates${UI.ast()}.</div></div>
+            <div class="note" style="margin-top:10px">Checking balance + unmatched expected income − unmatched bills − living at ${F.money(PLAN.living.monthly)}/month, rolled forward date by date. Net-pay figures are estimates${UI.ast()}.</div></div>
           <div class="callout" style="margin-top:14px"><b>December loans.</b> SoFi and the Wells Fargo auto loan need an official payoff quote with per-diem interest before the Dec 27 wires — the ~$11,100 / ~$8,900 figures are estimates${UI.ast()}. Confirm the lien release process for the auto title.</div>
         </div>
       </div>

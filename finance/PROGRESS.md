@@ -37,6 +37,9 @@ Connector name fix worked: the permissions dialog shows **PocketSmith Complete A
 - cdnjs/jsdelivr are unreachable from the sandbox; Chart.js is vendored (`public/vendor/chart.umd.js`) and inlined in the hosted bundle.
 - Killing the demo server with `pkill -f "node server.js"` kills the calling shell too; use `pgrep -f "server\.js"` + kill.
 
+## Decisions
+- 2026-09-07: living allowance changed from $150/day to a flat **$4,500/month** so no month runs short; daily pace is derived.
+
 ## Assumptions to true-up (all marked * in the UI)
 Loan APRs (SoFi 12%, WF auto 7%); net-pay estimates; Dec ’26 $13k buffer counted toward the EF; “Payment”-category checking debits to non-issuers treated as bills; 401(k) eligibility Jul 1, 2027; $31,400/mo post-debt capacity.
 

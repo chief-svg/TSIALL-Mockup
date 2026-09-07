@@ -137,7 +137,7 @@ window.ENGINE = (() => {
   function livingTracker(ctx, day = ctx.today) {
     const from = F.monthStart(day), to = F.monthEnd(day);
     const dim = F.daysInMonth(day), elapsed = F.parseISO(day).getDate();
-    const per = P.living.perDay;
+    const per = P.living.monthly / dim;
     const byDay = {};
     let actual = 0, pendingCount = 0, txCount = 0;
     const living = [];
@@ -340,13 +340,13 @@ window.ENGINE = (() => {
     }
     // Only count strictly future days for living (today's spend is already reflected in the balance*)
     const days = Math.max(0, F.daysBetween(from, to));
-    return { income, bills, living: days * P.living.perDay };
+    return { income, bills, living: days * (P.living.monthly / F.daysInMonth(from)) };
   }
 
   // ------------------------------------------------------------- near term
   // Day-by-day path of total debt and checking for the next N days: interest
   // accrues daily*, planned payments and loan bills step debt down, paychecks
-  // step cash up, bills and $150/day living step cash down.
+  // step cash up, bills and the flat monthly living allowance (spread per day) step cash down.
   function nearTerm(ctx, sched, ledger, days = 42) {
     const today = ctx.today, end = F.addDays(today, days);
     const debts = ctx.accounts.filter(a => a.isDebt && a.balance < 0);
@@ -370,7 +370,7 @@ window.ENGINE = (() => {
     }
     const series = [], events = [];
     for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
-      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.perDay; }
+      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.monthly / F.daysInMonth(d); }
       const s = onDate[d];
       if (s) {
         for (const i of s.income) cash += i.amount;

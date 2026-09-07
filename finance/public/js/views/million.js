@@ -41,7 +41,7 @@ VIEWS.million = {
           <div class="note" style="padding:12px 20px">Monthly cash matters more than return in the first three years — each extra $1,000/mo pulls the date forward roughly a month. Return compounds later.</div></div>
         <div class="panel"><div class="ph"><h3>What accelerates it</h3></div>
           <div class="note" style="line-height:1.8">
-            <b>1.</b> Hold the $${PLAN.living.perDay}/day line after debt-free — lifestyle creep is the only real threat to ${F.money(PLAN.post.monthlyCapacity)}/mo.<br>
+            <b>1.</b> Hold the ${F.money(PLAN.living.monthly)}/month living line after debt-free — lifestyle creep is the only real threat to ${F.money(PLAN.post.monthlyCapacity)}/mo.<br>
             <b>2.</b> Capture every pre-tax dollar: both 401(k)s to the limit, HSA if HDHP, backdoor Roths — tax drag on a brokerage-only path costs years.<br>
             <b>3.</b> Employer match is free money — enter it above once known${UI.ast()}.<br>
             <b>4.</b> Bonuses, RSUs, tax refunds → straight to brokerage the day they land (one-time income lines in plan.js).<br>

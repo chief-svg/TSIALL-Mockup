@@ -240,7 +240,8 @@ window.PLAN = {
   billPayeePatterns: [/standard ins/i, /insurance/i],
 
   // ---- Living allowance ---------------------------------------------------
-  living: { perDay: 150, amberAt: 1.0, redAt: 1.15 },
+  // Flat monthly living allowance (chosen 2026-09-07; was $150/day). Daily pace = monthly ÷ days in that month.
+  living: { monthly: 4500, amberAt: 1.0, redAt: 1.15 },
 
   // ---- Payment matching tolerance ----------------------------------------
   match: { days: 5, pct: 0.15 },
@@ -370,7 +371,8 @@ window.F = (() => {
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
 
-  return { money, signed, compact, pct, toISO, parseISO, today, addDays, daysBetween, monthStart, monthEnd, daysInMonth, fmtDate, fmtMonth, weekday, fmtTime, esc, clamp, MONTHS };
+  const perDay = iso => (window.PLAN ? window.PLAN.living.monthly : 0) / daysInMonth(iso || today());
+  return { money, signed, compact, pct, perDay, toISO, parseISO, today, addDays, daysBetween, monthStart, monthEnd, daysInMonth, fmtDate, fmtMonth, weekday, fmtTime, esc, clamp, MONTHS };
 })();
 
 ;
@@ -532,7 +534,7 @@ window.ENGINE = (() => {
   function livingTracker(ctx, day = ctx.today) {
     const from = F.monthStart(day), to = F.monthEnd(day);
     const dim = F.daysInMonth(day), elapsed = F.parseISO(day).getDate();
-    const per = P.living.perDay;
+    const per = P.living.monthly / dim;
     const byDay = {};
     let actual = 0, pendingCount = 0, txCount = 0;
     const living = [];
@@ -735,13 +737,13 @@ window.ENGINE = (() => {
     }
     // Only count strictly future days for living (today's spend is already reflected in the balance*)
     const days = Math.max(0, F.daysBetween(from, to));
-    return { income, bills, living: days * P.living.perDay };
+    return { income, bills, living: days * (P.living.monthly / F.daysInMonth(from)) };
   }
 
   // ------------------------------------------------------------- near term
   // Day-by-day path of total debt and checking for the next N days: interest
   // accrues daily*, planned payments and loan bills step debt down, paychecks
-  // step cash up, bills and $150/day living step cash down.
+  // step cash up, bills and the flat monthly living allowance (spread per day) step cash down.
   function nearTerm(ctx, sched, ledger, days = 42) {
     const today = ctx.today, end = F.addDays(today, days);
     const debts = ctx.accounts.filter(a => a.isDebt && a.balance < 0);
@@ -765,7 +767,7 @@ window.ENGINE = (() => {
     }
     const series = [], events = [];
     for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
-      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.perDay; }
+      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.monthly / F.daysInMonth(d); }
       const s = onDate[d];
       if (s) {
         for (const i of s.income) cash += i.amount;
@@ -1036,10 +1038,10 @@ VIEWS.command = {
           <span class="k">Budget to date</span><span class="v">${F.money(liv.budgetToDate)}</span>
           <span class="k">Variance</span><span class="v ${liv.budgetToDate - liv.actual >= 0 ? 'pos' : 'neg'}">${F.signed(liv.budgetToDate - liv.actual)}</span>
           <span class="k">Left this month</span><span class="v">${F.money(liv.remaining)}</span>
-          <span class="k">Per day, today + ${liv.daysLeft} days</span><span class="v ${liv.perDayInclToday < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</span>
+          <span class="k">Per day, today + ${liv.daysLeft} days</span><span class="v ${liv.perDayInclToday < liv.per * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</span>
         </div>
       </div>
-      <div class="note" style="margin-top:12px">$${PLAN.living.perDay}/day · everything that isn’t a bill, debt payment, or transfer. ${liv.pendingCount ? `${liv.pendingCount} pending` : ''}</div>
+      <div class="note" style="margin-top:12px">${F.money(PLAN.living.monthly)}/month (${F.money(liv.per)}/day this month) · everything that isn’t a bill, debt payment, or transfer. ${liv.pendingCount ? `${liv.pendingCount} pending` : ''}</div>
     </div>`;
 
     const L = d.ledger;
@@ -1168,7 +1170,7 @@ VIEWS.payoff = {
         <div>
           <div class="panel"><div class="ph"><h3>Funds check${UI.ast()}</h3></div>
             <table><thead><tr><th>Pay date</th><th class="num">Available</th><th class="num">Need</th><th>Result</th></tr></thead><tbody>${d.funds.map(f => `<tr><td class="num">${F.fmtDate(f.date, { year: false })}<span class="sub">+${F.money(f.income)} income · −${F.money(f.bills)} bills · −${F.money(f.living)} living</span></td><td class="num">${F.money(f.available)}</td><td class="num">${F.money(f.need)}</td><td>${f.ok ? UI.chip('ok', 'covered') : UI.chip('gap', 'short ' + F.money(-f.gap))}</td></tr>`).join('')}</tbody></table>
-            <div class="note" style="margin-top:10px">Checking balance + unmatched expected income − unmatched bills − $${PLAN.living.perDay}/day living, rolled forward date by date. Net-pay figures are estimates${UI.ast()}.</div></div>
+            <div class="note" style="margin-top:10px">Checking balance + unmatched expected income − unmatched bills − living at ${F.money(PLAN.living.monthly)}/month, rolled forward date by date. Net-pay figures are estimates${UI.ast()}.</div></div>
           <div class="callout" style="margin-top:14px"><b>December loans.</b> SoFi and the Wells Fargo auto loan need an official payoff quote with per-diem interest before the Dec 27 wires — the ~$11,100 / ~$8,900 figures are estimates${UI.ast()}. Confirm the lien release process for the auto title.</div>
         </div>
       </div>
@@ -1200,16 +1202,16 @@ VIEWS.spending = {
 
     const recent = liv.txs.slice(0, 40).map(t => `<tr><td class="num muted">${F.fmtDate(t.date, { year: false })}</td><td>${F.esc((t.payee || '').slice(0, 44))}${t.status === 'pending' ? ' <span class="chip">pending</span>' : ''}</td><td class="small muted">${F.esc(t.category ? t.category.title : 'Uncategorized')}</td><td class="small muted">${F.esc(ctx.byId[t.acctId] ? ctx.byId[t.acctId].short : '')}</td><td class="num ${t.amount > 0 ? 'pos' : ''}">${F.money(t.amount)}</td></tr>`).join('');
 
-    return `<div class="page-head"><div><h1>Spending</h1><p>PocketSmith’s live category tree with month-to-date actuals, and the $${PLAN.living.perDay}/day living allowance against reality. Bills, debt payments and transfers are separated out so “living” means living.</p></div>
+    return `<div class="page-head"><div><h1>Spending</h1><p>PocketSmith’s live category tree with month-to-date actuals, and the ${F.money(PLAN.living.monthly)}/month living allowance against reality. Bills, debt payments and transfers are separated out so “living” means living.</p></div>
         <div class="right"><div class="eyebrow">Left to spend today</div><div class="big ${liv.todayLeft > 0 ? 'pos' : 'neg'}">${F.money(liv.todayLeft)} <span class="muted" style="font-size:20px">· ${F.money(liv.tomorrowLeft)} tomorrow</span></div><div class="small muted">${F.money(liv.actual)} spent MTD vs ${F.money(liv.budgetToDate)} budget · ${(liv.ratio * 100).toFixed(0)}% of pace · ${F.money(Math.max(0, liv.perDayInclToday))}/day lands the month</div></div></div>
 
       <div class="grid g32">
-        <div class="panel"><div class="ph"><h3>Allowance pace</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Actual, cumulative</span><span><i style="background:rgba(232,230,223,.4)"></i>$${PLAN.living.perDay}/day budget</span></span></div>
+        <div class="panel"><div class="ph"><h3>Allowance pace</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Actual, cumulative</span><span><i style="background:rgba(232,230,223,.4)"></i>${F.money(liv.per)}/day pace</span></span></div>
           <div class="spark" style="height:200px"><canvas id="c-living"></canvas></div>
           <div class="grid g4" style="margin-top:14px;gap:10px">
             <div><div class="eyebrow">Status</div><div>${UI.chip(liv.status, liv.status === 'green' ? 'on pace' : liv.status === 'amber' ? 'over pace' : 'well over')}</div></div>
             <div><div class="eyebrow">Left this month</div><div class="num">${F.money(liv.remaining)}</div></div>
-            <div><div class="eyebrow">Per day, today + ${liv.daysLeft} left</div><div class="num ${liv.perDayInclToday < PLAN.living.perDay * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</div></div>
+            <div><div class="eyebrow">Per day, today + ${liv.daysLeft} left</div><div class="num ${liv.perDayInclToday < liv.per * 0.8 ? 'amber' : ''}">${F.money(Math.max(0, liv.perDayInclToday))}</div></div>
             <div><div class="eyebrow">Month budget</div><div class="num">${F.money(liv.budgetMonth)}</div></div>
           </div></div>
         <div class="panel flush"><div class="ph"><h3>Where living went</h3><span class="small muted">top merchants MTD</span></div><table><tbody>${top || '<tr><td class="muted center">No living spend yet this month</td></tr>'}</tbody></table></div>
@@ -1273,7 +1275,7 @@ VIEWS.projection = {
           <div><div class="eyebrow">Checking low point${UI.ast()}</div><div class="num ${N.minCash < 0 ? 'neg' : ''}">${F.money(N.minCash)}<span class="sub">${N.minCashDate ? F.fmtDate(N.minCashDate, { year: false }) : ''}</span></div></div>
         </div>
         <div class="table-wrap" style="margin-top:14px"><table><thead><tr><th>Date</th><th>In</th><th>Out → target</th><th class="num">Debt after</th><th class="num">Checking after</th></tr></thead><tbody>${N.events.map(e => { const s = N.series.find(x => x.date === e.date); return `<tr><td class="num">${F.fmtDate(e.date, { year: false })}<span class="sub">${F.weekday(e.date)} · in ${e.x}d</span></td><td class="num pos">${e.income ? '+' + F.money(e.income) : ''}</td><td>${e.pay ? `<span class="num neg">−${F.money(e.pay)}</span> → ${e.targets.map(t => e.kills.includes(t) ? `<span class="gold">☠ ${F.esc(t)}</span>` : F.esc(t)).join(', ')}` : '<span class="muted">—</span>'}</td><td class="num neg">${s ? F.money(s.debt) : ''}</td><td class="num ${s && s.cash < 0 ? 'neg' : ''}">${s ? F.money(s.cash) : ''}</td></tr>`; }).join('')}</tbody></table></div>
-        <div class="note" style="margin-top:10px">Each drop is a planned payment (☠ = card killed); each rise is a paycheck. Interest accrues daily at APR${UI.ast()}; living at $${PLAN.living.perDay}/day; bills on their due days. Blue dots are live snapshots.</div></div>
+        <div class="note" style="margin-top:10px">Each drop is a planned payment (☠ = card killed); each rise is a paycheck. Interest accrues daily at APR${UI.ast()}; living at ${F.money(PLAN.living.monthly)}/month spread per day; bills on their due days. Blue dots are live snapshots.</div></div>
       <div class="panel"><div class="ph"><h3>Debt → wealth</h3><span class="legend"><span><i style="background:${CH.colors.net}"></i>Net (plan)</span><span><i style="background:${CH.colors.debt}"></i>Debt (plan)</span><span><i style="background:${CH.colors.savings}"></i>Savings (plan)</span><span><i class="dot" style="background:${CH.colors.live}"></i>Live debt (snapshots)</span></span></div>
         <div style="height:420px;position:relative"><canvas id="c-proj"></canvas></div></div>
       <div class="grid g32" style="margin-top:18px">
@@ -1479,7 +1481,7 @@ VIEWS.donuts = {
     const car = bill('Car payment (WF)'); if (active(car)) { s.car = car.amount; if (paid('Car payment (WF)')) notes.car = 'paid'; }
     const sofi = bill('SoFi loan payment'); if (active(sofi)) { s.loans += sofi.amount; }
     const stu = bill('Student loan'); if (active(stu)) { s.student = stu.amount; if (paid('Student loan')) notes.student = 'paid'; }
-    s.living = P.living.perDay * dim; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
+    s.living = P.living.monthly; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
     let cardsDone = 0, loansDone = 0;
     for (const it of d.sched.items) {
       if (it.date.slice(0, 7) !== ym) continue;
@@ -1510,7 +1512,7 @@ VIEWS.donuts = {
       </div>`;
     const totals = this.SLICES.map(x => ({ ...x, v: rows.reduce((a, r) => a + r.s[x.key], 0) }));
     const grand = totals.reduce((a, x) => a + x.v, 0);
-    return `<div class="page-head"><div><h1>Donuts</h1><p>Every month from now through ${F.fmtMonth('2027-12')}: where the month’s cash goes. Rent, car, SoFi and student loan on their due days; the $${PLAN.living.perDay}/day living allowance; planned card and loan payoffs from the schedule; and from ${F.fmtMonth(PLAN.post.startMonth)} the savings put-away from the Allocate page. The current month shows what has already been paid.</p></div>
+    return `<div class="page-head"><div><h1>Donuts</h1><p>Every month from now through ${F.fmtMonth('2027-12')}: where the month’s cash goes. Rent, car, SoFi and student loan on their due days; the flat ${F.money(PLAN.living.monthly)} living allowance; planned card and loan payoffs from the schedule; and from ${F.fmtMonth(PLAN.post.startMonth)} the savings put-away from the Allocate page. The current month shows what has already been paid.</p></div>
       <div class="right"><div class="eyebrow">${months.length} months · total out</div><div class="big">${F.money(grand)}</div><div class="small muted">vs ${F.money(rows.reduce((a, r) => a + r.income, 0))} income${UI.ast()}</div></div></div>
       <div class="controls"><div class="legend">${this.SLICES.map(x => `<span><i class="dot" style="background:${x.color}"></i>${x.label}</span>`).join('')}</div></div>
       <div class="grid g3" id="dn-grid">${rows.map(card).join('')}</div>
@@ -1572,7 +1574,7 @@ VIEWS.million = {
           <div class="note" style="padding:12px 20px">Monthly cash matters more than return in the first three years — each extra $1,000/mo pulls the date forward roughly a month. Return compounds later.</div></div>
         <div class="panel"><div class="ph"><h3>What accelerates it</h3></div>
           <div class="note" style="line-height:1.8">
-            <b>1.</b> Hold the $${PLAN.living.perDay}/day line after debt-free — lifestyle creep is the only real threat to ${F.money(PLAN.post.monthlyCapacity)}/mo.<br>
+            <b>1.</b> Hold the ${F.money(PLAN.living.monthly)}/month living line after debt-free — lifestyle creep is the only real threat to ${F.money(PLAN.post.monthlyCapacity)}/mo.<br>
             <b>2.</b> Capture every pre-tax dollar: both 401(k)s to the limit, HSA if HDHP, backdoor Roths — tax drag on a brokerage-only path costs years.<br>
             <b>3.</b> Employer match is free money — enter it above once known${UI.ast()}.<br>
             <b>4.</b> Bonuses, RSUs, tax refunds → straight to brokerage the day they land (one-time income lines in plan.js).<br>
@@ -2002,7 +2004,7 @@ window.APP = (() => {
       <div class="stat"><div class="eyebrow">Total debt</div><div class="v neg">${F.money(t.debt)}</div><div class="s">cards ${F.money(t.cards)} · loans ${F.money(t.loans)}${feedDate ? ` · bank feeds ${F.fmtDate(feedDate, { year: false })}` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Cash</div><div class="v">${F.money(t.cash)}</div><div class="s">BofA checking${ovCount ? ` · <a href="#/accounts" class="blue">${ovCount} manual balance${ovCount > 1 ? 's' : ''}</a>` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Savings & invested</div><div class="v">${F.money(t.savings)}</div><div class="s">${t.savings ? 'non-operating balances' : 'nothing yet — starts Jan ’27'}</div></div>
-      <div class="stat"><div class="eyebrow">Spend today · tomorrow</div><div class="v"><span class="${liv.todayLeft > 0 ? (liv.todayLeft < PLAN.living.perDay * 0.5 ? 'amber' : 'pos') : 'neg'}">${F.money(liv.todayLeft)}</span> <span class="muted" style="font-size:15px">· ${F.money(liv.tomorrowLeft)}</span></div><div class="s">${liv.todayLeft > 0 ? `left today · spent ${F.money(liv.spentToday)} so far` : `over pace by ${F.money(liv.overBy)}`} · tomorrow if nothing more today</div></div>
+      <div class="stat"><div class="eyebrow">Spend today · tomorrow</div><div class="v"><span class="${liv.todayLeft > 0 ? (liv.todayLeft < liv.per * 0.5 ? 'amber' : 'pos') : 'neg'}">${F.money(liv.todayLeft)}</span> <span class="muted" style="font-size:15px">· ${F.money(liv.tomorrowLeft)}</span></div><div class="s">${liv.todayLeft > 0 ? `left today · spent ${F.money(liv.spentToday)} so far` : `over pace by ${F.money(liv.overBy)}`} · tomorrow if nothing more today</div></div>
       <div class="stat"><div class="eyebrow">Debt-free</div><div class="v gold">${days} d</div><div class="s">${F.fmtDate(d.sims.debtFree || PLAN.debtFreeDate)}${d.sims.debtFree ? '' : ' (plan)'}</div></div>`;
   }
 
@@ -2049,7 +2051,7 @@ window.APP = (() => {
     const bg = document.createElement('div'); bg.className = 'modal-bg'; bg.setAttribute('role', 'dialog'); bg.setAttribute('aria-modal', 'true');
     bg.innerHTML = `<div class="modal">
       <div class="eyebrow">Today</div>
-      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--hair)"><div><span class="num ${state.d.living.todayLeft > 0 ? 'pos' : 'neg'}" style="font-size:24px">${F.money(state.d.living.todayLeft)}</span> <span class="small muted">${state.d.living.todayLeft > 0 ? 'left today' : 'over pace by ' + F.money(state.d.living.overBy)}</span> <span class="num muted" style="font-size:18px;margin-left:8px">${F.money(state.d.living.tomorrowLeft)}</span> <span class="small muted">tomorrow</span></div><div class="xs muted right">$${PLAN.living.perDay}/day · ${F.money(Math.max(0, state.d.living.perDayInclToday))}/day for the rest of ${F.fmtMonth(state.d.living.from)}</div></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--hair)"><div><span class="num ${state.d.living.todayLeft > 0 ? 'pos' : 'neg'}" style="font-size:24px">${F.money(state.d.living.todayLeft)}</span> <span class="small muted">${state.d.living.todayLeft > 0 ? 'left today' : 'over pace by ' + F.money(state.d.living.overBy)}</span> <span class="num muted" style="font-size:18px;margin-left:8px">${F.money(state.d.living.tomorrowLeft)}</span> <span class="small muted">tomorrow</span></div><div class="xs muted right">${F.money(PLAN.living.monthly)}/mo = ${F.money(state.d.living.per)}/day · ${F.money(Math.max(0, state.d.living.perDayInclToday))}/day for the rest of ${F.fmtMonth(state.d.living.from)}</div></div>
       <div class="eyebrow">Next two payments</div>
       <h2>${state.meta.stale ? 'Balances are from cache — ' : ''}${groups[0].daysUntil <= 0 ? 'A payment is due now' : `Next payment in ${groups[0].daysUntil} day${groups[0].daysUntil === 1 ? '' : 's'}`}</h2>
       <div class="upc">${groups.map((g, i) => {
