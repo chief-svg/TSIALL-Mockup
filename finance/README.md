@@ -20,6 +20,10 @@ Want to look around without a key? `npm run demo` serves bundled fixtures (real 
 
 `node hosted/build.js` bundles the same app into `hosted/dist/command.html` for publishing as a claude.ai artifact. That build swaps the local proxy for the viewer's own **PocketSmith connector** (through the artifact `mcp` runtime — no key, your claude.ai login), keeps manual balance overrides and daily snapshots in the artifact database so they follow you across devices, and reads balance **screenshots** with Claude where the viewer allows images. Open the published link in the Claude app or claude.ai, allow PocketSmith when asked, then use *Add to Home Screen*. Every open re-pulls PocketSmith; **Resync** forces a fresh pull; the **Accounts** page has the fail-safe (screenshots or typed balances); a popup on each load shows the next two scheduled payments.
 
+## Scheduled sync (no app open needed)
+
+`hosted/sync-compact.js` is the helper for a daily Claude Code Routine. The Routine pulls PocketSmith through the connector, saves the raw results, runs the script to build `cache.json` (accounts, categories, compact transactions, events), `snapshots.json` (the daily debt/cash/net history) and `summary.txt`, then writes the two documents into the artifact database (`state/cache`, `state/snapshots`). The hosted page uses the newer of its local cache and that shared cache, so it opens on the evening's numbers even if the connector is slow; the summary goes out as a push notification with the next two payments.
+
 ## Pages
 
 | Key | Page | What it answers |

@@ -72,6 +72,8 @@ window.APP = (() => {
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
     const [overrides, snapshots, cached] = await Promise.all([STORE.get('overrides'), STORE.get('snapshots'), STORE.get('cache')]);
     state.overrides = overrides || {}; state.snapshots = snapshots || {};
+    // A shared cache newer than what is on screen (e.g. from the scheduled sync) paints right away
+    if (cached && cached.payload && (!state.meta.fetchedAt || cached.at > state.meta.fetchedAt.getTime())) applyData(cached.payload, { mode: 'live', stale: true, syncing: true, fetchedAt: new Date(cached.at), cachedAt: new Date(cached.at), error: null });
     API.onProgress = progress;
     try {
       if (API.clearMem) API.clearMem();

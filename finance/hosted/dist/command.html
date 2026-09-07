@@ -1547,8 +1547,16 @@ VIEWS.accounts = {
   const dbReady = dbP.then(db => {
     if (!db) return;
     STORE.use({
-      async get(k) { if (k === 'cache') return STORE.local.get(k); const s = await db.doc('state/' + k).get(); return s.exists ? (s.data() || {}).value ?? null : null; },
-      async set(k, v) { if (k === 'cache') return; await db.doc('state/' + k).set({ value: v, at: Date.now() }); }
+      async get(k) {
+        if (k === 'cache') {
+          // Newer of this device's cache and the shared one (written by the page or the 7pm sync routine)
+          const [l, s] = await Promise.all([STORE.local.get(k), db.doc('state/cache').get().catch(() => null)]);
+          const d = s && s.exists ? (s.data() || {}).value : null;
+          return d && (!l || (d.at || 0) > (l.at || 0)) ? d : l;
+        }
+        const s = await db.doc('state/' + k).get(); return s.exists ? (s.data() || {}).value ?? null : null;
+      },
+      async set(k, v) { await db.doc('state/' + k).set({ value: v, at: Date.now() }); }
     });
   });
   window.READY = Promise.all([mcpP, dbReady]);
@@ -1647,6 +1655,8 @@ window.APP = (() => {
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
     const [overrides, snapshots, cached] = await Promise.all([STORE.get('overrides'), STORE.get('snapshots'), STORE.get('cache')]);
     state.overrides = overrides || {}; state.snapshots = snapshots || {};
+    // A shared cache newer than what is on screen (e.g. from the scheduled sync) paints right away
+    if (cached && cached.payload && (!state.meta.fetchedAt || cached.at > state.meta.fetchedAt.getTime())) applyData(cached.payload, { mode: 'live', stale: true, syncing: true, fetchedAt: new Date(cached.at), cachedAt: new Date(cached.at), error: null });
     API.onProgress = progress;
     try {
       if (API.clearMem) API.clearMem();

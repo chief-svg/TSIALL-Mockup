@@ -86,8 +86,16 @@
   const dbReady = dbP.then(db => {
     if (!db) return;
     STORE.use({
-      async get(k) { if (k === 'cache') return STORE.local.get(k); const s = await db.doc('state/' + k).get(); return s.exists ? (s.data() || {}).value ?? null : null; },
-      async set(k, v) { if (k === 'cache') return; await db.doc('state/' + k).set({ value: v, at: Date.now() }); }
+      async get(k) {
+        if (k === 'cache') {
+          // Newer of this device's cache and the shared one (written by the page or the 7pm sync routine)
+          const [l, s] = await Promise.all([STORE.local.get(k), db.doc('state/cache').get().catch(() => null)]);
+          const d = s && s.exists ? (s.data() || {}).value : null;
+          return d && (!l || (d.at || 0) > (l.at || 0)) ? d : l;
+        }
+        const s = await db.doc('state/' + k).get(); return s.exists ? (s.data() || {}).value ?? null : null;
+      },
+      async set(k, v) { await db.doc('state/' + k).set({ value: v, at: Date.now() }); }
     });
   });
   window.READY = Promise.all([mcpP, dbReady]);
