@@ -88,7 +88,7 @@ window.APP = (() => {
       console.error(err);
       if (cached && cached.payload) {
         applyData(cached.payload, { mode: 'live', stale: true, syncing: false, fetchedAt: new Date(cached.at), error: err.message, cachedAt: new Date(cached.at) });
-        toast(`Resync failed — showing data from ${F.fmtDate(F.toISO(new Date(cached.at)), { year: false })} ${F.fmtTime(new Date(cached.at))}. ${err.message}`);
+        toast(`Live sync unavailable here (${err.code || 'error'}). Showing the ${F.fmtDate(F.toISO(new Date(cached.at)), { year: false })} ${F.fmtTime(new Date(cached.at))} sync.`);
       } else {
         state.meta.error = err.message; state.meta.mode = 'error'; state.meta.syncing = false;
         renderHeader(); renderSetup(err);

@@ -24,13 +24,15 @@
   function pages(res) { const m = /Page\s+(\d+)\s+of\s+(\d+)/i.exec(text(res) || (typeof res.payload === 'string' ? res.payload : '')); return m ? { page: Number(m[1]), pages: Number(m[2]) } : null; }
 
   const timeout = ms => (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(ms) : undefined;
-  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false, signal: timeout(180000) }); }
+  // Budget: generous when nothing is on screen yet; tighter once cached data is already showing.
+  const onScreen = () => !!(window.APP && window.APP.state && window.APP.state.ctx);
+  async function call(mcp, tool, input) { return mcp.callTool(SERVER, tool, input, { cache: false, signal: timeout(onScreen() ? 60000 : 180000) }); }
   // One retry on cancellation / transient upstream trouble
   async function attempt(mcp, tool, input) {
     try { return await call(mcp, tool, input); }
     catch (err) {
       const c = err && err.code;
-      if (c === 'cancelled' || c === 'server_unavailable' || (err && err.retryable)) { prog(`Retrying ${tool.replace('list_', '')}…`); return call(mcp, tool, input); }
+      if (!onScreen() && (c === 'cancelled' || c === 'server_unavailable' || (err && err.retryable))) { prog(`Retrying ${tool.replace('list_', '')}…`); return call(mcp, tool, input); }
       throw err;
     }
   }
