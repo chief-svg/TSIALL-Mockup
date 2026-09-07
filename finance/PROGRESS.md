@@ -9,8 +9,8 @@ Owner: Sabino · Started 2026-09-07 · Branch `claude/finance-dashboard-build-ie
 **Sync model:** live pull from PocketSmith on every open and on **Resync**, via the viewer's PocketSmith connector. No scheduled sync (removed at Sabino's request; helper + prompt kept in `hosted/`).
 **Data in the app's database (`state/cache`, `state/snapshots`):** seeded once from this session on 2026-09-07 ~4:09pm CT with real PocketSmith data (debt −$120,562; checking $1,026; 71 September transactions). Replaced automatically by the first successful live pull.
 
-### Open item to confirm
-The connector dialog said **“No matching connector found”** for `PocketSmith_Complete_Access`; the page now addresses the connector as **“PocketSmith Complete Access”**. Sabino to confirm the dialog shows a match and the badge reaches **Live · PocketSmith**. If not, the exact display name from claude.ai → Settings → Connectors goes into `hosted/runtime.js` (`SERVER`) and the publish `capabilities` manifest.
+### Confirmed 2026-09-07 4:51pm CT
+Connector name fix worked: the permissions dialog shows **PocketSmith Complete Access · Can only read** (4 tools) plus **Use Claude**, both toggled on, and the page reached **Live · PocketSmith — PocketSmith pulled today 4:33 PM** on the iPhone. Live sync on open/Resync is working. That dialog appears once per published version.
 
 ## What was built
 
@@ -41,7 +41,6 @@ The connector dialog said **“No matching connector found”** for `PocketSmith
 Loan APRs (SoFi 12%, WF auto 7%); net-pay estimates; Dec ’26 $13k buffer counted toward the EF; “Payment”-category checking debits to non-issuers treated as bills; 401(k) eligibility Jul 1, 2027; $31,400/mo post-debt capacity.
 
 ## Next candidates
-- Confirm connector match → live sync on phone.
 - Re-enable the 7pm routine (with push notification) if wanted: `hosted/ROUTINE.md`.
 - True-up plan.js as real September paychecks/payments land (Sep 15 first payment: $5,500 → Citi 3208).
 - Merge the branch into `main` when Sabino is happy.
