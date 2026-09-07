@@ -119,11 +119,17 @@ window.APP = (() => {
     const m = state.meta;
     if (state.loading || m.syncing) { b.className = 'badge'; b.textContent = 'Syncing…'; }
     else if (m.mode === 'error') { b.className = 'badge err'; b.textContent = 'Offline'; }
-    else if (m.stale) { b.className = 'badge stale'; b.textContent = 'Stale · cached'; }
+    else if (m.stale) {
+      const ageH = m.fetchedAt ? (Date.now() - m.fetchedAt.getTime()) / 36e5 : 999;
+      const via = state.raw && state.raw.syncedBy === 'routine' ? 'scheduled sync' : 'last sync';
+      if (ageH <= 26) { b.className = 'badge demo'; b.textContent = `Synced · ${via}`; }
+      else { b.className = 'badge stale'; b.textContent = `Stale · ${Math.round(ageH / 24)}d old`; }
+    }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
     else if (m.partial) { b.className = 'badge stale'; b.textContent = 'Live · partial'; }
     else { b.className = 'badge live'; b.textContent = 'Live · PocketSmith'; }
-    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `as of ${F.fmtTime(m.fetchedAt)}` : '';
+    const stamp = m.fetchedAt ? `${F.toISO(m.fetchedAt) === F.today() ? 'today' : F.fmtDate(F.toISO(m.fetchedAt), { year: false })} ${F.fmtTime(m.fetchedAt)}` : '';
+    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `PocketSmith pulled ${stamp}` : '';
     document.getElementById('refresh').disabled = state.loading;
     document.title = `${ROUTES.find(x => x[0] === r)[1]} · Command`;
   }
@@ -136,9 +142,10 @@ window.APP = (() => {
     const days = F.daysBetween(state.ctx.today, d.sims.debtFree || PLAN.debtFreeDate);
     const drift = d.proj.drift;
     const ovCount = state.ctx.accounts.filter(a => a.override).length;
+    const feedDate = state.ctx.accounts.map(a => a.feedDate).filter(Boolean).sort().pop();
     el.innerHTML = `
       <div class="stat"><div class="eyebrow">Net position</div><div class="v ${t.net < 0 ? 'neg' : 'pos'}">${F.money(t.net)}</div><div class="s">cash + savings + debt</div></div>
-      <div class="stat"><div class="eyebrow">Total debt</div><div class="v neg">${F.money(t.debt)}</div><div class="s">cards ${F.money(t.cards)} · loans ${F.money(t.loans)}</div></div>
+      <div class="stat"><div class="eyebrow">Total debt</div><div class="v neg">${F.money(t.debt)}</div><div class="s">cards ${F.money(t.cards)} · loans ${F.money(t.loans)}${feedDate ? ` · bank feeds ${F.fmtDate(feedDate, { year: false })}` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Cash</div><div class="v">${F.money(t.cash)}</div><div class="s">BofA checking${ovCount ? ` · <a href="#/accounts" class="blue">${ovCount} manual balance${ovCount > 1 ? 's' : ''}</a>` : ''}</div></div>
       <div class="stat"><div class="eyebrow">Savings & invested</div><div class="v">${F.money(t.savings)}</div><div class="s">${t.savings ? 'non-operating balances' : 'nothing yet — starts Jan ’27'}</div></div>
       <div class="stat"><div class="eyebrow">Plan drift</div><div class="v ${drift > 500 ? 'neg' : drift < -500 ? 'pos' : ''}">${F.signed(drift)}</div><div class="s">${drift > 500 ? 'more debt than plan today' : drift < -500 ? 'ahead of plan today' : 'on plan today'}</div></div>
@@ -158,7 +165,7 @@ window.APP = (() => {
 
   function footer() {
     const m = state.meta;
-    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : API.sourceLabel || 'PocketSmith API via local proxy'} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
+    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : API.sourceLabel || 'PocketSmith API via local proxy'}${state.raw && state.raw.syncedBy === 'routine' ? ' · data written by the scheduled sync' : ''} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
   }
 
   function renderSetup(err) {
