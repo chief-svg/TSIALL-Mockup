@@ -5,6 +5,8 @@ VIEWS.after = {
     const hsaOn = prefs.hsaOn ?? post.hsa.defaultOn;
     const efLive = ctx.totals.savings; // live non-operating balances count toward the EF
     const A = ENGINE.allocationTable({ hsaOn, efStart: efLive });
+    const cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, ...(prefs.w2cmp || {}) };
+    if (prefs.w2cmp && prefs.w2cmp.hsa === undefined) cmp.hsa = hsaOn ? PLAN.post.hsa.annual : 0;
     const efPct = F.clamp(efLive / post.emergencyFund.target, 0, 1);
     const elig = post.sabino401k.eligibleDate; const daysTo401k = F.daysBetween(ctx.today, elig);
     const monthsLeft2027 = 12 - (Number(elig.slice(5, 7)) - 1);
@@ -37,10 +39,57 @@ VIEWS.after = {
         </div>
       </div>
 
+      <div class="panel" style="margin-top:18px" id="w2-panel">
+        <div class="ph"><h3>Jessica: W-2 or 1099?</h3><span class="small muted">2026 rules · married filing separately · Texas · estimates${UI.ast()}</span></div>
+        <div class="controls" style="margin-bottom:14px">
+          <div class="ctl"><label>W-2 gross</label><input type="range" id="w2-g" min="100000" max="500000" step="5000" value="${cmp.w2Gross}"><span class="val num" id="w2-gv">${F.money(cmp.w2Gross)}</span></div>
+          <div class="ctl"><label>1099 rate</label><input type="range" id="w2-c" min="100000" max="500000" step="5000" value="${cmp.c1099}"><span class="val num" id="w2-cv">${F.money(cmp.c1099)}</span></div>
+          <div class="ctl"><label>401(k) match</label><input type="range" id="w2-m" min="0" max="0.08" step="0.005" value="${cmp.matchPct}"><span class="val num" id="w2-mv">${(cmp.matchPct * 100).toFixed(1)}%</span></div>
+          <div class="ctl"><label>Health premium / yr</label><input type="range" id="w2-h" min="0" max="24000" step="500" value="${cmp.health}"><span class="val num" id="w2-hv">${F.money(cmp.health)}</span></div>
+          <div class="ctl"><label>IDR rate</label><input type="range" id="w2-r" min="0.05" max="0.15" step="0.01" value="${cmp.idrRate}"><span class="val num" id="w2-rv">${(cmp.idrRate * 100).toFixed(0)}%</span></div>
+          <div class="ctl"><label>HSA</label><button class="switch ${cmp.hsa ? 'on' : ''}" id="w2-hsa" aria-label="HSA"></button></div>
+          <button class="btn sm" id="w2-reset">Reset</button>
+        </div>
+        <div class="grid g32">
+          <div class="table-wrap"><table id="w2-table"><thead><tr><th></th><th class="num">W-2</th><th class="num">1099</th><th class="num">1099 − W-2</th></tr></thead><tbody></tbody></table></div>
+          <div>
+            <div class="callout" id="w2-verdict"></div>
+            <div class="note" style="margin-top:12px">How it's modelled: W-2 pays employee FICA and defers ${F.money(ENGINE.TAX26.deferral)} pre-tax (+ match). 1099 pays full self-employment tax (half deductible), defers ${F.money(ENGINE.TAX26.deferral)} plus a Solo 401(k) employer contribution of 20% of net profit (combined cap ${F.money(ENGINE.TAX26.solo401kTotal)}), and deducts the health premium above the line. Health is self-purchased in both cases (no employer coverage). Income tax uses 2026 MFS brackets and standard deduction; loan payment = IDR rate × (AGI − 150% FPL). Ignored: QBI deduction (likely phased out), PTO, disability/life cover, S-corp election, business expenses — all favour or penalise 1099 modestly.</div>
+          </div>
+        </div>
+      </div>
+
       <div class="panel flush" style="margin-top:18px"><div class="ph"><h3>Month by month · 2027</h3><span class="small muted">cash allocations; 401(k) column is payroll-side</span></div>
         <div class="table-wrap"><table><thead><tr><th>Month</th><th class="num">→ Emergency fund</th><th class="num">→ Roth (both)</th><th class="num">→ HSA</th><th class="num">→ Brokerage</th><th class="num">401(k) payroll${UI.ast()}</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
   },
-  mount(S) {
+  mount(S, root) {
     document.getElementById('tg-hsa').addEventListener('click', () => { S.setPref('hsaOn', !(S.prefs.hsaOn ?? PLAN.post.hsa.defaultOn)); APP.render(); });
+    const hsaOn = S.prefs.hsaOn ?? PLAN.post.hsa.defaultOn;
+    let cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, ...(S.prefs.w2cmp || {}) };
+    const $ = id => root.querySelector('#' + id);
+    const row = (k, a, b, fmt = v => F.money(v), good) => { const d = b - a; return `<tr><td>${k}</td><td class="num">${fmt(a)}</td><td class="num">${fmt(b)}</td><td class="num ${d === 0 ? 'muted' : (good ? d > 0 : d < 0) ? 'pos' : 'neg'}">${d === 0 ? '—' : (d > 0 ? '+' : '−') + fmt(Math.abs(d))}</td></tr>`; };
+    const draw = () => {
+      const R = ENGINE.compareW2vs1099(cmp); const w = R.w2, c = R.c1099;
+      $('w2-table').querySelector('tbody').innerHTML = [
+        row('Gross pay', w.gross, c.gross, undefined, true),
+        row('Payroll / SE tax', w.payrollTax, c.payrollTax, undefined, false),
+        row('Pre-tax retirement (incl. employer)', w.deferral + w.employer, c.deferral + c.employer, undefined, true),
+        row('<b>AGI</b>', w.agi, c.agi, undefined, false),
+        row('Federal income tax', w.tax, c.tax, undefined, false),
+        row('Student loan payment (IDR) / yr', w.idr, c.idr, undefined, false),
+        row('Health premium', w.health, c.health, undefined, false),
+        row('Take-home cash', w.takeHome, c.takeHome, undefined, true),
+        row('<b>Cash + retirement built / yr</b>', w.build, c.build, undefined, true)
+      ].join('');
+      const better = R.delta.build > 0;
+      $('w2-verdict').className = 'callout ' + (better ? 'green' : 'red');
+      $('w2-verdict').innerHTML = `<b>${better ? '1099 comes out ahead' : 'W-2 comes out ahead'} by ${F.money(Math.abs(R.delta.build))}/yr</b> in cash plus retirement, with AGI ${F.money(Math.abs(R.delta.agi))} ${R.delta.agi < 0 ? 'lower' : 'higher'} and the loan payment ${F.money(Math.abs(R.delta.idr))}/yr ${R.delta.idr < 0 ? 'lower' : 'higher'}.<br><span class="small">Break-even 1099 rate at these settings: <b class="num">${F.money(R.breakEven)}</b> (${((R.breakEven / cmp.w2Gross - 1) * 100).toFixed(0)}% vs the W-2 gross). Ask for at least the W-2 gross plus the employer’s 7.65% FICA saving${UI.ast()}.</span>`;
+      $('w2-gv').textContent = F.money(cmp.w2Gross); $('w2-cv').textContent = F.money(cmp.c1099); $('w2-mv').textContent = (cmp.matchPct * 100).toFixed(1) + '%'; $('w2-hv').textContent = F.money(cmp.health); $('w2-rv').textContent = (cmp.idrRate * 100).toFixed(0) + '%';
+    };
+    const bind = (id, key) => { const el = $(id); el.addEventListener('input', () => { cmp[key] = Number(el.value); draw(); }); el.addEventListener('change', () => S.setPref('w2cmp', cmp)); };
+    bind('w2-g', 'w2Gross'); bind('w2-c', 'c1099'); bind('w2-m', 'matchPct'); bind('w2-h', 'health'); bind('w2-r', 'idrRate');
+    $('w2-hsa').addEventListener('click', () => { cmp.hsa = cmp.hsa ? 0 : PLAN.post.hsa.annual; $('w2-hsa').classList.toggle('on', !!cmp.hsa); S.setPref('w2cmp', cmp); draw(); });
+    $('w2-reset').addEventListener('click', () => { S.setPref('w2cmp', undefined); APP.render(); });
+    draw();
   }
 };

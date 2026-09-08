@@ -441,6 +441,41 @@ window.ENGINE = (() => {
     return { rows, hsaOn, efStart, rothCatchUp: rothMonthsLeft ? (post.roth.annualEach * 2) / rothMonthsLeft : null, efCompleteMonth: (rows.find(r => r.efDone) || {}).ym || null };
   }
 
+  // ----------------------------------------------------------- W-2 vs 1099
+  // Jessica's pay structure, 2026 rules, married filing separately, Texas (no state tax).
+  // All figures are estimates*: brackets/thresholds are 2026 values as configured below.
+  const TAX26 = {
+    mfsBrackets: [[12400, .10], [50400, .12], [105700, .22], [201775, .24], [256225, .32], [384350, .35], [Infinity, .37]],
+    stdDeductionMFS: 16100, ssWageBase: 184500, addlMedicareMFS: 125000,
+    deferral: 24500, solo401kTotal: 72000, fpl1: 15650
+  };
+  function fedTax(taxable) { let t = 0, prev = 0; for (const [cap, rate] of TAX26.mfsBrackets) { if (taxable <= prev) break; t += (Math.min(taxable, cap) - prev) * rate; prev = cap; } return t; }
+  function compareW2vs1099(i) {
+    const T = TAX26; const hsa = i.hsa || 0; const idrRate = i.idrRate ?? 0.10; const disc = T.fpl1 * 1.5;
+    const idr = agi => Math.max(0, agi - disc) * idrRate;
+    // W-2
+    const g = i.w2Gross;
+    const fica = 0.062 * Math.min(g, T.ssWageBase) + 0.0145 * g + 0.009 * Math.max(0, g - T.addlMedicareMFS);
+    const match = g * (i.matchPct || 0);
+    const w2 = { gross: g, payrollTax: fica, deferral: T.deferral, employer: match, health: i.health || 0 };
+    w2.agi = g - T.deferral - hsa; w2.tax = fedTax(Math.max(0, w2.agi - T.stdDeductionMFS)); w2.idr = idr(w2.agi);
+    w2.takeHome = g - fica - T.deferral - w2.tax - w2.health - w2.idr - hsa; w2.retirement = T.deferral + match + hsa; w2.build = w2.takeHome + w2.retirement;
+    // 1099
+    const c = i.c1099;
+    const netSE = c * 0.9235;
+    const se = 0.124 * Math.min(netSE, T.ssWageBase) + 0.029 * netSE + 0.009 * Math.max(0, netSE - T.addlMedicareMFS);
+    const halfSE = se / 2;
+    const employer = Math.min(0.20 * Math.max(0, netSE - halfSE), T.solo401kTotal - T.deferral);
+    const healthDed = Math.min(i.health || 0, Math.max(0, c - halfSE - T.deferral - employer));
+    const s = { gross: c, payrollTax: se, deferral: T.deferral, employer, health: i.health || 0 };
+    s.agi = c - halfSE - T.deferral - employer - healthDed - hsa; s.tax = fedTax(Math.max(0, s.agi - T.stdDeductionMFS)); s.idr = idr(s.agi);
+    s.takeHome = c - se - T.deferral - employer - s.tax - s.health - s.idr - hsa; s.retirement = T.deferral + employer + hsa; s.build = s.takeHome + s.retirement;
+    // break-even 1099 rate: same total build as W-2
+    let lo = 0, hi = g * 2, be = null;
+    if (!i._noBE) for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; const r = compareW2vs1099({ ...i, c1099: mid, _noBE: true }); if (r.c1099.build >= r.w2.build) hi = mid; else lo = mid; be = mid; }
+    return { w2, c1099: s, delta: { build: s.build - w2.build, agi: s.agi - w2.agi, idr: s.idr - w2.idr, tax: s.tax - w2.tax, retirement: s.retirement - w2.retirement, takeHome: s.takeHome - w2.takeHome }, breakEven: i._noBE ? null : be, T };
+  }
+
   // ----------------------------------------------------------------- $1M path
   function millionPath(opts = {}) {
     const M = { ...P.million, ...opts };
@@ -485,5 +520,5 @@ window.ENGINE = (() => {
     return returns.map(r => ({ r, cells: cashes.map(c => ({ c, crossed: millionPath({ ...base, annualReturn: r, monthlyCash: c }).crossed })) }));
   }
 
-  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween };
+  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween, compareW2vs1099, TAX26 };
 })();
