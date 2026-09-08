@@ -5,7 +5,8 @@ VIEWS.after = {
     const hsaOn = prefs.hsaOn ?? post.hsa.defaultOn;
     const efLive = ctx.totals.savings; // live non-operating balances count toward the EF
     const A = ENGINE.allocationTable({ hsaOn, efStart: efLive });
-    const cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, ...(prefs.w2cmp || {}) };
+    const cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, cb: { on: false, age: PLAN.post.jessicaAge || 40, amount: null, fee: 3000 }, ...(prefs.w2cmp || {}) };
+    cmp.cb = { on: false, age: PLAN.post.jessicaAge || 40, amount: null, fee: 3000, ...(cmp.cb || {}) };
     if (prefs.w2cmp && prefs.w2cmp.hsa === undefined) cmp.hsa = hsaOn ? PLAN.post.hsa.annual : 0;
     const efPct = F.clamp(efLive / post.emergencyFund.target, 0, 1);
     const elig = post.sabino401k.eligibleDate; const daysTo401k = F.daysBetween(ctx.today, elig);
@@ -48,6 +49,8 @@ VIEWS.after = {
           <div class="ctl"><label>Health premium / yr</label><input type="range" id="w2-h" min="0" max="24000" step="500" value="${cmp.health}"><span class="val num" id="w2-hv">${F.money(cmp.health)}</span></div>
           <div class="ctl"><label>IDR rate</label><input type="range" id="w2-r" min="0.05" max="0.15" step="0.01" value="${cmp.idrRate}"><span class="val num" id="w2-rv">${(cmp.idrRate * 100).toFixed(0)}%</span></div>
           <div class="ctl"><label>HSA</label><button class="switch ${cmp.hsa ? 'on' : ''}" id="w2-hsa" aria-label="HSA"></button></div>
+          <div class="ctl"><label>Cash balance plan</label><button class="switch ${cmp.cb.on ? 'on' : ''}" id="w2-cb" aria-label="cash balance plan"></button></div>
+          <div class="ctl ${cmp.cb.on ? '' : 'hidden'}" id="w2-cb-ctl"><label>Age</label><input type="number" id="w2-age" min="25" max="65" value="${cmp.cb.age}" style="width:64px"><label>Contribution</label><input type="range" id="w2-cba" min="0" max="${ENGINE.cbMaxByAge(cmp.cb.age)}" step="1000" value="${cmp.cb.amount ?? ENGINE.cbMaxByAge(cmp.cb.age)}"><span class="val num" id="w2-cbav">${F.money(cmp.cb.amount ?? ENGINE.cbMaxByAge(cmp.cb.age))}</span></div>
           <button class="btn sm" id="w2-reset">Reset</button>
         </div>
         <div class="grid g32">
@@ -65,15 +68,17 @@ VIEWS.after = {
   mount(S, root) {
     document.getElementById('tg-hsa').addEventListener('click', () => { S.setPref('hsaOn', !(S.prefs.hsaOn ?? PLAN.post.hsa.defaultOn)); APP.render(); });
     const hsaOn = S.prefs.hsaOn ?? PLAN.post.hsa.defaultOn;
-    let cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, ...(S.prefs.w2cmp || {}) };
+    let cmp = { w2Gross: 260000, c1099: 260000, matchPct: 0, health: 8000, idrRate: 0.10, hsa: hsaOn ? PLAN.post.hsa.annual : 0, cb: { on: false, age: PLAN.post.jessicaAge || 40, amount: null, fee: 3000 }, ...(S.prefs.w2cmp || {}) };
+    cmp.cb = { on: false, age: PLAN.post.jessicaAge || 40, amount: null, fee: 3000, ...(cmp.cb || {}) };
     const $ = id => root.querySelector('#' + id);
     const row = (k, a, b, fmt = v => F.money(v), good) => { const d = b - a; return `<tr><td>${k}</td><td class="num">${fmt(a)}</td><td class="num">${fmt(b)}</td><td class="num ${d === 0 ? 'muted' : (good ? d > 0 : d < 0) ? 'pos' : 'neg'}">${d === 0 ? '—' : (d > 0 ? '+' : '−') + fmt(Math.abs(d))}</td></tr>`; };
     const draw = () => {
-      const R = ENGINE.compareW2vs1099(cmp); const w = R.w2, c = R.c1099;
+      const R = ENGINE.compareW2vs1099(cmp); const w = R.w2, c = R.c1099; const R0 = ENGINE.compareW2vs1099({ ...cmp, cb: { ...cmp.cb, on: false } });
       $('w2-table').querySelector('tbody').innerHTML = [
         row('Gross pay', w.gross, c.gross, undefined, true),
         row('Payroll / SE tax', w.payrollTax, c.payrollTax, undefined, false),
-        row('Pre-tax retirement (incl. employer)', w.deferral + w.employer, c.deferral + c.employer, undefined, true),
+        row('401(k) pre-tax (incl. employer)', w.deferral + w.employer, c.deferral + c.employer, undefined, true),
+        ...(c.cb ? [row('Cash balance plan', 0, c.cb, undefined, true), row('Plan admin / actuary', 0, c.cbFee, undefined, false)] : []),
         row('<b>AGI</b>', w.agi, c.agi, undefined, false),
         row('Federal income tax', w.tax, c.tax, undefined, false),
         row('Student loan payment (IDR) / yr', w.idr, c.idr, undefined, false),
@@ -84,10 +89,15 @@ VIEWS.after = {
       const better = R.delta.build > 0;
       $('w2-verdict').className = 'callout ' + (better ? 'green' : 'red');
       $('w2-verdict').innerHTML = `<b>${better ? '1099 comes out ahead' : 'W-2 comes out ahead'} by ${F.money(Math.abs(R.delta.build))}/yr</b> in cash plus retirement, with AGI ${F.money(Math.abs(R.delta.agi))} ${R.delta.agi < 0 ? 'lower' : 'higher'} and the loan payment ${F.money(Math.abs(R.delta.idr))}/yr ${R.delta.idr < 0 ? 'lower' : 'higher'}.<br><span class="small">Break-even 1099 rate at these settings: <b class="num">${F.money(R.breakEven)}</b> (${((R.breakEven / cmp.w2Gross - 1) * 100).toFixed(0)}% vs the W-2 gross). Ask for at least the W-2 gross plus the employer’s 7.65% FICA saving${UI.ast()}.</span>`;
+      if (c.cb) $('w2-verdict').innerHTML += `<div class="small" style="margin-top:8px">Cash balance at age ${cmp.cb.age}: up to about <b class="num">${F.money(c.cbMax)}</b>/yr${UI.ast()}; 401(k) employer piece drops to 6% of comp. Over 5 years: ≈ <b class="num">${F.money(c.cb * 5)}</b> into the pension and ≈ <b class="num">${F.money(((R0.c1099.tax + R0.c1099.idr) - (c.tax + c.idr)) * 5)}</b> of tax + loan payments avoided vs Solo 401(k) alone.</div>`;
       $('w2-gv').textContent = F.money(cmp.w2Gross); $('w2-cv').textContent = F.money(cmp.c1099); $('w2-mv').textContent = (cmp.matchPct * 100).toFixed(1) + '%'; $('w2-hv').textContent = F.money(cmp.health); $('w2-rv').textContent = (cmp.idrRate * 100).toFixed(0) + '%';
     };
     const bind = (id, key) => { const el = $(id); el.addEventListener('input', () => { cmp[key] = Number(el.value); draw(); }); el.addEventListener('change', () => S.setPref('w2cmp', cmp)); };
     bind('w2-g', 'w2Gross'); bind('w2-c', 'c1099'); bind('w2-m', 'matchPct'); bind('w2-h', 'health'); bind('w2-r', 'idrRate');
+    $('w2-cb').addEventListener('click', () => { cmp.cb.on = !cmp.cb.on; $('w2-cb').classList.toggle('on', cmp.cb.on); $('w2-cb-ctl').classList.toggle('hidden', !cmp.cb.on); S.setPref('w2cmp', cmp); draw(); });
+    $('w2-age').addEventListener('change', () => { cmp.cb.age = Number($('w2-age').value); const mx = ENGINE.cbMaxByAge(cmp.cb.age); $('w2-cba').max = mx; cmp.cb.amount = null; $('w2-cba').value = mx; $('w2-cbav').textContent = F.money(mx); S.setPref('w2cmp', cmp); draw(); });
+    $('w2-cba').addEventListener('input', () => { cmp.cb.amount = Number($('w2-cba').value); $('w2-cbav').textContent = F.money(cmp.cb.amount); draw(); });
+    $('w2-cba').addEventListener('change', () => S.setPref('w2cmp', cmp));
     $('w2-hsa').addEventListener('click', () => { cmp.hsa = cmp.hsa ? 0 : PLAN.post.hsa.annual; $('w2-hsa').classList.toggle('on', !!cmp.hsa); S.setPref('w2cmp', cmp); draw(); });
     $('w2-reset').addEventListener('click', () => { S.setPref('w2cmp', undefined); APP.render(); });
     draw();

@@ -104,7 +104,8 @@ window.PLAN = {
     hsa: { monthly: 729, annual: 8750, defaultOn: false, note: 'Only if the HDHP option is chosen*' },
     jessica401k: { annual: 24500, note: 'Payroll-side, not from this cash flow — if eligible*' },
     sabino401k: { eligibleDate: '2027-07-01', annual: 24500, note: 'Eligibility ~mid-2027*; front-load $24,500 across remaining paychecks' },
-    brokerage: { note: 'Everything remaining (~$25–29k/mo from March)' }
+    brokerage: { note: 'Everything remaining (~$25–29k/mo from March)' },
+    jessicaAge: 34                  // for the cash-balance sizing in the W-2 vs 1099 calculator
   },
 
   // ---- Projection table (month-end, USD). Conservative: excludes 401(k)s,

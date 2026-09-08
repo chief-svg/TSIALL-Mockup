@@ -449,6 +449,13 @@ window.ENGINE = (() => {
     stdDeductionMFS: 16100, ssWageBase: 184500, addlMedicareMFS: 125000,
     deferral: 24500, solo401kTotal: 72000, fpl1: 15650
   };
+  // Owner-only cash balance plan: rough maximum annual contribution by age (2026 level*, actuary sets the real figure)
+  const CB_BY_AGE = [[30, 65000], [35, 80000], [40, 110000], [45, 150000], [50, 200000], [55, 250000], [60, 300000]];
+  function cbMaxByAge(age) {
+    const a = Math.max(30, Math.min(60, Number(age) || 40));
+    for (let k = 1; k < CB_BY_AGE.length; k++) { const [a0, v0] = CB_BY_AGE[k - 1], [a1, v1] = CB_BY_AGE[k]; if (a <= a1) return Math.round(v0 + (v1 - v0) * (a - a0) / (a1 - a0)); }
+    return CB_BY_AGE[CB_BY_AGE.length - 1][1];
+  }
   function fedTax(taxable) { let t = 0, prev = 0; for (const [cap, rate] of TAX26.mfsBrackets) { if (taxable <= prev) break; t += (Math.min(taxable, cap) - prev) * rate; prev = cap; } return t; }
   function compareW2vs1099(i) {
     const T = TAX26; const hsa = i.hsa || 0; const idrRate = i.idrRate ?? 0.10; const disc = T.fpl1 * 1.5;
@@ -465,11 +472,17 @@ window.ENGINE = (() => {
     const netSE = c * 0.9235;
     const se = 0.124 * Math.min(netSE, T.ssWageBase) + 0.029 * netSE + 0.009 * Math.max(0, netSE - T.addlMedicareMFS);
     const halfSE = se / 2;
-    const employer = Math.min(0.20 * Math.max(0, netSE - halfSE), T.solo401kTotal - T.deferral);
-    const healthDed = Math.min(i.health || 0, Math.max(0, c - halfSE - T.deferral - employer));
-    const s = { gross: c, payrollTax: se, deferral: T.deferral, employer, health: i.health || 0 };
-    s.agi = c - halfSE - T.deferral - employer - healthDed - hsa; s.tax = fedTax(Math.max(0, s.agi - T.stdDeductionMFS)); s.idr = idr(s.agi);
-    s.takeHome = c - se - T.deferral - employer - s.tax - s.health - s.idr - hsa; s.retirement = T.deferral + employer + hsa; s.build = s.takeHome + s.retirement;
+    const comp = Math.max(0, netSE - halfSE);
+    const cbOn = !!(i.cb && i.cb.on);
+    // With a cash balance plan the 401(k) employer piece is capped at 6% of compensation
+    const employer = cbOn ? Math.min(0.06 * comp, T.solo401kTotal - T.deferral) : Math.min(0.20 * comp, T.solo401kTotal - T.deferral);
+    const cbMax = cbOn ? cbMaxByAge(i.cb.age) : 0;
+    const cb = cbOn ? Math.max(0, Math.min(i.cb.amount ?? cbMax, cbMax, comp - T.deferral - employer)) : 0;
+    const cbFee = cbOn ? (i.cb.fee ?? 3000) : 0;
+    const healthDed = Math.min(i.health || 0, Math.max(0, c - halfSE - T.deferral - employer - cb));
+    const s = { gross: c, payrollTax: se, deferral: T.deferral, employer, cb, cbMax, cbFee, health: i.health || 0 };
+    s.agi = c - halfSE - T.deferral - employer - cb - healthDed - hsa - cbFee; s.tax = fedTax(Math.max(0, s.agi - T.stdDeductionMFS)); s.idr = idr(s.agi);
+    s.takeHome = c - se - T.deferral - employer - cb - cbFee - s.tax - s.health - s.idr - hsa; s.retirement = T.deferral + employer + cb + hsa; s.build = s.takeHome + s.retirement;
     // break-even 1099 rate: same total build as W-2
     let lo = 0, hi = g * 2, be = null;
     if (!i._noBE) for (let k = 0; k < 40; k++) { const mid = (lo + hi) / 2; const r = compareW2vs1099({ ...i, c1099: mid, _noBE: true }); if (r.c1099.build >= r.w2.build) hi = mid; else lo = mid; be = mid; }
@@ -520,5 +533,5 @@ window.ENGINE = (() => {
     return returns.map(r => ({ r, cells: cashes.map(c => ({ c, crossed: millionPath({ ...base, annualReturn: r, monthlyCash: c }).crossed })) }));
   }
 
-  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween, compareW2vs1099, TAX26 };
+  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween, compareW2vs1099, cbMaxByAge, TAX26 };
 })();
