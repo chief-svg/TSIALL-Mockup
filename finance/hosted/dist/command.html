@@ -592,7 +592,8 @@ window.ENGINE = (() => {
 
     const bills = P.bills.filter(b => !b.endsAfter || ym + '-01' <= b.endsAfter).map(b => {
       const expected = clampDay(ym, b.day);
-      const candidates = chk.filter(t => t.amount < 0 && within(t.amount, b.amount, pct) && dateInWindow(t.date, expected, days));
+      // Bills may be paid early (e.g. the Sep 8 car payment made Aug 31): accept up to 12 days before the due date, 5 after
+      const candidates = chk.filter(t => t.amount < 0 && within(t.amount, b.amount, pct) && t.date >= F.addDays(expected, -12) && t.date <= F.addDays(expected, days));
       const tx = candidates.find(t => b.payee && b.payee.test(`${t.payee} ${t.original_payee}`)) || candidates.find(t => t.category && t.category.title === b.category) || candidates[0] || null;
       return { ...b, expected, tx, status: stat(expected, tx), actual: tx ? -tx.amount : null };
     });
