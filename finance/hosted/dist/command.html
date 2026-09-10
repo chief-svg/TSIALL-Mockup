@@ -236,7 +236,9 @@ window.PLAN = {
     { day: 1,  amount: 6850, label: 'Rent',                 category: 'Rent',          payee: /rent|apartment|apt|property|realty|leasing|zelle/i },
     { day: 8,  amount: 610,  label: 'Car payment (WF)',     category: 'Car Payment',   payee: /wells|wf |auto/i,  endsAfter: '2026-12-31', account: 5486718 },
     { day: 20, amount: 800,  label: 'SoFi loan payment',    category: 'Loan Payments', payee: /sofi/i,            endsAfter: '2026-12-31', account: 5486708 },
-    { day: 28, amount: 750,  label: 'Student loan',         category: 'Loan Payments', payee: /nelnet|mohela|aidvantage|navient|student|edfinancial|dept of ed|great lakes/i }
+    { day: 28, amount: 750,  label: 'Student loan',         category: 'Loan Payments', payee: /nelnet|mohela|aidvantage|navient|student|edfinancial|dept of ed|great lakes/i },
+    // Discover card is not in PocketSmith yet; minimum payment assumed from the 9/8 payment*. Add the card to PocketSmith to bring it into the payoff schedule.
+    { day: 14, amount: 153,  label: 'Discover card payment*', category: 'Payment',       payee: /discover/i }
   ],
   // Checking debits with these payees are bills, not living, even if PocketSmith
   // has them in a generic category (*: e.g. insurance premium tagged "Payment").
@@ -274,7 +276,7 @@ window.PLAN = {
     { date: '2026-12-27', account: 5486703, amount: 6000,  kill: true,  note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000, kill: true,  note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
     { date: '2026-12-27', account: 5486718, amount: 6550,               note: 'Remainder → Wells Fargo auto' },
-    { date: '2027-01-15', account: 5486718, amount: 2400,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$1,700–2,350* depending on whether the Sep 8 payment was made). Request payoff quote. 🏁 Debt-free' },
+    { date: '2027-01-15', account: 5486718, amount: 2400,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$1,700* once the Sep payment posts; sized high). Request payoff quote. 🏁 Debt-free' },
     { date: '2027-01-15', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' }
   ],
 
@@ -1596,6 +1598,8 @@ VIEWS.donuts = {
     const car = bill('Car payment (WF)'); if (active(car)) { s.car = car.amount; if (paid('Car payment (WF)')) notes.car = 'paid'; }
     const sofi = bill('SoFi loan payment'); if (active(sofi)) { s.loans += sofi.amount; }
     const stu = bill('Student loan'); if (active(stu)) { s.student = stu.amount; if (paid('Student loan')) notes.student = 'paid'; }
+    // Any other recurring bill (e.g. the untracked Discover card) counts with card payments
+    for (const b of P.bills.filter(x => !['Rent', 'Car payment (WF)', 'SoFi loan payment', 'Student loan'].includes(x.label))) { if (active(b)) s.cards += b.amount; }
     s.living = P.living.monthly; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
     let cardsDone = 0, loansDone = 0;
     for (const it of d.sched.items) {

@@ -38,7 +38,7 @@ Connector name fix worked: the permissions dialog shows **PocketSmith Complete A
 - Killing the demo server with `pkill -f "node server.js"` kills the calling shell too; use `pgrep -f "server\.js"` + kill.
 
 ## Decisions
-- 2026-09-10: replanned from live balances (checking $333; cards $97.6k). Reimbursement arrives ~9/12 → straight to Citi 3208. Jessica's 9/15 check is one week (~$4,300 net); full checks ≈ $7,900 net on the 15th/30th (from a $5,682 one-week gross stub). Month-end check now covers rent + car; the “$8,000 on the 30th” payments are gone. Cards still die in avalanche order; debt-free slips to **Jan 15, 2027**. Post-debt capacity $29,600/mo. Untracked: a Discover card (a $153 payment posted 9/8) — add it to PocketSmith.
+- 2026-09-10: replanned from live balances (checking $333; cards $97.6k). Reimbursement arrives ~9/12 → straight to Citi 3208. Jessica's 9/15 check is one week (~$4,300 net); full checks ≈ $7,900 net on the 15th/30th (from a $5,682 one-week gross stub). Month-end check now covers rent + car; the “$8,000 on the 30th” payments are gone. Cards still die in avalanche order; debt-free slips to **Jan 15, 2027**. Post-debt capacity $29,600/mo. Untracked: a Discover card — modelled as a $153* bill on the 14th (Sep paid; next due Oct 14) until it is added to PocketSmith. Sep car payment confirmed made (not yet visible in the checking feed).
 - 2026-09-07: living allowance changed from $150/day to a flat **$4,500/month** so no month runs short; daily pace is derived.
 
 ## Assumptions to true-up (all marked * in the UI)
