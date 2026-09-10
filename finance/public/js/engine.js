@@ -191,7 +191,7 @@ window.ENGINE = (() => {
       return { ...b, expected, tx, status: stat(expected, tx), actual: tx ? -tx.amount : null };
     });
 
-    const incomes = P.income.map(i => ({ ...i, expected: clampDay(ym, i.day) }))
+    const incomes = P.income.map(i => ({ ...i, expected: clampDay(ym, i.day) })).filter(i => !i.from || i.expected >= i.from)
       .concat(P.oneTimeIncome.filter(o => o.date.slice(0, 7) === ym).map(o => ({ ...o, expected: o.date, day: Number(o.date.slice(8)) })))
       .map(i => {
         const tx = chk.find(t => t.kind === 'income' && within(t.amount, i.amount, pct) && dateInWindow(t.date, i.expected, days)) || null;
@@ -334,7 +334,7 @@ window.ENGINE = (() => {
     let income = 0, bills = 0;
     const months = new Set([from.slice(0, 7), to.slice(0, 7)]);
     for (const ym of months) {
-      for (const i of P.income) { const d = clampDay(ym, i.day); if (d >= from && d <= to && !(ledger.ym === ym && ledger.incomes.find(x => x.day === i.day && x.tx && !x.date))) income += i.amount; }
+      for (const i of P.income) { const d = clampDay(ym, i.day); if (i.from && d < i.from) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.incomes.find(x => x.day === i.day && x.tx && !x.date))) income += i.amount; }
       for (const o of P.oneTimeIncome) { if (o.date >= from && o.date <= to && !(ledger.ym === ym && ledger.incomes.find(x => x.date === o.date && x.tx))) income += o.amount; }
       for (const b of P.bills) { const d = clampDay(ym, b.day); if (b.endsAfter && ym + '-01' > b.endsAfter) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.bills.find(x => x.label === b.label && x.tx))) bills += b.amount; }
     }
@@ -364,7 +364,7 @@ window.ENGINE = (() => {
     const months = new Set(); for (let d = today; d <= end; d = F.addDays(d, 1)) months.add(d.slice(0, 7));
     for (const ym of months) {
       const cur = ledger && ledger.ym === ym;
-      for (const inc of P.income) { const d = clampDay(ym, inc.day); if (d < today || d > end) continue; if (cur && ledger.incomes.find(x => x.day === inc.day && !x.date && x.tx)) continue; slot(d).income.push({ amount: inc.amount, label: inc.label }); }
+      for (const inc of P.income) { const d = clampDay(ym, inc.day); if (d < today || d > end || (inc.from && d < inc.from)) continue; if (cur && ledger.incomes.find(x => x.day === inc.day && !x.date && x.tx)) continue; slot(d).income.push({ amount: inc.amount, label: inc.label }); }
       for (const o of P.oneTimeIncome) { if (o.date.slice(0, 7) !== ym || o.date < today || o.date > end) continue; if (cur && ledger.incomes.find(x => x.date === o.date && x.tx)) continue; slot(o.date).income.push({ amount: o.amount, label: o.label }); }
       for (const b of P.bills) { if (b.endsAfter && ym + '-01' > b.endsAfter) continue; const d = clampDay(ym, b.day); if (d < today || d > end) continue; if (cur && ledger.bills.find(x => x.label === b.label && x.tx)) continue; slot(d).bills.push({ amount: b.amount, label: b.label, account: b.account || null }); }
     }

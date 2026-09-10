@@ -11,6 +11,7 @@ VIEWS.donuts = {
   ],
   months(from, to) { const out = []; let [y, m] = from.split('-').map(Number); while (`${y}-${String(m).padStart(2, '0')}` <= to) { out.push(`${y}-${String(m).padStart(2, '0')}`); m++; if (m > 12) { m = 1; y++; } } return out; },
   month(S, ym) {
+    const clampDayYm = (m, day) => `${m}-${String(Math.min(day, F.daysInMonth(m + '-01'))).padStart(2, '0')}`;
     const { ctx, d, prefs } = S; const P = PLAN; const cur = ym === ctx.today.slice(0, 7);
     const dim = F.daysInMonth(ym + '-01');
     const bill = label => P.bills.find(b => b.label === label);
@@ -36,7 +37,7 @@ VIEWS.donuts = {
       const pr = prefs.alloc || {}; const base = pr.base ?? P.post.monthlyCapacity; const over = pr.over || {};
       s.savings = over[ym] ?? base; notes.savings = 'per Allocate page';
     }
-    const income = P.income.reduce((a, i) => a + i.amount, 0) + P.oneTimeIncome.filter(o => o.date.slice(0, 7) === ym).reduce((a, o) => a + o.amount, 0);
+    const income = P.income.filter(i => !i.from || clampDayYm(ym, i.day) >= i.from).reduce((a, i) => a + i.amount, 0) + P.oneTimeIncome.filter(o => o.date.slice(0, 7) === ym).reduce((a, o) => a + o.amount, 0);
     const total = Object.values(s).reduce((a, b) => a + b, 0);
     return { ym, s, notes, income, total, net: income - total, cur, dim };
   },
