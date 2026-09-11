@@ -82,7 +82,7 @@ window.PLAN = {
       5486653:   { due: '2026-09-20', dueDay: 20, statement: 13463.71, minDue: 0,   minEst: 185, lastMin: null,   payee: /citi/i,                  note: 'Sep minimum already paid. Min ≈ 1% of statement*.' },
       5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Sep 4.' },
       5486658:   { due: '2026-09-28', dueDay: 28, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196,    payee: /citi/i,                  note: 'AutoPay off. Killed Sep 27, the day before the due date.' },
-      5486703:   { due: '2026-09-05', dueDay: 5,  statement: null,     minDue: 0,   minEst: 325, lastMin: 325,    payee: /chase/i,                 note: 'Due day inferred from payment history (Jun 1, Jul 2, Sep 4)* — confirm in the Chase app. Sep minimum paid Sep 4.', inferred: true },
+      5486703:   { due: '2026-09-22', dueDay: 22, closeDay: 25, statement: 12373.88, minDue: 0, minEst: 325, lastMin: 325, payee: /chase/i,          note: 'Chase app 2026-09-11: due Sep 22, closes Sep 25, statement $12,698.88 (Aug 25). Sep minimum $325 paid Sep 4.' },
       discover:  { due: '2026-09-14', dueDay: 14, statement: null,     minDue: 0,   minEst: 153, lastMin: 153,    billed: true,                    note: '0% promo to Jul 17, 2027 — no interest at all; minimum is already a bill.' }
     }
   },

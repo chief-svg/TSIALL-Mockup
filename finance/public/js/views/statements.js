@@ -5,7 +5,7 @@ VIEWS.statements = {
     const { ctx, d } = S; const B = d.statements;
     const rows = B.cards.map(c => {
       const a = c.acct;
-      const stmt = c.statement != null ? `${F.money(c.statement)}<span class="sub">due ${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''} · closes ~${F.fmtDate(c.close, { year: false })}${UI.ast()}</span>` : `<span class="muted">—</span><span class="sub">next due ~${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''}</span>`;
+      const stmt = c.statement != null ? `${F.money(c.statement)}<span class="sub">due ${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''} · closes ${c.s.closeDay ? '' : '~'}${F.fmtDate(c.close, { year: false })}${c.s.closeDay ? '' : UI.ast()}</span>` : `<span class="muted">—</span><span class="sub">next due ~${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''}</span>`;
       const min = c.dead ? '—' : c.s.due === c.due ? (c.minDue > 0 ? `<span class="amber">${F.money(c.minDue)}</span><span class="sub">still owed</span>` : `<span class="pos">$0</span><span class="sub">paid</span>`) : `${F.money(c.minEst)}${UI.ast()}<span class="sub">est.</span>`;
       const status = c.dead ? UI.chip('done', 'dead') : c.promo ? UI.chip('ok', '0% promo') : `<span class="chip gap">carrying</span>`;
       const stops = c.dead ? '<span class="muted">already</span>' : c.promo ? `<span class="muted">no interest</span><span class="sub">promo to ${F.fmtDate(a.promoEnds || '2027-07-17', { year: true })}</span>` : c.deathDate ? `<span class="gold num">☠ ${F.fmtDate(c.deathDate, { year: false })}</span><span class="sub">≈ ${F.money(c.interest)} more interest${UI.ast()}</span>` : '<span class="neg">underfunded</span>';
@@ -37,7 +37,7 @@ VIEWS.statements = {
 
       <div class="panel flush"><div class="ph"><h3>This cycle</h3><span class="small muted">statement · due · minimum · what the plan does</span></div>
         <div class="table-wrap"><table><thead><tr><th>Card</th><th class="num">Statement</th><th class="num">Minimum</th><th class="num">Balance now</th><th>Status</th><th>What to do</th><th class="num">Interest stops</th><th class="num">Grace back</th></tr></thead><tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="8" class="small muted">Minimums after the current cycle are estimates${UI.ast()} from the last one paid (Citi ≈ 1% of the statement). They are reserved as bills in every funds check. Closing dates are inferred as due − 25 days${UI.ast()}.</td></tr></tfoot></table></div></div>
+        <tfoot><tr><td colspan="8" class="small muted">Minimums after the current cycle are estimates${UI.ast()} from the last one paid (Citi ≈ 1% of the statement). They are reserved as bills in every funds check. Closing dates not shown by the issuer are inferred as due − 25 days${UI.ast()}.</td></tr></tfoot></table></div></div>
 
       <div class="grid g32" style="margin-top:18px">
         <div class="panel flush"><div class="ph"><h3>Due-date calendar</h3><span class="small muted">next ${cal.length} card events</span></div>

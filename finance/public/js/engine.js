@@ -219,7 +219,7 @@ window.ENGINE = (() => {
       const bal = Math.max(0, -acct.balance); const dead = bal <= 0.005;
       const perDay = bal * (acct.apr || 0) / 365;
       const due = s.due && s.due >= today ? s.due : nextDueFrom(today, s.dueDay);
-      const close = F.addDays(due, -25);
+      const close = s.closeDay ? (() => { let c = clampDay(due.slice(0, 7), s.closeDay); if (c >= due) { const m = F.parseISO(due.slice(0, 7) + '-01'); m.setMonth(m.getMonth() - 1); c = clampDay(`${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`, s.closeDay); } return c; })() : F.addDays(due, -25);
       const inCurrentCycle = s.due === due;
       const minNeeded = inCurrentCycle ? s.minDue : s.minEst;
       let action, actionKind;
@@ -229,7 +229,11 @@ window.ENGINE = (() => {
       else { action = `Nothing due — minimum already paid for the ${F.fmtDate(due, { year: false })} cycle`; actionKind = 'paid'; }
       const deathDate = dead ? 'paid' : sim && sim.deathDate ? sim.deathDate : null;
       // Grace period returns for new purchases once a statement closes at $0 (after the trailing-interest statement is paid)
-      const graceBack = deathDate && deathDate !== 'paid' ? F.addDays(nextDueFrom(F.addDays(deathDate, 26), s.dueDay), -25) : null;
+      let graceBack = null;
+      if (deathDate && deathDate !== 'paid') {
+        if (s.closeDay) { let ym = deathDate.slice(0, 7); for (let k = 0; k < 2 && !graceBack; k++) { const c = clampDay(ym, s.closeDay); if (c > deathDate) graceBack = c; const m = F.parseISO(ym + '-01'); m.setMonth(m.getMonth() + 1); ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`; } }
+        else { let x = deathDate; for (let k = 0; k < 3 && !graceBack; k++) { const dd = nextDueFrom(F.addDays(x, 1), s.dueDay); const c = F.addDays(dd, -25); if (c > deathDate) graceBack = c; x = dd; } }
+      }
       cards.push({ id, acct, s, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && (acct.apr || 0) > 0, promo: (acct.apr || 0) === 0 && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
       // calendar entries: each due date until the kill, plus the kill itself
       if (!dead && s.dueDay) {
