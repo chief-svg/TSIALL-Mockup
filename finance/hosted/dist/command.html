@@ -288,7 +288,8 @@ window.PLAN = {
   payments: [
     // Revised 2026-09-11 (night) around the statements: Citi 8018 + 3208 are IN GRACE (statements show $0 interest), so their statements are paid in full by the due dates and living floats on the 8018.
     // Carrying cards (Amex Plat from Sep 21, Biz Plat, Biz Gold, Sapphire) die avalanche-style with minimums reserved. Kill amounts = pay the LIVE balance that day; figures include est. interest*.
-    { date: '2026-09-20', account: 5486653, amount: 13463.71,              note: 'Citi 8018 Aug statement IN FULL (due Sep 20) — the card is in grace, so this $13.5k never pays interest. Reimbursement + Jessica’s check' },
+    { date: '2026-09-12', account: 5486653, amount: 10000,                 note: 'Reimbursement straight to the Citi 8018 Aug statement (in grace → no interest). Part 1 of $13,463.71' },
+    { date: '2026-09-16', account: 5486653, amount: 3463.71,               note: 'Rest of the 8018 Aug statement, from Jessica’s Sep 15 check — paid before the Sun Sep 20 due date so the grace period holds' },
 
     { date: '2026-09-27', account: 5486658, amount: 19550,   kill: true, note: 'PAYOFF — Citi 3208 (pay live balance; statement due Sep 28, in grace → no interest)' },
     { date: '2026-09-27', account: 5486688, amount: 30,      kill: true, note: 'Straggler cleared' },
