@@ -245,8 +245,8 @@ window.PLAN = {
     { day: 28, amount: 750,  label: 'Student loan',         category: 'Loan Payments', payee: /nelnet|mohela|aidvantage|navient|student|edfinancial|dept of ed|great lakes/i },
     // Discover card is not in PocketSmith yet; minimum payment assumed from the 9/8 payment*. Add the card to PocketSmith to bring it into the payoff schedule.
     { day: 14, amount: 153,  label: 'Discover card payment*', category: 'Payment',       payee: /discover/i },
-    // IRS installment agreement: $400/mo from checking. Due day assumed the 15th* until confirmed.
-    { day: 15, amount: 400,  label: 'IRS installment*',      category: 'Tax',           payee: /irs|usataxpymt|us treasury/i, account: 'irs' }
+    // IRS installment agreement: $400/mo from checking, due the 28th.
+    { day: 28, amount: 400,  label: 'IRS installment',       category: 'Tax',           payee: /irs|usataxpymt|us treasury/i, account: 'irs' }
   ],
   // Checking debits with these payees are bills, not living, even if PocketSmith
   // has them in a generic category (*: e.g. insurance premium tagged "Payment").
@@ -264,26 +264,26 @@ window.PLAN = {
   payments: [
     // Revised 2026-09-11 from live balances + the IRS balance. Kill amounts = pay the LIVE balance that day; figures include est. interest*.
     { date: '2026-09-12', account: 5486658, amount: 8750,               note: 'Reimbursement straight to the 29.49% card the day it lands' },
-    { date: '2026-09-15', account: 5486658, amount: 1300,               note: 'Jessica’s one-week check, after IRS $400 + SoFi + living reserve' },
+    { date: '2026-09-15', account: 5486658, amount: 1700,               note: 'Jessica’s one-week check, after the SoFi + living reserve' },
 
-    { date: '2026-09-27', account: 5486658, amount: 9600,  kill: true,  note: 'PAYOFF — Citi 3208 (pay live balance)' },
+    { date: '2026-09-27', account: 5486658, amount: 9200,  kill: true,  note: 'PAYOFF — Citi 3208 (pay live balance)' },
     { date: '2026-09-27', account: 5486668, amount: 10950, kill: true,  note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
     { date: '2026-09-27', account: 5486673, amount: 180,   kill: true,  note: 'Straggler cleared' },
     { date: '2026-09-27', account: 5486678, amount: 2200,               note: 'Remainder → Biz Plat. Sep 30 check is held for Oct 1 rent' },
 
-    { date: '2026-10-15', account: 5486678, amount: 4950,               note: '' },
-    { date: '2026-10-27', account: 5486678, amount: 10100, kill: true,  note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
+    { date: '2026-10-15', account: 5486678, amount: 5350,               note: '' },
+    { date: '2026-10-27', account: 5486678, amount: 9700,  kill: true,  note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
     { date: '2026-10-27', account: 5486683, amount: 12600,              note: 'Remainder → Biz Gold' },
-    { date: '2026-11-15', account: 5486683, amount: 4900,               note: '' },
-    { date: '2026-11-27', account: 5486683, amount: 2350,  kill: true,  note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
+    { date: '2026-11-15', account: 5486683, amount: 5300,               note: '' },
+    { date: '2026-11-27', account: 5486683, amount: 1950,  kill: true,  note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
     { date: '2026-11-27', account: 5486688, amount: 30,    kill: true,  note: 'Straggler cleared' },
     { date: '2026-11-27', account: 5486653, amount: 19450, kill: true,  note: 'PAYOFF — Citi 8018 (pay live balance)' },
     { date: '2026-11-27', account: 5486703, amount: 1100,               note: 'Remainder → Sapphire' },
-    { date: '2026-12-15', account: 5486703, amount: 4950,               note: '' },
-    { date: '2026-12-27', account: 5486703, amount: 7900,  kill: true,  note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
+    { date: '2026-12-15', account: 5486703, amount: 5350,               note: '' },
+    { date: '2026-12-27', account: 5486703, amount: 7500,  kill: true,  note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000, kill: true,  note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
     { date: '2026-12-27', account: 'irs',   amount: 4500,               note: 'Remainder → IRS (extra payment on the installment agreement)' },
-    { date: '2027-01-15', account: 'irs',   amount: 5750,               note: 'Jessica’s check → IRS' },
+    { date: '2027-01-15', account: 'irs',   amount: 6150,               note: 'Jessica’s check → IRS' },
     { date: '2027-01-27', account: 'irs',   amount: 3450,  kill: true,  note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
     { date: '2027-01-27', account: 5486718, amount: 9000,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$8,300–9,000*). Request payoff quote. 🏁 Debt-free' },
     { date: '2027-01-27', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' }
@@ -291,8 +291,8 @@ window.PLAN = {
 
   // Monthly rhythm shown as a reminder strip
   rhythm: [
-    { day: 15, amount: 4950,  from: 'Jessica mid-month check (after IRS $400, SoFi + living)' },
-    { day: 27, amount: 23000, from: 'Sabino check (after student loan + living)' },
+    { day: 15, amount: 5350,  from: 'Jessica mid-month check (after SoFi + living)' },
+    { day: 27, amount: 22600, from: 'Sabino check (after student loan + IRS $400 + living)' },
     { day: 30, amount: 0,     from: 'Jessica month-end check → held for rent (1st) + car (8th)' }
   ],
 
