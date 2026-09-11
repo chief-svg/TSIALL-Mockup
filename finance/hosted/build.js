@@ -5,7 +5,7 @@ const PUB = path.join(__dirname, '..', 'public');
 const r = p => fs.readFileSync(path.join(PUB, p), 'utf8');
 const html = r('index.html');
 const body = html.slice(html.indexOf('<header'), html.indexOf('<script src='));
-const scripts = ['js/plan.js', 'js/format.js', 'js/store.js', 'js/engine.js', 'js/charts.js', 'js/views/command.js', 'js/views/payoff.js', 'js/views/spending.js', 'js/views/projection.js', 'js/views/after.js', 'js/views/allocate.js', 'js/views/donuts.js', 'js/views/million.js', 'js/views/accounts.js'].map(r)
+const scripts = ['js/plan.js', 'js/format.js', 'js/store.js', 'js/engine.js', 'js/charts.js', 'js/views/command.js', 'js/views/payoff.js', 'js/views/spending.js', 'js/views/projection.js', 'js/views/after.js', 'js/views/allocate.js', 'js/views/donuts.js', 'js/views/million.js', 'js/views/accounts.js', 'js/views/statements.js'].map(r)
   .concat([fs.readFileSync(path.join(__dirname, 'runtime.js'), 'utf8'), r('js/app.js')]).join('\n;\n');
 const chart = r('vendor/chart.umd.js');
 for (const s of [scripts, chart]) if (/<\/script/i.test(s)) throw new Error('script terminator inside bundle');

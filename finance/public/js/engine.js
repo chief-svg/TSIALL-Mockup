@@ -186,13 +186,77 @@ window.ENGINE = (() => {
   function dateInWindow(d, target, days) { return Math.abs(F.daysBetween(d, target)) <= days; }
   function clampDay(monthISO, day) { const dim = F.daysInMonth(monthISO + '-01'); return `${monthISO}-${String(Math.min(day, dim)).padStart(2, '0')}`; }
 
+  // ---- Card statements / minimum payments ----------------------------------
+  function killDateOf(id) { return P.payments.filter(p => p.account === id && p.kill).map(p => p.date).sort()[0] || null; }
+  function cardId(k) { return isNaN(k) ? k : Number(k); }
+  // Minimum payments for cards still waiting their turn, generated from plan.statements:
+  // one per month from the first unpaid cycle until the card's kill date (exclusive).
+  function minimumBills() {
+    const S = P.statements || { cards: {} }, out = [];
+    for (const [k, s] of Object.entries(S.cards || {})) {
+      const id = cardId(k);
+      if (s.billed || !s.dueDay || !s.minEst) continue;
+      const from = s.due ? (s.minDue > 0 ? s.due : F.addDays(s.due, 1)) : S.asOf;
+      out.push({ day: s.dueDay, amount: s.minEst, label: `${(P.accounts[id] || {}).short || id} minimum*`, category: 'Payment', payee: s.payee, account: id, from, until: killDateOf(id), minimum: true });
+    }
+    return out;
+  }
+  const MIN_BILLS = minimumBills();
+  function bills_() { return P.bills.concat(MIN_BILLS); }
+  // Is this bill due in month ym? (endsAfter = last month; from/until = date bounds on the due date itself)
+  function activeIn(b, ym) { const d = clampDay(ym, b.day); if (b.endsAfter && ym + '-01' > b.endsAfter) return false; if (b.from && d < b.from) return false; if (b.until && d >= b.until) return false; return true; }
+
+  // Per-card statement board: what each due date needs, when interest stops, when grace returns.
+  function statementBoard(ctx, sched, sims) {
+    const S = P.statements || { asOf: ctx.today, cards: {} };
+    const today = ctx.today;
+    const cards = [], calendar = [];
+    const nextDueFrom = (from, dueDay) => { let ym = from.slice(0, 7); let d = clampDay(ym, dueDay); if (d < from) { const m = F.parseISO(ym + '-01'); m.setMonth(m.getMonth() + 1); ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`; d = clampDay(ym, dueDay); } return d; };
+    for (const [k, s] of Object.entries(S.cards || {})) {
+      const id = cardId(k); const acct = ctx.byId[id]; if (!acct) continue;
+      const sim = (sims.sims || []).find(x => x.acct.id === id) || null;
+      const kill = killDateOf(id); const killItem = sched.items.find(i => i.account === id && i.kill) || null;
+      const bal = Math.max(0, -acct.balance); const dead = bal <= 0.005;
+      const perDay = bal * (acct.apr || 0) / 365;
+      const due = s.due && s.due >= today ? s.due : nextDueFrom(today, s.dueDay);
+      const close = F.addDays(due, -25);
+      const inCurrentCycle = s.due === due;
+      const minNeeded = inCurrentCycle ? s.minDue : s.minEst;
+      let action, actionKind;
+      if (dead) { action = 'Paid off'; actionKind = 'done'; }
+      else if (kill && kill <= due) { action = `Pay the full balance ${F.fmtDate(kill, { year: false })} (kills the card)`; actionKind = 'kill'; }
+      else if (minNeeded > 0) { action = `Minimum ${F.money(minNeeded)}${inCurrentCycle ? '' : '*'} by ${F.fmtDate(due, { year: false })}`; actionKind = 'min'; }
+      else { action = `Nothing due — minimum already paid for the ${F.fmtDate(due, { year: false })} cycle`; actionKind = 'paid'; }
+      const deathDate = dead ? 'paid' : sim && sim.deathDate ? sim.deathDate : null;
+      // Grace period returns for new purchases once a statement closes at $0 (after the trailing-interest statement is paid)
+      const graceBack = deathDate && deathDate !== 'paid' ? F.addDays(nextDueFrom(F.addDays(deathDate, 26), s.dueDay), -25) : null;
+      cards.push({ id, acct, s, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && (acct.apr || 0) > 0, promo: (acct.apr || 0) === 0 && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
+      // calendar entries: each due date until the kill, plus the kill itself
+      if (!dead && s.dueDay) {
+        let d = due; let n = 0;
+        while (n < 6 && d <= F.addDays(today, 130)) {
+          if (kill && d > kill) break;
+          const cur = d === s.due;
+          const amt = cur ? s.minDue : s.minEst;
+          calendar.push({ date: d, id, short: acct.short, kind: amt > 0 ? 'min' : 'paid', amount: amt, est: !cur, why: amt > 0 ? 'keeps the account current — no late fee, no penalty APR' : 'minimum already paid this cycle' });
+          d = nextDueFrom(F.addDays(d, 1), s.dueDay); n++;
+        }
+        if (kill) calendar.push({ date: kill, id, short: acct.short, kind: 'kill', amount: killItem ? killItem.amount : null, est: true, why: `pay the live balance that day — interest stops, then one $0 statement restores the grace period` });
+      }
+    }
+    cards.sort((a, b) => a.due < b.due ? -1 : 1);
+    calendar.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.kind === 'kill' ? -1 : 1);
+    const totalPerDay = cards.reduce((s, c) => s + c.perDay, 0);
+    return { asOf: S.asOf, cards, calendar, totalPerDay, minimums: MIN_BILLS };
+  }
+
   function monthLedger(ctx, day = ctx.today) {
     const ym = day.slice(0, 7);
     const chk = ctx.txs.filter(t => t.acctId === P.checkingId);
     const { days, pct } = P.match;
     const stat = (expected, matched) => matched ? 'paid' : F.daysBetween(expected, day) > days ? 'overdue' : F.daysBetween(day, expected) <= 3 ? 'due' : 'upcoming';
 
-    const bills = P.bills.filter(b => !b.endsAfter || ym + '-01' <= b.endsAfter).map(b => {
+    const bills = bills_().filter(b => activeIn(b, ym)).map(b => {
       const expected = clampDay(ym, b.day);
       // Bills may be paid early (e.g. the Sep 8 car payment made Aug 31): accept up to 12 days before the due date, 5 after
       const candidates = chk.filter(t => t.amount < 0 && within(t.amount, b.amount, pct) && t.date >= F.addDays(expected, -12) && t.date <= F.addDays(expected, days));
@@ -270,11 +334,11 @@ window.ENGINE = (() => {
     const byDate = {};
     for (const i of mine) byDate[i.date] = (byDate[i.date] || 0) + i.amount;
     // Recurring bills that pay down this account (car, SoFi) until they end
-    for (const b of P.bills.filter(b => b.account === acct.id)) {
+    for (const b of bills_().filter(b => b.account === acct.id)) {
       for (let k = 0; k < 6; k++) {
         const m = new Date(F.parseISO(ctx.today).getFullYear(), F.parseISO(ctx.today).getMonth() + k, 1);
         const ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`;
-        if (b.endsAfter && ym + '-01' > b.endsAfter) break;
+        if (!activeIn(b, ym)) continue;
         const d = clampDay(ym, b.day);
         const paidThisMonth = ledger && ledger.ym === ym && ledger.bills.find(x => x.label === b.label && x.tx);
         if (d >= ctx.today && !paidThisMonth) byDate[d] = (byDate[d] || 0) + b.amount;
@@ -345,7 +409,7 @@ window.ENGINE = (() => {
     for (const ym of months) {
       for (const i of P.income) { const d = clampDay(ym, i.day); if (i.from && d < i.from) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.incomes.find(x => x.day === i.day && x.tx && !x.date))) income += i.amount; }
       for (const o of P.oneTimeIncome) { if (o.date >= from && o.date <= to && !(ledger.ym === ym && ledger.incomes.find(x => x.date === o.date && x.tx))) income += o.amount; }
-      for (const b of P.bills) { const d = clampDay(ym, b.day); if (b.endsAfter && ym + '-01' > b.endsAfter) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.bills.find(x => x.label === b.label && x.tx))) bills += b.amount; }
+      for (const b of bills_()) { const d = clampDay(ym, b.day); if (!activeIn(b, ym)) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.bills.find(x => x.label === b.label && x.tx))) bills += b.amount; }
     }
     // Only count strictly future days for living (today's spend is already reflected in the balance*)
     const days = Math.max(0, F.daysBetween(from, to));
@@ -375,7 +439,7 @@ window.ENGINE = (() => {
       const cur = ledger && ledger.ym === ym;
       for (const inc of P.income) { const d = clampDay(ym, inc.day); if (d < today || d > end || (inc.from && d < inc.from)) continue; if (cur && ledger.incomes.find(x => x.day === inc.day && !x.date && x.tx)) continue; slot(d).income.push({ amount: inc.amount, label: inc.label }); }
       for (const o of P.oneTimeIncome) { if (o.date.slice(0, 7) !== ym || o.date < today || o.date > end) continue; if (cur && ledger.incomes.find(x => x.date === o.date && x.tx)) continue; slot(o.date).income.push({ amount: o.amount, label: o.label }); }
-      for (const b of P.bills) { if (b.endsAfter && ym + '-01' > b.endsAfter) continue; const d = clampDay(ym, b.day); if (d < today || d > end) continue; if (cur && ledger.bills.find(x => x.label === b.label && x.tx)) continue; slot(d).bills.push({ amount: b.amount, label: b.label, account: b.account || null }); }
+      for (const b of bills_()) { if (!activeIn(b, ym)) continue; const d = clampDay(ym, b.day); if (d < today || d > end) continue; if (cur && ledger.bills.find(x => x.label === b.label && x.tx)) continue; slot(d).bills.push({ amount: b.amount, label: b.label, account: b.account || null }); }
     }
     const series = [], events = [];
     for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
@@ -542,5 +606,5 @@ window.ENGINE = (() => {
     return returns.map(r => ({ r, cells: cashes.map(c => ({ c, crossed: millionPath({ ...base, annualReturn: r, monthlyCash: c }).crossed })) }));
   }
 
-  return { buildAccounts, totals, buildContext, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween, compareW2vs1099, cbMaxByAge, TAX26 };
+  return { buildAccounts, totals, buildContext, statementBoard, killDateOf, bills: bills_, activeIn, classify, spendingTree, livingTracker, monthLedger, schedule, matchPayment, simulateAccount, simulateAll, fundsCheck, nearTerm, recordSnapshot, projectionSeries, allocationTable, millionPath, millionSensitivity, monthsBetween, compareW2vs1099, cbMaxByAge, TAX26 };
 })();
