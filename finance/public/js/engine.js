@@ -7,7 +7,15 @@ window.ENGINE = (() => {
 
   // ---------------------------------------------------------------- accounts
   function buildAccounts(apiAccounts, overrides = {}) {
-    return (apiAccounts || []).map(a => {
+    // Debts configured outside PocketSmith (plan.extraDebts) become synthetic accounts
+    const extra = (P.extraDebts || []).map(x => {
+      const ov = overrides && overrides[x.id];
+      const useOv = ov && typeof ov.balance === 'number' && (ov.asOf || '') >= (x.asOf || '');
+      return { id: x.id, title: x.label, short: x.short, label: x.label, type: 'loans', role: x.role || 'loan', order: x.order ?? 50, apr: x.apr ?? null, payoffQuote: !!x.payoffQuote,
+        balance: useOv ? ov.balance : x.balance, balanceDate: useOv ? ov.asOf : x.asOf, feedBalance: x.balance, feedDate: x.asOf, override: useOv ? ov : null,
+        institution: x.institution || '', colour: null, number: '', isDebt: true, isCash: false, isSavings: false, synthetic: true, note: x.note || '' };
+    });
+    return extra.concat((apiAccounts || []).map(a => {
       const ov = overrides && overrides[a.id];
       const useOv = ov && typeof ov.balance === 'number' && (!a.current_balance_date || (ov.asOf || '') >= a.current_balance_date);
       const meta = P.accounts[a.id] || {};
@@ -37,7 +45,7 @@ window.ENGINE = (() => {
         isCash: role === 'cash',
         isSavings: role === 'savings' || (!isDebt && role !== 'cash' && Number(a.current_balance || 0) > 0)
       };
-    }).sort((x, y) => x.order - y.order || x.title.localeCompare(y.title));
+    })).sort((x, y) => x.order - y.order || x.title.localeCompare(y.title));
   }
 
   function totals(accts) {
@@ -65,7 +73,7 @@ window.ENGINE = (() => {
   // ---------------------------------------------------------------- classify
   const RX = {
     paymentPayee: /payment|pymt|thank you|autopay|ach pmt|epay|online pmt|mobile pmt/i,
-    issuer: /american express|amex|citi|chase|sofi|wells|bank of america|bofa|capital one|discover|barclay|synchrony/i,
+    issuer: /american express|amex|citi|chase|sofi|wells|bank of america|bofa|capital one|discover|barclay|synchrony|irs des|usataxpymt|us treasury/i,
     interest: /interest charge|purchase interest|finance charge|interest on/i,
     fee: /annual fee|late fee|membership fee|returned payment fee|foreign transaction fee/i
   };

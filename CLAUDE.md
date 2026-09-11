@@ -15,8 +15,9 @@ This repo has two unrelated things: the **Texas State Insurance mockup** (`index
 
 ## Facts
 - Income model (2026-09-10): Jessica W-2 net ≈ $7,900 per check on the ~15th/~30th (first full check 9/30; 9/15 is one week ≈ $4,300), Sabino $26,000 on the 27th, $10,000 reimbursement ~9/12. Post-debt capacity $29,600/mo. `income[].from` gates the start month.
+- IRS installment agreement (not in PocketSmith): $15,194.56 on 2026-09-11, ~10%/yr*, $400/mo from checking (due day assumed 15th*). Modelled via `plan.extraDebts` → synthetic account id `irs`; payoff Dec 27 → Jan 27 after SoFi, before the auto loan.
 - Living allowance is a flat **$4,500/month** (`plan.living.monthly`, chosen 2026-09-07; daily pace = monthly ÷ days in month). The spec's $150/day is superseded.
-- PocketSmith user id **882138**; account ids/roles are in plan.js; plan start 2026-09-07, debt −$120,561.66; debt-free target **2027-01-15** (revised 2026-09-10; was 2026-12-27); user is in America/Chicago.
+- PocketSmith user id **882138**; account ids/roles are in plan.js; plan start 2026-09-07, debt −$120,561.66; debt-free target **2027-01-27** (revised 2026-09-11 when the IRS balance was added; 09-10: 01-15; original 2026-12-27); user is in America/Chicago.
 - Artifact db docs: `state/cache` `{value:{at,payload},at}`, `state/snapshots` `{value:{date:{debt,cash,savings,net}},at}`, `state/overrides`.
 - PocketSmith MCP tools work from a Claude Code session here. The hosted page's connector calls work on iPhone once the manifest uses the display name `PocketSmith Complete Access` (confirmed 2026-09-07; `PocketSmith_Complete_Access` produced “No matching connector found” → `upstream_error: no reply from shell`). Each new published version re-prompts the viewer once for connector consent.
 

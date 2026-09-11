@@ -7,10 +7,10 @@ window.PLAN = {
   userId: 882138,
   owner: 'Sabino',
   planStart: '2026-09-07',           // total debt $120,561.66 on this date
-  debtFreeDate: '2027-01-15',        // 🏁 planned (revised 2026-09-10: Jessica's actual net pay is lower than first assumed)
-  startingDebt: -120561.66,
+  debtFreeDate: '2027-01-27',        // 🏁 planned (revised 2026-09-11: IRS balance added; 09-10: Jessica's actual net pay)
+  startingDebt: -135756.22,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 (added 2026-09-11)
   // Balances on planStart (from the PocketSmith feed that day) — the death-board bars measure against these
-  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34 },
+  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56 },
 
   // ---- Accounts: PocketSmith container ids → role in the plan -------------
   checkingId: 5486598,
@@ -29,6 +29,12 @@ window.PLAN = {
     5486708: { short: 'SoFi Loan',            role: 'loan',      label: 'SoFi Personal Loan',                    apr: 0.12,   order: 11, payoffQuote: true },
     5486718: { short: 'WF Auto Loan',         role: 'loan',      label: 'Wells Fargo Auto Loan …7205',           apr: 0.07,   order: 12, payoffQuote: true }
   },
+
+  // Debts that are not in PocketSmith. Balance is the configured figure until a manual override (Accounts page) replaces it.
+  extraDebts: [
+    { id: 'irs', short: 'IRS installment', label: 'IRS installment agreement (tax years 2023–2025)', institution: 'IRS', role: 'loan', apr: 0.10, balance: -15194.56, asOf: '2026-09-11', order: 13, payoffQuote: true,
+      note: 'Interest (~7%) + failure-to-pay penalty (0.25%/mo on an installment plan) ≈ 10%/yr*. Paid from BofA checking, $400/mo.' }
+  ],
 
   // ---- Recurring income (net-pay estimates*) ------------------------------
   // Jessica: W-2, paid ~15th and ~30th. Two-week gross ≈ $11,365 (from the 9/15 one-week stub × 2);
@@ -51,11 +57,13 @@ window.PLAN = {
     { day: 20, amount: 800,  label: 'SoFi loan payment',    category: 'Loan Payments', payee: /sofi/i,            endsAfter: '2026-12-31', account: 5486708 },
     { day: 28, amount: 750,  label: 'Student loan',         category: 'Loan Payments', payee: /nelnet|mohela|aidvantage|navient|student|edfinancial|dept of ed|great lakes/i },
     // Discover card is not in PocketSmith yet; minimum payment assumed from the 9/8 payment*. Add the card to PocketSmith to bring it into the payoff schedule.
-    { day: 14, amount: 153,  label: 'Discover card payment*', category: 'Payment',       payee: /discover/i }
+    { day: 14, amount: 153,  label: 'Discover card payment*', category: 'Payment',       payee: /discover/i },
+    // IRS installment agreement: $400/mo from checking. Due day assumed the 15th* until confirmed.
+    { day: 15, amount: 400,  label: 'IRS installment*',      category: 'Tax',           payee: /irs|usataxpymt|us treasury/i, account: 'irs' }
   ],
   // Checking debits with these payees are bills, not living, even if PocketSmith
   // has them in a generic category (*: e.g. insurance premium tagged "Payment").
-  billPayeePatterns: [/standard ins/i, /insurance/i],
+  billPayeePatterns: [/standard ins/i, /insurance/i, /irs des|usataxpymt|us treasury/i],
 
   // ---- Living allowance ---------------------------------------------------
   // Flat monthly living allowance (chosen 2026-09-07; was $150/day). Daily pace = monthly ÷ days in that month.
@@ -67,36 +75,37 @@ window.PLAN = {
   // ---- Payoff schedule (line items; grouped by date in the UI) ------------
   // amount = planned payment INTO the account. Includes est. accrued interest*.
   payments: [
-    // Revised 2026-09-10 from live balances: reimbursement lands ~Sep 12; Jessica's 9/15 check is one week.
-    // Kill amounts = pay the card's LIVE balance that day; figures include estimated interest*.
-    { date: '2026-09-12', account: 5486658, amount: 8600,               note: 'Reimbursement straight to the 29.49% card the day it lands' },
-    { date: '2026-09-15', account: 5486658, amount: 1700,               note: 'Jessica’s one-week check, after SoFi + living reserve' },
+    // Revised 2026-09-11 from live balances + the IRS balance. Kill amounts = pay the LIVE balance that day; figures include est. interest*.
+    { date: '2026-09-12', account: 5486658, amount: 8750,               note: 'Reimbursement straight to the 29.49% card the day it lands' },
+    { date: '2026-09-15', account: 5486658, amount: 1300,               note: 'Jessica’s one-week check, after IRS $400 + SoFi + living reserve' },
 
-    { date: '2026-09-27', account: 5486658, amount: 9350,  kill: true,  note: 'PAYOFF — Citi 3208 (pay live balance)' },
+    { date: '2026-09-27', account: 5486658, amount: 9600,  kill: true,  note: 'PAYOFF — Citi 3208 (pay live balance)' },
     { date: '2026-09-27', account: 5486668, amount: 10950, kill: true,  note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
     { date: '2026-09-27', account: 5486673, amount: 180,   kill: true,  note: 'Straggler cleared' },
-    { date: '2026-09-27', account: 5486678, amount: 2600,               note: 'Remainder → Biz Plat. Sep 30 check is held for Oct 1 rent' },
+    { date: '2026-09-27', account: 5486678, amount: 2200,               note: 'Remainder → Biz Plat. Sep 30 check is held for Oct 1 rent' },
 
-    { date: '2026-10-15', account: 5486678, amount: 5350,               note: '' },
-    { date: '2026-10-27', account: 5486678, amount: 9350,  kill: true,  note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
-    { date: '2026-10-27', account: 5486683, amount: 13550,              note: 'Remainder → Biz Gold' },
-    { date: '2026-11-15', account: 5486683, amount: 5300,               note: '' },
-    { date: '2026-11-27', account: 5486683, amount: 1000,  kill: true,  note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
+    { date: '2026-10-15', account: 5486678, amount: 4950,               note: '' },
+    { date: '2026-10-27', account: 5486678, amount: 10100, kill: true,  note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
+    { date: '2026-10-27', account: 5486683, amount: 12600,              note: 'Remainder → Biz Gold' },
+    { date: '2026-11-15', account: 5486683, amount: 4900,               note: '' },
+    { date: '2026-11-27', account: 5486683, amount: 2350,  kill: true,  note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
     { date: '2026-11-27', account: 5486688, amount: 30,    kill: true,  note: 'Straggler cleared' },
     { date: '2026-11-27', account: 5486653, amount: 19450, kill: true,  note: 'PAYOFF — Citi 8018 (pay live balance)' },
-    { date: '2026-11-27', account: 5486703, amount: 2600,               note: 'Remainder → Sapphire' },
-    { date: '2026-12-15', account: 5486703, amount: 5350,               note: '' },
-    { date: '2026-12-27', account: 5486703, amount: 6000,  kill: true,  note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
+    { date: '2026-11-27', account: 5486703, amount: 1100,               note: 'Remainder → Sapphire' },
+    { date: '2026-12-15', account: 5486703, amount: 4950,               note: '' },
+    { date: '2026-12-27', account: 5486703, amount: 7900,  kill: true,  note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000, kill: true,  note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
-    { date: '2026-12-27', account: 5486718, amount: 6550,               note: 'Remainder → Wells Fargo auto' },
-    { date: '2027-01-15', account: 5486718, amount: 2400,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$1,700* once the Sep payment posts; sized high). Request payoff quote. 🏁 Debt-free' },
-    { date: '2027-01-15', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' }
+    { date: '2026-12-27', account: 'irs',   amount: 4500,               note: 'Remainder → IRS (extra payment on the installment agreement)' },
+    { date: '2027-01-15', account: 'irs',   amount: 5750,               note: 'Jessica’s check → IRS' },
+    { date: '2027-01-27', account: 'irs',   amount: 3450,  kill: true,  note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
+    { date: '2027-01-27', account: 5486718, amount: 9000,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$8,300–9,000*). Request payoff quote. 🏁 Debt-free' },
+    { date: '2027-01-27', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' }
   ],
 
   // Monthly rhythm shown as a reminder strip
   rhythm: [
-    { day: 15, amount: 5350,  from: 'Jessica mid-month check (after SoFi + living)' },
-    { day: 27, amount: 23400, from: 'Sabino check (after student loan + living)' },
+    { day: 15, amount: 4950,  from: 'Jessica mid-month check (after IRS $400, SoFi + living)' },
+    { day: 27, amount: 23000, from: 'Sabino check (after student loan + living)' },
     { day: 30, amount: 0,     from: 'Jessica month-end check → held for rent (1st) + car (8th)' }
   ],
 
@@ -118,21 +127,21 @@ window.PLAN = {
   // ---- Projection table (month-end, USD). Conservative: excludes 401(k)s,
   //      employer match, market growth.* --------------------------------------
   projection: [
-    // Revised 2026-09-10 from the replanned schedule*: savings from Jan ’27 at $29,600/mo (Jan is a half month after the auto payoff).
-    { label: 'Now',     date: '2026-09-07', debt: -120562, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -88500,  savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -60500,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -31700,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -2300,   savings: 0,      note: 'cards dead; auto loan tail' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: 0,       savings: 20000,  note: 'debt-free Jan 15' },
-    { label: 'Feb ’27', date: '2027-02-28', debt: 0,       savings: 49600 },
-    { label: 'Mar ’27', date: '2027-03-31', debt: 0,       savings: 79200 },
-    { label: 'Apr ’27', date: '2027-04-30', debt: 0,       savings: 108800 },
-    { label: 'May ’27', date: '2027-05-31', debt: 0,       savings: 138400 },
-    { label: 'Jun ’27', date: '2027-06-30', debt: 0,       savings: 168000 },
-    { label: 'Jul ’27', date: '2027-07-31', debt: 0,       savings: 197600 },
-    { label: 'Aug ’27', date: '2027-08-31', debt: 0,       savings: 227200 },
-    { label: 'Sep ’27', date: '2027-09-30', debt: 0,       savings: 256800 }
+    // Revised 2026-09-11 (IRS balance included)*: savings from Feb ’27 at $29,600/mo; Jan is the last payoff month.
+    { label: 'Now',     date: '2026-09-07', debt: -135756, savings: 0 },
+    { label: 'Sep ’26', date: '2026-09-30', debt: -103700, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -76000,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -47500,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -17800,  savings: 0,      note: 'cards + SoFi dead; IRS + auto remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: 0,       savings: 10000,  note: 'debt-free Jan 27' },
+    { label: 'Feb ’27', date: '2027-02-28', debt: 0,       savings: 39600 },
+    { label: 'Mar ’27', date: '2027-03-31', debt: 0,       savings: 69200 },
+    { label: 'Apr ’27', date: '2027-04-30', debt: 0,       savings: 98800 },
+    { label: 'May ’27', date: '2027-05-31', debt: 0,       savings: 128400 },
+    { label: 'Jun ’27', date: '2027-06-30', debt: 0,       savings: 158000 },
+    { label: 'Jul ’27', date: '2027-07-31', debt: 0,       savings: 187600 },
+    { label: 'Aug ’27', date: '2027-08-31', debt: 0,       savings: 217200 },
+    { label: 'Sep ’27', date: '2027-09-30', debt: 0,       savings: 246800 }
   ],
 
   // ---- The $1M objective ---------------------------------------------------

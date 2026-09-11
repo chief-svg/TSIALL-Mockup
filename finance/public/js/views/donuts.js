@@ -24,7 +24,7 @@ VIEWS.donuts = {
     const sofi = bill('SoFi loan payment'); if (active(sofi)) { s.loans += sofi.amount; }
     const stu = bill('Student loan'); if (active(stu)) { s.student = stu.amount; if (paid('Student loan')) notes.student = 'paid'; }
     // Any other recurring bill (e.g. the untracked Discover card) counts with card payments
-    for (const b of P.bills.filter(x => !['Rent', 'Car payment (WF)', 'SoFi loan payment', 'Student loan'].includes(x.label))) { if (active(b)) s.cards += b.amount; }
+    for (const b of P.bills.filter(x => !['Rent', 'Car payment (WF)', 'SoFi loan payment', 'Student loan'].includes(x.label))) { if (active(b)) { if (b.account) s.loans += b.amount; else s.cards += b.amount; } }
     s.living = P.living.monthly; if (cur) notes.living = `${F.money(d.living.actual)} spent so far`;
     let cardsDone = 0, loansDone = 0;
     for (const it of d.sched.items) {

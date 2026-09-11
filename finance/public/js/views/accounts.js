@@ -5,7 +5,7 @@ VIEWS.accounts = {
     const simBy = Object.fromEntries(d.sims.sims.map(s => [s.acct.id, s]));
     const group = (title, list) => list.length ? `<tr class="group"><td colspan="6"><span class="eyebrow">${title}</span></td><td class="num" style="font-size:14px">${F.money(list.reduce((s, a) => s + a.balance, 0))}</td><td></td></tr>` + list.map(a => { const s = simBy[a.id]; return `<tr class="${a.isDebt && a.balance >= -0.005 && a.role !== 'display' ? 'dead' : ''}">
       <td><b>${F.esc(a.short)}</b>${a.override ? ` <span class="ovr" title="Manual balance from ${a.override.source}, feed shows ${F.money(a.feedBalance, true)}">${a.override.source}</span>` : ''}<span class="sub">${F.esc(a.title)}${a.number ? ' …' + F.esc(a.number) : ''}</span></td>
-      <td class="small">${a.institution ? `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${a.colour || '#888'};margin-right:6px"></span>${F.esc(a.institution)}` : ''}</td>
+      <td class="small">${a.institution ? `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${a.colour || '#888'};margin-right:6px"></span>${F.esc(a.institution)}` : ''}${a.synthetic ? '<span class="sub">not in PocketSmith — update by hand</span>' : ''}</td>
       <td class="small muted">${F.esc(a.type)}</td>
       <td>${UI.chip(a.role === 'target' ? 'kill' : a.role === 'loan' ? 'sent' : a.role === 'cash' ? 'ok' : 'pending', a.role)}</td>
       <td class="num muted">${a.apr ? (a.apr * 100).toFixed(2) + '%' : '—'}</td>
@@ -50,10 +50,11 @@ VIEWS.accounts = {
       </div>`;
   },
   mount(S, root) {
-    root.querySelectorAll('[data-clear]').forEach(b => b.addEventListener('click', () => APP.clearOverride(b.dataset.clear === '*' ? '*' : Number(b.dataset.clear))));
+    const parseId = v => /^\d+$/.test(v) ? Number(v) : v;
+    root.querySelectorAll('[data-clear]').forEach(b => b.addEventListener('click', () => APP.clearOverride(b.dataset.clear === '*' ? '*' : parseId(b.dataset.clear))));
     root.querySelector('#manual-form').addEventListener('submit', e => {
       e.preventDefault();
-      const id = Number(root.querySelector('#m-acct').value), balance = Number(root.querySelector('#m-bal').value), asOf = root.querySelector('#m-date').value;
+      const id = parseId(root.querySelector('#m-acct').value), balance = Number(root.querySelector('#m-bal').value), asOf = root.querySelector('#m-date').value;
       if (isNaN(balance)) return;
       APP.setOverrides([{ id, balance, asOf, source: 'manual' }]);
     });
