@@ -7,10 +7,10 @@ window.PLAN = {
   userId: 882138,
   owner: 'Sabino',
   planStart: '2026-09-07',           // total debt $120,561.66 on this date
-  debtFreeDate: '2027-01-27',        // 🏁 planned (revised 2026-09-11: IRS balance added; 09-10: Jessica's actual net pay)
-  startingDebt: -135756.22,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 (added 2026-09-11)
+  debtFreeDate: '2027-02-27',        // 🏁 planned: interest-bearing debt gone Jan 27; the 0% Discover balance cleared Feb 27 (promo runs to 2027-07-17)
+  startingDebt: -143574.16,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 + Discover $7,817.94 (both added 2026-09-11)
   // Balances on planStart (from the PocketSmith feed that day) — the death-board bars measure against these
-  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56 },
+  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56, discover: -7817.94 },
 
   // ---- Accounts: PocketSmith container ids → role in the plan -------------
   checkingId: 5486598,
@@ -33,7 +33,10 @@ window.PLAN = {
   // Debts that are not in PocketSmith. Balance is the configured figure until a manual override (Accounts page) replaces it.
   extraDebts: [
     { id: 'irs', short: 'IRS installment', label: 'IRS installment agreement (tax years 2023–2025)', institution: 'IRS', role: 'loan', apr: 0.10, balance: -15194.56, asOf: '2026-09-11', order: 13, payoffQuote: true,
-      note: 'Interest (~7%) + failure-to-pay penalty (0.25%/mo on an installment plan) ≈ 10%/yr*. Paid from BofA checking, $400/mo.' }
+      note: 'Interest (~7%) + failure-to-pay penalty (0.25%/mo on an installment plan) ≈ 10%/yr*. Paid from BofA checking, $400/mo.' },
+    { id: 'discover', short: 'Discover (0% promo)', label: 'Discover card — 0% purchase promo to Jul 17, 2027', institution: 'Discover', role: 'display', apr: 0, order: 14,
+      balance: -7817.94, asOf: '2026-09-11', promoEnds: '2027-07-17', standardApr: 0.2849,
+      note: 'True 0% (balance moves to 28.49% at expiry, no retroactive interest). $8,000 limit, nearly maxed — do not charge to it. Minimum ~$153/mo on the 14th.' }
   ],
 
   // ---- Recurring income (net-pay estimates*) ------------------------------
@@ -57,7 +60,7 @@ window.PLAN = {
     { day: 20, amount: 800,  label: 'SoFi loan payment',    category: 'Loan Payments', payee: /sofi/i,            endsAfter: '2026-12-31', account: 5486708 },
     { day: 28, amount: 750,  label: 'Student loan',         category: 'Loan Payments', payee: /nelnet|mohela|aidvantage|navient|student|edfinancial|dept of ed|great lakes/i },
     // Discover card is not in PocketSmith yet; minimum payment assumed from the 9/8 payment*. Add the card to PocketSmith to bring it into the payoff schedule.
-    { day: 14, amount: 153,  label: 'Discover card payment*', category: 'Payment',       payee: /discover/i },
+    { day: 14, amount: 153,  label: 'Discover minimum*',      category: 'Payment',       payee: /discover/i, account: 'discover' },
     // IRS installment agreement: $400/mo from checking, due the 28th.
     { day: 28, amount: 400,  label: 'IRS installment',       category: 'Tax',           payee: /irs|usataxpymt|us treasury/i, account: 'irs' }
   ],
@@ -99,7 +102,8 @@ window.PLAN = {
     { date: '2027-01-15', account: 'irs',   amount: 6150,               note: 'Jessica’s check → IRS' },
     { date: '2027-01-27', account: 'irs',   amount: 3450,  kill: true,  note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
     { date: '2027-01-27', account: 5486718, amount: 9000,  kill: true,  note: 'PAYOFF — Wells Fargo auto (~$8,300–9,000*). Request payoff quote. 🏁 Debt-free' },
-    { date: '2027-01-27', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' }
+    { date: '2027-01-27', account: null,    amount: 300,                note: 'Interest true-up buffer* — sweeps any residual interest on the cards' },
+    { date: '2027-02-27', account: 'discover', amount: 7100, kill: true, note: 'PAYOFF — Discover 0% balance (pay live balance), five months before the promo ends Jul 17, 2027. 🏁 Truly debt-free' }
   ],
 
   // Monthly rhythm shown as a reminder strip
@@ -127,21 +131,21 @@ window.PLAN = {
   // ---- Projection table (month-end, USD). Conservative: excludes 401(k)s,
   //      employer match, market growth.* --------------------------------------
   projection: [
-    // Revised 2026-09-11 (IRS balance included)*: savings from Feb ’27 at $29,600/mo; Jan is the last payoff month.
-    { label: 'Now',     date: '2026-09-07', debt: -135756, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -103700, savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -76000,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -47500,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -17800,  savings: 0,      note: 'cards + SoFi dead; IRS + auto remain' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: 0,       savings: 10000,  note: 'debt-free Jan 27' },
-    { label: 'Feb ’27', date: '2027-02-28', debt: 0,       savings: 39600 },
-    { label: 'Mar ’27', date: '2027-03-31', debt: 0,       savings: 69200 },
-    { label: 'Apr ’27', date: '2027-04-30', debt: 0,       savings: 98800 },
-    { label: 'May ’27', date: '2027-05-31', debt: 0,       savings: 128400 },
-    { label: 'Jun ’27', date: '2027-06-30', debt: 0,       savings: 158000 },
-    { label: 'Jul ’27', date: '2027-07-31', debt: 0,       savings: 187600 },
-    { label: 'Aug ’27', date: '2027-08-31', debt: 0,       savings: 217200 },
-    { label: 'Sep ’27', date: '2027-09-30', debt: 0,       savings: 246800 }
+    // Revised 2026-09-11 (IRS + Discover included)*: savings from Feb ’27 at $29,600/mo after the Discover payoff.
+    { label: 'Now',     date: '2026-09-07', debt: -143574, savings: 0 },
+    { label: 'Sep ’26', date: '2026-09-30', debt: -111400, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -83600,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -54900,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -25100,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: -7050,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
+    { label: 'Feb ’27', date: '2027-02-28', debt: 0,       savings: 32500,  note: 'Discover cleared' },
+    { label: 'Mar ’27', date: '2027-03-31', debt: 0,       savings: 62100 },
+    { label: 'Apr ’27', date: '2027-04-30', debt: 0,       savings: 91700 },
+    { label: 'May ’27', date: '2027-05-31', debt: 0,       savings: 121300 },
+    { label: 'Jun ’27', date: '2027-06-30', debt: 0,       savings: 150900 },
+    { label: 'Jul ’27', date: '2027-07-31', debt: 0,       savings: 180500 },
+    { label: 'Aug ’27', date: '2027-08-31', debt: 0,       savings: 210100 },
+    { label: 'Sep ’27', date: '2027-09-30', debt: 0,       savings: 239700 }
   ],
 
   // ---- The $1M objective ---------------------------------------------------
