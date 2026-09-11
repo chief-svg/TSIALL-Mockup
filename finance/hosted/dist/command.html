@@ -681,7 +681,7 @@ window.ENGINE = (() => {
   // Interest-aware forward simulation of one debt account against its planned
   // payments (+ recurring bill payments that hit loans). Assumes no new charges*
   // and daily compounding at the configured APR*.
-  function simulateAccount(acct, sched, ctx, ledger, horizon = '2027-01-31') {
+  function simulateAccount(acct, sched, ctx, ledger, horizon = '2027-03-31') {
     const start = Math.max(0, -acct.balance);
     let bal = start;
     const path = [{ date: ctx.today, balance: bal }];
