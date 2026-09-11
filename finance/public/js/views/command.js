@@ -98,7 +98,7 @@ VIEWS.command = {
           <div class="name">${F.esc(a.short)}<span class="sub">${a.apr ? (a.apr * 100).toFixed(2) + '% APR' : ''}${a.role === 'loan' ? ' · payoff quote needed' : ''}</span></div>
           <div>${UI.bar(dead ? 0 : Math.min(1, -a.balance / start), dead ? 'green' : a.role === 'loan' ? 'blue' : '')}<div class="xs muted" style="margin-top:4px">${dead ? 'cleared' : `${((1 - Math.min(1, -a.balance / start)) * 100).toFixed(0)}% of ${F.money(start)} retired`}</div></div>
           <div class="num right ${dead ? 'pos' : 'neg'}">${dead ? 'paid' : F.money(a.balance)}</div>
-          <div class="right small">${dead ? UI.chip('done', 'dead') : s.deathDate ? `<span class="gold num">☠ ${F.fmtDate(s.deathDate, { year: false })}</span>${s.tail ? `<span class="sub xs muted">${F.money(s.residual)} tail → buffer</span>` : ''}` : `<span class="neg">short ${F.money(s.shortfall)}</span>`}</div>
+          <div class="right small">${dead ? UI.chip('done', 'dead') : s.float ? `<span class="pos">living float · 0%</span>` : s.deathDate ? `<span class="gold num">☠ ${F.fmtDate(s.deathDate, { year: false })}</span>${s.tail ? `<span class="sub xs muted">${F.money(s.residual)} tail → buffer</span>` : ''}` : `<span class="neg">short ${F.money(s.shortfall)}</span>`}</div>
         </div>`;
       }).join('')}
       <div class="note" style="margin-top:10px">Interest tails (${F.money(d.sims.tails)}) are swept by the ${F.fmtDate(d.sims.bufferDate, { year: false })} buffer; ${F.money(d.sims.bufferLeft)} of it remains unallocated${UI.ast()}.</div>

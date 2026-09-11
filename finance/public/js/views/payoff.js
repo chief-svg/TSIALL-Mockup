@@ -25,12 +25,12 @@ VIEWS.payoff = {
     const sims = d.sims.sims.filter(s => s.acct.role !== 'display' || s.acct.balance < 0);
     const simRows = sims.map(s => { const a = s.acct; const dead = a.balance >= -0.005; return `<tr class="${dead ? 'dead' : ''}">
       <td><b>${F.esc(a.short)}</b><span class="sub">${a.institution ? F.esc(a.institution) + ' · ' : ''}${a.role}</span></td>
-      <td class="num">${a.apr ? (a.apr * 100).toFixed(2) + '%' : '—'}</td>
+      <td class="num">${a.apr ? (a.apr * 100).toFixed(2) + '%' : '—'}${s.grace ? '<span class="sub pos">in grace · 0%</span>' : ''}</td>
       <td class="num neg">${F.money(a.balance)}</td>
       <td class="num">${F.money(s.planned)}</td>
       <td class="num muted">${F.money(s.interest)}</td>
       <td class="num">${s.overpay > 0 ? `<span class="pos">+${F.money(s.overpay)} over</span>` : s.residual > 0 ? `<span class="${s.tail ? 'amber' : 'neg'}">${F.money(s.residual)} ${s.tail ? 'tail' : 'short'}</span>` : '—'}</td>
-      <td>${dead ? UI.chip('done', 'dead') : s.deathDate ? `<span class="gold num">☠ ${F.fmtDate(s.deathDate)}</span>${s.sweptBy ? `<span class="sub">tail swept ${F.fmtDate(s.sweptBy, { year: false })}</span>` : ''}` : `<span class="neg">underfunded</span>`}</td></tr>`; }).join('');
+      <td>${dead ? UI.chip('done', 'dead') : s.float ? `<span class="pos">living float · statements paid in full</span>` : s.deathDate ? `<span class="gold num">☠ ${F.fmtDate(s.deathDate)}</span>${s.sweptBy ? `<span class="sub">tail swept ${F.fmtDate(s.sweptBy, { year: false })}</span>` : ''}` : `<span class="neg">underfunded</span>`}</td></tr>`; }).join('');
 
     const events = (ctx.events || []).filter(e => e.date >= ctx.today).sort((a, b) => a.date < b.date ? -1 : 1).slice(0, 14);
     const evRows = events.map(e => `<tr><td class="num muted">${F.fmtDate(e.date, { year: false })}</td><td>${F.esc(e.category ? e.category.title : '')}<span class="sub">${F.esc((e.note || '').slice(0, 80))}</span></td><td class="small muted">${F.esc(e.scenario ? e.scenario.title : '')}</td><td class="num ${e.amount < 0 ? 'neg' : 'pos'}">${F.signed(e.amount)}</td></tr>`).join('');

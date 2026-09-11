@@ -195,14 +195,34 @@ window.ENGINE = (() => {
     const S = P.statements || { cards: {} }, out = [];
     for (const [k, s] of Object.entries(S.cards || {})) {
       const id = cardId(k);
-      if (s.billed || !s.dueDay || !s.minEst) continue;
+      if (s.billed || s.grace || s.float || !s.dueDay || !s.minEst) continue;
       const from = s.due ? (s.minDue > 0 ? s.due : F.addDays(s.due, 1)) : S.asOf;
       out.push({ day: s.dueDay, amount: s.minEst, label: `${(P.accounts[id] || {}).short || id} minimum*`, category: 'Payment', payee: s.payee, account: id, from, until: killDateOf(id), minimum: true });
     }
     return out;
   }
   const MIN_BILLS = minimumBills();
-  function bills_() { return P.bills.concat(MIN_BILLS); }
+  // Living charged to a grace card (the "float" card): each statement is paid in full on its due date.
+  // Amount = charges already open on the card* + the living allowance accrued during that cycle.
+  function onCard(d) { return !!(P.living.card && P.living.cardFrom && d >= P.living.cardFrom); }
+  function nextMonthDay(iso, day) { const m = F.parseISO(iso.slice(0, 7) + '-01'); m.setMonth(m.getMonth() + 1); return clampDay(`${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`, day); }
+  function statementBills() {
+    const L = P.living; const S = (P.statements && P.statements.cards) || {}; const s = L.card ? S[L.card] : null;
+    if (!s || !L.cardFrom || !s.closeDay || !s.dueDay) return [];
+    const out = []; const per = d => L.monthly / F.daysInMonth(d); const short = (P.accounts[L.card] || {}).short || L.card;
+    let carry = s.openCharges || 0, from = L.cardFrom;
+    let close = clampDay(from.slice(0, 7), s.closeDay); if (close < from) close = nextMonthDay(close, s.closeDay);
+    for (let k = 0; k < 9; k++) {
+      let amt = carry; carry = 0;
+      for (let x = from; x <= close; x = F.addDays(x, 1)) amt += per(x);
+      let due = clampDay(close.slice(0, 7), s.dueDay); if (due <= close) due = nextMonthDay(due, s.dueDay);
+      out.push({ day: s.dueDay, amount: Math.round(amt), label: `${short} statement*`, category: 'Payment', payee: s.payee, account: L.card, from: due, until: F.addDays(due, 1), statement: true, close, cycleFrom: from });
+      from = F.addDays(close, 1); close = nextMonthDay(close, s.closeDay);
+    }
+    return out;
+  }
+  const STMT_BILLS = statementBills();
+  function bills_() { return P.bills.concat(MIN_BILLS, STMT_BILLS); }
   // Is this bill due in month ym? (endsAfter = last month; from/until = date bounds on the due date itself)
   function activeIn(b, ym) { const d = clampDay(ym, b.day); if (b.endsAfter && ym + '-01' > b.endsAfter) return false; if (b.from && d < b.from) return false; if (b.until && d >= b.until) return false; return true; }
 
@@ -217,13 +237,17 @@ window.ENGINE = (() => {
       const sim = (sims.sims || []).find(x => x.acct.id === id) || null;
       const kill = killDateOf(id); const killItem = sched.items.find(i => i.account === id && i.kill) || null;
       const bal = Math.max(0, -acct.balance); const dead = bal <= 0.005;
-      const perDay = bal * (acct.apr || 0) / 365;
+      const isFloat = P.living.card === id; const grace = !!s.grace;
+      const perDay = grace ? 0 : bal * (acct.apr || 0) / 365;
       const due = s.due && s.due >= today ? s.due : nextDueFrom(today, s.dueDay);
       const close = s.closeDay ? (() => { let c = clampDay(due.slice(0, 7), s.closeDay); if (c >= due) { const m = F.parseISO(due.slice(0, 7) + '-01'); m.setMonth(m.getMonth() - 1); c = clampDay(`${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`, s.closeDay); } return c; })() : F.addDays(due, -25);
       const inCurrentCycle = s.due === due;
       const minNeeded = inCurrentCycle ? s.minDue : s.minEst;
       let action, actionKind;
       if (dead) { action = 'Paid off'; actionKind = 'done'; }
+      else if (isFloat) { const nextStmt = STMT_BILLS.find(b => b.from >= today); action = `Living card — pay every statement in full by the ${s.dueDay}th${inCurrentCycle && s.statement ? `: ${F.money(s.statement)} by ${F.fmtDate(s.due, { year: false })}` : nextStmt ? `: ~${F.money(nextStmt.amount)}* by ${F.fmtDate(nextStmt.from, { year: false })}` : ''}`; actionKind = 'float'; }
+      else if (grace && kill && kill <= due) { action = `Pay the full balance ${F.fmtDate(kill, { year: false })} — statement due ${F.fmtDate(due, { year: false })}, no interest`; actionKind = 'kill'; }
+      else if (grace) { action = `Pay the statement in full by ${F.fmtDate(due, { year: false })} — no interest`; actionKind = 'grace'; }
       else if (kill && kill <= due) { action = `Pay the full balance ${F.fmtDate(kill, { year: false })} (kills the card)`; actionKind = 'kill'; }
       else if (minNeeded > 0) { action = `Minimum ${F.money(minNeeded)}${inCurrentCycle ? '' : '*'} by ${F.fmtDate(due, { year: false })}`; actionKind = 'min'; }
       else { action = `Nothing due — minimum already paid for the ${F.fmtDate(due, { year: false })} cycle`; actionKind = 'paid'; }
@@ -234,9 +258,9 @@ window.ENGINE = (() => {
         if (s.closeDay) { let ym = deathDate.slice(0, 7); for (let k = 0; k < 2 && !graceBack; k++) { const c = clampDay(ym, s.closeDay); if (c > deathDate) graceBack = c; const m = F.parseISO(ym + '-01'); m.setMonth(m.getMonth() + 1); ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`; } }
         else { let x = deathDate; for (let k = 0; k < 3 && !graceBack; k++) { const dd = nextDueFrom(F.addDays(x, 1), s.dueDay); const c = F.addDays(dd, -25); if (c > deathDate) graceBack = c; x = dd; } }
       }
-      cards.push({ id, acct, s, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && (acct.apr || 0) > 0, promo: (acct.apr || 0) === 0 && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
+      cards.push({ id, acct, s, grace, isFloat, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && (acct.apr || 0) > 0, promo: (acct.apr || 0) === 0 && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
       // calendar entries: each due date until the kill, plus the kill itself
-      if (!dead && s.dueDay) {
+      if (!dead && s.dueDay && !isFloat) {
         let d = due; let n = 0;
         while (n < 6 && d <= F.addDays(today, 130)) {
           if (kill && d > kill) break;
@@ -245,13 +269,14 @@ window.ENGINE = (() => {
           calendar.push({ date: d, id, short: acct.short, kind: amt > 0 ? 'min' : 'paid', amount: amt, est: !cur, why: amt > 0 ? 'keeps the account current — no late fee, no penalty APR' : 'minimum already paid this cycle' });
           d = nextDueFrom(F.addDays(d, 1), s.dueDay); n++;
         }
-        if (kill) calendar.push({ date: kill, id, short: acct.short, kind: 'kill', amount: killItem ? killItem.amount : null, est: true, why: `pay the live balance that day — interest stops, then one $0 statement restores the grace period` });
+        if (kill) calendar.push({ date: kill, id, short: acct.short, kind: 'kill', amount: killItem ? killItem.amount : null, est: true, why: grace ? 'pay the live balance that day, before the due date — the card never pays interest' : `pay the live balance that day — interest stops, then one $0 statement restores the grace period` });
       }
+      if (!dead && isFloat) { for (const b of STMT_BILLS.filter(b => b.from >= today).slice(0, 5)) calendar.push({ date: b.from, id, short: acct.short, kind: 'statement', amount: b.amount, est: true, why: `statement closed ${F.fmtDate(b.close, { year: false })} — pay it in full and the living spend on it costs no interest` }); const fixedItems = sched.items.filter(i => i.account === id && !i.kill && i.date >= today && i.status !== 'done'); for (const i of fixedItems) calendar.push({ date: i.date, id, short: acct.short, kind: 'statement', amount: i.amount, est: false, why: 'statement in full by the due date — no interest' }); }
     }
     cards.sort((a, b) => a.due < b.due ? -1 : 1);
     calendar.sort((a, b) => a.date < b.date ? -1 : a.date > b.date ? 1 : a.kind === 'kill' ? -1 : 1);
     const totalPerDay = cards.reduce((s, c) => s + c.perDay, 0);
-    return { asOf: S.asOf, cards, calendar, totalPerDay, minimums: MIN_BILLS };
+    return { asOf: S.asOf, cards, calendar, totalPerDay, minimums: MIN_BILLS, statements: STMT_BILLS, floatCard: P.living.card || null };
   }
 
   function monthLedger(ctx, day = ctx.today) {
@@ -350,22 +375,26 @@ window.ENGINE = (() => {
     }
     const planned = Object.values(byDate).reduce((s, v) => s + v, 0);
     if (bal <= 0.005) return { acct, start, deathDate: 'paid', residual: 0, shortfall: 0, overpay: 0, interest: 0, path, alreadyDead: true, planned, lastPay: null };
-    const r = (acct.apr || 0) / 365;
+    const SC = (P.statements && P.statements.cards) || {}; const grace = !!(SC[acct.id] && SC[acct.id].grace); const isFloat = P.living.card === acct.id;
+    const r = grace ? 0 : (acct.apr || 0) / 365;
     let interest = 0, deathDate = null, overpay = 0, d = ctx.today;
     const dates = Object.keys(byDate).sort();
     const lastPay = dates.length ? dates[dates.length - 1] : null;
     while (d <= horizon) {
       const acc = bal * r; interest += acc; bal += acc;
+      if (isFloat && d > ctx.today && onCard(d)) bal += P.living.monthly / F.daysInMonth(d);
       if (byDate[d]) {
         bal -= byDate[d]; path.push({ date: d, balance: Math.max(0, bal), payment: byDate[d] });
-        if (bal <= 0) { deathDate = d; overpay = -bal; bal = 0; break; }
+        if (bal <= 0 && !isFloat) { deathDate = d; overpay = -bal; bal = 0; break; }
+        if (bal < 0) bal = 0;
       }
       d = F.addDays(d, 1);
     }
     // Residual after the last planned payment. A small tail (≤ 2% of today's
     // balance, or ≤ $250) is an interest true-up, not a plan failure*.
+    if (isFloat) return { acct, start, deathDate: 'float', float: true, grace, tail: false, residual: 0, shortfall: 0, overpay: 0, interest, path, lastPay, planned };
     const residual = deathDate ? 0 : bal;
-    return { acct, start, deathDate, tail: false, residual, shortfall: residual, overpay, interest, path, lastPay, planned };
+    return { acct, start, deathDate, grace, tail: false, residual, shortfall: residual, overpay, interest, path, lastPay, planned };
   }
 
   function simulateAll(ctx, sched, ledger) {
@@ -383,7 +412,7 @@ window.ENGINE = (() => {
     for (const s of sims.filter(s => s.acct.role === 'loan' && s.residual > 0)) { s.tail = false; s.shortfall = s.residual; s.deathDate = null; }
     const tails = sims.reduce((s, x) => s + (x.tail ? x.residual : 0), 0);
     const allDead = sims.every(s => s.deathDate);
-    const debtFree = allDead ? sims.map(s => s.deathDate).filter(d => d && d !== 'paid').sort().pop() || ctx.today : null;
+    const debtFree = allDead ? sims.map(s => s.deathDate).filter(d => d && d !== 'paid' && d !== 'float').sort().pop() || ctx.today : null;
     return { sims, debtFree, totalShortfall: sims.reduce((s, x) => s + x.shortfall, 0), totalOverpay: sims.reduce((s, x) => s + x.overpay, 0), totalInterest: sims.reduce((s, x) => s + x.interest, 0), tails, bufferLeft: left, bufferDate: buffer ? buffer.date : null, bufferAmount: buffer ? buffer.amount : 0 };
   }
 
@@ -416,8 +445,8 @@ window.ENGINE = (() => {
       for (const b of bills_()) { const d = clampDay(ym, b.day); if (!activeIn(b, ym)) continue; if (d >= from && d <= to && !(ledger.ym === ym && ledger.bills.find(x => x.label === b.label && x.tx))) bills += b.amount; }
     }
     // Only count strictly future days for living (today's spend is already reflected in the balance*)
-    const days = Math.max(0, F.daysBetween(from, to));
-    return { income, bills, living: days * (P.living.monthly / F.daysInMonth(from)) };
+    let livingDays = 0; for (let x = F.addDays(from, 1); x <= to; x = F.addDays(x, 1)) if (!onCard(x)) livingDays++;
+    return { income, bills, living: livingDays * (P.living.monthly / F.daysInMonth(from)) };
   }
 
   // ------------------------------------------------------------- near term
@@ -428,7 +457,8 @@ window.ENGINE = (() => {
     const today = ctx.today, end = F.addDays(today, days);
     const debts = ctx.accounts.filter(a => a.isDebt && a.balance < 0);
     const bal = Object.fromEntries(debts.map(a => [a.id, -a.balance]));
-    const apr = Object.fromEntries(debts.map(a => [a.id, (a.apr || 0) / 365]));
+    const SC = (P.statements && P.statements.cards) || {};
+    const apr = Object.fromEntries(debts.map(a => [a.id, SC[a.id] && SC[a.id].grace ? 0 : (a.apr || 0) / 365]));
     const chk = ctx.byId[P.checkingId];
     let cash = chk ? chk.balance : 0;
     const onDate = {}; // date → { pay: [{account, amount, label, kill}], income: [{amount, label}], bills: [{amount, label, account}] }
@@ -447,7 +477,7 @@ window.ENGINE = (() => {
     }
     const series = [], events = [];
     for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
-      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; cash -= P.living.monthly / F.daysInMonth(d); }
+      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; const per = P.living.monthly / F.daysInMonth(d); if (onCard(d)) { if (bal[P.living.card] != null) bal[P.living.card] += per; } else cash -= per; }
       const s = onDate[d];
       if (s) {
         for (const i of s.income) cash += i.amount;

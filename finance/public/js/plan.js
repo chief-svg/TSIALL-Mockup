@@ -79,9 +79,9 @@ window.PLAN = {
     cards: {
       5486683:   { due: '2026-09-15', dueDay: 15, statement: 18808.97, minDue: 0,   minEst: 648, lastMin: 648,    payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Aug 31.' },
       5486678:   { due: '2026-09-16', dueDay: 16, statement: 16648.32, minDue: 0,   minEst: 568, lastMin: 568,    payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Aug 31.' },
-      5486653:   { due: '2026-09-20', dueDay: 20, statement: 13463.71, minDue: 0,   minEst: 185, lastMin: null,   payee: /citi/i,                  note: 'Sep minimum already paid. Min ≈ 1% of statement*.' },
-      5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Sep 4.' },
-      5486658:   { due: '2026-09-28', dueDay: 28, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196,    payee: /citi/i,                  note: 'AutoPay off. Killed Sep 27, the day before the due date.' },
+      5486653:   { due: '2026-09-20', dueDay: 20, closeDay: 24, statement: 13463.71, minDue: 0, minEst: 185, lastMin: null, payee: /citi/i, grace: true, float: true, openCharges: 4835.07, note: 'IN GRACE (Aug statement: previous balance paid in full, interest $0). Pay $13,463.71 by Sep 20 and it never pays interest. Living card from Sep 11: every statement paid in full on the 20th. Open charges since Aug 24: $4,835.07*.' },
+      5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Was in grace (paid to $0 in July, no interest charges). The Sep 21 statement is NOT paid in full — the cash covers the larger 8018 instead — so interest starts Sep 21* (~$220 once). Killed Oct 27.' },
+      5486658:   { due: '2026-09-28', dueDay: 28, closeDay: 2, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196, payee: /citi/i, grace: true, note: 'IN GRACE (Sep statement: previous balance paid in full, interest $0). Killed Sep 27, the day before the due date — no interest ever.' },
       5486703:   { due: '2026-09-22', dueDay: 22, closeDay: 25, statement: 12373.88, minDue: 0, minEst: 325, lastMin: 325, payee: /chase/i,          note: 'Chase app 2026-09-11: due Sep 22, closes Sep 25, statement $12,698.88 (Aug 25). Sep minimum $325 paid Sep 4.' },
       discover:  { due: '2026-09-14', dueDay: 14, statement: null,     minDue: 0,   minEst: 153, lastMin: 153,    billed: true,                    note: '0% promo to Jul 17, 2027 — no interest at all; minimum is already a bill.' }
     }
@@ -89,7 +89,9 @@ window.PLAN = {
 
   // ---- Living allowance ---------------------------------------------------
   // Flat monthly living allowance (chosen 2026-09-07; was $150/day). Daily pace = monthly ÷ days in that month.
-  living: { monthly: 4500, amberAt: 1.0, redAt: 1.15 },
+  living: { monthly: 4500, amberAt: 1.0, redAt: 1.15,
+    // Living is charged to the Citi 8018 (in grace) from this date and paid in full with each statement — interest-free float.
+    card: 5486653, cardFrom: '2026-09-11' },
 
   // ---- Payment matching tolerance ----------------------------------------
   match: { days: 5, pct: 0.15 },
@@ -97,46 +99,43 @@ window.PLAN = {
   // ---- Payoff schedule (line items; grouped by date in the UI) ------------
   // amount = planned payment INTO the account. Includes est. accrued interest*.
   payments: [
-    // Revised 2026-09-11 (evening) from live balances + IRS + card minimums on waiting cards (see statements). Kill amounts = pay the LIVE balance that day; figures include est. interest*.
-    { date: '2026-09-12', account: 5486658, amount: 8750,               note: 'Reimbursement straight to the 29.49% card the day it lands' },
-    { date: '2026-09-15', account: 5486658, amount: 1700,               note: 'Jessica’s one-week check, after the SoFi + living reserve' },
+    // Revised 2026-09-11 (night) around the statements: Citi 8018 + 3208 are IN GRACE (statements show $0 interest), so their statements are paid in full by the due dates and living floats on the 8018.
+    // Carrying cards (Amex Plat from Sep 21, Biz Plat, Biz Gold, Sapphire) die avalanche-style with minimums reserved. Kill amounts = pay the LIVE balance that day; figures include est. interest*.
+    { date: '2026-09-20', account: 5486653, amount: 13463.71,              note: 'Citi 8018 Aug statement IN FULL (due Sep 20) — the card is in grace, so this $13.5k never pays interest. Reimbursement + Jessica’s check' },
 
-    { date: '2026-09-27', account: 5486658, amount: 9200,  kill: true,  note: 'PAYOFF — Citi 3208 (pay live balance)' },
-    { date: '2026-09-27', account: 5486668, amount: 10950, kill: true,  note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
-    { date: '2026-09-27', account: 5486673, amount: 180,   kill: true,  note: 'Straggler cleared' },
-    { date: '2026-09-27', account: 5486678, amount: 2200,               note: 'Remainder → Biz Plat. Sep 30 check is held for Oct 1 rent' },
+    { date: '2026-09-27', account: 5486658, amount: 19550,   kill: true, note: 'PAYOFF — Citi 3208 (pay live balance; statement due Sep 28, in grace → no interest)' },
+    { date: '2026-09-27', account: 5486688, amount: 30,      kill: true, note: 'Straggler cleared' },
+    { date: '2026-09-27', account: 5486673, amount: 180,     kill: true, note: 'Straggler cleared' },
+    { date: '2026-09-27', account: 5486668, amount: 3500,                note: 'Remainder → Amex personal Platinum (its grace lapsed Sep 21)' },
 
-    { date: '2026-10-15', account: 5486678, amount: 4000,                note: 'After the Oct 15–20 minimums on Biz Gold, Biz Plat and 8018 (~$1,400*)' },
+    { date: '2026-10-27', account: 5486668, amount: 7450,    kill: true, note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
+    { date: '2026-10-27', account: 5486678, amount: 16800,   kill: true, note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
+    { date: '2026-10-27', account: 5486683, amount: 700,                 note: 'Remainder → Biz Gold' },
 
-    { date: '2026-10-27', account: 5486678, amount: 10500,   kill: true, note: 'PAYOFF — Amex Biz Plat (pay live balance)' },
-    { date: '2026-10-27', account: 5486683, amount: 10800,                note: 'Remainder → Biz Gold' },
+    { date: '2026-11-15', account: 5486683, amount: 1700,                note: 'After the 8018 statement (living), minimums and SoFi' },
 
-    { date: '2026-11-15', account: 5486683, amount: 4300,                note: 'After the Nov 5–20 minimums (~$1,300*)' },
+    { date: '2026-11-27', account: 5486683, amount: 16700,   kill: true, note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
+    { date: '2026-11-27', account: 5486703, amount: 8400,                note: 'Remainder → Sapphire' },
 
-    { date: '2026-11-27', account: 5486683, amount: 3500,   kill: true, note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
-    { date: '2026-11-27', account: 5486688, amount: 30,   kill: true, note: 'Straggler cleared' },
-    { date: '2026-11-27', account: 5486653, amount: 18900,                note: 'Bulk of Citi 8018 — the tail dies Dec 15' },
+    { date: '2026-12-15', account: 5486703, amount: 1750,                note: '' },
 
-    { date: '2026-12-15', account: 5486653, amount: 200,   kill: true, note: 'PAYOFF — Citi 8018 tail (pay live balance)' },
-    { date: '2026-12-15', account: 5486703, amount: 5100,                note: 'Remainder → Sapphire' },
-
-    { date: '2026-12-27', account: 5486703, amount: 7900,   kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD (pay live balance)' },
+    { date: '2026-12-27', account: 5486703, amount: 2750,    kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000,   kill: true, note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
-    { date: '2026-12-27', account: 'irs', amount: 4100,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
+    { date: '2026-12-27', account: 'irs',   amount: 11800,               note: 'Remainder → IRS (extra payment on the installment agreement)' },
 
-    { date: '2027-01-15', account: 'irs', amount: 6150,                note: 'Jessica’s check → IRS' },
+    { date: '2027-01-15', account: 'irs',   amount: 1850,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
+    { date: '2027-01-15', account: 5486718, amount: 2250,                note: 'Remainder → auto loan' },
 
-    { date: '2027-01-27', account: 'irs', amount: 4950,   kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
-    { date: '2027-01-27', account: 5486718, amount: 9000,   kill: true, note: 'PAYOFF — Wells Fargo auto (~$8,300–9,000*). Request payoff quote. 🏁 Debt-free' },
-    { date: '2027-01-27', account: null, amount: 750,                note: 'Interest true-up buffer* — sweeps residual card interest and payoff-quote variance' },
+    { date: '2027-01-27', account: 5486718, amount: 6750,    kill: true, note: 'PAYOFF — Wells Fargo auto (~$6,750*). Request payoff quote. 🏁 Interest-bearing debt gone' },
+    { date: '2027-01-27', account: null,    amount: 750,                 note: 'Interest true-up buffer* — sweeps residual card interest and payoff-quote variance' },
 
-    { date: '2027-02-27', account: 'discover', amount: 7100,   kill: true, note: 'PAYOFF — Discover 0% balance (pay live balance), five months before the promo ends Jul 17, 2027. 🏁 Truly debt-free' }
+    { date: '2027-02-27', account: 'discover', amount: 7100, kill: true, note: 'PAYOFF — Discover 0% balance (pay live balance), five months before the promo ends Jul 17, 2027. 🏁 Debt-free (the 8018 living float stays, interest-free)' }
   ],
 
   // Monthly rhythm shown as a reminder strip
   rhythm: [
-    { day: 15, amount: 5350,  from: 'Jessica mid-month check (after SoFi, card minimums* + living)' },
-    { day: 27, amount: 22600, from: 'Sabino check (after student loan + IRS $400 + living)' },
+    { day: 15, amount: 2300,  from: 'Jessica mid-month check → 8018 statement (living float) on the 20th + minimums + SoFi' },
+    { day: 27, amount: 23600, from: 'Sabino check → payoffs (after student loan + IRS $400)' },
     { day: 30, amount: 0,     from: 'Jessica month-end check → held for rent (1st) + car (8th)' }
   ],
 
@@ -158,21 +157,21 @@ window.PLAN = {
   // ---- Projection table (month-end, USD). Conservative: excludes 401(k)s,
   //      employer match, market growth.* --------------------------------------
   projection: [
-    // Revised 2026-09-11 evening (IRS + Discover + card minimums)*: savings from Feb ’27 at $29,600/mo after the Discover payoff.
+    // Revised 2026-09-11 night (grace cards + 8018 living float)*: debt figures include the ~$4,500–5,500 living float on the 8018, paid in full monthly at 0%. savings from Feb ’27 at $29,600/mo after the Discover payoff.
     { label: 'Now',     date: '2026-09-07', debt: -143574, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -112000, savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -84800,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -56100,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -27100,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: -7100,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
-    { label: 'Feb ’27', date: '2027-02-28', debt: 0,       savings: 32500,  note: 'Discover cleared' },
-    { label: 'Mar ’27', date: '2027-03-31', debt: 0,       savings: 62100 },
-    { label: 'Apr ’27', date: '2027-04-30', debt: 0,       savings: 91700 },
-    { label: 'May ’27', date: '2027-05-31', debt: 0,       savings: 121300 },
-    { label: 'Jun ’27', date: '2027-06-30', debt: 0,       savings: 150900 },
-    { label: 'Jul ’27', date: '2027-07-31', debt: 0,       savings: 180500 },
-    { label: 'Aug ’27', date: '2027-08-31', debt: 0,       savings: 210100 },
-    { label: 'Sep ’27', date: '2027-09-30', debt: 0,       savings: 239700 }
+    { label: 'Sep ’26', date: '2026-09-30', debt: -110400, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -81400,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -52900,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -23600,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: -12500,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
+    { label: 'Feb ’27', date: '2027-02-28', debt: -5500,       savings: 32500,  note: 'Discover cleared' },
+    { label: 'Mar ’27', date: '2027-03-31', debt: -4500,       savings: 62100 },
+    { label: 'Apr ’27', date: '2027-04-30', debt: -4500,       savings: 91700 },
+    { label: 'May ’27', date: '2027-05-31', debt: -4500,       savings: 121300 },
+    { label: 'Jun ’27', date: '2027-06-30', debt: -4500,       savings: 150900 },
+    { label: 'Jul ’27', date: '2027-07-31', debt: -4500,       savings: 180500 },
+    { label: 'Aug ’27', date: '2027-08-31', debt: -4500,       savings: 210100 },
+    { label: 'Sep ’27', date: '2027-09-30', debt: -4500,       savings: 239700 }
   ],
 
   // ---- The $1M objective ---------------------------------------------------
