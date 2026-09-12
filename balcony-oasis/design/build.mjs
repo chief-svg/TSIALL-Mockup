@@ -468,6 +468,27 @@ const finalPlan = {
   list: ['2 × 48" + 1 × 36" self-watering troughs, 10" deep, limestone finish; 1 × 30" × 12" (far return)', '7 × 20" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '14 × boxwood “Wintergreen”, 3-gal · 7 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '12" round drink table, stone or zinc top, black base', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa arm · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
 };
 
+
+function renderPrompts(t) {
+  const shared = 'Along the base of the black welded-wire railing, add three pale limestone-colored rectangular fiberglass troughs, each about 48 inches long and 14 inches tall, planted with a neatly clipped Japanese boxwood hedge about 16 inches tall that hides the lower half of the railing. Weave star jasmine vines through the wire mesh above the hedge: glossy dark green leaves with small white star-shaped flowers. Hook pale stone rectangular planters over the top rail, with upright purple lavender spikes and silver dichondra and white trailing lantana spilling about 18 inches down the outside of the mesh. Pea gravel covers the soil in every planter.';
+  const prompts = [
+    ['1 · The rail view, edited from your photo', 'Use the photo taken from the door looking along the long railing toward the armchair and the two gray pots.',
+      `Edit this photo of my balcony. Keep the exact camera angle, the black railing, the concrete floor, the buildings, the sky and the lighting unchanged. ${shared} In the far corner, replace the two gray pots with one large pale stone urn holding a mature Arbequina olive tree with silver-green leaves, about 7 feet tall. Keep the black wire armchair with its white cushion exactly as it is, and put clipped rosemary balls in the two gray pots beside it. Photorealistic, natural late-afternoon light, no text or labels.`],
+    ['2 · The sofa view, edited from your photo', 'Use the photo of the sofa against the wall with the door on its left.',
+      `Edit this photo of my balcony. Keep the exact camera angle, the sliding door, the gray wall, the concrete floor and the lighting unchanged, and keep the black wire sofa exactly as it is but with its plastic wrap removed, showing white cushions with black piping. Add two lavender-colored linen throw pillows and one oatmeal ticking-stripe pillow on the sofa, a 12-inch round stone-topped black drink table at the end of the sofa nearest the door, and a black iron wall lantern mounted on the gray wall above the middle of the sofa. In the corner beyond the far arm of the sofa, add two tall pale stone pots with slim Italian cypress trees about 6 feet tall. On the railing visible in the frame: ${shared} Photorealistic, natural light, no text or labels.`],
+    ['3 · From scratch, for Midjourney or similar', 'For a mood image rather than an exact match.',
+      `Photorealistic architectural photograph of a narrow top-floor apartment balcony in San Antonio, Texas, 13 feet long and 6 feet deep, with a 43-inch black welded-wire mesh railing on three sides and a pale concrete floor. A clipped boxwood hedge in pale limestone fiberglass troughs runs along the base of the railing; star jasmine with white flowers climbs the mesh; stone planters hang over the top rail with lavender, silver dichondra and white trailing lantana cascading outside. A mature olive tree in a large stone urn stands in one corner and a pair of slim Italian cypress in tall stone pots in the other. A black wire-frame sofa with white cushions, lavender linen pillows and a matching black wire armchair face each other; a small stone drink table; a black iron wall lantern. Beyond the railing, historic tan brick buildings and treetops in golden late-afternoon light. Provence, French countryside mood, 35mm lens, natural light, editorial interior photography.`],
+  ];
+  return `<div style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Turning the plan into a photograph</h2>
+    <p style="margin:0;font-size:13.5px;line-height:1.5;max-width:900px;color:${t.text};opacity:.9">These drawings are to scale but they are drawings. For a photo-real version of your own balcony, use an image editor that accepts a photo (ChatGPT, Gemini or Adobe Firefly all do): upload the photo named in each prompt, paste the prompt, and ask for three or four variations. The sentence that matters most is the one that tells it to keep the railing, floor and buildings unchanged.</p>
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">${prompts.map(([h, sub, body]) => `<div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:${t.panel}">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:${t.text}">${h}</h3>
+      <p style="margin:0;font-size:12.5px;color:${t.muted}">${sub}</p>
+      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.text};opacity:.9;user-select:all">${body}</p></div>`).join('')}</div>
+  </div>`;
+}
+
 function finalBody(c) {
   const t = c.theme;
   const sw = (label, hex) => `<div style="display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${hex};border:1px solid rgba(0,0,0,.18)"></span><span style="font-size:13px;color:${t.text}">${label}</span></div>`;
@@ -525,6 +546,7 @@ function finalBody(c) {
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Shopping list</h2>
     <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:0 32px;color:${t.text}">${list}</ul>
   </div>
+  ${renderPrompts(t)}
 </div>`;
 }
 
@@ -704,7 +726,7 @@ const H = 1820;
 writeFileSync(join(here, 'canvas.json'), JSON.stringify({
   pages: [{ id: 'page-1', name: 'Final plan' }, { id: 'page-2', name: 'Directions' }],
   artboards: [
-    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 2560, title: 'The Provence plan', page: 'page-1' },
+    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 3080, title: 'The Provence plan', page: 'page-1' },
     { file: 'Brief.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan', page: 'page-2' },
     ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}`, page: 'page-2' })),
   ],
