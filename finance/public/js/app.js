@@ -208,15 +208,43 @@ window.APP = (() => {
           <div class="right">${UI.chip(g.status)}${fund ? `<div class="xs ${fund.ok ? 'pos' : 'neg'}" style="margin-top:6px">${fund.ok ? 'funds covered' : 'short ' + F.money(-fund.gap)}${UI.ast()}</div>` : ''}</div></div>
           <div class="lines">${g.items.filter(x => x.status !== 'done').map(x => `<div><span>${x.acct ? F.esc(x.acct.short) : 'Interest buffer'}${x.acct ? ` <span class="muted xs">live ${F.money(x.acct.balance)}</span>` : ''}</span><span class="num">${F.money(x.amount)}</span></div>`).join('')}</div>
         </div>`; }).join('')}</div>
+      ${manualSection()}
       <div class="actions"><a class="btn sm" href="#/payoff" id="upc-open">Open schedule</a><button class="btn sm primary" id="upc-ok">Got it</button></div>
     </div>`;
     const close = () => bg.remove();
+    bindManual(bg);
     bg.addEventListener('click', e => { if (e.target === bg) close(); });
     bg.querySelector('#upc-ok').addEventListener('click', close);
     bg.querySelector('#upc-open').addEventListener('click', close);
     document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
     document.body.appendChild(bg);
     bg.querySelector('#upc-ok').focus();
+  }
+
+  // Accounts PocketSmith cannot see (plan.extraDebts): ask for a fresh balance when the last one is older than a week.
+  const MANUAL_STALE_DAYS = 7;
+  function manualAccounts() { return (state.ctx ? state.ctx.accounts : []).filter(a => a.synthetic && a.balance < -0.005).map(a => ({ a, age: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today), stale: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today) >= MANUAL_STALE_DAYS })); }
+  function manualSection() {
+    const list = manualAccounts(); if (!list.length) return '';
+    const stale = list.filter(x => x.stale).length;
+    return `<div class="eyebrow" style="margin-top:14px">Balances PocketSmith can’t see</div>
+      <div class="small ${stale ? 'amber' : 'muted'}" style="margin:2px 0 8px">${stale ? `${stale} of these ${stale === 1 ? 'is' : 'are'} more than a week old — open the app and type what it shows today.` : 'All updated within the last week. Change one if it has moved.'}</div>
+      <div class="manual">${list.map(({ a, age, stale }) => `<div class="mrow">
+        <div><b>${F.esc(a.short)}</b><span class="sub">${F.esc(a.institution || '')} · as of ${F.fmtDate(a.balanceDate || PLAN.planStart, { year: false })} (${age}d)${stale ? ' <span class="amber">· update</span>' : ''}</span></div>
+        <input class="num" type="number" step="0.01" inputmode="decimal" data-manual="${a.id}" value="${Math.abs(a.balance).toFixed(2)}" aria-label="${F.esc(a.short)} balance owed">
+        <button class="btn sm" data-save="${a.id}">Save</button></div>`).join('')}</div>
+      <div class="xs muted" style="margin-top:6px">Enter what you owe as a positive number; it is stored as a manual balance dated today and used everywhere until you change it.</div>`;
+  }
+  function bindManual(root) {
+    root.querySelectorAll('[data-save]').forEach(btn => btn.addEventListener('click', async () => {
+      const id = /^\d+$/.test(btn.dataset.save) ? Number(btn.dataset.save) : btn.dataset.save;
+      const input = root.querySelector(`[data-manual="${btn.dataset.save}"]`); const v = Number(input.value);
+      if (isNaN(v)) return;
+      btn.disabled = true; btn.textContent = 'Saved';
+      await setOverrides([{ id, balance: -Math.abs(v), asOf: F.today(), source: 'manual' }]);
+      const a = state.ctx.byId[id]; if (a) input.closest('.mrow').querySelector('.sub').innerHTML = `${F.esc(a.institution || '')} · as of ${F.fmtDate(F.today(), { year: false })} (0d)`;
+      setTimeout(() => { btn.disabled = false; btn.textContent = 'Save'; }, 1500);
+    }));
   }
 
   function toast(msg) {
