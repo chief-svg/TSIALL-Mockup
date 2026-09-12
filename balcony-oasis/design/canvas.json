@@ -1,0 +1,47 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 1120,
+      "h": 1500,
+      "title": "Brief and water plan"
+    },
+    {
+      "file": "Provence.dc.html",
+      "x": 0,
+      "y": 1720,
+      "w": 1120,
+      "h": 1820,
+      "title": "Concept 1 · Provence"
+    },
+    {
+      "file": "Riviera.dc.html",
+      "x": 1220,
+      "y": 1720,
+      "w": 1120,
+      "h": 1820,
+      "title": "Concept 2 · Riviera"
+    },
+    {
+      "file": "Potager.dc.html",
+      "x": 2440,
+      "y": 1720,
+      "w": 1120,
+      "h": 1820,
+      "title": "Concept 3 · Potager"
+    },
+    {
+      "file": "Dusk.dc.html",
+      "x": 3660,
+      "y": 1720,
+      "w": 1120,
+      "h": 1820,
+      "title": "Concept 4 · Bastide at Dusk"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}
