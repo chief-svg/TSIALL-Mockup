@@ -94,6 +94,7 @@ function hedge(x, y, w, h, greens, seed, shape = 'clipped') {
       s += `<ellipse cx="${r2(px + rnd() * 5)}" cy="${r2(ry + (rnd() - .5) * 14)}" rx="${r2(rx)}" ry="${r2(ryy)}" fill="${rnd() < .25 ? greens[Math.floor(rnd() * greens.length)] : g}"/>`;
     }
   }
+  if (shape === 'ball') for (let i = 0; i < 12; i++) s += `<ellipse cx="${r2(x + w / 2 + (rnd() - .5) * w * .6)}" cy="${r2(y + 10 + rnd() * 8)}" rx="${r2(6 + rnd() * 4)}" ry="${r2(5 + rnd() * 2)}" fill="${greens[greens.length - 1]}"/>`;
   if (shape === 'clipped') for (let px = x + 4; px < x + w - 4; px += 9) s += `<ellipse cx="${r2(px + rnd() * 4)}" cy="${r2(y + 5 + rnd() * 4)}" rx="${r2(7 + rnd() * 4)}" ry="${r2(4 + rnd() * 2)}" fill="${greens[greens.length - 1]}"/>`;
   for (let i = 0; i < w / 5; i++) s += `<circle cx="${r2(x + 6 + rnd() * (w - 12))}" cy="${r2(y + 6 + rnd() * (h - 10))}" r="${r2(1.4 + rnd() * 1.8)}" fill="${rnd() < .5 ? greens[0] : greens[greens.length - 1]}" opacity=".8"/>`;
   return s;
@@ -241,6 +242,37 @@ function chairs(c) {
   return one(330) + table(430) + one(500);
 }
 
+function spindleChair(x, y, c, scale = 1) {
+  // high curved back of vertical spindles, hairpin arms, thin splayed legs, white cushion with black piping
+  const W = 26 * IN * scale, seatH = 17 * IN * scale, backH = 36 * IN * scale;
+  let s = `<g transform="translate(${x} ${y})">`;
+  s += `<path d="M${W * .08} ${-seatH} C${W * .02} ${-backH * .55} ${W * .12} ${-backH} ${W * .5} ${-backH} C${W * .88} ${-backH} ${W * .98} ${-backH * .55} ${W * .92} ${-seatH}" fill="none" stroke="${c.iron}" stroke-width="3"/>`;
+  for (let i = 1; i < 9; i++) { const px = W * .12 + (W * .76) * i / 9; const top = -backH + Math.abs(i - 4.5) * 4; s += `<line x1="${r2(px)}" y1="${-seatH + 2}" x2="${r2(px)}" y2="${r2(top + 6)}" stroke="${c.iron}" stroke-width="1.6"/>`; }
+  s += `<path d="M${W * .04} ${-seatH - 8} C${-W * .06} ${-seatH - 34} ${W * .18} ${-seatH - 44} ${W * .22} ${-seatH - 30}" fill="none" stroke="${c.iron}" stroke-width="2.6"/><path d="M${W * .96} ${-seatH - 8} C${W * 1.06} ${-seatH - 34} ${W * .82} ${-seatH - 44} ${W * .78} ${-seatH - 30}" fill="none" stroke="${c.iron}" stroke-width="2.6"/>`;
+  s += `<rect x="${W * .02}" y="${-seatH - 4}" width="${W * .96}" height="${5 * IN * scale}" rx="7" fill="${c.cushion}" stroke="${c.iron}" stroke-width="2"/><rect x="${W * .02 + 5}" y="${-seatH + 1}" width="${W * .96 - 10}" height="${5 * IN * scale - 10}" rx="5" fill="none" stroke="${c.iron}" stroke-width="1"/>`;
+  s += `<line x1="${W * .1}" y1="${-seatH + 5 * IN * scale}" x2="${W * .04}" y2="0" stroke="${c.iron}" stroke-width="2.6"/><line x1="${W * .9}" y1="${-seatH + 5 * IN * scale}" x2="${W * .96}" y2="0" stroke="${c.iron}" stroke-width="2.6"/><line x1="${W * .3}" y1="${-seatH + 5 * IN * scale}" x2="${W * .28}" y2="0" stroke="${c.iron}" stroke-width="2"/><line x1="${W * .7}" y1="${-seatH + 5 * IN * scale}" x2="${W * .72}" y2="0" stroke="${c.iron}" stroke-width="2"/>`;
+  return s + `</g>`;
+}
+
+function spindleSofa(x, y, c, len = 76) {
+  const W = len * IN, seatH = 16 * IN, backH = 30 * IN;
+  let s = `<g transform="translate(${x} ${y})">`;
+  // frame: low back rail of spindles, hairpin arms
+  s += `<path d="M10 ${-seatH} C4 ${-backH * .7} 8 ${-backH} 24 ${-backH} L${W - 24} ${-backH} C${W - 8} ${-backH} ${W - 4} ${-backH * .7} ${W - 10} ${-seatH}" fill="none" stroke="${c.iron}" stroke-width="3"/>`;
+  for (let px = 30; px < W - 20; px += 14) s += `<line x1="${px}" y1="${-seatH + 2}" x2="${px}" y2="${-backH + 3}" stroke="${c.iron}" stroke-width="1.5"/>`;
+  s += `<path d="M6 ${-seatH - 6} C-6 ${-seatH - 38} 22 ${-seatH - 50} 30 ${-seatH - 34}" fill="none" stroke="${c.iron}" stroke-width="2.6"/><path d="M${W - 6} ${-seatH - 6} C${W + 6} ${-seatH - 38} ${W - 22} ${-seatH - 50} ${W - 30} ${-seatH - 34}" fill="none" stroke="${c.iron}" stroke-width="2.6"/>`;
+  // back bolster cushion + seat cushion, white with black piping
+  s += `<rect x="16" y="${-backH + 10}" width="${W - 32}" height="${backH - seatH - 4}" rx="18" fill="${c.cushion}" stroke="${c.iron}" stroke-width="2"/><rect x="22" y="${-backH + 16}" width="${W - 44}" height="${backH - seatH - 16}" rx="14" fill="none" stroke="${c.iron}" stroke-width="1"/>`;
+  s += `<rect x="4" y="${-seatH - 4}" width="${W - 8}" height="${5 * IN}" rx="8" fill="${c.cushion}" stroke="${c.iron}" stroke-width="2"/><rect x="10" y="${-seatH + 1}" width="${W - 20}" height="${5 * IN - 10}" rx="6" fill="none" stroke="${c.iron}" stroke-width="1"/>`;
+  for (const px of [W / 3, 2 * W / 3]) s += `<line x1="${r2(px)}" y1="${-seatH - 2}" x2="${r2(px)}" y2="${-seatH + 5 * IN - 6}" stroke="${c.iron}" stroke-width="1" opacity=".5"/>`;
+  s += `<line x1="14" y1="${-seatH + 5 * IN}" x2="8" y2="0" stroke="${c.iron}" stroke-width="2.6"/><line x1="${W - 14}" y1="${-seatH + 5 * IN}" x2="${W - 8}" y2="0" stroke="${c.iron}" stroke-width="2.6"/><line x1="${W * .38}" y1="${-seatH + 5 * IN}" x2="${W * .37}" y2="0" stroke="${c.iron}" stroke-width="2"/><line x1="${W * .62}" y1="${-seatH + 5 * IN}" x2="${W * .63}" y2="0" stroke="${c.iron}" stroke-width="2"/>`;
+  return s + `</g>`;
+}
+
+function pillow(x, y, w, h, fill, c) {
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${fill}" stroke="${c.iron}" stroke-width="1" transform="rotate(-6 ${x + w / 2} ${y + h / 2})"/>`;
+}
+
 function stringLights(c) {
   let s = '';
   const spans = [[EL.x0 + 40, 30], [EL.x0 + 54 * IN + 9, 26], [EL.x0 + 108 * IN + 9, 26], [EL.x0 + L * IN - 40, 30]];
@@ -266,31 +298,36 @@ function plan(c, o) {
   g += `<g fill="${c.rail}"><rect x="${X(0)}" y="${Y(0)}" width="${W}" height="${3 * s}"/><rect x="${X(0)}" y="${Y(0)}" width="${3 * s}" height="${H}"/><rect x="${X(L - 3)}" y="${Y(0)}" width="${3 * s}" height="${H}"/></g>`;
   // wall + door
   g += `<rect x="${X(0) - 8}" y="${Y(D)}" width="${W + 16}" height="10" fill="${c.wall}"/>`;
-  g += `<rect x="${X(47)}" y="${Y(D) - 2}" width="${72 * s}" height="14" fill="${c.planFloor}" stroke="${c.ink}" stroke-width="1"/><line x1="${X(47)}" y1="${Y(D) + 5}" x2="${X(83)}" y2="${Y(D) + 5}" stroke="${c.ink}" stroke-width="2"/><path d="M${X(83)} ${Y(D) - 2} l0 -8" stroke="${c.ink}" stroke-width="1"/>`;
-  g += `<text x="${X(83)}" y="${Y(D) + 32}" text-anchor="middle" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">sliding door (position approximate)</text>`;
+  const door = o.door ?? { x: 47, w: 72, openAt: 'left', label: 'sliding door (position approximate)' };
+  const openX = door.openAt === 'right' ? door.x + door.w / 2 : door.x;
+  g += `<rect x="${X(door.x)}" y="${Y(D) - 2}" width="${door.w * s}" height="14" fill="${c.planFloor}" stroke="${c.ink}" stroke-width="1"/><line x1="${X(openX)}" y1="${Y(D) + 5}" x2="${X(openX + door.w / 2)}" y2="${Y(D) + 5}" stroke="${c.ink}" stroke-width="2"/><path d="M${X(door.openAt === 'right' ? openX : openX + door.w / 2)} ${Y(D) - 2} l0 -8" stroke="${c.ink}" stroke-width="1"/>`;
+  g += `<text x="${X(door.x + door.w / 2)}" y="${Y(D) + 32}" text-anchor="middle" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">${door.label}</text>`;
   // troughs: 3 x 48" on the long rail, 1 x 32" on each return, clear of the corner pots
   const pot = POTS[o.pot];
   const tr = (x, y, w, h) => `<rect x="${X(x)}" y="${Y(y)}" width="${w * s}" height="${h * s}" fill="${pot.fill}" stroke="${pot.edge}" stroke-width="1.5"/>` +
     `<rect x="${X(x) + 2}" y="${Y(y) + 2}" width="${w * s - 4}" height="${h * s - 4}" fill="${o.hedgeTop}" opacity=".85"/>`;
-  for (const p of [0, 54, 108]) g += tr(p + 3, 3, 48, 12);
-  g += tr(3, 40, 12, 32) + tr(L - 15, 40, 12, 32);
+  for (const [px, w] of (o.longTroughs ?? [[3, 48], [57, 48], [111, 48]])) g += tr(px, 3, w, 12);
+  for (const rt of (o.returns ?? [[3, 40, 12, 32], [L - 15, 40, 12, 32]])) g += tr(...rt);
   // hanging planters (hang outside the rail line)
   const hb = (x, y, w, h) => `<rect x="${X(x)}" y="${Y(y)}" width="${w * s}" height="${h * s}" fill="${pot.fill}" stroke="${pot.edge}" stroke-width="1.2"/>`;
   for (const p of [0, 54, 108]) { g += hb(p + 5, -8, 20, 8); g += hb(p + 29, -8, 20, 8); }
-  g += hb(-8, 46, 8, 20) + hb(L, 46, 8, 20);
+  for (const hp of (o.returnHangers ?? [[-8, 46, 8, 20], [L, 46, 8, 20]])) g += hb(...hp);
   // corner anchors
   const anc = (x, y, r, fill, label) => `<circle cx="${X(x)}" cy="${Y(y)}" r="${r * s}" fill="${fill}" stroke="${c.ink}" stroke-width="1"/><text x="${X(x)}" y="${Y(y) + 4}" text-anchor="middle" font-size="10" fill="#fff" font-family="Work Sans, system-ui, sans-serif">${label}</text>`;
   for (const a of o.anchors) g += anc(a.x, a.y, a.r, a.fill, a.label);
   // furniture: existing two chairs + bistro table, plus the loveseat/daybed if the concept adds one
-  const chair = (x, y) => `<g><rect x="${X(x)}" y="${Y(y)}" width="${22 * s}" height="${22 * s}" rx="8" fill="${c.cushion}" stroke="${c.iron}" stroke-width="1.5"/><path d="M${X(x)} ${Y(y) + 8} q${11 * s} -${12 * s} ${22 * s} 0" fill="none" stroke="${c.iron}" stroke-width="2"/></g>`;
+  const chair = (x, y, rot = 0) => `<g transform="rotate(${rot} ${X(x + 11)} ${Y(y + 11)})"><rect x="${X(x)}" y="${Y(y)}" width="${22 * s}" height="${22 * s}" rx="8" fill="${c.cushion}" stroke="${c.iron}" stroke-width="1.5"/><path d="M${X(x)} ${Y(y) + 8} q${11 * s} -${12 * s} ${22 * s} 0" fill="none" stroke="${c.iron}" stroke-width="2"/></g>`;
   for (const f of o.furniture) {
-    if (f.kind === 'chair') g += chair(f.x, f.y);
+    if (f.kind === 'chair') g += chair(f.x, f.y, f.rot ?? 0);
     if (f.kind === 'table') g += `<circle cx="${X(f.x)}" cy="${Y(f.y)}" r="${12 * s}" fill="${c.tableTop}" stroke="${c.iron}" stroke-width="1.5"/>`;
     if (f.kind === 'sofa') g += `<rect x="${X(f.x)}" y="${Y(f.y)}" width="${f.w * s}" height="${f.h * s}" rx="8" fill="${c.cushion}" stroke="${c.iron}" stroke-width="1.5"/><rect x="${X(f.x)}" y="${Y(f.y)}" width="${f.w * s}" height="${6 * s}" rx="6" fill="${c.iron}" opacity=".85"/>`;
+    if (f.kind === 'sofaWall') g += `<rect x="${X(f.x)}" y="${Y(f.y)}" width="${f.w * s}" height="${f.h * s}" rx="8" fill="${c.cushion}" stroke="${c.iron}" stroke-width="1.5"/><rect x="${X(f.x) + 4}" y="${Y(f.y + f.h - 7)}" width="${f.w * s - 8}" height="${6 * s}" rx="6" fill="#e2ddd0" stroke="${c.iron}" stroke-width="1"/><text x="${X(f.x + f.w / 2)}" y="${Y(f.y + 13)}" text-anchor="middle" font-size="10" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">your sofa, about ${f.w}"</text>`;
+    if (f.kind === 'side') g += `<circle cx="${X(f.x)}" cy="${Y(f.y)}" r="${(f.r ?? 8) * s}" fill="${c.tableTop}" stroke="${c.iron}" stroke-width="1.5"/>`;
+    if (f.kind === 'pot') g += `<circle cx="${X(f.x)}" cy="${Y(f.y)}" r="${f.r * s}" fill="${f.fill}" stroke="${c.ink}" stroke-width="1"/><text x="${X(f.x)}" y="${Y(f.y) + 4}" text-anchor="middle" font-size="9" fill="#fff" font-family="Work Sans, system-ui, sans-serif">${f.label}</text>`;
     if (f.kind === 'rug') g += `<rect x="${X(f.x)}" y="${Y(f.y)}" width="${f.w * s}" height="${f.h * s}" fill="none" stroke="${f.stroke}" stroke-width="2" stroke-dasharray="6 4"/>`;
   }
   // walkway
-  g += `<text x="${X(81)}" y="${Y(52)}" text-anchor="middle" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">36" clear path to the door stays open</text>`;
+  if (!o.noPathLabel) g += `<text x="${X(81)}" y="${Y(52)}" text-anchor="middle" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">36" clear path to the door stays open</text>`;
   // dimensions
   const dim = (x1, y1, x2, y2, label, tx, ty) => `<g stroke="${c.muted}" stroke-width="1"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><line x1="${x1}" y1="${y1 - 4}" x2="${x1}" y2="${y1 + 4}"/><line x1="${x2}" y1="${y2 - 4}" x2="${x2}" y2="${y2 + 4}"/></g><text x="${tx}" y="${ty}" text-anchor="middle" font-size="12" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">${label}</text>`;
   g += dim(X(0), Y(0) - 22, X(L), Y(0) - 22, '162" rail', X(81), Y(0) - 27);
@@ -396,6 +433,102 @@ const concepts = [
   },
 ];
 
+
+// ---------- the final plan: Provence, built around the sofa and armchair ----------
+const provence = concepts[0];
+const finalPlan = {
+  ...provence, n: 1, id: 'Main', name: 'The Provence plan', tag: 'Built around your black spindle sofa and armchair',
+  mood: 'Your sofa stays where it is, against the wall between the door and the far return, and becomes the center of the room. The armchair turns to face it across a small stone-topped table. Around them: a clipped boxwood hedge that swallows the lower rail, star jasmine laced through the mesh, lavender and silver dichondra spilling over the top cap, an olive in a stone urn in the far corner where your two pots sit now, and a pair of cypress beside the sofa arm. Black iron and white piping against silver, green and lavender.',
+  shortLast: true,
+  furnitureEl: (e) => spindleChair(EL.x0 + 92 * IN, EL.floor + 26, e) + `<g transform="translate(${EL.x0 + 66 * IN} ${EL.floor + 20})"><ellipse cx="40" cy="${-19 * IN}" rx="40" ry="8" fill="${e.tableTop}" stroke="${e.iron}" stroke-width="1.5"/><line x1="40" y1="${-19 * IN + 8}" x2="40" y2="0" stroke="${e.iron}" stroke-width="3"/><path d="M14 0 Q40 -13 66 0" fill="none" stroke="${e.iron}" stroke-width="2.5"/></g>`,
+  anchorsEl: (e) => tree('cypress', 70, EL.floor + 10, { pot: 'stone', potW: 84, potH: 90, height: 320 }, 4) + tree('olive', 972, EL.floor + 20, { pot: 'stone', potW: 120, potH: 110 }, 3)
+    + pot(896, EL.floor + 6, 70, 50, 'charcoal') + hedge(866, EL.floor - 44 - 60, 60, 66, ['#5f7f4b', '#6f8f58', '#7e9a68'], 77, 'ball') + pot(846, EL.floor + 14, 56, 44, 'charcoal') + hedge(824, EL.floor - 30 - 50, 46, 54, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball'),
+  plan: {
+    door: { x: 82, w: 70, openAt: 'right', label: 'sliding door, opening on the right' },
+    longTroughs: [[3, 48], [57, 48], [111, 36]],
+    returns: [[L - 15, 22, 12, 30]],
+    returnHangers: [[L, 22, 8, 20]],
+    noPathLabel: true,
+    anchors: [{ x: 154, y: 9, r: 8, fill: '#8f9a80', label: 'olive' }, { x: 11, y: 22, r: 7, fill: '#3f5b3c', label: 'cyp.' }, { x: 11, y: 36, r: 7, fill: '#3f5b3c', label: 'cyp.' }],
+    furniture: [
+      { kind: 'sofaWall', x: 3, y: 44, w: 76, h: 30 },
+      { kind: 'side', x: 54, y: 30, r: 8 },
+      { kind: 'chair', x: 88, y: 18, rot: 140 },
+      { kind: 'pot', x: 128, y: 24, r: 6, fill: '#6f8f58', label: 'rsm' }, { kind: 'pot', x: 140, y: 30, r: 5, fill: '#6f8f58', label: 'rsm' },
+      { kind: 'side', x: 130, y: 62, r: 7 },
+    ],
+  },
+  layers: [
+    ['Hedge at the rail base', 'Japanese boxwood “Wintergreen”, clipped to 16–18", in three limestone-toned self-watering troughs along the long rail (48", 48" and 36", the last shortened to clear the olive urn) and one 30" trough on the far return beside the door opening. The near return, behind the sofa arm, stays open for the cypress pair. If the long rail takes full west sun, use dwarf yaupon “Micron” instead.', '#5f7f4b'],
+    ['On the mesh', 'Star jasmine, one plant per 27" of rail, tied into the 4" grid with green wire and trained sideways so the mesh fills in as a green wall behind the hedge. Evergreen, fragrant in April, unbothered by 100° afternoons. Solid cover in two seasons.', '#fbfaf3'],
+    ['Over the rail', 'Seven 20" over-rail planters made for a 3" top cap: six on the long rail, one on the far return. “Phenomenal” lavender upright, white trailing lantana and “Silver Falls” dichondra spilling 18–24" down the outside of the mesh, so the color reads from the street too.', '#8b84b4'],
+    ['Anchors', 'An Arbequina olive in a 24" stone urn in the far corner, where your two charcoal pots sit now; those pots move beside the chair with clipped rosemary balls. Two dwarf Italian cypress “Tiny Tower” in tall stone pots at the near corner, framing the sofa arm. Pea gravel on every planter.', '#8f9a80'],
+  ],
+  materials: [['Limestone-tone fiberglass', '#d9d1c0'], ['Your black iron, white piping', '#26282a'], ['Lavender linen pillows', '#9a93bf'], ['Oatmeal ticking stripe', '#e9e4d6'], ['Olive silver', '#a9b39a']],
+  water: 'Every rail-line planter is self-watering with a sealed reservoir and fill tube, so nothing exits the bottom. The seven over-rail planters are the reservoir type with the gauge on the inside face. Behind the sofa there is room for a slim 5-gallon reservoir with a battery pump on a pre-dawn timer feeding quarter-inch line along the base of the troughs; nothing is watered by hose, and the concrete stays dry.',
+  list: ['2 × 48" + 1 × 36" self-watering troughs, limestone finish; 1 × 30" (far return)', '7 × 20" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '14 × boxwood “Wintergreen”, 3-gal · 7 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '18" round side table, stone or zinc top, black base (two if you want one at each end)', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa arm · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
+};
+
+function finalBody(c) {
+  const t = c.theme;
+  const sw = (label, hex) => `<div style="display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${hex};border:1px solid rgba(0,0,0,.18)"></span><span style="font-size:13px;color:${t.text}">${label}</span></div>`;
+  const layerCards = c.layers.map(([h, p, hex]) => `<div style="display:flex;flex-direction:column;gap:8px;padding:18px 18px 20px;background:${t.panel};border-top:3px solid ${hex}">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.1;color:${t.text}">${h}</h3>
+      <p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.88">${p}</p></div>`).join('');
+  const list = c.list.map(i => `<li style="padding:6px 0;border-bottom:1px solid rgba(128,128,128,.25);font-size:13px;line-height:1.4">${i}</li>`).join('');
+  const furniture = [
+    ['The sofa', 'Stays on the wall between the door and the far return, where it is now. It is the one piece that fixes everything else: the hedge line sits 32" in front of it, the table lands at the near end, and the olive urn closes the corner past its arm.'],
+    ['The armchair', 'Turns to face the sofa from in front of the fixed door panel, angled toward the view. The rosemary in your two charcoal pots sits beside it. The door opening on the right stays a clear 36" path.'],
+    ['Pillows and a table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking stripe on the sofa, and an 18" stone-topped side table between sofa and chair so a glass has somewhere to land.'],
+  ].map(([h, p]) => `<div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:${t.text}">${h}</h3><p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${p}</p></div>`).join('');
+  return `<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:${t.bg};color:${t.text};font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:26px">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:${t.muted}">Balcony Oasis · San Antonio · final plan</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:64px;font-weight:500;line-height:.98;letter-spacing:-.01em;color:${t.text}">${c.name}</h1>
+    <p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1.25;color:${t.accent}">${c.tag}</p>
+    <p style="margin:6px 0 0;font-size:15px;line-height:1.55;max-width:900px;color:${t.text};opacity:.9">${c.mood}</p>
+  </header>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking out from the sofa</h2>
+    <div style="border:1px solid rgba(128,128,128,.3);background:${c.el.sky}">${elevation(c)}</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>The 162" rail, 43" high: hedge, jasmine on the mesh, planters over the cap; cypress pair at the sofa end (left), olive urn in the far corner (right), your armchair and the rosemary pots in front</span><span>6 px per inch</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking back at the wall</h2>
+    <div style="border:1px solid rgba(128,128,128,.3);background:#9a9b98">${wallElevation(c)}</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at left with its opening side nearest the far return; your sofa to the right of it with pillows, a side table and a wall lantern; olive urn (left) and cypress pair (right) in the foreground at the rail corners</span><span>6 px per inch</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Floor plan, 74" × 162"</h2>
+      <div style="background:${t.panel};padding:8px">${plan(c.el, { pot: c.pot, hedgeTop: c.hedgeTop, ...c.plan })}</div>
+      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa length scaled from the photos at about 76"; the door is drawn 70" wide with its opening on the right. Tell me the real numbers and I will tighten the plan.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div style="display:grid;grid-template-columns:repeat(1, minmax(0, 1fr));gap:16px">${furniture}</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">The planting, layer by layer</h2>
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));gap:16px">${layerCards}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Materials and palette</h2>
+      <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:10px 16px">${c.materials.map(([l, h]) => sw(l, h)).join('')}</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">
+      <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;color:${t.text}">Keeping the floor below dry</h2>
+      <p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${c.water}</p>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Shopping list</h2>
+    <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:0 32px;color:${t.text}">${list}</ul>
+  </div>
+</div>`;
+}
+
 function agave(cx, base) {
   let s = '';
   for (let i = 0; i < 14; i++) {
@@ -403,6 +536,35 @@ function agave(cx, base) {
     s += `<path d="M${cx} ${base} Q${cx + Math.cos((a - 6) * Math.PI / 180) * len * .6} ${base + Math.sin((a - 6) * Math.PI / 180) * len * .6} ${cx + Math.cos(a * Math.PI / 180) * len} ${base + Math.sin(a * Math.PI / 180) * len} Q${cx + Math.cos((a + 6) * Math.PI / 180) * len * .6} ${base + Math.sin((a + 6) * Math.PI / 180) * len * .6} ${cx} ${base} Z" fill="${i % 2 ? '#7f98a6' : '#93aab6'}" stroke="#5f7583" stroke-width="1"/>`;
   }
   return s;
+}
+
+function wallElevation(c) {
+  // looking back at the building from the rail: door at left, sofa to its right, the corner urn at far right
+  const e = c.el, seed = 900;
+  const x0 = EL.x0, floor = EL.floor, wallTop = 40;
+  let s = `<rect x="0" y="0" width="${EL.w}" height="${floor}" fill="#9a9b98"/>`;
+  for (let px = x0 - 40; px < EL.w; px += 120) s += `<rect x="${px}" y="0" width="118" height="${floor}" fill="#a3a4a1" stroke="#8c8d8a" stroke-width="1"/>`;
+  s += `<rect x="0" y="${floor - 6}" width="${EL.w}" height="6" fill="#2b2b2b"/>`;
+  // door: mirrored plan position (plan x 82..152 from return A) -> from the left when facing the wall
+  const dX = x0 + (L - 152) * IN, dW = 70 * IN, dTop = floor - 84 * IN;
+  s += `<rect x="${dX - 6}" y="${dTop - 6}" width="${dW + 12}" height="${84 * IN + 6}" fill="#2a2b2d"/>`;
+  s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/>`;
+  s += `<rect x="${dX + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/><rect x="${dX + dW / 2 + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/>`;
+  s += `<rect x="${dX + dW / 2 - 10}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
+  s += `<text x="${dX + dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
+  // sofa against the wall, right of the door, plus pillows
+  const sofaX = x0 + (L - 79) * IN;
+  s += spindleSofa(sofaX, floor - 2, e, 76);
+  s += pillow(sofaX + 30, floor - 2 - 26 * IN, 90, 80, '#9a93bf', e) + pillow(sofaX + 76 * IN - 120, floor - 2 - 26 * IN, 90, 80, '#e9e4d6', e) + pillow(sofaX + 76 * IN - 190, floor - 2 - 24 * IN, 70, 66, '#c8c1d8', e);
+  // wall lantern above the sofa's near arm, side table at the door end
+  s += `<rect x="${sofaX - 80}" y="${floor - 34 * IN}" width="30" height="46" rx="3" fill="none" stroke="${e.iron}" stroke-width="2.5"/><rect x="${sofaX - 74}" y="${floor - 34 * IN + 8}" width="18" height="30" fill="#f2d9a0" opacity=".8"/><line x1="${sofaX - 65}" y1="${floor - 34 * IN}" x2="${sofaX - 65}" y2="${floor - 34 * IN - 18}" stroke="${e.iron}" stroke-width="2"/>`;
+  s += `<g transform="translate(${sofaX - 150} ${floor - 2})"><ellipse cx="42" cy="${-20 * IN}" rx="42" ry="9" fill="${e.tableTop}" stroke="${e.iron}" stroke-width="1.5"/><line x1="42" y1="${-20 * IN + 9}" x2="42" y2="0" stroke="${e.iron}" stroke-width="3"/><path d="M14 0 Q42 -14 70 0" fill="none" stroke="${e.iron}" stroke-width="2.5"/></g>`;
+  // the olive urn stands in the far right corner (rail side), so it reads in the foreground here
+  s += floorBand(e);
+  s += tree('olive', 46, floor + 28, { pot: 'stone', potW: 120, potH: 110 }, 3);
+  // the cypress pair stands at the sofa end, in the foreground at right
+  s += tree('cypress', EL.w - 110, floor + 18, { pot: 'stone', potW: 84, potH: 90, height: 300 }, 4) + tree('cypress', EL.w - 40, floor + 26, { pot: 'stone', potW: 84, potH: 90, height: 280 }, 12);
+  return `<svg viewBox="0 0 ${EL.w} ${EL.h}" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of the wall side with the sofa and door">${s}</svg>`;
 }
 
 function elevation(c) {
@@ -415,13 +577,13 @@ function elevation(c) {
   for (const p of [6, 50, 60, 104, 114, 158]) s += vine(EL.x0 + p * IN, EL.floor - 14 * IN - 30, EL.railTop + 30, c.vine, seed + 40 + p);
   // troughs and hedges
   for (const p of [0, 54, 108]) {
-    const x = EL.x0 + (p + 3) * IN, w = 48 * IN, ty = EL.floor - 14 * IN;
+    const x = EL.x0 + (p + 3) * IN, w = (c.shortLast && p === 108 ? 36 : 48) * IN, ty = EL.floor - 14 * IN;
     s += trough(x, ty, w, 14 * IN, c.pot);
     s += hedge(x - 4, ty - 17 * IN, w + 8, 18 * IN, c.hedgeGreens, seed + 60 + p);
   }
   s += floorBand(e);
   s += c.anchorsEl(e);
-  s += chairs(e);
+  s += c.furnitureEl ? c.furnitureEl(e) : chairs(e);
   return `<svg viewBox="0 0 ${EL.w} ${EL.h}" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of the long rail">${s}</svg>`;
 }
 
@@ -534,15 +696,18 @@ ${body}
 }
 
 // ---- write canvas working files ----
-writeFileSync(join(here, 'Main.dc.html'), dcWrap(briefBody(), '#f1ede4'));
+writeFileSync(join(here, 'Main.dc.html'), dcWrap(finalBody(finalPlan), finalPlan.theme.bg));
+writeFileSync(join(here, 'Brief.dc.html'), dcWrap(briefBody(), '#f1ede4'));
 for (const c of concepts) writeFileSync(join(here, `${c.id}.dc.html`), dcWrap(conceptBody(c, { forCanvas: true }), c.theme.bg));
 const H = 1820;
 writeFileSync(join(here, 'canvas.json'), JSON.stringify({
+  pages: [{ id: 'page-1', name: 'Final plan' }, { id: 'page-2', name: 'Directions' }],
   artboards: [
-    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan' },
-    ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}` })),
+    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 2560, title: 'The Provence plan', page: 'page-1' },
+    { file: 'Brief.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan', page: 'page-2' },
+    ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}`, page: 'page-2' })),
   ],
-  launch: { view: 'canvas' },
+  launch: { view: 'canvas', page: 'page-1' },
 }, null, 2));
 
 // ---- plain page for the repo ----
@@ -569,7 +734,9 @@ ${FONT_LINK}
 </head>
 <body>
 <div class="wrap">
-  <nav aria-label="Concepts"><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
+  <nav aria-label="Sections"><a href="#plan">Final plan</a><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
+  <section class="board" id="plan">${finalBody(finalPlan)}</section>
+  <h2 style="margin:24px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500">The brief and the four directions considered</h2>
   <section class="board" id="brief">${briefBody()}</section>
   ${concepts.map(c => `<section class="board" id="${c.id.toLowerCase()}">${conceptBody(c, { forCanvas: false })}</section>`).join('\n  ')}
 </div>
@@ -577,4 +744,4 @@ ${FONT_LINK}
 </html>
 `;
 writeFileSync(join(here, '..', 'index.html'), page);
-console.log('wrote', ['Main', ...concepts.map(c => c.id)].map(n => n + '.dc.html').join(', '), 'canvas.json, ../index.html');
+console.log('wrote', ['Main', 'Brief', ...concepts.map(c => c.id)].map(n => n + '.dc.html').join(', '), 'canvas.json, ../index.html');
