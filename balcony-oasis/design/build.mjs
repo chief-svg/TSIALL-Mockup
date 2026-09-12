@@ -489,6 +489,88 @@ function renderPrompts(t) {
   </div>`;
 }
 
+
+// ---------- the build plan: exact products, counts, plants, sources ----------
+function buildBody() {
+  const t = { bg: '#f4f0e7', panel: '#ece6d9', accent: '#6b7a55', text: '#2a2723', muted: '#7a7369' };
+  const H2 = (x) => `<h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:${t.text}">${x}</h2>`;
+  const H3 = (x) => `<h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:${t.text}">${x}</h3>`;
+  const P = (x) => `<p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${x}</p>`;
+  const table = (head, rows) => `<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;font-size:13px;line-height:1.4;color:${t.text}"><thead><tr>${head.map(h => `<th style="text-align:left;padding:8px 10px;border-bottom:2px solid ${t.accent};font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:${t.muted}">${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map(c => `<td style="padding:9px 10px;border-bottom:1px solid rgba(0,0,0,.12);vertical-align:top">${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const card = (h, body) => `<div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:${t.panel};border-top:3px solid ${t.accent}">${H3(h)}${body}</div>`;
+
+  const planters = table(['Where', 'Product', 'Size', 'Qty', 'Notes', 'Buy'], [
+    ['Long rail, base', 'Mayne Fairfield 4 ft Window Box (self-watering)', '48" × 11" × 10.8"; 9.5 gal soil, 4 gal reservoir', '2', 'Built-in overflow. White reads as limestone; Graphite Grey matches the rail. Ignore the wall brackets: it sits on the floor.', 'Home Depot, Lowe\'s, Walmart, Tractor Supply, Amazon (order for pickup)'],
+    ['Long rail, base (door end)', 'Mayne Fairfield 3 ft Window Box', '36" × 11" × 11"', '1', 'Shortened so the olive urn owns the corner.', 'Same'],
+    ['Far return, beside the door opening', 'Mayne Fairfield 2 ft Window Box', '24" × 11" × 11"', '1', 'Leaves the corner for the urn and the wall strip for your two pots.', 'Same'],
+    ['Over the top rail', 'Gardener\'s Supply Adjustable Self-Watering Railing Planter, 24"', '23.25" × 7.5" × 7"; fits rails 1" to 4.25"; 1 qt reservoir; 12 qt mix', '7', 'Six on the long rail, one on the return. Hang the body on your side of the rail. The reservoir is small, so summer means a daily top-up; the upgrade is the Lechuza Balconera 80 (31" × 7" × 7", bigger reservoir) if its bracket fits a 3" flat cap.', 'gardeners.com or Amazon'],
+    ['Far corner', 'Olive urn: lightweight fiberglass or cast-stone, limestone tone', '24" wide × 22–24" tall, with a 24" saucer', '1', 'The olive is the one plant here that drains, so it gets a deep saucer you empty after rain.', 'JustPots (Redland Rd), Ten Thousand Pots (US-281), Rainbow Gardens pottery yard'],
+    ['Sofa-end corner', 'Tall tapered pots for the cypress pair, same finish', '16" wide × 22" tall, with 16" saucers', '2', 'Tall pots give the columns height without a 15-gal tree.', 'Same'],
+    ['Beside the chair', 'Your two charcoal pots', 'as is', '2', 'Add 12" saucers underneath.', 'Any nursery'],
+    ['Under the troughs (if rain reaches the floor)', 'Heavy-duty boot trays', '48" × 14" or the largest you can find', '4', 'Orient each trough\'s overflow hole toward your floor and over the tray. Skip these if the balcony is roofed and stays dry in rain.', 'Amazon, Home Depot'],
+  ]);
+
+  const plants = table(['Plant', 'Botanical name', 'Size', 'Qty', 'Goes in', 'Where in San Antonio'], [
+    ['Wintergreen boxwood', 'Buxus microphylla \'Wintergreen\'', '3 gal', '13', 'The four troughs, 12" apart: 4 + 4 + 3 in the long-rail boxes, 2 on the return', 'Rainbow Gardens (listed in their online shop), Milberger\'s, The Garden Center'],
+    ['Star jasmine', 'Trachelospermum jasminoides', '1 gal', '7', 'Back edge of each trough against the mesh: 2 + 2 + 2 on the long rail, 1 on the return', 'All four nurseries stock it; it is a San Antonio staple'],
+    ['Phenomenal lavender', 'Lavandula × intermedia \'Phenomenal\'', '1 gal', '7', 'One per rail planter, centered', 'Rainbow Gardens, Milberger\'s (the humidity-tolerant lavender; skip English types)'],
+    ['White trailing lantana', 'Lantana montevidensis \'Alba\'', '4"', '14', 'Two per rail planter, front corners', 'Everywhere in spring; plant in April'],
+    ['Silver Falls dichondra', 'Dichondra argentea \'Silver Falls\'', '4"', '14', 'Two per rail planter, front edge', 'Everywhere spring through fall'],
+    ['Arbequina olive', 'Olea europaea \'Arbequina\'', '15 gal', '1', 'The urn', 'Rainbow Gardens lists it; Milberger\'s carries it in the fruit-tree yard. Call for 15-gal stock'],
+    ['Tiny Tower Italian cypress', 'Cupressus sempervirens \'Monshel\'', '5 gal', '2', 'The two tall pots', 'A Monrovia plant: ask Rainbow Gardens, Milberger\'s or The Garden Center to pull it; if not in stock, standard Italian cypress in 5 gal stays pot-sized for years, or order Tiny Tower from an online grower'],
+    ['Rosemary', 'Salvia rosmarinus \'Tuscan Blue\'', '1 gal', '2', 'Your charcoal pots, clipped into balls', 'Any nursery, herb section'],
+    ['If the rail faces west', 'Ilex vomitoria \'Micron\' (dwarf yaupon)', '3 gal', '13', 'Swap for the boxwood', 'Rainbow Gardens, Milberger\'s'],
+  ]);
+
+  const soil = table(['Material', 'Amount', 'Notes'], [
+    ['Container potting mix (FoxFarm Happy Frog, Ocean Forest, or the nursery\'s house mix)', 'About 16 cu ft: eight 2-cu-ft bags', 'Troughs 31 gal, rail planters 21 gal, urn and tall pots the rest. Not garden soil, not "moisture control" mixes, which stay soggy in reservoir planters.'],
+    ['Pea gravel', '4 bags, 0.5 cu ft', 'One inch on every planter: the Provence look, less splash, less evaporation.'],
+    ['Slow-release fertilizer (Osmocote Plus or similar)', '1 box', 'March and June. Lavender and rosemary get half rate.'],
+    ['Green stretch tie or soft garden wire', '1 roll', 'Tying jasmine canes into the mesh.'],
+    ['Rubber pads or composite shims', '8', 'Under the troughs so air moves beneath and the concrete dries.'],
+  ]);
+
+  const steps = [
+    ['1 · Before you buy (this week)', 'Measure the door frame and note which panel opens. Stand at the long rail with your phone compass and note the direction it faces; west sun means the yaupon swap. Check whether rain reaches the floor by the rail (that decides the boot trays). Call Rainbow Gardens Thousand Oaks and Milberger\'s to hold a 15-gal Arbequina and ask about Tiny Tower cypress.'],
+    ['2 · Order the planters', 'Mayne boxes and the rail planters ship; order them first, they take a week. Buy the urn, tall pots and saucers in person so you can match the finish. Nurseries and pottery yards deliver; a 15-gal olive in a 24" urn is a two-person carry.'],
+    ['3 · One loop for plants and pottery', 'Rainbow Gardens Thousand Oaks, JustPots on Redland Rd and Milberger\'s on 1604 are within a few miles of each other in the 281/1604 corner. Do them in one morning. Boxwood, jasmine, lavender, rosemary and the olive now (fall is the best planting season here). Lantana and dichondra go in next April; over winter, fill the rail planters with white alyssum and dusty miller.'],
+    ['4 · Set the troughs', 'Place the Mayne boxes 2–3" back from the mesh on rubber pads (and trays if needed), overflow holes facing your floor. Fill to an inch below the rim with mix, water once from the top to settle it, then only ever fill the reservoir through the tube.'],
+    ['5 · Plant the base', 'Jasmine first, at the back edge against the mesh, canes fanned and tied into the grid at 45°. Boxwood in front, 12" apart, root balls roughened. Gravel on top. Clip the boxwood flat at 16–18" the following spring and again in August.'],
+    ['6 · Hang the rail planters', 'Set the brackets to 3", hang each planter with its body on your side of the rail, lavender in the middle, trailing plants at the front edge. Once the dichondra and lantana are 8" long, thread them through the mesh to the outside.'],
+    ['7 · The corners', 'Olive in the urn with 2" of gravel on top and the saucer under it. Cypress in the tall pots. Rosemary in your charcoal pots. Move the pots, the drink table and the pillows in, and turn the chair to face the sofa.'],
+    ['8 · The watering routine', 'Troughs: fill by the gauge, roughly every 5–7 days in summer, every 2 weeks in spring and fall, every 3 weeks in winter. Rail planters: 1 qt reservoir, so daily in July and August, every 2–3 days otherwise. Olive, cypress, rosemary: a measured gallon or two once a week in summer, then empty the saucers after rain. Nothing is ever watered with a hose.'],
+    ['9 · Later, if you want it', 'A gravity Blumat kit or a pump-on-timer kit can feed every reservoir from a hidden 5-gal tank so you can leave for two weeks in August. Ewing Irrigation and SiteOne in San Antonio carry the tubing and fittings; Sustainable Village sells the Blumat kits. Skip it the first season: the reservoirs already do most of the work.'],
+  ].map(([h, body]) => card(h, P(body))).join('');
+
+  const sources = table(['Source', 'Address', 'Use it for'], [
+    ['Rainbow Gardens (Thousand Oaks)', '2585 Thousand Oaks Dr, 78232 · (210) 494-6131', 'Boxwood, jasmine, lavender, rosemary, Arbequina olive, pottery, potting mix'],
+    ['Rainbow Gardens (Bandera)', '8516 Bandera Rd, 78250 · (210) 680-2394', 'Same stock, northwest side'],
+    ['Milberger\'s Landscaping & Nursery', '3920 N Loop 1604 E, 78247 · (210) 497-3760 · Mon–Sat 9–6, Sun 10–5', 'Olive trees, cypress, shrubs, pottery, delivery'],
+    ['The Garden Center', '10682 Bandera Rd, 78250 · (210) 647-7900 · 9–6 daily', 'Five acres of trees and shrubs; second call for cypress'],
+    ['Fanick\'s Garden Center', '1025 Holmgreen Rd, 78220', 'Old-line southeast-side nursery, trees and shrubs'],
+    ['JustPots', '17115 Redland Rd, 78247 · Mon–Sat 9–6, Sun 9–5', 'Urn, tall pots, saucers: fiberglass, terracotta, glazed'],
+    ['Ten Thousand Pots', '4510 US-281, Spring Branch, 78070 · (512) 584-8889 · 9:30–6 daily', 'Large ceramic and stone-look planters, 30 minutes north'],
+    ['Home Depot / Lowe\'s / Walmart / Tractor Supply', 'any San Antonio store, order for pickup', 'Mayne Fairfield boxes, boot trays, gravel, fertilizer'],
+    ['gardeners.com', 'online', 'Adjustable self-watering railing planters'],
+    ['Ewing Irrigation', '5826 Hawk Springs Ste 1103 (and other SA branches)', 'Drip tubing and fittings, later'],
+    ['SiteOne Landscape Supply', 'two San Antonio branches', 'Drip parts, bulk gravel'],
+  ]);
+
+  return `<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:${t.bg};color:${t.text};font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:28px">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:${t.muted}">Balcony Oasis · San Antonio · build plan</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:64px;font-weight:500;line-height:.98;letter-spacing:-.01em;color:${t.text}">How to build it</h1>
+    <p style="margin:6px 0 0;font-size:15px;line-height:1.55;max-width:900px;color:${t.text};opacity:.9">Everything the Provence plan needs, with exact products, counts, plant names and where to get them in San Antonio. Planter products are named because their dimensions were checked against the balcony; swap brands if you find a better finish in the same size. Nursery stock changes weekly, so call before you drive.</p>
+  </header>
+  <div style="display:flex;flex-direction:column;gap:12px">${H2('Planters')}${planters}</div>
+  <div style="display:flex;flex-direction:column;gap:12px">${H2('Plants')}${plants}</div>
+  <div style="display:flex;flex-direction:column;gap:12px">${H2('Soil and supplies')}${soil}</div>
+  <div style="display:flex;flex-direction:column;gap:12px">${H2('Step by step')}<div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">${steps}</div></div>
+  <div style="display:flex;flex-direction:column;gap:12px">${H2('Where to buy')}${sources}${P('Older San Antonio nursery lists still show Shades of Green on Sunset Rd, Schulz Nursery on Broadway and Sandy Oaks Olive Orchard in Elmendorf. All three have closed.')}</div>
+  <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">${H3('Weight, in case the building asks')}${P('Fully wet, the four troughs, seven rail planters, urn and two tall pots come to roughly 900 lb spread along 20 ft of rail line, well inside what a code balcony carries. Keep the heavy pieces at the corners and along the edge rather than clustered in the middle.')}</div>
+</div>`;
+}
+
 function finalBody(c) {
   const t = c.theme;
   const sw = (label, hex) => `<div style="display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${hex};border:1px solid rgba(0,0,0,.18)"></span><span style="font-size:13px;color:${t.text}">${label}</span></div>`;
@@ -721,12 +803,14 @@ ${body}
 // ---- write canvas working files ----
 writeFileSync(join(here, 'Main.dc.html'), dcWrap(finalBody(finalPlan), finalPlan.theme.bg));
 writeFileSync(join(here, 'Brief.dc.html'), dcWrap(briefBody(), '#f1ede4'));
+writeFileSync(join(here, 'BuildPlan.dc.html'), dcWrap(buildBody(), '#f4f0e7'));
 for (const c of concepts) writeFileSync(join(here, `${c.id}.dc.html`), dcWrap(conceptBody(c, { forCanvas: true }), c.theme.bg));
 const H = 1820;
 writeFileSync(join(here, 'canvas.json'), JSON.stringify({
   pages: [{ id: 'page-1', name: 'Final plan' }, { id: 'page-2', name: 'Directions' }],
   artboards: [
     { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 3080, title: 'The Provence plan', page: 'page-1' },
+    { file: 'BuildPlan.dc.html', x: 1220, y: 0, w: 1120, h: 2900, title: 'How to build it', page: 'page-1' },
     { file: 'Brief.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan', page: 'page-2' },
     ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}`, page: 'page-2' })),
   ],
@@ -757,8 +841,9 @@ ${FONT_LINK}
 </head>
 <body>
 <div class="wrap">
-  <nav aria-label="Sections"><a href="#plan">Final plan</a><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
+  <nav aria-label="Sections"><a href="#plan">Final plan</a><a href="#build">How to build it</a><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
   <section class="board" id="plan">${finalBody(finalPlan)}</section>
+  <section class="board" id="build">${buildBody()}</section>
   <h2 style="margin:24px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500">The brief and the four directions considered</h2>
   <section class="board" id="brief">${briefBody()}</section>
   ${concepts.map(c => `<section class="board" id="${c.id.toLowerCase()}">${conceptBody(c, { forCanvas: false })}</section>`).join('\n  ')}
@@ -767,4 +852,4 @@ ${FONT_LINK}
 </html>
 `;
 writeFileSync(join(here, '..', 'index.html'), page);
-console.log('wrote', ['Main', 'Brief', ...concepts.map(c => c.id)].map(n => n + '.dc.html').join(', '), 'canvas.json, ../index.html');
+console.log('wrote', ['Main', 'BuildPlan', 'Brief', ...concepts.map(c => c.id)].map(n => n + '.dc.html').join(', '), 'canvas.json, ../index.html');
