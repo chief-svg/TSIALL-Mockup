@@ -26,4 +26,16 @@ ${scripts}
 `;
 fs.mkdirSync(path.join(__dirname, 'dist'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, 'dist', 'command.html'), out);
+// Read-only snapshot: node build.js --static data.json → dist/snapshot.html (no runtime, data baked in)
+const si = process.argv.indexOf('--static');
+if (si > 0) {
+  const data = fs.readFileSync(process.argv[si + 1], 'utf8');
+  if (/<\/script/i.test(data)) throw new Error('script terminator inside data');
+  const scriptsStatic = ['js/plan.js', 'js/format.js', 'js/store.js', 'js/engine.js', 'js/charts.js', 'js/views/command.js', 'js/views/payoff.js', 'js/views/spending.js', 'js/views/projection.js', 'js/views/after.js', 'js/views/allocate.js', 'js/views/donuts.js', 'js/views/million.js', 'js/views/accounts.js', 'js/views/statements.js', 'js/app.js'].map(r).join('\n;\n');
+  const cut = out.lastIndexOf('<script>');
+  const outStatic = out.slice(0, cut).replace(/<title>[^<]*<\/title>/, '<title>Command · snapshot</title>')
+    + `<script>window.STATIC_DATA=${data};</script>\n<script>\n${scriptsStatic}\n</script>\n`;
+  fs.writeFileSync(path.join(__dirname, 'dist', 'snapshot.html'), outStatic);
+  console.log('hosted/dist/snapshot.html', Math.round(outStatic.length / 1024) + ' KB (read-only snapshot)');
+}
 console.log('hosted/dist/command.html', Math.round(out.length / 1024) + ' KB');

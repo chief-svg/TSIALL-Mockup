@@ -55,6 +55,12 @@ window.APP = (() => {
 
   // Paint whatever this device synced last, immediately, then go live.
   async function boot() {
+    if (window.STATIC_DATA) { // read-only snapshot build: data baked in at build time, no connector, no writes
+      const S0 = window.STATIC_DATA; state.overrides = S0.overrides || {}; state.snapshots = S0.snapshots || {};
+      document.getElementById('refresh').style.display = 'none';
+      applyData(S0.payload, { mode: 'static', stale: false, syncing: false, fetchedAt: new Date(S0.at), error: null });
+      return;
+    }
     const [cached, ov, sn] = await Promise.all([STORE.local.get('cache'), STORE.local.get('overrides'), STORE.local.get('snapshots')]);
     if (cached && cached.payload) {
       state.overrides = ov || {}; state.snapshots = sn || {};
@@ -68,7 +74,7 @@ window.APP = (() => {
   }
 
   async function refresh() {
-    if (state.loading) return;
+    if (state.loading || state.meta.mode === 'static') return;
     state.loading = true; state.meta.syncing = true; renderHeader();
     const P = window.PLAN, today = F.today();
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
@@ -128,10 +134,11 @@ window.APP = (() => {
       else { b.className = 'badge stale'; b.textContent = `Stale · ${Math.round(ageH / 24)}d old`; }
     }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
+    else if (m.mode === 'static') { b.className = 'badge demo'; b.textContent = 'Snapshot · read-only'; }
     else if (m.partial) { b.className = 'badge stale'; b.textContent = 'Live · partial'; }
     else { b.className = 'badge live'; b.textContent = 'Live · PocketSmith'; }
     const stamp = m.fetchedAt ? `${F.toISO(m.fetchedAt) === F.today() ? 'today' : F.fmtDate(F.toISO(m.fetchedAt), { year: false })} ${F.fmtTime(m.fetchedAt)}` : '';
-    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `PocketSmith pulled ${stamp}` : '';
+    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `${m.mode === 'static' ? 'Balances as of' : 'PocketSmith pulled'} ${stamp}` : '';
     document.getElementById('refresh').disabled = state.loading;
     document.title = `${ROUTES.find(x => x[0] === r)[1]} · Command`;
   }
@@ -167,7 +174,7 @@ window.APP = (() => {
 
   function footer() {
     const m = state.meta;
-    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : API.sourceLabel || 'PocketSmith API via local proxy'}${state.raw && state.raw.syncedBy === 'routine' ? ' · data written by the scheduled sync' : ''} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
+    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : m.mode === 'static' ? 'Read-only snapshot for sharing — balances do not update' : API.sourceLabel || 'PocketSmith API via local proxy'}${state.raw && state.raw.syncedBy === 'routine' ? ' · data written by the scheduled sync' : ''} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
   }
 
   function renderSetup(err) {
@@ -225,7 +232,7 @@ window.APP = (() => {
   const MANUAL_STALE_DAYS = 7;
   function manualAccounts() { return (state.ctx ? state.ctx.accounts : []).filter(a => a.synthetic && a.balance < -0.005).map(a => ({ a, age: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today), stale: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today) >= MANUAL_STALE_DAYS })); }
   function manualSection() {
-    const list = manualAccounts(); if (!list.length) return '';
+    const list = manualAccounts(); if (!list.length || state.meta.mode === 'static') return '';
     const stale = list.filter(x => x.stale).length;
     return `<div class="eyebrow" style="margin-top:14px">Balances PocketSmith can’t see</div>
       <div class="small ${stale ? 'amber' : 'muted'}" style="margin:2px 0 8px">${stale ? `${stale} of these ${stale === 1 ? 'is' : 'are'} more than a week old — open the app and type what it shows today.` : 'All updated within the last week. Change one if it has moved.'}</div>

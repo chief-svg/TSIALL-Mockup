@@ -28,7 +28,7 @@ VIEWS.accounts = {
       </tbody></table></div></div>
       <div class="note" style="margin-top:12px">Balances refresh from PocketSmith’s data feeds; the balance date shows when each feed last updated. APRs are the plan’s assumptions${UI.ast()} — confirm against statements, especially the loan rates.</div>
 
-      <div class="grid g32" style="margin-top:22px">
+${S.meta && S.meta.mode === 'static' ? '' : `      <div class="grid g32" style="margin-top:22px">
         <div class="panel"><div class="ph"><h3>Update balances by hand</h3><span class="small muted">fail-safe when a feed lags or breaks</span></div>
           <div id="shot-panel" class="hidden">
             <div class="drop"><b class="ink2">Upload screenshots of your banking apps</b><br>Claude reads the balances and matches them to accounts. You review before anything is applied.<input type="file" id="shot-files" accept="image/*" multiple></div>
@@ -47,9 +47,10 @@ VIEWS.accounts = {
         </div>
         <div class="panel flush"><div class="ph"><h3>Manual balances in effect</h3>${ovList ? '<button class="btn sm" data-clear="*">Clear all</button>' : ''}</div>
           <table><tbody>${ovList || '<tr><td class="muted center" style="padding:24px">None — every balance is from the PocketSmith feed</td></tr>'}</tbody></table></div>
-      </div>`;
+      </div>`}`;
   },
   mount(S, root) {
+    if (S.meta && S.meta.mode === 'static') return;
     const parseId = v => /^\d+$/.test(v) ? Number(v) : v;
     root.querySelectorAll('[data-clear]').forEach(b => b.addEventListener('click', () => APP.clearOverride(b.dataset.clear === '*' ? '*' : parseId(b.dataset.clear))));
     root.querySelector('#manual-form').addEventListener('submit', e => {

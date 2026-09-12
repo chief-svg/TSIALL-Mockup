@@ -11,6 +11,7 @@ This repo has two unrelated things: the **Texas State Insurance mockup** (`index
 - `finance/server.js` — GET-only proxy, key from gitignored `finance/.env` (`POCKETSMITH_KEY`). `npm start` / `npm run demo` (`DEMO=1`, fixtures in `public/demo/`).
 - `finance/hosted/runtime.js` — artifact runtime: `SERVER = 'PocketSmith Complete Access'` (connector display name), tools `list_accounts|list_categories|list_transactions|list_events`, `unwrap()` strips the `Page X of Y` preamble, `API.onPartial` paints balances early, `VISION` = screenshot reading via `sample`.
 - `finance/hosted/build.js` → `finance/hosted/dist/command.html` (single-file bundle, Chart.js inlined). Publish with the Artifact tool to **https://claude.ai/code/artifact/949af0fe-1c0a-4bab-a4cc-2f5522d0a7ae** (pass `url`), capabilities `{mcp:{servers:[{server:'PocketSmith Complete Access', tools:[…4]}]}, db:{}, sample:{}}`.
+- `node finance/hosted/build.js --static <data.json>` → `hosted/dist/snapshot.html` (gitignored): read-only copy with PocketSmith data baked in (`window.STATIC_DATA`), for sharing with Jessica as its own artifact — no connector, no edits.
 - `finance/hosted/sync-compact.js` + `ROUTINE.md` — dormant scheduled-sync tooling (writes db docs `state/cache`, `state/snapshots`).
 
 ## Facts

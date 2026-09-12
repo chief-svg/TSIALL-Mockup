@@ -6,3 +6,4 @@ finance/public/config.js
 node_modules/
 finance/.cache/
 .DS_Store
+finance/hosted/dist/snapshot.html

@@ -1928,7 +1928,7 @@ VIEWS.accounts = {
       </tbody></table></div></div>
       <div class="note" style="margin-top:12px">Balances refresh from PocketSmith’s data feeds; the balance date shows when each feed last updated. APRs are the plan’s assumptions${UI.ast()} — confirm against statements, especially the loan rates.</div>
 
-      <div class="grid g32" style="margin-top:22px">
+${S.meta && S.meta.mode === 'static' ? '' : `      <div class="grid g32" style="margin-top:22px">
         <div class="panel"><div class="ph"><h3>Update balances by hand</h3><span class="small muted">fail-safe when a feed lags or breaks</span></div>
           <div id="shot-panel" class="hidden">
             <div class="drop"><b class="ink2">Upload screenshots of your banking apps</b><br>Claude reads the balances and matches them to accounts. You review before anything is applied.<input type="file" id="shot-files" accept="image/*" multiple></div>
@@ -1947,9 +1947,10 @@ VIEWS.accounts = {
         </div>
         <div class="panel flush"><div class="ph"><h3>Manual balances in effect</h3>${ovList ? '<button class="btn sm" data-clear="*">Clear all</button>' : ''}</div>
           <table><tbody>${ovList || '<tr><td class="muted center" style="padding:24px">None — every balance is from the PocketSmith feed</td></tr>'}</tbody></table></div>
-      </div>`;
+      </div>`}`;
   },
   mount(S, root) {
+    if (S.meta && S.meta.mode === 'static') return;
     const parseId = v => /^\d+$/.test(v) ? Number(v) : v;
     root.querySelectorAll('[data-clear]').forEach(b => b.addEventListener('click', () => APP.clearOverride(b.dataset.clear === '*' ? '*' : parseId(b.dataset.clear))));
     root.querySelector('#manual-form').addEventListener('submit', e => {
@@ -2253,6 +2254,12 @@ window.APP = (() => {
 
   // Paint whatever this device synced last, immediately, then go live.
   async function boot() {
+    if (window.STATIC_DATA) { // read-only snapshot build: data baked in at build time, no connector, no writes
+      const S0 = window.STATIC_DATA; state.overrides = S0.overrides || {}; state.snapshots = S0.snapshots || {};
+      document.getElementById('refresh').style.display = 'none';
+      applyData(S0.payload, { mode: 'static', stale: false, syncing: false, fetchedAt: new Date(S0.at), error: null });
+      return;
+    }
     const [cached, ov, sn] = await Promise.all([STORE.local.get('cache'), STORE.local.get('overrides'), STORE.local.get('snapshots')]);
     if (cached && cached.payload) {
       state.overrides = ov || {}; state.snapshots = sn || {};
@@ -2266,7 +2273,7 @@ window.APP = (() => {
   }
 
   async function refresh() {
-    if (state.loading) return;
+    if (state.loading || state.meta.mode === 'static') return;
     state.loading = true; state.meta.syncing = true; renderHeader();
     const P = window.PLAN, today = F.today();
     const txStart = F.addDays([P.planStart, F.monthStart(today)].sort()[0], -P.match.days);
@@ -2326,10 +2333,11 @@ window.APP = (() => {
       else { b.className = 'badge stale'; b.textContent = `Stale · ${Math.round(ageH / 24)}d old`; }
     }
     else if (m.mode === 'demo') { b.className = 'badge demo'; b.textContent = 'Demo data'; }
+    else if (m.mode === 'static') { b.className = 'badge demo'; b.textContent = 'Snapshot · read-only'; }
     else if (m.partial) { b.className = 'badge stale'; b.textContent = 'Live · partial'; }
     else { b.className = 'badge live'; b.textContent = 'Live · PocketSmith'; }
     const stamp = m.fetchedAt ? `${F.toISO(m.fetchedAt) === F.today() ? 'today' : F.fmtDate(F.toISO(m.fetchedAt), { year: false })} ${F.fmtTime(m.fetchedAt)}` : '';
-    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `PocketSmith pulled ${stamp}` : '';
+    document.getElementById('refreshed').textContent = (state.loading || m.syncing) && state.progress ? state.progress : m.fetchedAt ? `${m.mode === 'static' ? 'Balances as of' : 'PocketSmith pulled'} ${stamp}` : '';
     document.getElementById('refresh').disabled = state.loading;
     document.title = `${ROUTES.find(x => x[0] === r)[1]} · Command`;
   }
@@ -2365,7 +2373,7 @@ window.APP = (() => {
 
   function footer() {
     const m = state.meta;
-    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : API.sourceLabel || 'PocketSmith API via local proxy'}${state.raw && state.raw.syncedBy === 'routine' ? ' · data written by the scheduled sync' : ''} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
+    return `<div class="footer"><span>Live balances are truth; plan figures are targets. <span class="ast">*</span> marks an assumption or estimate — edit <span class="mono">js/plan.js</span> to true-up.</span><span>${m.mode === 'demo' ? 'Demo fixtures' : m.mode === 'static' ? 'Read-only snapshot for sharing — balances do not update' : API.sourceLabel || 'PocketSmith API via local proxy'}${state.raw && state.raw.syncedBy === 'routine' ? ' · data written by the scheduled sync' : ''} · user ${PLAN.userId} · ${state.ctx ? state.ctx.txs.length + ' transactions loaded' : ''}</span></div>`;
   }
 
   function renderSetup(err) {
@@ -2423,7 +2431,7 @@ window.APP = (() => {
   const MANUAL_STALE_DAYS = 7;
   function manualAccounts() { return (state.ctx ? state.ctx.accounts : []).filter(a => a.synthetic && a.balance < -0.005).map(a => ({ a, age: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today), stale: F.daysBetween(a.balanceDate || PLAN.planStart, state.ctx.today) >= MANUAL_STALE_DAYS })); }
   function manualSection() {
-    const list = manualAccounts(); if (!list.length) return '';
+    const list = manualAccounts(); if (!list.length || state.meta.mode === 'static') return '';
     const stale = list.filter(x => x.stale).length;
     return `<div class="eyebrow" style="margin-top:14px">Balances PocketSmith can’t see</div>
       <div class="small ${stale ? 'amber' : 'muted'}" style="margin:2px 0 8px">${stale ? `${stale} of these ${stale === 1 ? 'is' : 'are'} more than a week old — open the app and type what it shows today.` : 'All updated within the last week. Change one if it has moved.'}</div>
