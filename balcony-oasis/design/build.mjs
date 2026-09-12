@@ -551,7 +551,7 @@ const page = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Balcony Oasis</title>
+<title>Balcony Oasis Mockups</title>
 ${FONT_LINK}
 <style>
   :root { color-scheme: light; --bg: #efeae0; --ink: #2a2723; --muted: #7a7369; }
@@ -564,7 +564,7 @@ ${FONT_LINK}
   nav a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.3); }
   nav a:hover { border-bottom-color: currentColor; }
   @media (max-width: 1160px) { .board > div { width: 100% !important; } .board [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; } }
-  @media (max-width: 720px) { .board [style*="grid-template-columns"] { grid-template-columns: 1fr !important; } .board h1 { font-size: 44px !important; } }
+  @media (max-width: 720px) { .board > div { padding: 28px 16px 32px !important; } .board [style*="grid-template-columns"] { grid-template-columns: 1fr !important; } .board h1 { font-size: 42px !important; } .board header p:first-of-type { font-size: 20px !important; } }
 </style>
 </head>
 <body>
