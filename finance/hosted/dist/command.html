@@ -195,9 +195,9 @@ window.PLAN = {
   owner: 'Sabino',
   planStart: '2026-09-07',           // total debt $120,561.66 on this date
   debtFreeDate: '2027-02-27',        // 🏁 planned: interest-bearing debt gone Jan 27; the 0% Discover balance cleared Feb 27 (promo runs to 2027-07-17)
-  startingDebt: -143574.16,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 + Discover $7,817.94 (both added 2026-09-11)
+  startingDebt: -149361.07,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 + Discover $7,817.94 (added 2026-09-11) + Jessica’s Citi 1991 $5,786.91 (added 2026-09-12)
   // Balances on planStart (from the PocketSmith feed that day) — the death-board bars measure against these
-  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56, discover: -7817.94 },
+  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56, discover: -7817.94, jess1991: -5786.91 },
 
   // ---- Accounts: PocketSmith container ids → role in the plan -------------
   checkingId: 5486598,
@@ -223,7 +223,10 @@ window.PLAN = {
       note: 'Interest (~7%) + failure-to-pay penalty (0.25%/mo on an installment plan) ≈ 10%/yr*. Paid from BofA checking, $400/mo.' },
     { id: 'discover', short: 'Discover (0% promo)', label: 'Discover card — 0% purchase promo to Jul 17, 2027', institution: 'Discover', role: 'display', apr: 0, order: 14,
       balance: -7817.94, asOf: '2026-09-11', promoEnds: '2027-07-17', standardApr: 0.2849,
-      note: 'True 0% (balance moves to 28.49% at expiry, no retroactive interest). $8,000 limit, nearly maxed — do not charge to it. Minimum ~$153/mo on the 14th.' }
+      note: 'True 0% (balance moves to 28.49% at expiry, no retroactive interest). $8,000 limit, nearly maxed — do not charge to it. Minimum ~$153/mo on the 14th.' },
+    { id: 'jess1991', short: 'Jess Citi 1991', label: 'Citi Diamond Preferred …1991 (Jessica) — 0% intro to Sep 28, 2026', institution: 'Citi', role: 'target', apr: 0, order: 6,
+      balance: -5786.91, asOf: '2026-09-12', promoEnds: '2026-09-28', standardApr: 0.2799,
+      note: 'True introductory APR (statement: “Introductory Rate Expires 09/28/26”, interest $0 YTD) — NOT deferred interest, so nothing is charged retroactively. From Sep 29 the remaining balance accrues at the go-to purchase APR, assumed 27.99%* until the October statement or the card agreement confirms it. $7,000 limit. Min $58 due the 1st.' }
   ],
 
   // ---- Recurring income (net-pay estimates*) ------------------------------
@@ -270,6 +273,7 @@ window.PLAN = {
       5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Was in grace (paid to $0 in July, no interest charges). The Sep 21 statement is NOT paid in full — the cash covers the larger 8018 instead — so interest starts Sep 21* (~$220 once). Killed Oct 27.' },
       5486658:   { due: '2026-09-28', dueDay: 28, closeDay: 2, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196, payee: /citi/i, grace: true, note: 'IN GRACE (Sep statement: previous balance paid in full, interest $0). Killed Sep 27, the day before the due date — no interest ever.' },
       5486703:   { due: '2026-09-22', dueDay: 22, closeDay: 25, statement: 12373.88, minDue: 0, minEst: 325, lastMin: 325, payee: /chase/i,          note: 'Chase app 2026-09-11: due Sep 22, closes Sep 25, statement $12,698.88 (Aug 25). Sep minimum $325 paid Sep 4.' },
+      jess1991:  { due: '2026-10-01', dueDay: 1,  closeDay: 3, statement: 5786.91, minDue: 58, minEst: 58, lastMin: 58, payee: /citi/i, note: 'Jessica’s card. 0% intro APR expires Sep 28, 2026 (true promo, no retroactive interest); ~27.99%* after. Killed Nov 27 / Dec 15 in avalanche order.' },
       discover:  { due: '2026-09-14', dueDay: 14, statement: null,     minDue: 0,   minEst: 153, lastMin: 153,    billed: true,                    note: '0% promo to Jul 17, 2027 — no interest at all; minimum is already a bill.' }
     }
   },
@@ -303,16 +307,18 @@ window.PLAN = {
 
     { date: '2026-11-27', account: 5486678, amount: 300,     kill: true, note: 'PAYOFF — Amex Biz Plat tail (pay live balance)' },
     { date: '2026-11-27', account: 5486683, amount: 18900,   kill: true, note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
-    { date: '2026-11-27', account: 5486703, amount: 5650,                note: 'Remainder → Sapphire' },
+    { date: '2026-11-27', account: 'jess1991', amount: 5600,             note: 'Bulk of Jessica’s Citi 1991 (27.99%* since Sep 29) — the tail dies Dec 15' },
 
-    { date: '2026-12-15', account: 5486703, amount: 2450,                note: '' },
+    { date: '2026-12-15', account: 'jess1991', amount: 300,  kill: true, note: 'PAYOFF — Jessica’s Citi 1991 tail (pay live balance)' },
+    { date: '2026-12-15', account: 5486703, amount: 2150,                note: 'Remainder → Sapphire' },
 
-    { date: '2026-12-27', account: 5486703, amount: 4900,    kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
+    { date: '2026-12-27', account: 5486703, amount: 10900,   kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000,   kill: true, note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
-    { date: '2026-12-27', account: 'irs',   amount: 9000,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
+    { date: '2026-12-27', account: 'irs',   amount: 3000,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
 
-    { date: '2027-01-15', account: 'irs',   amount: 5100,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
+    { date: '2027-01-15', account: 'irs',   amount: 4400,                note: 'Jessica’s check → IRS' },
 
+    { date: '2027-01-27', account: 'irs',   amount: 6750,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
     { date: '2027-01-27', account: 5486718, amount: 8950,    kill: true, note: 'PAYOFF — Wells Fargo auto (~$8,950*). Request payoff quote. 🏁 Interest-bearing debt gone' },
     { date: '2027-01-27', account: null,    amount: 750,                 note: 'Interest true-up buffer* — sweeps residual card interest and payoff-quote variance' },
 
@@ -345,12 +351,12 @@ window.PLAN = {
   //      employer match, market growth.* --------------------------------------
   projection: [
     // Revised 2026-09-11 night (grace cards + 8018 living float)*: debt figures include the ~$4,500–5,500 living float on the 8018, paid in full monthly at 0%. savings from Feb ’27 at $29,600/mo after the Discover payoff.
-    { label: 'Now',     date: '2026-09-07', debt: -143574, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -116000, savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -84300,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -55600,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -26400,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: -12400,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
+    { label: 'Now',     date: '2026-09-07', debt: -149361, savings: 0 },
+    { label: 'Sep ’26', date: '2026-09-30', debt: -121800, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -90200,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -61600,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -32500,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: -12500,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
     { label: 'Feb ’27', date: '2027-02-28', debt: -5400,       savings: 32500,  note: 'Discover cleared' },
     { label: 'Mar ’27', date: '2027-03-31', debt: -4500,       savings: 62100 },
     { label: 'Apr ’27', date: '2027-04-30', debt: -4500,       savings: 91700 },
@@ -456,7 +462,7 @@ window.ENGINE = (() => {
     const extra = (P.extraDebts || []).map(x => {
       const ov = overrides && overrides[x.id];
       const useOv = ov && typeof ov.balance === 'number' && (ov.asOf || '') >= (x.asOf || '');
-      return { id: x.id, title: x.label, short: x.short, label: x.label, type: 'loans', role: x.role || 'loan', order: x.order ?? 50, apr: x.apr ?? null, payoffQuote: !!x.payoffQuote,
+      return { id: x.id, title: x.label, short: x.short, label: x.label, type: 'loans', role: x.role || 'loan', order: x.order ?? 50, apr: x.apr ?? null, promoEnds: x.promoEnds || null, standardApr: x.standardApr ?? null, payoffQuote: !!x.payoffQuote,
         balance: useOv ? ov.balance : x.balance, balanceDate: useOv ? ov.asOf : x.asOf, feedBalance: x.balance, feedDate: x.asOf, override: useOv ? ov : null,
         institution: x.institution || '', colour: null, number: '', isDebt: true, isCash: false, isSavings: false, synthetic: true, note: x.note || '' };
     });
@@ -631,6 +637,9 @@ window.ENGINE = (() => {
   function dateInWindow(d, target, days) { return Math.abs(F.daysBetween(d, target)) <= days; }
   function clampDay(monthISO, day) { const dim = F.daysInMonth(monthISO + '-01'); return `${monthISO}-${String(Math.min(day, dim)).padStart(2, '0')}`; }
 
+  // Effective APR on a date: promo rate until promoEnds, then the standard rate*.
+  function aprOn(acct, d) { if (acct.promoEnds && acct.standardApr != null && d > acct.promoEnds) return acct.standardApr; return acct.apr || 0; }
+
   // ---- Card statements / minimum payments ----------------------------------
   function killDateOf(id) { return P.payments.filter(p => p.account === id && p.kill).map(p => p.date).sort()[0] || null; }
   function cardId(k) { return isNaN(k) ? k : Number(k); }
@@ -683,7 +692,8 @@ window.ENGINE = (() => {
       const kill = killDateOf(id); const killItem = sched.items.find(i => i.account === id && i.kill) || null;
       const bal = Math.max(0, -acct.balance); const dead = bal <= 0.005;
       const isFloat = P.living.card === id; const grace = !!s.grace;
-      const perDay = grace ? 0 : bal * (acct.apr || 0) / 365;
+      const perDay = grace ? 0 : bal * aprOn(acct, today) / 365;
+      const promoActive = (acct.apr || 0) === 0 && (!acct.promoEnds || today <= acct.promoEnds);
       const due = s.due && s.due >= today ? s.due : nextDueFrom(today, s.dueDay);
       const close = s.closeDay ? (() => { let c = clampDay(due.slice(0, 7), s.closeDay); if (c >= due) { const m = F.parseISO(due.slice(0, 7) + '-01'); m.setMonth(m.getMonth() - 1); c = clampDay(`${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`, s.closeDay); } return c; })() : F.addDays(due, -25);
       const inCurrentCycle = s.due === due;
@@ -703,7 +713,7 @@ window.ENGINE = (() => {
         if (s.closeDay) { let ym = deathDate.slice(0, 7); for (let k = 0; k < 2 && !graceBack; k++) { const c = clampDay(ym, s.closeDay); if (c > deathDate) graceBack = c; const m = F.parseISO(ym + '-01'); m.setMonth(m.getMonth() + 1); ym = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(2, '0')}`; } }
         else { let x = deathDate; for (let k = 0; k < 3 && !graceBack; k++) { const dd = nextDueFrom(F.addDays(x, 1), s.dueDay); const c = F.addDays(dd, -25); if (c > deathDate) graceBack = c; x = dd; } }
       }
-      cards.push({ id, acct, s, grace, isFloat, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && (acct.apr || 0) > 0, promo: (acct.apr || 0) === 0 && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
+      cards.push({ id, acct, s, grace, isFloat, statement: s.statement, due, close, minDue: s.minDue, minEst: s.minEst, bal, dead, perDay, kill, killAmount: killItem ? killItem.amount : null, action, actionKind, deathDate, graceBack, carrying: !dead && aprOn(acct, today) > 0, promo: promoActive && !dead, interest: sim ? sim.interest : 0, inferred: !!s.inferred, note: s.note || '' });
       // calendar entries: each due date until the kill, plus the kill itself
       if (!dead && s.dueDay && !isFloat) {
         let d = due; let n = 0;
@@ -821,12 +831,11 @@ window.ENGINE = (() => {
     const planned = Object.values(byDate).reduce((s, v) => s + v, 0);
     if (bal <= 0.005) return { acct, start, deathDate: 'paid', residual: 0, shortfall: 0, overpay: 0, interest: 0, path, alreadyDead: true, planned, lastPay: null };
     const SC = (P.statements && P.statements.cards) || {}; const grace = !!(SC[acct.id] && SC[acct.id].grace); const isFloat = P.living.card === acct.id;
-    const r = grace ? 0 : (acct.apr || 0) / 365;
     let interest = 0, deathDate = null, overpay = 0, d = ctx.today;
     const dates = Object.keys(byDate).sort();
     const lastPay = dates.length ? dates[dates.length - 1] : null;
     while (d <= horizon) {
-      const acc = bal * r; interest += acc; bal += acc;
+      const acc = bal * (grace ? 0 : aprOn(acct, d) / 365); interest += acc; bal += acc;
       if (isFloat && d > ctx.today && onCard(d)) bal += P.living.monthly / F.daysInMonth(d);
       if (byDate[d]) {
         bal -= byDate[d]; path.push({ date: d, balance: Math.max(0, bal), payment: byDate[d] });
@@ -903,7 +912,8 @@ window.ENGINE = (() => {
     const debts = ctx.accounts.filter(a => a.isDebt && a.balance < 0);
     const bal = Object.fromEntries(debts.map(a => [a.id, -a.balance]));
     const SC = (P.statements && P.statements.cards) || {};
-    const apr = Object.fromEntries(debts.map(a => [a.id, SC[a.id] && SC[a.id].grace ? 0 : (a.apr || 0) / 365]));
+    const byIdD = Object.fromEntries(debts.map(a => [a.id, a]));
+    const aprAt = (id, d) => SC[id] && SC[id].grace ? 0 : aprOn(byIdD[id], d) / 365;
     const chk = ctx.byId[P.checkingId];
     let cash = chk ? chk.balance : 0;
     const onDate = {}; // date → { pay: [{account, amount, label, kill}], income: [{amount, label}], bills: [{amount, label, account}] }
@@ -922,7 +932,7 @@ window.ENGINE = (() => {
     }
     const series = [], events = [];
     for (let d = today, k = 0; d <= end; d = F.addDays(d, 1), k++) {
-      if (k > 0) { for (const id in bal) bal[id] += bal[id] * apr[id]; const per = P.living.monthly / F.daysInMonth(d); if (onCard(d)) { if (bal[P.living.card] != null) bal[P.living.card] += per; } else cash -= per; }
+      if (k > 0) { for (const id in bal) bal[id] += bal[id] * aprAt(id, d); const per = P.living.monthly / F.daysInMonth(d); if (onCard(d)) { if (bal[P.living.card] != null) bal[P.living.card] += per; } else cash -= per; }
       const s = onDate[d];
       if (s) {
         for (const i of s.income) cash += i.amount;
@@ -1983,13 +1993,13 @@ VIEWS.statements = {
       const stmt = c.statement != null ? `${F.money(c.statement)}<span class="sub">due ${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''} · closes ${c.s.closeDay ? '' : '~'}${F.fmtDate(c.close, { year: false })}${c.s.closeDay ? '' : UI.ast()}</span>` : `<span class="muted">—</span><span class="sub">next due ~${F.fmtDate(c.due, { year: false })}${c.inferred ? UI.ast() : ''}</span>`;
       const min = c.dead ? '—' : c.s.due === c.due ? (c.minDue > 0 ? `<span class="amber">${F.money(c.minDue)}</span><span class="sub">still owed</span>` : `<span class="pos">$0</span><span class="sub">paid</span>`) : `${F.money(c.minEst)}${UI.ast()}<span class="sub">est.</span>`;
       const status = c.dead ? UI.chip('done', 'dead') : c.isFloat ? UI.chip('ok', 'living float') : c.grace ? UI.chip('ok', 'in grace') : c.promo ? UI.chip('ok', '0% promo') : `<span class="chip gap">carrying</span>`;
-      const stops = c.dead ? '<span class="muted">already</span>' : c.grace ? `<span class="pos">never charged</span><span class="sub">while each statement is paid in full</span>` : c.promo ? `<span class="muted">no interest</span><span class="sub">promo to ${F.fmtDate(a.promoEnds || '2027-07-17', { year: true })}</span>` : c.deathDate ? `<span class="gold num">☠ ${F.fmtDate(c.deathDate, { year: false })}</span><span class="sub">≈ ${F.money(c.interest)} more interest${UI.ast()}</span>` : '<span class="neg">underfunded</span>';
+      const stops = c.dead ? '<span class="muted">already</span>' : c.grace ? `<span class="pos">never charged</span><span class="sub">while each statement is paid in full</span>` : c.promo ? `<span class="muted">no interest</span><span class="sub">promo to ${F.fmtDate(a.promoEnds || '2027-07-17', { year: true })}${a.standardApr ? ` · then ${(a.standardApr * 100).toFixed(2)}%${UI.ast()}` : ''}</span>` : c.deathDate ? `<span class="gold num">☠ ${F.fmtDate(c.deathDate, { year: false })}</span><span class="sub">≈ ${F.money(c.interest)} more interest${UI.ast()}</span>` : '<span class="neg">underfunded</span>';
       const grace = c.dead ? '—' : c.grace ? '<span class="pos">now</span>' : c.graceBack ? `${F.fmtDate(c.graceBack, { year: false })}${UI.ast()}<span class="sub">trailing stmt closes · pay it in full</span>` : '—';
       return `<tr class="${c.dead ? 'dead' : ''}">
         <td><b>${F.esc(a.short)}</b><span class="sub">${F.esc(a.label || '')}</span></td>
         <td class="num">${stmt}</td>
         <td class="num">${min}</td>
-        <td class="num neg">${F.money(-c.bal)}<span class="sub">${a.apr ? `${(a.apr * 100).toFixed(2)}% · ${F.money(c.perDay)}/day` : '0%'}</span></td>
+        <td class="num neg">${F.money(-c.bal)}<span class="sub">${c.perDay > 0 ? `${((a.promoEnds && ctx.today > a.promoEnds ? a.standardApr : a.apr) * 100).toFixed(2)}% · ${F.money(c.perDay)}/day` : a.promoEnds && a.standardApr ? `0% to ${F.fmtDate(a.promoEnds, { year: false })}, then ${(a.standardApr * 100).toFixed(2)}%${UI.ast()}` : '0%'}</span></td>
         <td>${status}</td>
         <td class="small ${c.actionKind === 'kill' || c.actionKind === 'float' || c.actionKind === 'grace' ? 'gold' : c.actionKind === 'min' ? 'amber' : 'muted'}">${F.esc(c.action)}</td>
         <td class="num">${stops}</td>

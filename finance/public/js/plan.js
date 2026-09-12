@@ -8,9 +8,9 @@ window.PLAN = {
   owner: 'Sabino',
   planStart: '2026-09-07',           // total debt $120,561.66 on this date
   debtFreeDate: '2027-02-27',        // 🏁 planned: interest-bearing debt gone Jan 27; the 0% Discover balance cleared Feb 27 (promo runs to 2027-07-17)
-  startingDebt: -143574.16,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 + Discover $7,817.94 (both added 2026-09-11)
+  startingDebt: -149361.07,          // cards + loans $120,561.66 at plan start + IRS $15,194.56 + Discover $7,817.94 (added 2026-09-11) + Jessica’s Citi 1991 $5,786.91 (added 2026-09-12)
   // Balances on planStart (from the PocketSmith feed that day) — the death-board bars measure against these
-  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56, discover: -7817.94 },
+  startingBalances: { 5486598: 1025.72, 5486658: -19497.07, 5486668: -10801.51, 5486678: -16718.31, 5486683: -18998.69, 5486653: -17119.14, 5486703: -12962.08, 5486673: -180.00, 5486688: -29.99, 5486693: 0, 5486593: 0, 5486708: -13736.53, 5486718: -10518.34, irs: -15194.56, discover: -7817.94, jess1991: -5786.91 },
 
   // ---- Accounts: PocketSmith container ids → role in the plan -------------
   checkingId: 5486598,
@@ -36,7 +36,10 @@ window.PLAN = {
       note: 'Interest (~7%) + failure-to-pay penalty (0.25%/mo on an installment plan) ≈ 10%/yr*. Paid from BofA checking, $400/mo.' },
     { id: 'discover', short: 'Discover (0% promo)', label: 'Discover card — 0% purchase promo to Jul 17, 2027', institution: 'Discover', role: 'display', apr: 0, order: 14,
       balance: -7817.94, asOf: '2026-09-11', promoEnds: '2027-07-17', standardApr: 0.2849,
-      note: 'True 0% (balance moves to 28.49% at expiry, no retroactive interest). $8,000 limit, nearly maxed — do not charge to it. Minimum ~$153/mo on the 14th.' }
+      note: 'True 0% (balance moves to 28.49% at expiry, no retroactive interest). $8,000 limit, nearly maxed — do not charge to it. Minimum ~$153/mo on the 14th.' },
+    { id: 'jess1991', short: 'Jess Citi 1991', label: 'Citi Diamond Preferred …1991 (Jessica) — 0% intro to Sep 28, 2026', institution: 'Citi', role: 'target', apr: 0, order: 6,
+      balance: -5786.91, asOf: '2026-09-12', promoEnds: '2026-09-28', standardApr: 0.2799,
+      note: 'True introductory APR (statement: “Introductory Rate Expires 09/28/26”, interest $0 YTD) — NOT deferred interest, so nothing is charged retroactively. From Sep 29 the remaining balance accrues at the go-to purchase APR, assumed 27.99%* until the October statement or the card agreement confirms it. $7,000 limit. Min $58 due the 1st.' }
   ],
 
   // ---- Recurring income (net-pay estimates*) ------------------------------
@@ -83,6 +86,7 @@ window.PLAN = {
       5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Was in grace (paid to $0 in July, no interest charges). The Sep 21 statement is NOT paid in full — the cash covers the larger 8018 instead — so interest starts Sep 21* (~$220 once). Killed Oct 27.' },
       5486658:   { due: '2026-09-28', dueDay: 28, closeDay: 2, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196, payee: /citi/i, grace: true, note: 'IN GRACE (Sep statement: previous balance paid in full, interest $0). Killed Sep 27, the day before the due date — no interest ever.' },
       5486703:   { due: '2026-09-22', dueDay: 22, closeDay: 25, statement: 12373.88, minDue: 0, minEst: 325, lastMin: 325, payee: /chase/i,          note: 'Chase app 2026-09-11: due Sep 22, closes Sep 25, statement $12,698.88 (Aug 25). Sep minimum $325 paid Sep 4.' },
+      jess1991:  { due: '2026-10-01', dueDay: 1,  closeDay: 3, statement: 5786.91, minDue: 58, minEst: 58, lastMin: 58, payee: /citi/i, note: 'Jessica’s card. 0% intro APR expires Sep 28, 2026 (true promo, no retroactive interest); ~27.99%* after. Killed Nov 27 / Dec 15 in avalanche order.' },
       discover:  { due: '2026-09-14', dueDay: 14, statement: null,     minDue: 0,   minEst: 153, lastMin: 153,    billed: true,                    note: '0% promo to Jul 17, 2027 — no interest at all; minimum is already a bill.' }
     }
   },
@@ -116,16 +120,18 @@ window.PLAN = {
 
     { date: '2026-11-27', account: 5486678, amount: 300,     kill: true, note: 'PAYOFF — Amex Biz Plat tail (pay live balance)' },
     { date: '2026-11-27', account: 5486683, amount: 18900,   kill: true, note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
-    { date: '2026-11-27', account: 5486703, amount: 5650,                note: 'Remainder → Sapphire' },
+    { date: '2026-11-27', account: 'jess1991', amount: 5600,             note: 'Bulk of Jessica’s Citi 1991 (27.99%* since Sep 29) — the tail dies Dec 15' },
 
-    { date: '2026-12-15', account: 5486703, amount: 2450,                note: '' },
+    { date: '2026-12-15', account: 'jess1991', amount: 300,  kill: true, note: 'PAYOFF — Jessica’s Citi 1991 tail (pay live balance)' },
+    { date: '2026-12-15', account: 5486703, amount: 2150,                note: 'Remainder → Sapphire' },
 
-    { date: '2026-12-27', account: 5486703, amount: 4900,    kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
+    { date: '2026-12-27', account: 5486703, amount: 10900,   kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000,   kill: true, note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
-    { date: '2026-12-27', account: 'irs',   amount: 9000,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
+    { date: '2026-12-27', account: 'irs',   amount: 3000,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
 
-    { date: '2027-01-15', account: 'irs',   amount: 5100,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
+    { date: '2027-01-15', account: 'irs',   amount: 4400,                note: 'Jessica’s check → IRS' },
 
+    { date: '2027-01-27', account: 'irs',   amount: 6750,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
     { date: '2027-01-27', account: 5486718, amount: 8950,    kill: true, note: 'PAYOFF — Wells Fargo auto (~$8,950*). Request payoff quote. 🏁 Interest-bearing debt gone' },
     { date: '2027-01-27', account: null,    amount: 750,                 note: 'Interest true-up buffer* — sweeps residual card interest and payoff-quote variance' },
 
@@ -158,12 +164,12 @@ window.PLAN = {
   //      employer match, market growth.* --------------------------------------
   projection: [
     // Revised 2026-09-11 night (grace cards + 8018 living float)*: debt figures include the ~$4,500–5,500 living float on the 8018, paid in full monthly at 0%. savings from Feb ’27 at $29,600/mo after the Discover payoff.
-    { label: 'Now',     date: '2026-09-07', debt: -143574, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -116000, savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -84300,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -55600,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -26400,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: -12400,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
+    { label: 'Now',     date: '2026-09-07', debt: -149361, savings: 0 },
+    { label: 'Sep ’26', date: '2026-09-30', debt: -121800, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -90200,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -61600,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -32500,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: -12500,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
     { label: 'Feb ’27', date: '2027-02-28', debt: -5400,       savings: 32500,  note: 'Discover cleared' },
     { label: 'Mar ’27', date: '2027-03-31', debt: -4500,       savings: 62100 },
     { label: 'Apr ’27', date: '2027-04-30', debt: -4500,       savings: 91700 },
