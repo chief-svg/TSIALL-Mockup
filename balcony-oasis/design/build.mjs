@@ -444,7 +444,7 @@ const finalPlan = {
   anchorsEl: (e) => tree('cypress', 60, EL.floor + 4, { pot: 'stone', potW: 80, potH: 86, height: 300 }, 4) + tree('cypress', 118, EL.floor + 22, { pot: 'stone', potW: 84, potH: 90, height: 320 }, 12) + tree('olive', 972, EL.floor + 20, { pot: 'stone', potW: 120, potH: 110 }, 3)
 ,
   plan: {
-    door: { x: 1, w: 56, openAt: 'left', label: 'sliding door (width approximate), opening toward the near return' },
+    door: { x: 1, w: 56, openAt: 'right', label: 'sliding door (width approximate); the panel beside the sofa is the one that opens' },
     longTroughs: [[3, 48], [57, 48], [111, 36]], troughDepth: 11,
     returns: [],
     returnHangers: [[L, 27, 8, 20]],
@@ -452,7 +452,6 @@ const finalPlan = {
     anchors: [{ x: 152, y: 14, r: 9, fill: '#8f9a80', label: 'olive' }, { x: 10, y: 23, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }, { x: 10, y: 37, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }],
     furniture: [
       { kind: 'sofaWall', x: 57, y: 40.5, w: 78.5, h: 33.5, label: 'your sofa, 78.5" × 33.5"' },
-      { kind: 'side', x: 50, y: 66, r: 6 },
       { kind: 'chair', x: 131, y: 31, rot: 90, size: 29 },
       { kind: 'pot', x: 143, y: 67, r: 6, fill: '#6f8f58', label: 'rsm' }, { kind: 'pot', x: 155, y: 67, r: 6, fill: '#6f8f58', label: 'rsm' },
     ],
@@ -465,7 +464,7 @@ const finalPlan = {
   ],
   materials: [['Limestone-tone fiberglass', '#d9d1c0'], ['Your black iron, white piping', '#26282a'], ['Lavender linen pillows', '#9a93bf'], ['Oatmeal ticking stripe', '#e9e4d6'], ['Olive silver', '#a9b39a']],
   water: 'Every rail-line planter is self-watering with a sealed reservoir and fill tube, so nothing exits the bottom. The seven over-rail planters are the reservoir type with the gauge on the inside face. Behind the sofa there is room for a slim 5-gallon reservoir with a battery pump on a pre-dawn timer feeding quarter-inch line along the base of the troughs; nothing is watered by hose, and the concrete stays dry.',
-  list: ['2 × 48" + 1 × 36" self-watering troughs, 11" deep, white', '7 × 24" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '11 × boxwood “Wintergreen”, 3-gal · 6 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '12" round drink table, stone or zinc top, black base', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
+  list: ['2 × 48" + 1 × 36" self-watering troughs, 11" deep, white', '7 × 24" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '11 × boxwood “Wintergreen”, 3-gal · 6 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
 };
 
 
@@ -527,7 +526,7 @@ function buildBody() {
     ['4 · Set the troughs', 'Place the Mayne boxes 2–3" back from the mesh on rubber pads (and trays if needed), overflow holes facing your floor. Fill to an inch below the rim with mix, water once from the top to settle it, then only ever fill the reservoir through the tube.'],
     ['5 · Plant the base', 'Jasmine first, at the back edge against the mesh, canes fanned and tied into the grid at 45°. Boxwood in front, 12" apart, root balls roughened. Gravel on top. Clip the boxwood flat at 16–18" the following spring and again in August.'],
     ['6 · Hang the rail planters', 'Set the brackets to 3", hang each planter with its body on your side of the rail, lavender in the middle, trailing plants at the front edge. Once the dichondra and lantana are 8" long, thread them through the mesh to the outside.'],
-    ['7 · The corners', 'Olive in the urn with 2" of gravel on top and the saucer under it, in the far corner in front of the last trough. Cypress in the tall pots at the door end. Rosemary in your charcoal pots on the wall strip past the sofa. Turn the chair at the far return to face back toward the sofa, and bring in the drink table and pillows.'],
+    ['7 · The corners', 'Olive in the urn with 2" of gravel on top and the saucer under it, in the far corner in front of the last trough. Cypress in the tall pots at the door end. Rosemary in your charcoal pots on the wall strip past the sofa. Turn the chair at the far return to face back toward the sofa, and bring in the pillows.'],
     ['8 · The watering routine', 'Troughs: fill by the gauge, roughly every 5–7 days in summer, every 2 weeks in spring and fall, every 3 weeks in winter. Rail planters: 1 qt reservoir, so daily in July and August, every 2–3 days otherwise. Olive, cypress, rosemary: a measured gallon or two once a week in summer, then empty the saucers after rain. Nothing is ever watered with a hose.'],
     ['9 · Later, if you want it', 'A gravity Blumat kit or a pump-on-timer kit can feed every reservoir from a hidden 5-gal tank so you can leave for two weeks in August. Ewing Irrigation and SiteOne in San Antonio carry the tubing and fittings; Sustainable Village sells the Blumat kits. Skip it the first season: the reservoirs already do most of the work.'],
   ].map(([h, body]) => card(h, P(body))).join('');
@@ -569,9 +568,9 @@ function finalBody(c, imgPrefix = '') {
       <p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.88">${p}</p></div>`).join('');
   const list = c.list.map(i => `<li style="padding:6px 0;border-bottom:1px solid rgba(128,128,128,.25);font-size:13px;line-height:1.4">${i}</li>`).join('');
   const furniture = [
-    ['The sofa', 'Stays on the wall beside the door, where it is now. At 78.5" long it runs from the door frame to about 28" short of the far return. It fixes everything else: 11"-deep troughs on the long rail keep a 30" path in front of the cushions, the drink table lands at its door-end arm, and the strip of wall past its far arm takes your two charcoal pots.'],
+    ['The sofa', 'Stays on the wall beside the door, where it is now. At 78.5" long it runs from the door frame to about 28" short of the far return. It fixes everything else: 11"-deep troughs on the long rail keep a 30" path in front of the cushions, the door panel beside it is the one that opens so that arm stays clear, and the strip of wall past its far arm takes your two charcoal pots.'],
     ['The armchair', 'At 29" square it stays against the far return, where it is now, turned to face back down the balcony toward the sofa and angled a little toward the view. The olive urn takes the corner beside it. Your two charcoal pots move to the wall strip between the sofa and the return, with clipped rosemary in them.'],
-    ['Pillows and a table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking-stripe pillow on the sofa, and a 12" stone-topped drink table at the door-end arm of the sofa so a glass has somewhere to land.'],
+    ['Pillows, and no table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking-stripe pillow on the sofa. There is no room for a side table without blocking the door opening or the path, so a tray on the sofa cushion does that job.'],
   ].map(([h, p]) => `<div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:${t.text}">${h}</h3><p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${p}</p></div>`).join('');
   return `<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:${t.bg};color:${t.text};font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:26px">
   <header style="display:flex;flex-direction:column;gap:8px">
@@ -596,13 +595,13 @@ function finalBody(c, imgPrefix = '') {
   <div style="display:flex;flex-direction:column;gap:8px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking back at the wall</h2>
     <div style="border:1px solid rgba(128,128,128,.3);background:#9a9b98">${wallElevation(c)}</div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at right with its opening side toward the near return; your sofa to its left with pillows, a drink table and a wall lantern; the rosemary pots on the wall strip at far left; olive urn (left) and cypress pair (right) in the foreground at the rail corners</span><span>6 px per inch</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at right with its opening panel on the sofa side; your sofa to its left with pillows and a wall lantern; the rosemary pots on the wall strip at far left; olive urn (left) and cypress pair (right) in the foreground at the rail corners</span><span>6 px per inch</span></div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px;align-items:start">
     <div style="display:flex;flex-direction:column;gap:10px">
       <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Floor plan, 74" × 162"</h2>
       <div style="background:${t.panel};padding:8px">${plan(c.el, { pot: c.pot, hedgeTop: c.hedgeTop, ...c.plan })}</div>
-      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is drawn at an estimated 56" beside the sofa with its opening toward the near return; the wall strip between the sofa and the far return is scaled from the photos at about 28".</p>
+      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is drawn at an estimated 56" beside the sofa; the panel next to the sofa is the one that opens; the wall strip between the sofa and the far return is scaled from the photos at about 28".</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:22px">
       <div style="display:grid;grid-template-columns:repeat(1, minmax(0, 1fr));gap:16px">${furniture}</div>
@@ -660,10 +659,10 @@ function wallElevation(c) {
   // door: mirrored plan position (plan x 82..152 from return A) -> from the left when facing the wall
   const dX = x0 + (L - 57) * IN, dW = 56 * IN, dTop = floor - 84 * IN;
   s += `<rect x="${dX - 6}" y="${dTop - 6}" width="${dW + 12}" height="${84 * IN + 6}" fill="#2a2b2d"/>`;
-  s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/>`;
-  s += `<rect x="${dX + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/><rect x="${dX + dW / 2 + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/>`;
-  s += `<rect x="${dX + dW / 2 + 5}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
-  s += `<text x="${dX + 3 * dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
+  s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/>`;
+  s += `<rect x="${dX + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/><rect x="${dX + dW / 2 + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/>`;
+  s += `<rect x="${dX + dW / 2 - 10}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
+  s += `<text x="${dX + dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
   // sofa against the wall, right of the door, plus pillows
   const sofaX = x0 + (L - 135.5) * IN;
   s += spindleSofa(sofaX, floor - 2, e, 78.5);
@@ -671,7 +670,6 @@ function wallElevation(c) {
   // wall lantern above the sofa's near arm, side table at the door end
   const lx = sofaX + 78.5 * IN / 2 - 15, ly = floor - 46 * IN;
   s += `<rect x="${lx}" y="${ly}" width="30" height="46" rx="3" fill="none" stroke="${e.iron}" stroke-width="2.5"/><rect x="${lx + 6}" y="${ly + 8}" width="18" height="30" fill="#f2d9a0" opacity=".8"/><line x1="${lx + 15}" y1="${ly}" x2="${lx + 15}" y2="${ly - 18}" stroke="${e.iron}" stroke-width="2"/>`;
-  s += `<g transform="translate(${sofaX + 78.5 * IN + 20} ${floor + 6})"><ellipse cx="36" cy="${-22 * IN}" rx="36" ry="8" fill="${e.tableTop}" stroke="${e.iron}" stroke-width="1.5"/><line x1="36" y1="${-22 * IN + 8}" x2="36" y2="0" stroke="${e.iron}" stroke-width="3"/><path d="M12 0 Q36 -12 60 0" fill="none" stroke="${e.iron}" stroke-width="2.5"/></g>`;
   s += pot(122, floor - 14, 66, 48, 'charcoal') + hedge(94, floor - 14 - 48 - 58, 56, 64, ['#5f7f4b', '#6f8f58', '#7e9a68'], 77, 'ball') + pot(176, floor - 2, 54, 42, 'charcoal') + hedge(155, floor - 2 - 42 - 48, 44, 52, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball');
   // the olive urn stands in the far right corner (rail side), so it reads in the foreground here
   s += floorBand(e);
