@@ -310,7 +310,7 @@ function plan(c, o) {
   for (const rt of (o.returns ?? [[3, 40, 12, 32], [L - 15, 40, 12, 32]])) g += tr(...rt);
   // hanging planters (hang outside the rail line)
   const hb = (x, y, w, h) => `<rect x="${X(x)}" y="${Y(y)}" width="${w * s}" height="${h * s}" fill="${pot.fill}" stroke="${pot.edge}" stroke-width="1.2"/>`;
-  for (const p of [0, 54, 108]) { g += hb(p + 5, -8, 20, 8); g += hb(p + 29, -8, 20, 8); }
+  for (const [px, w] of (o.longHangers ?? [[5, 20], [29, 20], [59, 20], [83, 20], [113, 20], [137, 20]])) g += hb(px, -8, w, 8);
   for (const hp of (o.returnHangers ?? [[-8, 46, 8, 20], [L, 46, 8, 20]])) g += hb(...hp);
   // corner anchors
   const anc = (x, y, r, fill, label) => `<circle cx="${X(x)}" cy="${Y(y)}" r="${r * s}" fill="${fill}" stroke="${c.ink}" stroke-width="1"/><text x="${X(x)}" y="${Y(y) + 4}" text-anchor="middle" font-size="10" fill="#fff" font-family="Work Sans, system-ui, sans-serif">${label}</text>`;
@@ -441,14 +441,15 @@ const finalPlan = {
   mood: 'Your sofa stays where it is, between the fixed door panel and the short wall at the far end, and becomes the center of the room. At 33.5\" deep it takes nearly half the balcony, so the troughs on the long rail are 11\" deep and 30\" stays open in front of the cushions. The armchair takes the rail corner beside the door opening, where you have it now, and faces the sofa down the length of the balcony. Around them: a clipped boxwood hedge that swallows the lower rail, star jasmine laced through the mesh, purple plectranthus and silver dichondra spilling over the top cap, a bay laurel in a stone urn at the far corner beyond the sofa, and a pair of podocarpus columns on the return behind the armchair. Black iron and white piping against silver, green and lavender. Every plant here is chosen for a north-facing balcony under a roof: bright sky, almost no direct sun.',
   shortLast: true,
   troughsEl: [[24, 48], [74, 48]],
+  hangersEl: [[27, 28], [81, 28], [135, 28]],
   vinesEl: [28, 46, 68, 78, 100, 118],
   furnitureEl: (e) => spindleChair(EL.x0 + 131 * IN, EL.floor + 30, e),
   anchorsEl: (e) => tree('bay', 100, EL.floor + 36, { pot: 'stone', potW: 120, potH: 110 }, 3) + pot(178, EL.floor + 42, 56, 42, 'charcoal') + hedge(157, EL.floor + 42 - 42 - 50, 44, 54, ['#5f7f4b', '#6f8f58', '#7e9a68'], 79, 'ball') + pot(772, EL.floor + 40, 56, 42, 'charcoal') + hedge(751, EL.floor + 40 - 42 - 50, 44, 54, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball') + tree('cypress', 992, EL.floor + 12, { pot: 'stone', potW: 80, potH: 86, height: 300 }, 4) + tree('cypress', 1030, EL.floor + 30, { pot: 'stone', potW: 84, potH: 90, height: 320 }, 12),
   plan: {
     door: { x: 86.5, w: 54, openAt: 'right', label: 'sliding door (approx.): fixed panel by the sofa, opening panel to the right' },
-    longTroughs: [[24, 48], [74, 48]], troughDepth: 11,
+    longTroughs: [[24, 48], [74, 48]], troughDepth: 11, longHangers: [[13, 28], [67, 28], [121, 28]],
     returns: [],
-    returnHangers: [[L, 6, 8, 20]],
+    returnHangers: [[L, 4, 8, 28]],
     noPathLabel: true,
     anchors: [{ x: 12, y: 14, r: 9, fill: '#557a4d', label: 'bay' }, { x: 154, y: 44, r: 6.5, fill: '#3f5b3c', label: 'pod.' }, { x: 154, y: 58, r: 6.5, fill: '#3f5b3c', label: 'pod.' }],
     furniture: [
@@ -460,13 +461,13 @@ const finalPlan = {
   layers: [
     ['Hedge at the rail base', 'Japanese boxwood “Wintergreen”, clipped to 16–18", in two white 48" self-watering troughs, 11" deep, along the long rail between the bay laurel at the far corner and the armchair at the door-side corner. Boxwood is the one hedge that prefers exactly this light: bright shade, no afternoon sun. Neither return gets a trough: the far one is a hand\'s width from the sofa, the door-side one belongs to the chair and the columns.', '#5f7f4b'],
     ['On the mesh', 'Star jasmine, one plant per 24" of trough, tied into the 4" grid with green wire and trained sideways so the mesh fills in as a green wall behind the hedge. Evergreen and shade-tolerant; it flowers a little less on a north face but the April scent still arrives. Solid cover in two seasons.', '#fbfaf3'],
-    ['Over the rail', 'Seven 24" over-rail planters made for a 3" top cap: six on the long rail, two per panel, and one on the door-side return above the armchair. The lavender look in shade: Plectranthus “Mona Lavender” upright in the center (purple spikes, dark leaves with purple undersides, a shade plant), “Silver Falls” dichondra and white torenia trailing through the mesh in summer, white bacopa taking the torenia\'s place from October to April.', '#8b84b4'],
+    ['Over the rail', 'Four Vigoro Eden 28" deck-rail boxes, white, one centered on each of the three long-rail panels and one on the door-side return above the armchair. They straddle the 3" cap by a molded notch. The lavender look in shade: Plectranthus “Mona Lavender” upright in the center (purple spikes, dark leaves with purple undersides, a shade plant), “Silver Falls” dichondra and white torenia trailing through the mesh in summer, white bacopa taking the torenia\'s place from October to April.', '#8b84b4'],
     ['Anchors', 'A bay laurel (Laurus nobilis) clipped as a standard in a 24" stone urn at the far corner beyond the sofa\'s arm, standing on the floor in front of the first trough: the Provence kitchen tree, and content in shade. Two Podocarpus “Maki” columns in tall stone pots on the door-side return behind the armchair, the shade-tolerant stand-in for Italian cypress. Your two charcoal pots take clipped boxwood balls, one by the chair and one by the urn. Pea gravel on every planter.', '#8f9a80'],
   ],
   materials: [['Limestone-tone fiberglass', '#d9d1c0'], ['Your black iron, white piping', '#26282a'], ['Lavender linen pillows', '#9a93bf'], ['Oatmeal ticking stripe', '#e9e4d6'], ['Silver-green foliage', '#a9b39a']],
   light: 'The arrow on your map points almost due north, so the long rail faces north and the roof covers the balcony. In San Antonio that means no direct sun at all on the rail from October to March, and in summer only two soft hours of early-morning sun on the door-side return (it faces east-northeast) and about an hour of low, hot evening sun raking in from the west-northwest across the far corner before sunset. The rest of the day is bright open shade under a north sky. Boxwood and star jasmine are happy with that; lavender, olive, cypress, rosemary and lantana are not, so they are replaced below with plants that give the same look in shade. The roof also means nothing is ever rained on: no overflow trays are needed and every drop of water is the one you put in.',
-  water: 'Every rail-line planter is self-watering with a sealed reservoir and fill tube, so nothing exits the bottom. Because the balcony is roofed, rain never reaches the planters, so the overflow holes never run and no trays are needed. The seven over-rail planters are the reservoir type with the gauge on the inside face. Behind the sofa there is room for a slim 5-gallon reservoir with a battery pump on a pre-dawn timer feeding quarter-inch line along the base of the troughs; nothing is watered by hose, and the concrete stays dry.',
-  list: ['2 × 48" self-watering troughs, 11" deep, white', '7 × 24" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Podocarpus “Maki”, 5-gal', '1 × 24" stone urn + bay laurel standard, 15-gal', '8 × boxwood “Wintergreen”, 3-gal · 4 × star jasmine, 1-gal + green wire', '7 × Plectranthus “Mona Lavender”, 14 × “Silver Falls” dichondra, 14 × white torenia (summer) / white bacopa (winter)', '2 × boxwood balls for your existing charcoal pots', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
+  water: 'Every rail-line planter is self-watering with a sealed reservoir and fill tube, so nothing exits the bottom. Because the balcony is roofed, rain never reaches the planters, so the overflow holes never run and no trays are needed. The four rail boxes have no reservoir and no open drain (plug any holes they come with), so they get a measured quart at a time and a moisture meter instead of a gauge. Behind the sofa there is room for a slim 5-gallon reservoir with a battery pump on a pre-dawn timer feeding quarter-inch line along the base of the troughs; nothing is watered by hose, and the concrete stays dry.',
+  list: ['2 × 48" self-watering troughs, 11" deep, white', '4 × Vigoro Eden 28" deck-rail boxes, white', '2 × 24" tall stone pots + Podocarpus “Maki”, 5-gal', '1 × 24" stone urn + bay laurel standard, 15-gal', '8 × boxwood “Wintergreen”, 3-gal · 4 × star jasmine, 1-gal + green wire', '4 × Plectranthus “Mona Lavender”, 8 × “Silver Falls” dichondra, 8 × white torenia (summer) / white bacopa (winter)', '2 × boxwood balls for your existing charcoal pots', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
 };
 
 
@@ -493,7 +494,7 @@ function buildBody() {
 
   const planters = table(['Where', 'Product', 'Size', 'Qty', 'Notes', 'Buy'], [
     ['Long rail, base', 'Mayne Fairfield 4 ft Window Box (self-watering)', '48" × 11" × 10.8"; 9.5 gal soil, 4 gal reservoir', '2', 'Between the olive urn and the armchair. Built-in overflow. White reads as limestone; Graphite Grey matches the rail. Ignore the wall brackets: it sits on the floor.', 'Home Depot, Lowe\'s, Walmart, Tractor Supply, Amazon (order for pickup)'],
-    ['Over the top rail', 'Gardener\'s Supply Adjustable Self-Watering Railing Planter, 24"', '23.25" × 7.5" × 7"; fits rails 1" to 4.25"; 1 qt reservoir; 12 qt mix', '7', 'Six on the long rail, two per panel, and one on the door-side return above the armchair. Hang the body on your side of the rail. The reservoir is small, so summer means a daily top-up; the upgrade is the Lechuza Balconera 80 (31" × 7" × 7", bigger reservoir) if its bracket fits a 3" flat cap.', 'gardeners.com or Amazon'],
+    ['Over the top rail', 'Vigoro Eden Medium Deck Rail Planter Box, white', '28" × 12" × 12"; notch 3.62" wide fits the 3" cap', '4', 'One centered per long-rail panel (two won\'t fit in the 51" between posts) and one on the return above the chair. No reservoir: plug any drain holes, water by measure. A strip of weatherstrip in the notch stops the wobble on a 3" cap.', 'Home Depot, $27.98 each'],
     ['Far corner', 'Bay laurel urn: lightweight fiberglass or cast-stone, limestone tone', '24" wide × 22–24" tall, with a 24" saucer', '1', 'The bay is the one plant here that drains, so it gets a saucer you empty after watering.', 'JustPots (Redland Rd), Ten Thousand Pots (US-281), Rainbow Gardens pottery yard'],
     ['Door-side return, behind the chair', 'Tall tapered pots for the podocarpus pair, same finish', '16" wide × 22" tall, with 16" saucers', '2', 'Tall pots give the columns height without a 15-gal plant.', 'Same'],
     ['Beside the chair', 'Your two charcoal pots', 'as is', '2', 'Add 12" saucers underneath.', 'Any nursery'],
@@ -502,16 +503,16 @@ function buildBody() {
   const plants = table(['Plant', 'Botanical name', 'Size', 'Qty', 'Goes in', 'Where in San Antonio'], [
     ['Wintergreen boxwood', 'Buxus microphylla \'Wintergreen\'', '3 gal', '8', 'The two troughs, 12" apart: 4 + 4', 'Rainbow Gardens (listed in their online shop), Milberger\'s, The Garden Center'],
     ['Star jasmine', 'Trachelospermum jasminoides', '1 gal', '4', 'Back edge of each trough against the mesh, two per trough', 'All four nurseries stock it; it is a San Antonio staple'],
-    ['Mona Lavender plectranthus', 'Plectranthus \'Mona Lavender\'', '1 gal', '7', 'One per rail planter, centered', 'Rainbow Gardens, Milberger\'s, The Garden Center (shade section, spring and fall)'],
-    ['White torenia (summer) and white bacopa (winter)', 'Torenia fournieri / Sutera cordata', '4"', '14 + 14', 'Two per rail planter, front corners; torenia April to October, bacopa October to April', 'Everywhere in season'],
-    ['Silver Falls dichondra', 'Dichondra argentea \'Silver Falls\'', '4"', '14', 'Two per rail planter, front edge', 'Everywhere spring through fall'],
+    ['Mona Lavender plectranthus', 'Plectranthus \'Mona Lavender\'', '1 gal', '4', 'One per rail box, centered', 'Rainbow Gardens, Milberger\'s, The Garden Center (shade section, spring and fall)'],
+    ['White torenia (summer) and white bacopa (winter)', 'Torenia fournieri / Sutera cordata', '4"', '8 + 8', 'Two per rail box, front corners; torenia April to October, bacopa October to April', 'Everywhere in season'],
+    ['Silver Falls dichondra', 'Dichondra argentea \'Silver Falls\'', '4"', '8', 'Two per rail box, front edge', 'Everywhere spring through fall'],
     ['Bay laurel standard', 'Laurus nobilis', '15 gal', '1', 'The urn', 'Rainbow Gardens, Milberger\'s, The Garden Center; ask for a clipped standard or lollipop form'],
     ['Podocarpus columns', 'Podocarpus macrophyllus \'Maki\'', '5 gal', '2', 'The two tall pots', 'Every San Antonio nursery carries it; pick the two narrowest, most upright plants on the bench'],
     ['Boxwood balls', 'Buxus microphylla \'Wintergreen\'', '3 gal', '2', 'Your charcoal pots, clipped round', 'Same as the hedge plants; buy 10 boxwood total'],
   ]);
 
   const soil = table(['Material', 'Amount', 'Notes'], [
-    ['Container potting mix (FoxFarm Happy Frog, Ocean Forest, or the nursery\'s house mix)', 'About 15 cu ft: eight 2-cu-ft bags', 'Troughs 19 gal, rail planters 21 gal, urn and tall pots the rest. Not garden soil, not "moisture control" mixes, which stay soggy in reservoir planters.'],
+    ['Container potting mix (FoxFarm Happy Frog, Ocean Forest, or the nursery\'s house mix)', 'About 16 cu ft: eight 2-cu-ft bags', 'Troughs 19 gal, rail boxes 32 gal, urn and tall pots the rest. Not garden soil, not "moisture control" mixes, which stay soggy in reservoir planters.'],
     ['Pea gravel', '4 bags, 0.5 cu ft', 'One inch on every planter: the Provence look, less splash, less evaporation.'],
     ['Slow-release fertilizer (Osmocote Plus or similar)', '1 box', 'March and June, at half rate: shade plants grow slower and burn on a full dose.'],
     ['Green stretch tie or soft garden wire', '1 roll', 'Tying jasmine canes into the mesh.'],
@@ -524,9 +525,9 @@ function buildBody() {
     ['3 · One loop for plants and pottery', 'Rainbow Gardens Thousand Oaks, JustPots on Redland Rd and Milberger\'s on 1604 are within a few miles of each other in the 281/1604 corner. Do them in one morning. Boxwood, jasmine, bay and podocarpus now (fall is the best planting season here). Plectranthus and bacopa go in now too; torenia replaces the bacopa in April.'],
     ['4 · Set the troughs', 'Place the Mayne boxes 2–3" back from the mesh on rubber pads (and trays if needed), overflow holes facing your floor. Fill to an inch below the rim with mix, water once from the top to settle it, then only ever fill the reservoir through the tube.'],
     ['5 · Plant the base', 'Jasmine first, at the back edge against the mesh, canes fanned and tied into the grid at 45°. Boxwood in front, 12" apart, root balls roughened. Gravel on top. Clip the boxwood flat at 16–18" the following spring and again in August.'],
-    ['6 · Hang the rail planters', 'Set the brackets to 3", hang each planter with its body on your side of the rail, plectranthus in the middle, trailing plants at the front edge. Once the dichondra and torenia are 8" long, thread them through the mesh to the outside.'],
+    ['6 · Hang the rail planters', 'Lay a strip of rubber weatherstrip along one side of the cap where each box sits, then set the box\'s notch over the cap, centered on the panel. Plug any drain holes. Plectranthus in the middle, trailing plants at the front edge. Once the dichondra and torenia are 8" long, thread them through the mesh to the outside.'],
     ['7 · The corners', 'Bay laurel in the urn with 2" of gravel on top and the saucer under it, on the floor at the far corner beyond the sofa, in front of the first trough. The armchair stays in the door-side corner, back to the mesh, facing the sofa. Podocarpus in the tall pots on the return behind it. Boxwood balls in your charcoal pots, one by the chair and one by the urn. Then the pillows.'],
-    ['8 · The watering routine', 'Under a north-facing roof everything drinks less than the sun-side rules of thumb. Troughs: fill by the gauge, roughly every 7–10 days in summer, every 2–3 weeks in spring and fall, monthly in winter. Rail planters: 1 qt reservoir, so every 2 days in July and August, every 3–4 days otherwise. Bay, podocarpus, boxwood balls: a measured gallon once a week in summer, half that in winter, saucers emptied after. Nothing is ever rained on or hosed, so what you pour is all the water there is.'],
+    ['8 · The watering routine', 'Under a north-facing roof everything drinks less than the sun-side rules of thumb. Troughs: fill by the gauge, roughly every 7–10 days in summer, every 2–3 weeks in spring and fall, monthly in winter. Rail boxes: a measured quart each every 3 days in July and August, weekly in spring and fall, every two weeks in winter; check with the moisture meter before adding more. Bay, podocarpus, boxwood balls: a measured gallon once a week in summer, half that in winter, saucers emptied after. Nothing is ever rained on or hosed, so what you pour is all the water there is.'],
     ['9 · Later, if you want it', 'A gravity Blumat kit or a pump-on-timer kit can feed every reservoir from a hidden 5-gal tank so you can leave for two weeks in August. Ewing Irrigation and SiteOne in San Antonio carry the tubing and fittings; Sustainable Village sells the Blumat kits. Skip it the first season: the reservoirs already do most of the work.'],
   ].map(([h, body]) => card(h, P(body))).join('');
 
@@ -538,8 +539,7 @@ function buildBody() {
     ['Fanick\'s Garden Center', '1025 Holmgreen Rd, 78220', 'Old-line southeast-side nursery, trees and shrubs'],
     ['JustPots', '17115 Redland Rd, 78247 · Mon–Sat 9–6, Sun 9–5', 'Urn, tall pots, saucers: fiberglass, terracotta, glazed'],
     ['Ten Thousand Pots', '4510 US-281, Spring Branch, 78070 · (512) 584-8889 · 9:30–6 daily', 'Large ceramic and stone-look planters, 30 minutes north'],
-    ['Home Depot / Lowe\'s / Walmart / Tractor Supply', 'any San Antonio store, order for pickup', 'Mayne Fairfield boxes, gravel, fertilizer'],
-    ['gardeners.com', 'online', 'Adjustable self-watering railing planters'],
+    ['Home Depot / Lowe\'s / Walmart / Tractor Supply', 'any San Antonio store, order for pickup', 'Mayne Fairfield troughs, Vigoro Eden rail boxes, gravel, fertilizer, moisture meter'],
     ['Ewing Irrigation', '5826 Hawk Springs Ste 1103 (and other SA branches)', 'Drip tubing and fittings, later'],
     ['SiteOne Landscape Supply', 'two San Antonio branches', 'Drip parts, bulk gravel'],
   ]);
@@ -555,7 +555,7 @@ function buildBody() {
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Soil and supplies')}${soil}</div>
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Step by step')}<div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">${steps}</div></div>
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Where to buy')}${sources}${P('Older San Antonio nursery lists still show Shades of Green on Sunset Rd, Schulz Nursery on Broadway and Sandy Oaks Olive Orchard in Elmendorf. All three have closed.')}</div>
-  <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">${H3('Weight, in case the building asks')}${P('Fully wet, the two troughs, seven rail planters, urn and two tall pots come to roughly 650 lb spread along 20 ft of rail line, well inside what a code balcony carries. Keep the heavy pieces at the corners and along the edge rather than clustered in the middle.')}</div>
+  <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">${H3('Weight, in case the building asks')}${P('Fully wet, the two troughs, four rail boxes, urn and two tall pots come to roughly 700 lb spread along 20 ft of rail line, well inside what a code balcony carries. Keep the heavy pieces at the corners and along the edge rather than clustered in the middle.')}</div>
 </div>`;
 }
 
@@ -688,7 +688,7 @@ function elevation(c) {
   let s = backdrop(e) + rail(e);
   // hanging planters (behind hedge, in front of mesh)
   let k = 0;
-  for (const p of [0, 54, 108]) for (const off of [15, 39]) s += hangingPlanter(EL.x0 + (p + off) * IN, 20 * IN, c.hang, seed + 20 + k++);
+  for (const [cx, w] of (c.hangersEl ?? [[15, 20], [39, 20], [69, 20], [93, 20], [123, 20], [147, 20]])) s += hangingPlanter(EL.x0 + cx * IN, w * IN, c.hang, seed + 20 + k++);
   // vines climb from the troughs next to each post
   for (const p of (c.vinesEl ?? [6, 50, 60, 104, 114, 158])) s += vine(EL.x0 + p * IN, EL.floor - 14 * IN - 30, EL.railTop + 30, c.vine, seed + 40 + p);
   // troughs and hedges
