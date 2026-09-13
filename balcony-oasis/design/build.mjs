@@ -562,7 +562,7 @@ function buildBody() {
 </div>`;
 }
 
-function finalBody(c) {
+function finalBody(c, imgPrefix = '') {
   const t = c.theme;
   const sw = (label, hex) => `<div style="display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:${hex};border:1px solid rgba(0,0,0,.18)"></span><span style="font-size:13px;color:${t.text}">${label}</span></div>`;
   const layerCards = c.layers.map(([h, p, hex]) => `<div style="display:flex;flex-direction:column;gap:8px;padding:18px 18px 20px;background:${t.panel};border-top:3px solid ${hex}">
@@ -581,6 +581,14 @@ function finalBody(c) {
     <p style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:24px;line-height:1.25;color:${t.accent}">${c.tag}</p>
     <p style="margin:6px 0 0;font-size:15px;line-height:1.55;max-width:900px;color:${t.text};opacity:.9">${c.mood}</p>
   </header>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">What it looks like</h2>
+    <p style="margin:0;font-size:13.5px;line-height:1.5;max-width:900px;color:${t.text};opacity:.9">Photo edits of the real balcony, made in ChatGPT one step at a time from the drawings below, so the railing, floor and buildings are the actual ones and everything added is sized to them.</p>
+    <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px">
+      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-along-the-balcony.jpg" alt="Render looking along the balcony from the door end" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">From the door end: hedge and jasmine on the long rail, lavender over the cap, the olive urn in the far corner, the armchair turned to face the sofa, rosemary in the existing pots.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-from-the-door.jpg" alt="Render looking out across the long rail from the sofa" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">Looking out from the sofa across the three panels, before the sofa was unwrapped in the edit chain.</figcaption></figure>
+    </div>
+  </div>
   <div style="display:flex;flex-direction:column;gap:8px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking out from the sofa</h2>
     <div style="border:1px solid rgba(128,128,128,.3);background:${c.el.sky}">${elevation(c)}</div>
@@ -800,7 +808,7 @@ const H = 1820;
 writeFileSync(join(here, 'canvas.json'), JSON.stringify({
   pages: [{ id: 'page-1', name: 'Final plan' }, { id: 'page-2', name: 'Directions' }],
   artboards: [
-    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 4300, title: 'The Provence plan', page: 'page-1' },
+    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 4800, title: 'The Provence plan', page: 'page-1' },
     { file: 'BuildPlan.dc.html', x: 1220, y: 0, w: 1120, h: 2900, title: 'How to build it', page: 'page-1' },
     { file: 'Brief.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan', page: 'page-2' },
     ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}`, page: 'page-2' })),
@@ -833,7 +841,7 @@ ${FONT_LINK}
 <body>
 <div class="wrap">
   <nav aria-label="Sections"><a href="#plan">Final plan</a><a href="#build">How to build it</a><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
-  <section class="board" id="plan">${finalBody(finalPlan)}</section>
+  <section class="board" id="plan">${finalBody(finalPlan, 'renders/')}</section>
   <section class="board" id="build">${buildBody()}</section>
   <h2 style="margin:24px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500">The brief and the four directions considered</h2>
   <section class="board" id="brief">${briefBody()}</section>
