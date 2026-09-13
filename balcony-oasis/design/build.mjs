@@ -446,14 +446,14 @@ const finalPlan = {
   anchorsEl: (e) => pot(70, EL.floor + 40, 56, 42, 'charcoal') + hedge(49, EL.floor + 40 - 42 - 50, 44, 54, ['#5f7f4b', '#6f8f58', '#7e9a68'], 79, 'ball') + tree('olive', 898, EL.floor + 36, { pot: 'stone', potW: 120, potH: 110 }, 3) + pot(806, EL.floor + 30, 60, 44, 'charcoal') + hedge(784, EL.floor + 30 - 44 - 52, 48, 56, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball') + tree('cypress', 992, EL.floor + 12, { pot: 'stone', potW: 80, potH: 86, height: 300 }, 4) + tree('cypress', 1030, EL.floor + 30, { pot: 'stone', potW: 84, potH: 90, height: 320 }, 12)
 ,
   plan: {
-    door: { x: 92.5, w: 54, openAt: 'right', label: 'sliding door (approx.): fixed panel by the sofa, opening panel to the right' },
+    door: { x: 86.5, w: 54, openAt: 'right', label: 'sliding door (approx.): fixed panel by the sofa, opening panel to the right' },
     longTroughs: [[34, 24], [60, 48], [110, 48]], troughDepth: 11,
     returns: [],
     returnHangers: [[-8, 6, 8, 20]],
     noPathLabel: true,
     anchors: [{ x: 150, y: 24, r: 9, fill: '#8f9a80', label: 'olive' }, { x: 154, y: 44, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }, { x: 154, y: 58, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }],
     furniture: [
-      { kind: 'sofaWall', x: 14, y: 40.5, w: 78.5, h: 33.5, label: 'your sofa, 78.5" × 33.5"' },
+      { kind: 'sofaWall', x: 8, y: 40.5, w: 78.5, h: 33.5, label: 'your sofa, 78.5" × 33.5"' },
       { kind: 'chair', x: 3, y: 4, rot: -90, size: 29 },
       { kind: 'pot', x: 9, y: 39, r: 5, fill: '#6f8f58', label: 'rsm' }, { kind: 'pot', x: 131, y: 25, r: 5, fill: '#6f8f58', label: 'rsm' },
     ],
@@ -570,7 +570,7 @@ function finalBody(c, imgPrefix = '') {
       <p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.88">${p}</p></div>`).join('');
   const list = c.list.map(i => `<li style="padding:6px 0;border-bottom:1px solid rgba(128,128,128,.25);font-size:13px;line-height:1.4">${i}</li>`).join('');
   const furniture = [
-    ['The sofa', 'Stays exactly where it is: its door-end arm against the fixed panel of the door, its far arm about 14" from the far return, with the short wall and its box between. It fixes everything else: 11"-deep troughs on the long rail keep a 30" path in front of the cushions, and the door\'s opening panel is on the far side of the door from the sofa, so people come out beside the cypress, not the sofa.'],
+    ['The sofa', 'Stays exactly where it is: its door-end arm against the fixed panel of the door, its far arm a few inches from the far return. It fixes everything else: 11"-deep troughs on the long rail keep a 30" path in front of the cushions, and the door\'s opening panel is on the far side of the door from the sofa, so people come out beside the cypress, not the sofa.'],
     ['The armchair', 'At 29" square it takes the rail corner beyond the sofa\'s far arm, where it and the gray pots sit today, back to the mesh and turned to face down the balcony toward the door. One of your charcoal pots stays beside it with a rosemary ball; the other stands by the olive urn at the door-side corner.'],
     ['Pillows, and no table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking-stripe pillow on the sofa. There is no wall left for a side table, so a tray on the sofa cushion does that job.'],
   ].map(([h, p]) => `<div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:${t.text}">${h}</h3><p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${p}</p></div>`).join('');
@@ -597,13 +597,13 @@ function finalBody(c, imgPrefix = '') {
   <div style="display:flex;flex-direction:column;gap:8px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking back at the wall</h2>
     <div style="border:1px solid rgba(128,128,128,.3);background:#9a9b98">${wallElevation(c)}</div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at left with its opening panel toward the short wall at the far left; your sofa to the right of it with pillows and the lantern above, then the short wall with the box and the far return; the olive urn and cypress pair in the foreground at left, the rosemary pots at each end; the armchair sits in the right-hand corner, out of this view</span><span>6 px per inch</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at left with its opening panel toward the short wall at the far left; your sofa to the right of it with pillows and the lantern above, then the far return; the olive urn and cypress pair in the foreground at left, the rosemary pots at each end; the armchair sits in the right-hand corner, out of this view</span><span>6 px per inch</span></div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px;align-items:start">
     <div style="display:flex;flex-direction:column;gap:10px">
       <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Floor plan, 74" × 162"</h2>
       <div style="background:${t.panel};padding:8px">${plan(c.el, { pot: c.pot, hedgeTop: c.hedgeTop, ...c.plan })}</div>
-      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is drawn at an estimated 54" with about 15" of wall between it and the return on its far side; the sofa's far arm is scaled from the photos at about 14" from the other return, with the short wall and its box in between.</p>
+      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is drawn at an estimated 54" with about 21" of wall between it and the return on its far side; the sofa's far arm sits about 8" from the other return.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:22px">
       <div style="display:grid;grid-template-columns:repeat(1, minmax(0, 1fr));gap:16px">${furniture}</div>
@@ -659,15 +659,15 @@ function wallElevation(c) {
   for (let px = x0 - 40; px < EL.w; px += 120) s += `<rect x="${px}" y="0" width="118" height="${floor}" fill="#a3a4a1" stroke="#8c8d8a" stroke-width="1"/>`;
   s += `<rect x="0" y="${floor - 6}" width="${EL.w}" height="6" fill="#2b2b2b"/>`;
   // door: mirrored plan position (plan x 82..152 from return A) -> from the left when facing the wall
-  const dX = x0 + (L - 146.5) * IN, dW = 54 * IN, dTop = floor - 84 * IN;
+  const dX = x0 + (L - 140.5) * IN, dW = 54 * IN, dTop = floor - 84 * IN;
   s += `<rect x="${dX - 6}" y="${dTop - 6}" width="${dW + 12}" height="${84 * IN + 6}" fill="#2a2b2d"/>`;
   s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/>`;
   s += `<rect x="${dX + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/><rect x="${dX + dW / 2 + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/>`;
   s += `<rect x="${dX + dW / 2 - 10}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
   s += `<text x="${dX + dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
-  s += `<rect x="${dX - 52}" y="${floor - 46 * IN}" width="26" height="22" rx="3" fill="#d9d3c2" stroke="#7a7a76" stroke-width="1"/><rect x="${x0 + (L - 7) * IN - 13}" y="${floor - 46 * IN}" width="26" height="22" rx="3" fill="#d9d3c2" stroke="#7a7a76" stroke-width="1"/>`;
+  s += `<rect x="${dX - 52}" y="${floor - 46 * IN}" width="26" height="22" rx="3" fill="#d9d3c2" stroke="#7a7a76" stroke-width="1"/><rect x="${x0 + (L - 4) * IN - 13}" y="${floor - 46 * IN}" width="26" height="22" rx="3" fill="#d9d3c2" stroke="#7a7a76" stroke-width="1"/>`;
   // sofa against the wall, right of the door, plus pillows
-  const sofaX = x0 + (L - 92.5) * IN;
+  const sofaX = x0 + (L - 86.5) * IN;
   s += spindleSofa(sofaX, floor - 2, e, 78.5);
   s += pillow(sofaX + 30, floor - 2 - 26 * IN, 90, 80, '#9a93bf', e) + pillow(sofaX + 78.5 * IN - 120, floor - 2 - 26 * IN, 90, 80, '#e9e4d6', e) + pillow(sofaX + 78.5 * IN - 190, floor - 2 - 24 * IN, 70, 66, '#c8c1d8', e);
   // wall lantern above the sofa's near arm, side table at the door end
