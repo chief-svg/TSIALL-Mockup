@@ -1,7 +1,7 @@
 // Generates the Balcony Oasis mockups: four concept artboards + a brief board
 // (as Design Component .dc.html files for the canvas) and a plain index.html.
 // Balcony: 162" long rail side, 74" deep, 43" rail with 3" posts, top floor, San Antonio.
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -301,7 +301,7 @@ function plan(c, o) {
   const door = o.door ?? { x: 47, w: 72, openAt: 'left', label: 'sliding door (position approximate)' };
   const openX = door.openAt === 'right' ? door.x + door.w / 2 : door.x;
   g += `<rect x="${X(door.x)}" y="${Y(D) - 2}" width="${door.w * s}" height="14" fill="${c.planFloor}" stroke="${c.ink}" stroke-width="1"/><line x1="${X(openX)}" y1="${Y(D) + 5}" x2="${X(openX + door.w / 2)}" y2="${Y(D) + 5}" stroke="${c.ink}" stroke-width="2"/><path d="M${X(door.openAt === 'right' ? openX : openX + door.w / 2)} ${Y(D) - 2} l0 -8" stroke="${c.ink}" stroke-width="1"/>`;
-  g += `<text x="${X(door.x + door.w / 2)}" y="${Y(D) + 32}" text-anchor="middle" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">${door.label}</text>`;
+  g += `<text x="${X(Math.max(door.x, 2))}" y="${Y(D) + 32}" text-anchor="start" font-size="11" fill="${c.muted}" font-family="Work Sans, system-ui, sans-serif">${door.label}</text>`;
   // troughs: 3 x 48" on the long rail, 1 x 32" on each return, clear of the corner pots
   const pot = POTS[o.pot];
   const tr = (x, y, w, h) => `<rect x="${X(x)}" y="${Y(y)}" width="${w * s}" height="${h * s}" fill="${pot.fill}" stroke="${pot.edge}" stroke-width="1.5"/>` +
@@ -438,34 +438,34 @@ const concepts = [
 const provence = concepts[0];
 const finalPlan = {
   ...provence, n: 1, id: 'Main', name: 'The Provence plan', tag: 'Built around your black spindle sofa and armchair',
-  mood: 'Your sofa stays where it is, against the wall between the door and the far return, and becomes the center of the room. At 33.5\" deep it takes nearly half the balcony, so the hedge troughs on the long rail are the slim 10\" kind and 30\" stays open in front of the cushions. The armchair turns to face the sofa from in front of the fixed door panel. Around them: a clipped boxwood hedge that swallows the lower rail, star jasmine laced through the mesh, lavender and silver dichondra spilling over the top cap, an olive in a stone urn in the far corner where your two pots sit now, and a pair of cypress beside the sofa arm. Black iron and white piping against silver, green and lavender.',
+  mood: 'Your sofa stays where it is, against the wall beside the door, and becomes the center of the room. At 33.5\" deep it takes nearly half the balcony, so the troughs on the long rail are 11\" deep and 30\" stays open in front of the cushions. The armchair keeps its spot against the far return and turns to face back down the balcony. Around them: a clipped boxwood hedge that swallows the lower rail, star jasmine laced through the mesh, lavender and silver dichondra spilling over the top cap, an olive in a stone urn in the far corner where your two pots sit now, and a pair of cypress at the door end. Black iron and white piping against silver, green and lavender.',
   shortLast: true,
-  furnitureEl: (e) => spindleChair(EL.x0 + 84 * IN, EL.floor + 30, e),
+  furnitureEl: (e) => '',
   anchorsEl: (e) => tree('cypress', 60, EL.floor + 4, { pot: 'stone', potW: 80, potH: 86, height: 300 }, 4) + tree('cypress', 118, EL.floor + 22, { pot: 'stone', potW: 84, potH: 90, height: 320 }, 12) + tree('olive', 972, EL.floor + 20, { pot: 'stone', potW: 120, potH: 110 }, 3)
 ,
   plan: {
-    door: { x: 82, w: 70, openAt: 'right', label: 'sliding door, opening on the right' },
-    longTroughs: [[3, 48], [57, 48], [111, 36]], troughDepth: 10,
-    returns: [[L - 15, 22, 12, 30]],
-    returnHangers: [[L, 22, 8, 20]],
+    door: { x: 1, w: 56, openAt: 'left', label: 'sliding door (width approximate), opening toward the near return' },
+    longTroughs: [[3, 48], [57, 48], [111, 36]], troughDepth: 11,
+    returns: [],
+    returnHangers: [[L, 27, 8, 20]],
     noPathLabel: true,
-    anchors: [{ x: 154, y: 9, r: 8, fill: '#8f9a80', label: 'olive' }, { x: 11, y: 22, r: 7, fill: '#3f5b3c', label: 'cyp.' }, { x: 11, y: 36, r: 7, fill: '#3f5b3c', label: 'cyp.' }],
+    anchors: [{ x: 152, y: 14, r: 9, fill: '#8f9a80', label: 'olive' }, { x: 10, y: 23, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }, { x: 10, y: 37, r: 6.5, fill: '#3f5b3c', label: 'cyp.' }],
     furniture: [
-      { kind: 'sofaWall', x: 2, y: 40.5, w: 78.5, h: 33.5, label: 'your sofa, 78.5" × 33.5"' },
-      { kind: 'side', x: 88, y: 63, r: 6 },
-      { kind: 'chair', x: 84.5, y: 18.5, rot: 160, size: 29 },
-      { kind: 'pot', x: 156, y: 58, r: 5.5, fill: '#6f8f58', label: 'rsm' }, { kind: 'pot', x: 156, y: 69, r: 4.5, fill: '#6f8f58', label: 'rsm' },
+      { kind: 'sofaWall', x: 57, y: 40.5, w: 78.5, h: 33.5, label: 'your sofa, 78.5" × 33.5"' },
+      { kind: 'side', x: 50, y: 66, r: 6 },
+      { kind: 'chair', x: 131, y: 31, rot: 90, size: 29 },
+      { kind: 'pot', x: 143, y: 67, r: 6, fill: '#6f8f58', label: 'rsm' }, { kind: 'pot', x: 155, y: 67, r: 6, fill: '#6f8f58', label: 'rsm' },
     ],
   },
   layers: [
-    ['Hedge at the rail base', 'Japanese boxwood “Wintergreen”, clipped to 16–18", in three slim 10"-deep limestone-toned self-watering troughs along the long rail (48", 48" and 36", the last shortened to clear the olive urn) and one 12"-deep 30" trough on the far return beside the door opening. The near return, behind the sofa arm, stays open for the cypress pair. If the long rail takes full west sun, use dwarf yaupon “Micron” instead.', '#5f7f4b'],
+    ['Hedge at the rail base', 'Japanese boxwood “Wintergreen”, clipped to 16–18", in three white self-watering troughs along the long rail, 48", 48" and 36", 11" deep, the last one stopping short of the corner so the olive urn stands in front of its end. The far return belongs to the armchair and gets no trough; the near return, beyond the door, takes the cypress pair. If the long rail takes full west sun, use dwarf yaupon “Micron” instead.', '#5f7f4b'],
     ['On the mesh', 'Star jasmine, one plant per 27" of rail, tied into the 4" grid with green wire and trained sideways so the mesh fills in as a green wall behind the hedge. Evergreen, fragrant in April, unbothered by 100° afternoons. Solid cover in two seasons.', '#fbfaf3'],
-    ['Over the rail', 'Seven 20" over-rail planters made for a 3" top cap: six on the long rail, one on the far return. “Phenomenal” lavender upright, white trailing lantana and “Silver Falls” dichondra spilling 18–24" down the outside of the mesh, so the color reads from the street too.', '#8b84b4'],
-    ['Anchors', 'An Arbequina olive in a 24" stone urn in the far corner, where your two charcoal pots sit now; those pots move beside the chair with clipped rosemary balls. Two dwarf Italian cypress “Tiny Tower” in tall stone pots at the near corner, framing the sofa arm. Pea gravel on every planter.', '#8f9a80'],
+    ['Over the rail', 'Seven 24" over-rail planters made for a 3" top cap: six on the long rail, two per panel, and one on the far return behind the armchair. “Phenomenal” lavender upright, white trailing lantana and “Silver Falls” dichondra spilling 18–24" down the outside of the mesh, so the color reads from the street too.', '#8b84b4'],
+    ['Anchors', 'An Arbequina olive in a 24" stone urn in the far corner, where your two charcoal pots sit now; those pots move to the wall strip past the sofa with clipped rosemary balls. Two dwarf Italian cypress “Tiny Tower” in tall stone pots at the near corner beyond the door. Pea gravel on every planter.', '#8f9a80'],
   ],
   materials: [['Limestone-tone fiberglass', '#d9d1c0'], ['Your black iron, white piping', '#26282a'], ['Lavender linen pillows', '#9a93bf'], ['Oatmeal ticking stripe', '#e9e4d6'], ['Olive silver', '#a9b39a']],
   water: 'Every rail-line planter is self-watering with a sealed reservoir and fill tube, so nothing exits the bottom. The seven over-rail planters are the reservoir type with the gauge on the inside face. Behind the sofa there is room for a slim 5-gallon reservoir with a battery pump on a pre-dawn timer feeding quarter-inch line along the base of the troughs; nothing is watered by hose, and the concrete stays dry.',
-  list: ['2 × 48" + 1 × 36" self-watering troughs, 10" deep, limestone finish; 1 × 30" × 12" (far return)', '7 × 20" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '14 × boxwood “Wintergreen”, 3-gal · 7 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '12" round drink table, stone or zinc top, black base', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa arm · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
+  list: ['2 × 48" + 1 × 36" self-watering troughs, 11" deep, white', '7 × 24" over-rail reservoir planters, 3" rail fit', '2 × 24" tall stone pots + Italian cypress “Tiny Tower”, 5-gal', '1 × 24" stone urn + Arbequina olive, 15-gal', '11 × boxwood “Wintergreen”, 3-gal · 6 × star jasmine, 1-gal + green wire', '7 × lavender “Phenomenal”, 14 × white trailing lantana, 14 × “Silver Falls” dichondra', '2 × rosemary balls for your existing charcoal pots', '12" round drink table, stone or zinc top, black base', '3 outdoor pillows: two lavender linen, one oatmeal ticking stripe, for the sofa', 'Wall lantern (solar or plug-in) above the sofa · pea gravel, 4 bags · pump drip kit, 5-gal reservoir'],
 };
 
 
@@ -493,32 +493,31 @@ function buildBody() {
   const planters = table(['Where', 'Product', 'Size', 'Qty', 'Notes', 'Buy'], [
     ['Long rail, base', 'Mayne Fairfield 4 ft Window Box (self-watering)', '48" × 11" × 10.8"; 9.5 gal soil, 4 gal reservoir', '2', 'Built-in overflow. White reads as limestone; Graphite Grey matches the rail. Ignore the wall brackets: it sits on the floor.', 'Home Depot, Lowe\'s, Walmart, Tractor Supply, Amazon (order for pickup)'],
     ['Long rail, base (door end)', 'Mayne Fairfield 3 ft Window Box', '36" × 11" × 11"', '1', 'Shortened so the olive urn owns the corner.', 'Same'],
-    ['Far return, beside the door opening', 'Mayne Fairfield 2 ft Window Box', '24" × 11" × 11"', '1', 'Leaves the corner for the urn and the wall strip for your two pots.', 'Same'],
-    ['Over the top rail', 'Gardener\'s Supply Adjustable Self-Watering Railing Planter, 24"', '23.25" × 7.5" × 7"; fits rails 1" to 4.25"; 1 qt reservoir; 12 qt mix', '7', 'Six on the long rail, one on the return. Hang the body on your side of the rail. The reservoir is small, so summer means a daily top-up; the upgrade is the Lechuza Balconera 80 (31" × 7" × 7", bigger reservoir) if its bracket fits a 3" flat cap.', 'gardeners.com or Amazon'],
+    ['Over the top rail', 'Gardener\'s Supply Adjustable Self-Watering Railing Planter, 24"', '23.25" × 7.5" × 7"; fits rails 1" to 4.25"; 1 qt reservoir; 12 qt mix', '7', 'Six on the long rail, two per panel, and one on the far return behind the armchair. Hang the body on your side of the rail. The reservoir is small, so summer means a daily top-up; the upgrade is the Lechuza Balconera 80 (31" × 7" × 7", bigger reservoir) if its bracket fits a 3" flat cap.', 'gardeners.com or Amazon'],
     ['Far corner', 'Olive urn: lightweight fiberglass or cast-stone, limestone tone', '24" wide × 22–24" tall, with a 24" saucer', '1', 'The olive is the one plant here that drains, so it gets a deep saucer you empty after rain.', 'JustPots (Redland Rd), Ten Thousand Pots (US-281), Rainbow Gardens pottery yard'],
     ['Sofa-end corner', 'Tall tapered pots for the cypress pair, same finish', '16" wide × 22" tall, with 16" saucers', '2', 'Tall pots give the columns height without a 15-gal tree.', 'Same'],
     ['Beside the chair', 'Your two charcoal pots', 'as is', '2', 'Add 12" saucers underneath.', 'Any nursery'],
-    ['Under the troughs (if rain reaches the floor)', 'Heavy-duty boot trays', '48" × 14" or the largest you can find', '4', 'Orient each trough\'s overflow hole toward your floor and over the tray. Skip these if the balcony is roofed and stays dry in rain.', 'Amazon, Home Depot'],
+    ['Under the troughs (if rain reaches the floor)', 'Heavy-duty boot trays', '48" × 14" or the largest you can find', '3', 'Orient each trough\'s overflow hole toward your floor and over the tray. Skip these if the balcony is roofed and stays dry in rain.', 'Amazon, Home Depot'],
   ]);
 
   const plants = table(['Plant', 'Botanical name', 'Size', 'Qty', 'Goes in', 'Where in San Antonio'], [
-    ['Wintergreen boxwood', 'Buxus microphylla \'Wintergreen\'', '3 gal', '13', 'The four troughs, 12" apart: 4 + 4 + 3 in the long-rail boxes, 2 on the return', 'Rainbow Gardens (listed in their online shop), Milberger\'s, The Garden Center'],
-    ['Star jasmine', 'Trachelospermum jasminoides', '1 gal', '7', 'Back edge of each trough against the mesh: 2 + 2 + 2 on the long rail, 1 on the return', 'All four nurseries stock it; it is a San Antonio staple'],
+    ['Wintergreen boxwood', 'Buxus microphylla \'Wintergreen\'', '3 gal', '11', 'The three troughs, 12" apart: 4 + 4 + 3', 'Rainbow Gardens (listed in their online shop), Milberger\'s, The Garden Center'],
+    ['Star jasmine', 'Trachelospermum jasminoides', '1 gal', '6', 'Back edge of each trough against the mesh, two per trough', 'All four nurseries stock it; it is a San Antonio staple'],
     ['Phenomenal lavender', 'Lavandula × intermedia \'Phenomenal\'', '1 gal', '7', 'One per rail planter, centered', 'Rainbow Gardens, Milberger\'s (the humidity-tolerant lavender; skip English types)'],
     ['White trailing lantana', 'Lantana montevidensis \'Alba\'', '4"', '14', 'Two per rail planter, front corners', 'Everywhere in spring; plant in April'],
     ['Silver Falls dichondra', 'Dichondra argentea \'Silver Falls\'', '4"', '14', 'Two per rail planter, front edge', 'Everywhere spring through fall'],
     ['Arbequina olive', 'Olea europaea \'Arbequina\'', '15 gal', '1', 'The urn', 'Rainbow Gardens lists it; Milberger\'s carries it in the fruit-tree yard. Call for 15-gal stock'],
     ['Tiny Tower Italian cypress', 'Cupressus sempervirens \'Monshel\'', '5 gal', '2', 'The two tall pots', 'A Monrovia plant: ask Rainbow Gardens, Milberger\'s or The Garden Center to pull it; if not in stock, standard Italian cypress in 5 gal stays pot-sized for years, or order Tiny Tower from an online grower'],
     ['Rosemary', 'Salvia rosmarinus \'Tuscan Blue\'', '1 gal', '2', 'Your charcoal pots, clipped into balls', 'Any nursery, herb section'],
-    ['If the rail faces west', 'Ilex vomitoria \'Micron\' (dwarf yaupon)', '3 gal', '13', 'Swap for the boxwood', 'Rainbow Gardens, Milberger\'s'],
+    ['If the rail faces west', 'Ilex vomitoria \'Micron\' (dwarf yaupon)', '3 gal', '11', 'Swap for the boxwood', 'Rainbow Gardens, Milberger\'s'],
   ]);
 
   const soil = table(['Material', 'Amount', 'Notes'], [
-    ['Container potting mix (FoxFarm Happy Frog, Ocean Forest, or the nursery\'s house mix)', 'About 16 cu ft: eight 2-cu-ft bags', 'Troughs 31 gal, rail planters 21 gal, urn and tall pots the rest. Not garden soil, not "moisture control" mixes, which stay soggy in reservoir planters.'],
+    ['Container potting mix (FoxFarm Happy Frog, Ocean Forest, or the nursery\'s house mix)', 'About 16 cu ft: eight 2-cu-ft bags', 'Troughs 26 gal, rail planters 21 gal, urn and tall pots the rest. Not garden soil, not "moisture control" mixes, which stay soggy in reservoir planters.'],
     ['Pea gravel', '4 bags, 0.5 cu ft', 'One inch on every planter: the Provence look, less splash, less evaporation.'],
     ['Slow-release fertilizer (Osmocote Plus or similar)', '1 box', 'March and June. Lavender and rosemary get half rate.'],
     ['Green stretch tie or soft garden wire', '1 roll', 'Tying jasmine canes into the mesh.'],
-    ['Rubber pads or composite shims', '8', 'Under the troughs so air moves beneath and the concrete dries.'],
+    ['Rubber pads or composite shims', '6', 'Under the troughs so air moves beneath and the concrete dries.'],
   ]);
 
   const steps = [
@@ -528,7 +527,7 @@ function buildBody() {
     ['4 · Set the troughs', 'Place the Mayne boxes 2–3" back from the mesh on rubber pads (and trays if needed), overflow holes facing your floor. Fill to an inch below the rim with mix, water once from the top to settle it, then only ever fill the reservoir through the tube.'],
     ['5 · Plant the base', 'Jasmine first, at the back edge against the mesh, canes fanned and tied into the grid at 45°. Boxwood in front, 12" apart, root balls roughened. Gravel on top. Clip the boxwood flat at 16–18" the following spring and again in August.'],
     ['6 · Hang the rail planters', 'Set the brackets to 3", hang each planter with its body on your side of the rail, lavender in the middle, trailing plants at the front edge. Once the dichondra and lantana are 8" long, thread them through the mesh to the outside.'],
-    ['7 · The corners', 'Olive in the urn with 2" of gravel on top and the saucer under it. Cypress in the tall pots. Rosemary in your charcoal pots. Move the pots, the drink table and the pillows in, and turn the chair to face the sofa.'],
+    ['7 · The corners', 'Olive in the urn with 2" of gravel on top and the saucer under it, in the far corner in front of the last trough. Cypress in the tall pots at the door end. Rosemary in your charcoal pots on the wall strip past the sofa. Turn the chair at the far return to face back toward the sofa, and bring in the drink table and pillows.'],
     ['8 · The watering routine', 'Troughs: fill by the gauge, roughly every 5–7 days in summer, every 2 weeks in spring and fall, every 3 weeks in winter. Rail planters: 1 qt reservoir, so daily in July and August, every 2–3 days otherwise. Olive, cypress, rosemary: a measured gallon or two once a week in summer, then empty the saucers after rain. Nothing is ever watered with a hose.'],
     ['9 · Later, if you want it', 'A gravity Blumat kit or a pump-on-timer kit can feed every reservoir from a hidden 5-gal tank so you can leave for two weeks in August. Ewing Irrigation and SiteOne in San Antonio carry the tubing and fittings; Sustainable Village sells the Blumat kits. Skip it the first season: the reservoirs already do most of the work.'],
   ].map(([h, body]) => card(h, P(body))).join('');
@@ -558,7 +557,7 @@ function buildBody() {
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Soil and supplies')}${soil}</div>
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Step by step')}<div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:16px">${steps}</div></div>
   <div style="display:flex;flex-direction:column;gap:12px">${H2('Where to buy')}${sources}${P('Older San Antonio nursery lists still show Shades of Green on Sunset Rd, Schulz Nursery on Broadway and Sandy Oaks Olive Orchard in Elmendorf. All three have closed.')}</div>
-  <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">${H3('Weight, in case the building asks')}${P('Fully wet, the four troughs, seven rail planters, urn and two tall pots come to roughly 900 lb spread along 20 ft of rail line, well inside what a code balcony carries. Keep the heavy pieces at the corners and along the edge rather than clustered in the middle.')}</div>
+  <div style="display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:${t.panel};border:1px solid ${t.accent}">${H3('Weight, in case the building asks')}${P('Fully wet, the three troughs, seven rail planters, urn and two tall pots come to roughly 800 lb spread along 20 ft of rail line, well inside what a code balcony carries. Keep the heavy pieces at the corners and along the edge rather than clustered in the middle.')}</div>
 </div>`;
 }
 
@@ -570,9 +569,9 @@ function finalBody(c, imgPrefix = '') {
       <p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.88">${p}</p></div>`).join('');
   const list = c.list.map(i => `<li style="padding:6px 0;border-bottom:1px solid rgba(128,128,128,.25);font-size:13px;line-height:1.4">${i}</li>`).join('');
   const furniture = [
-    ['The sofa', 'Stays on the wall between the door and the far return, where it is now. At 78.5" long it runs from the near return almost to the door frame. It fixes everything else: 10"-deep troughs on the long rail keep a 30" path in front of the cushions, the side table lands at its door-end arm, and the cypress pair closes the corner past the other arm.'],
-    ['The armchair', 'At 29" square it turns to face the sofa from in front of the fixed door panel, angled toward the view. Your two charcoal pots move to the far wall corner beyond the door opening, with clipped rosemary in them. The door opening itself stays a clear path to the rail.'],
-    ['Pillows and a table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking stripe on the sofa, and a 12" stone-topped drink table at the door-end arm of the sofa, in front of the fixed panel, so a glass has somewhere to land.'],
+    ['The sofa', 'Stays on the wall beside the door, where it is now. At 78.5" long it runs from the door frame to about 28" short of the far return. It fixes everything else: 11"-deep troughs on the long rail keep a 30" path in front of the cushions, the drink table lands at its door-end arm, and the strip of wall past its far arm takes your two charcoal pots.'],
+    ['The armchair', 'At 29" square it stays against the far return, where it is now, turned to face back down the balcony toward the sofa and angled a little toward the view. The olive urn takes the corner beside it. Your two charcoal pots move to the wall strip between the sofa and the return, with clipped rosemary in them.'],
+    ['Pillows and a table', 'The black frames and white piping are already French; what they need is softness. Two lavender linen pillows and one oatmeal ticking-stripe pillow on the sofa, and a 12" stone-topped drink table at the door-end arm of the sofa so a glass has somewhere to land.'],
   ].map(([h, p]) => `<div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;color:${t.text}">${h}</h3><p style="margin:0;font-size:13.5px;line-height:1.5;color:${t.text};opacity:.9">${p}</p></div>`).join('');
   return `<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:${t.bg};color:${t.text};font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:26px">
   <header style="display:flex;flex-direction:column;gap:8px">
@@ -583,27 +582,27 @@ function finalBody(c, imgPrefix = '') {
   </header>
   <div style="display:flex;flex-direction:column;gap:10px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">What it looks like</h2>
-    <p style="margin:0;font-size:13.5px;line-height:1.5;max-width:900px;color:${t.text};opacity:.9">Photo edits of the real balcony, made in ChatGPT one step at a time from the drawings below, so the railing, floor and buildings are the actual ones and everything added is sized to them.</p>
+    <p style="margin:0;font-size:13.5px;line-height:1.5;max-width:900px;color:${t.text};opacity:.9">Edits of your own photos, made one step at a time from the drawings below, so the railing, floor, buildings and furniture are the real ones and everything added is sized to them.</p>
     <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px">
-      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-along-the-balcony.jpg" alt="Render looking along the balcony from the door end" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">From the door end: hedge and jasmine on the long rail, lavender over the cap, the olive urn in the far corner, the armchair turned to face the sofa, rosemary in the existing pots.</figcaption></figure>
-      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-from-the-door.jpg" alt="Render looking out across the long rail from the sofa" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">Looking out from the sofa across the three panels, before the sofa was unwrapped in the edit chain.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-along-the-balcony.jpg" alt="Render looking along the balcony from the door end" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">From the door end, late afternoon: hedge and jasmine on the long rail, lavender over the cap, the olive urn in the far corner, the armchair at the far return facing back, rosemary in your pots on the wall strip, the sofa with its pillows and the lantern above.</figcaption></figure>
+      <figure style="margin:0;display:flex;flex-direction:column;gap:6px"><img src="${imgPrefix}render-from-the-door.jpg" alt="Render looking out across the long rail from the sofa" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,.15)"><figcaption style="font-size:12.5px;color:${t.muted}">From the sofa, looking out across the three panels: troughs, hedge, jasmine on the mesh, six rail planters, and the olive in the corner.</figcaption></figure>
     </div>
   </div>
   <div style="display:flex;flex-direction:column;gap:8px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking out from the sofa</h2>
     <div style="border:1px solid rgba(128,128,128,.3);background:${c.el.sky}">${elevation(c)}</div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>The 162" rail, 43" high: hedge, jasmine on the mesh, planters over the cap; cypress pair at the sofa end (left), olive urn in the far corner (right), your armchair in front of the door panel</span><span>6 px per inch</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>The 162" rail, 43" high: hedge, jasmine on the mesh, planters over the cap; cypress pair at the door end (left), olive urn in front of the last trough at the far corner (right); the armchair sits against the far return, out of this view</span><span>6 px per inch</span></div>
   </div>
   <div style="display:flex;flex-direction:column;gap:8px">
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Looking back at the wall</h2>
     <div style="border:1px solid rgba(128,128,128,.3);background:#9a9b98">${wallElevation(c)}</div>
-    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at left with its opening side nearest the far return; your sofa to the right of it with pillows, a drink table and a wall lantern; the rosemary pots in the far wall corner at left, olive urn (left) and cypress pair (right) in the foreground at the rail corners</span><span>6 px per inch</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:${t.muted}"><span>Door at right with its opening side toward the near return; your sofa to its left with pillows, a drink table and a wall lantern; the rosemary pots on the wall strip at far left; olive urn (left) and cypress pair (right) in the foreground at the rail corners</span><span>6 px per inch</span></div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:26px;align-items:start">
     <div style="display:flex;flex-direction:column;gap:10px">
       <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Floor plan, 74" × 162"</h2>
       <div style="background:${t.panel};padding:8px">${plan(c.el, { pot: c.pot, hedgeTop: c.hedgeTop, ...c.plan })}</div>
-      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is still drawn at an estimated 70" with its opening on the right.</p>
+      <p style="margin:0;font-size:12.5px;line-height:1.5;color:${t.muted}">Sofa 78.5" × 33.5" and chair 29" × 29.25" from the maker's dimensions. The door is drawn at an estimated 56" beside the sofa with its opening toward the near return; the wall strip between the sofa and the far return is scaled from the photos at about 28".</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:22px">
       <div style="display:grid;grid-template-columns:repeat(1, minmax(0, 1fr));gap:16px">${furniture}</div>
@@ -627,6 +626,17 @@ function finalBody(c, imgPrefix = '') {
     <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:${t.text}">Shopping list</h2>
     <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:0 32px;color:${t.text}">${list}</ul>
   </div>
+</div>`;
+}
+
+function recipeBody() {
+  const t = { bg: '#f1ede4', panel: '#e7e1d3', text: '#2a2723', muted: '#7a7369', accent: '#6b7a55' };
+  return `<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:${t.bg};color:${t.text};font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:20px">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:${t.muted}">Balcony Oasis · appendix</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:48px;font-weight:500;line-height:.98;color:${t.text}">How the renders were made</h1>
+    <p style="margin:6px 0 0;font-size:14px;line-height:1.55;max-width:900px;color:${t.text};opacity:.9">Kept here in case a view needs redoing. The finished images came from ChatGPT editing the original photos one change at a time, then a realism and 4K pass in Adobe Firefly with the Gemini Nano Banana Pro model.</p>
+  </header>
   ${renderPrompts(t)}
 </div>`;
 }
@@ -648,26 +658,26 @@ function wallElevation(c) {
   for (let px = x0 - 40; px < EL.w; px += 120) s += `<rect x="${px}" y="0" width="118" height="${floor}" fill="#a3a4a1" stroke="#8c8d8a" stroke-width="1"/>`;
   s += `<rect x="0" y="${floor - 6}" width="${EL.w}" height="6" fill="#2b2b2b"/>`;
   // door: mirrored plan position (plan x 82..152 from return A) -> from the left when facing the wall
-  const dX = x0 + (L - 152) * IN, dW = 70 * IN, dTop = floor - 84 * IN;
+  const dX = x0 + (L - 57) * IN, dW = 56 * IN, dTop = floor - 84 * IN;
   s += `<rect x="${dX - 6}" y="${dTop - 6}" width="${dW + 12}" height="${84 * IN + 6}" fill="#2a2b2d"/>`;
-  s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/>`;
-  s += `<rect x="${dX + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/><rect x="${dX + dW / 2 + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/>`;
-  s += `<rect x="${dX + dW / 2 - 10}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
-  s += `<text x="${dX + dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
+  s += `<rect x="${dX}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#33393f"/><rect x="${dX + dW / 2 + 3}" y="${dTop}" width="${dW / 2 - 3}" height="${84 * IN}" fill="#4b5560"/>`;
+  s += `<rect x="${dX + 22}" y="${dTop + 40}" width="${dW / 2 - 44}" height="${84 * IN - 80}" fill="#22262a" opacity=".5"/><rect x="${dX + dW / 2 + 18}" y="${dTop + 40}" width="${dW / 2 - 40}" height="${84 * IN - 80}" fill="#5c6570" opacity=".6"/>`;
+  s += `<rect x="${dX + dW / 2 + 5}" y="${floor - 40 * IN}" width="5" height="60" rx="2" fill="#9ea2a6"/>`;
+  s += `<text x="${dX + 3 * dW / 4}" y="${floor - 66 * IN}" text-anchor="middle" font-size="12" fill="#ecebe6" font-family="Work Sans, system-ui, sans-serif">opening side</text>`;
   // sofa against the wall, right of the door, plus pillows
-  const sofaX = x0 + (L - 80.5) * IN;
+  const sofaX = x0 + (L - 135.5) * IN;
   s += spindleSofa(sofaX, floor - 2, e, 78.5);
   s += pillow(sofaX + 30, floor - 2 - 26 * IN, 90, 80, '#9a93bf', e) + pillow(sofaX + 78.5 * IN - 120, floor - 2 - 26 * IN, 90, 80, '#e9e4d6', e) + pillow(sofaX + 78.5 * IN - 190, floor - 2 - 24 * IN, 70, 66, '#c8c1d8', e);
   // wall lantern above the sofa's near arm, side table at the door end
   const lx = sofaX + 78.5 * IN / 2 - 15, ly = floor - 46 * IN;
   s += `<rect x="${lx}" y="${ly}" width="30" height="46" rx="3" fill="none" stroke="${e.iron}" stroke-width="2.5"/><rect x="${lx + 6}" y="${ly + 8}" width="18" height="30" fill="#f2d9a0" opacity=".8"/><line x1="${lx + 15}" y1="${ly}" x2="${lx + 15}" y2="${ly - 18}" stroke="${e.iron}" stroke-width="2"/>`;
-  s += `<g transform="translate(${sofaX - 92} ${floor + 6})"><ellipse cx="36" cy="${-22 * IN}" rx="36" ry="8" fill="${e.tableTop}" stroke="${e.iron}" stroke-width="1.5"/><line x1="36" y1="${-22 * IN + 8}" x2="36" y2="0" stroke="${e.iron}" stroke-width="3"/><path d="M12 0 Q36 -12 60 0" fill="none" stroke="${e.iron}" stroke-width="2.5"/></g>`;
-  s += pot(72, floor - 14, 66, 48, 'charcoal') + hedge(44, floor - 14 - 48 - 58, 56, 64, ['#5f7f4b', '#6f8f58', '#7e9a68'], 77, 'ball') + pot(96, floor - 2, 54, 42, 'charcoal') + hedge(75, floor - 2 - 42 - 48, 44, 52, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball');
+  s += `<g transform="translate(${sofaX + 78.5 * IN + 20} ${floor + 6})"><ellipse cx="36" cy="${-22 * IN}" rx="36" ry="8" fill="${e.tableTop}" stroke="${e.iron}" stroke-width="1.5"/><line x1="36" y1="${-22 * IN + 8}" x2="36" y2="0" stroke="${e.iron}" stroke-width="3"/><path d="M12 0 Q36 -12 60 0" fill="none" stroke="${e.iron}" stroke-width="2.5"/></g>`;
+  s += pot(122, floor - 14, 66, 48, 'charcoal') + hedge(94, floor - 14 - 48 - 58, 56, 64, ['#5f7f4b', '#6f8f58', '#7e9a68'], 77, 'ball') + pot(176, floor - 2, 54, 42, 'charcoal') + hedge(155, floor - 2 - 42 - 48, 44, 52, ['#5f7f4b', '#6f8f58', '#7e9a68'], 78, 'ball');
   // the olive urn stands in the far right corner (rail side), so it reads in the foreground here
   s += floorBand(e);
-  s += tree('olive', 46, floor + 28, { pot: 'stone', potW: 120, potH: 110 }, 3);
-  // the cypress pair stands at the sofa end, in the foreground at right
-  s += tree('cypress', EL.w - 110, floor + 18, { pot: 'stone', potW: 84, potH: 90, height: 300 }, 4) + tree('cypress', EL.w - 40, floor + 26, { pot: 'stone', potW: 84, potH: 90, height: 280 }, 12);
+  s += tree('olive', 40, floor + 28, { pot: 'stone', potW: 120, potH: 110 }, 3);
+  // the cypress pair stands at the door end, in the foreground at right
+  s += tree('cypress', EL.w - 62, floor + 18, { pot: 'stone', potW: 84, potH: 90, height: 300 }, 4) + tree('cypress', EL.w - 8, floor + 26, { pot: 'stone', potW: 84, potH: 90, height: 280 }, 12);
   return `<svg viewBox="0 0 ${EL.w} ${EL.h}" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation of the wall side with the sofa and door">${s}</svg>`;
 }
 
@@ -803,13 +813,15 @@ ${body}
 writeFileSync(join(here, 'Main.dc.html'), dcWrap(finalBody(finalPlan), finalPlan.theme.bg));
 writeFileSync(join(here, 'Brief.dc.html'), dcWrap(briefBody(), '#f1ede4'));
 writeFileSync(join(here, 'BuildPlan.dc.html'), dcWrap(buildBody(), '#f4f0e7'));
+writeFileSync(join(here, 'Recipe.dc.html'), dcWrap(recipeBody(), '#f1ede4'));
 for (const c of concepts) writeFileSync(join(here, `${c.id}.dc.html`), dcWrap(conceptBody(c, { forCanvas: true }), c.theme.bg));
 const H = 1820;
 writeFileSync(join(here, 'canvas.json'), JSON.stringify({
   pages: [{ id: 'page-1', name: 'Final plan' }, { id: 'page-2', name: 'Directions' }],
   artboards: [
-    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 4800, title: 'The Provence plan', page: 'page-1' },
+    { file: 'Main.dc.html', x: 0, y: 0, w: 1120, h: 3700, title: 'The Provence plan', page: 'page-1' },
     { file: 'BuildPlan.dc.html', x: 1220, y: 0, w: 1120, h: 2900, title: 'How to build it', page: 'page-1' },
+    { file: 'Recipe.dc.html', x: 2440, y: 0, w: 1120, h: 2600, title: 'How the renders were made', page: 'page-1' },
     { file: 'Brief.dc.html', x: 0, y: 0, w: 1120, h: 1500, title: 'Brief and water plan', page: 'page-2' },
     ...concepts.map((c, i) => ({ file: `${c.id}.dc.html`, x: i * 1220, y: 1720, w: 1120, h: H, title: `Concept ${c.n} · ${c.name}`, page: 'page-2' })),
   ],
@@ -840,15 +852,14 @@ ${FONT_LINK}
 </head>
 <body>
 <div class="wrap">
-  <nav aria-label="Sections"><a href="#plan">Final plan</a><a href="#build">How to build it</a><a href="#brief">Brief</a>${concepts.map(c => `<a href="#${c.id.toLowerCase()}">${c.n}. ${c.name}</a>`).join('')}</nav>
-  <section class="board" id="plan">${finalBody(finalPlan, 'renders/')}</section>
+  <nav aria-label="Sections"><a href="#plan">The plan</a><a href="#build">How to build it</a><a href="#recipe">How the renders were made</a></nav>
+  <section class="board" id="plan">${finalBody(finalPlan, 'INLINE:')}</section>
   <section class="board" id="build">${buildBody()}</section>
-  <h2 style="margin:24px 0 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:500">The brief and the four directions considered</h2>
-  <section class="board" id="brief">${briefBody()}</section>
-  ${concepts.map(c => `<section class="board" id="${c.id.toLowerCase()}">${conceptBody(c, { forCanvas: false })}</section>`).join('\n  ')}
+  <section class="board" id="recipe">${recipeBody()}</section>
 </div>
 </body>
 </html>
 `;
-writeFileSync(join(here, '..', 'index.html'), page);
+const inline = (name) => `data:image/jpeg;base64,${readFileSync(join(here, '..', 'renders', name)).toString('base64')}`;
+writeFileSync(join(here, '..', 'index.html'), page.replace(/INLINE:(render-[a-z-]+\.jpg)/g, (m, n) => inline(n)));
 console.log('wrote', ['Main', 'BuildPlan', 'Brief', ...concepts.map(c => c.id)].map(n => n + '.dc.html').join(', '), 'canvas.json, ../index.html');

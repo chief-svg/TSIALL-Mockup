@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap">
+  <style>
+    body { margin: 0; background: #f1ede4; }
+    a { color: #6b7a55; } a:hover { color: #4f5b3e; }
+    h1, h2, h3 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+  </style>
+</helmet>
+<div style="width:1120px;box-sizing:border-box;padding:44px 40px 48px;background:#f1ede4;color:#2a2723;font-family:'Work Sans',system-ui,sans-serif;display:flex;flex-direction:column;gap:20px">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#7a7369">Balcony Oasis · appendix</div>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:48px;font-weight:500;line-height:.98;color:#2a2723">How the renders were made</h1>
+    <p style="margin:6px 0 0;font-size:14px;line-height:1.55;max-width:900px;color:#2a2723;opacity:.9">Kept here in case a view needs redoing. The finished images came from ChatGPT editing the original photos one change at a time, then a realism and 4K pass in Adobe Firefly with the Gemini Nano Banana Pro model.</p>
+  </header>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <h2 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;color:#2a2723">Turning the plan into a photograph</h2>
+    <p style="margin:0;font-size:13.5px;line-height:1.5;max-width:900px;color:#2a2723;opacity:.9">These drawings are to scale but they are drawings. For a photo-real version of your own balcony, edit your photos in ChatGPT one small step at a time, in the order below, each step on the previous image. Asking for the whole design at once makes the model rebuild the balcony at the wrong size; one change per message keeps the real geometry. Sizes are given against things in the photo (the chair seat, the top cap) because that is what the model can actually see. For 4K, take the largest image the app produces and upscale it 2× to 4× with Upscayl, Topaz Gigapixel or Photoshop Super Resolution.</p>
+    <div style="display:flex;flex-direction:column;gap:14px"><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 1 · Set the rules</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369">Attach the photo taken from the door looking along the railing, with the chair and gray pots at the far end. Check its answer: if it miscounts the panels, correct it before going on.</p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">This is a photo of my balcony. We are going to edit it in small steps. In every step you keep the camera, framing, railing, floor, wall, door, buildings and light exactly as they are, so that the output lines up with the input if laid on top of it. You never extend the balcony, add railing panels, move posts, or change the viewpoint.
+
+First, before making any image, describe what you see so we agree on the fixed geometry: how many mesh panels on the long railing, how many posts, where the armchair is, where the two gray pots are, where the door is. Use these as scale anchors from now on: the top cap of the railing is 43 inches high; the armchair seat is 16.5 inches off the floor; the gray pots are about 14 inches wide; the long railing is 13.5 feet with three mesh panels.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 2 · Troughs and hedge</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the photo. Add only this: along the base of the long railing, three matte white rectangular trough planters in a row, set 2 inches back from the mesh. Their tops come to just below the armchair's seat cushion (11 inches). Lengths 48, 48 and 36 inches: together they span the three mesh panels, stopping short of the far corner where the gray pots stand. Each is planted with a clipped Japanese boxwood hedge, flat-topped at the height of the armchair's armrest (about 28 inches off the floor), with an inch of pale pea gravel on the soil. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 3 · Jasmine</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the last image. Add only this: star jasmine vines climbing from the troughs into the wire mesh, fanned sideways, covering about 60 percent of the mesh above the hedge, glossy dark green leaves with small white pinwheel flowers, the grid still visible through them. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 4 · Rail planters</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the last image. Add only this: six matte white rail planters, each 24 inches long and 7 inches tall (about one-sixth the height of the railing), hung over the 43-inch top cap with their bodies on the balcony side, two per mesh panel, evenly spaced. Each holds one upright lavender in purple bloom in the center, with silver dichondra and white trailing lantana spilling through the mesh and about 18 inches down the outside. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 5 · Olive</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the last image. Change only this: replace the two gray pots in the far corner with one limestone-toned stone urn, 24 inches wide and 24 inches tall (its rim about half the railing's height), holding an Arbequina olive tree that reaches about 7 feet, a foot and a half above the top cap, with silver-green leaves and a slightly leaning trunk. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 6 · Chair and rosemary</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the last image. Change only this: move the armchair to sit in front of the fixed panel of the sliding door, turned to face along the balcony toward the sofa end, angled slightly toward the view. Put the two gray pots on the narrow strip of wall just past the door frame, each with a clipped rosemary ball. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 7 · The sofa side</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369">Switch to the photo of the sofa with the door on its left; the cypress corner is behind the camera in the first photo.</p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">This is a second photo of the same balcony, looking the other way, with the sofa against the wall beside the door. Same rules: edit, never rebuild, keep the camera and everything in the frame. Change only this: remove the plastic wrap from the sofa so it shows white cushions with black piping. Add two lavender linen throw pillows and one oatmeal ticking-stripe pillow. In the corner beyond the sofa's far arm, add two limestone-toned tapered pots, 16 inches wide and 22 inches tall, each with a slim Italian cypress about 6 feet tall. At the sofa's near arm, by the door, add a 12-inch round drink table with a pale stone top and a thin black iron base. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">Message 8 · Lantern</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369"></p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">Edit the last image. Add only this: a black iron wall lantern with a warm glowing bulb, mounted on the gray wall panel above the center of the sofa, about 46 inches off the floor. Nothing else changes.</pre></div><div style="display:flex;flex-direction:column;gap:8px;padding:18px;background:#e7e1d3">
+      <h3 style="margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;line-height:1.1;color:#2a2723">When a step goes wrong</h3>
+      <p style="margin:0;font-size:12.5px;color:#7a7369">Look at the railing posts after every step. If they moved or a panel appeared, do not continue.</p>
+      <pre style="margin:0;font:12.5px/1.5 'Work Sans',system-ui,sans-serif;white-space:pre-wrap;color:#2a2723;opacity:.92;user-select:all">That changed the balcony's geometry. Go back to the previous image and apply the same edit again without extending the railing or moving the camera. The posts must stay exactly where they were.</pre></div></div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
