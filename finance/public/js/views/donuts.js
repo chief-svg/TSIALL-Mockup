@@ -15,7 +15,7 @@ VIEWS.donuts = {
     const { ctx, d, prefs } = S; const P = PLAN; const cur = ym === ctx.today.slice(0, 7);
     const dim = F.daysInMonth(ym + '-01');
     const bill = label => P.bills.find(b => b.label === label);
-    const active = b => b && !(b.endsAfter && ym + '-01' > b.endsAfter);
+    const active = b => b && ENGINE.activeIn(b, ym);
     const paid = label => cur && d.ledger.bills.find(x => x.label === label && x.tx);
     const s = { rent: 0, loans: 0, cards: 0, living: 0, car: 0, student: 0, savings: 0 };
     const notes = {};
