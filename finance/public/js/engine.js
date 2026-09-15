@@ -72,6 +72,7 @@ window.ENGINE = (() => {
 
   // ---------------------------------------------------------------- classify
   const RX = {
+    payroll: /corp pay|payroll|direct ?dep|dir dep|salary|des:corp|reimburse/i,
     paymentPayee: /payment|pymt|thank you|autopay|ach pmt|epay|online pmt|mobile pmt/i,
     issuer: /american express|amex|citi|chase|sofi|wells|bank of america|bofa|capital one|discover|barclay|synchrony|irs des|usataxpymt|us treasury/i,
     interest: /interest charge|purchase interest|finance charge|interest on/i,
@@ -87,7 +88,8 @@ window.ENGINE = (() => {
     const payee = `${tx.payee || ''} ${tx.original_payee || ''} ${tx.memo || ''}`;
     const paymentCat = cat && /^(Payment|Card Paydown|Loan Payments|Car Payment)$/i.test(cat.title);
 
-    if (tx.is_transfer || (cat && cat.isTransfer)) return 'transfer';
+    // PocketSmith sometimes files payroll/reimbursement ACH credits as transfers; a credit into checking from a payroll-style payee is income*
+    if (tx.is_transfer || (cat && cat.isTransfer)) return (acct && acct.isCash && amt > 0 && RX.payroll.test(payee)) ? 'income' : 'transfer';
 
     if (acct && acct.isDebt) {
       if (amt > 0) return (paymentCat || RX.paymentPayee.test(payee)) ? 'debt_payment_in' : 'refund';
@@ -114,6 +116,14 @@ window.ENGINE = (() => {
     const ctx = { accounts, byId, catIndex, categories: data.categories || [], today: F.today(), events: data.events || [], snapshots: data.snapshots || {}, overrides: data.overrides || {} };
     ctx.txs = (data.transactions || []).map(t => ({ ...t, amount: Number(t.amount), kind: classify(t, ctx), acctId: t.transaction_account && t.transaction_account.account_id }))
       .sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
+    // Bank feeds report the ledger balance, which leaves pending debits (e.g. an ACH card payment on hold) out;
+    // card feeds already include pending charges. Adjust cash accounts by their pending transactions*.
+    for (const a of accounts) {
+      if (!a.isCash || a.override) continue;
+      const pend = ctx.txs.filter(t => t.acctId === a.id && t.status === 'pending' && t.date >= (a.balanceDate || '0000') );
+      const adj = pend.reduce((s, t) => s + t.amount, 0);
+      if (adj) { a.feedBalance = a.balance; a.pendingAdj = adj; a.pendingCount = pend.length; a.balance = Math.round((a.balance + adj) * 100) / 100; }
+    }
     ctx.totals = totals(accounts);
     return ctx;
   }
