@@ -213,7 +213,7 @@ window.ENGINE = (() => {
     const L = P.living; const S = (P.statements && P.statements.cards) || {}; const s = L.card ? S[L.card] : null;
     if (!s || !L.cardFrom || !s.closeDay || !s.dueDay) return [];
     const out = []; const per = d => L.monthly / F.daysInMonth(d); const short = (P.accounts[L.card] || {}).short || L.card;
-    let carry = s.openCharges || 0, from = L.cardFrom;
+    let carry = s.openCharges || 0, from = s.openChargesAsOf && s.openChargesAsOf >= L.cardFrom ? F.addDays(s.openChargesAsOf, 1) : L.cardFrom; // open charges already include living up to their as-of date
     let close = clampDay(from.slice(0, 7), s.closeDay); if (close < from) close = nextMonthDay(close, s.closeDay);
     for (let k = 0; k < 9; k++) {
       let amt = carry; carry = 0;

@@ -82,7 +82,7 @@ window.PLAN = {
     cards: {
       5486683:   { due: '2026-09-15', dueDay: 15, statement: 18808.97, minDue: 0,   minEst: 648, lastMin: 648,    payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Aug 31.' },
       5486678:   { due: '2026-09-16', dueDay: 16, statement: 16648.32, minDue: 0,   minEst: 568, lastMin: 568,    payee: /amex|american express/i, note: 'Amex Pay Over Time. Sep minimum paid Aug 31.' },
-      5486653:   { due: '2026-09-20', dueDay: 20, closeDay: 24, statement: 13463.71, minDue: 0, minEst: 185, lastMin: null, payee: /citi/i, grace: true, float: true, openCharges: 7462.96, note: 'IN GRACE (Aug statement: previous balance paid in full, interest $0). $9,500 paid Sep 11; $3,963.71 more by Sep 20 and it never pays interest. Living card from Sep 11: every statement paid in full on the 20th. Open charges since Aug 24: $4,835.07 posted + $2,627.89 pending (American Airlines $2,535.46, Kraft $92.43)* → on the Sep 24 statement, due Oct 20.' },
+      5486653:   { due: '2026-10-20', dueDay: 20, closeDay: 24, statement: null, minDue: 0, minEst: 185, lastMin: null, payee: /citi/i, grace: true, float: true, openCharges: 8743.39, openChargesAsOf: '2026-09-15', note: 'IN GRACE. Aug statement ($13,463.71) paid in full: $9,500 Sep 11 + $3,963.71 Sep 15 → $0 interest. Living card: every statement paid in full on the 20th. Open charges since Aug 24 as of Sep 15: $8,523.56 posted + $219.83 pending* → on the Sep 24 statement, due Oct 20.' },
       5486668:   { due: '2026-09-21', dueDay: 21, statement: 9426.74,  minDue: 0,   minEst: 192, lastMin: 192.38, payee: /amex|american express/i, note: 'Was in grace (paid to $0 in July, no interest charges). The Sep 21 statement is NOT paid in full — the cash covers the larger 8018 instead — so interest starts Sep 21* (~$220 once). Killed Oct 27.' },
       5486658:   { due: '2026-09-28', dueDay: 28, closeDay: 2, statement: 19291.75, minDue: 196, minEst: 196, lastMin: 196, payee: /citi/i, grace: true, note: 'IN GRACE (Sep statement: previous balance paid in full, interest $0). Killed Sep 27, the day before the due date — no interest ever.' },
       5486703:   { due: '2026-09-22', dueDay: 22, closeDay: 25, statement: 12373.88, minDue: 0, minEst: 325, lastMin: 325, payee: /chase/i,          note: 'Chase app 2026-09-11: due Sep 22, closes Sep 25, statement $12,698.88 (Aug 25). Sep minimum $325 paid Sep 4.' },
@@ -106,32 +106,32 @@ window.PLAN = {
     // Revised 2026-09-11 (night) around the statements: Citi 8018 + 3208 are IN GRACE (statements show $0 interest), so their statements are paid in full by the due dates and living floats on the 8018.
     // Carrying cards (Amex Plat from Sep 21, Biz Plat, Biz Gold, Sapphire) die avalanche-style with minimums reserved. Kill amounts = pay the LIVE balance that day; figures include est. interest*.
     { date: '2026-09-11', account: 5486653, amount: 9500,                  note: 'PAID Sep 11 — reimbursement to the Citi 8018 Aug statement (in grace → no interest). Part 1 of $13,463.71' },
-    { date: '2026-09-16', account: 5486653, amount: 3963.71,               note: 'Rest of the 8018 Aug statement, from Jessica’s Sep 15 check — paid before the Sun Sep 20 due date so the grace period holds' },
+    { date: '2026-09-15', account: 5486653, amount: 3963.71,               note: 'PAID Sep 15 — rest of the 8018 Aug statement, from Jessica’s check. Statement paid in full before the Sep 20 due date: grace period holds, $0 interest' },
 
     { date: '2026-09-27', account: 5486658, amount: 19550,   kill: true, note: 'PAYOFF — Citi 3208 (pay live balance; statement due Sep 28, in grace → no interest)' },
     { date: '2026-09-27', account: 5486688, amount: 30,      kill: true, note: 'Straggler cleared' },
     { date: '2026-09-27', account: 5486673, amount: 180,     kill: true, note: 'Straggler cleared' },
-    { date: '2026-09-27', account: 5486668, amount: 900,                 note: 'Remainder → Amex personal Platinum (its grace lapsed Sep 21). Small because the Oct 20 8018 statement (~$9,400* incl. the American Airlines charge) is held back' },
+    { date: '2026-09-27', account: 5486668, amount: 300,                 note: 'Remainder → Amex personal Platinum (its grace lapsed Sep 21). Small because the Oct 20 8018 statement (~$9,400* incl. the American Airlines charge) is held back; the Sep 13 car-care and flight charges made it bigger' },
 
-    { date: '2026-10-27', account: 5486668, amount: 10100,   kill: true, note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
-    { date: '2026-10-27', account: 5486678, amount: 14500,               note: 'Bulk of Amex Biz Plat — the tail dies Nov 27' },
+    { date: '2026-10-27', account: 5486668, amount: 10700,   kill: true, note: 'PAYOFF — Amex personal Platinum (pay live balance)' },
+    { date: '2026-10-27', account: 5486678, amount: 14100,               note: 'Bulk of Amex Biz Plat — the tail dies Nov 27' },
 
-    { date: '2026-11-15', account: 5486678, amount: 1500,                note: 'Biz Plat, after the Nov 20 8018 statement, minimums and SoFi' },
+    { date: '2026-11-15', account: 5486678, amount: 1300,                note: 'Biz Plat, after the Nov 20 8018 statement, minimums and SoFi' },
 
-    { date: '2026-11-27', account: 5486678, amount: 300,     kill: true, note: 'PAYOFF — Amex Biz Plat tail (pay live balance)' },
+    { date: '2026-11-27', account: 5486678, amount: 900,     kill: true, note: 'PAYOFF — Amex Biz Plat tail (pay live balance)' },
     { date: '2026-11-27', account: 5486683, amount: 18900,   kill: true, note: 'PAYOFF — Amex Biz Gold (pay live balance)' },
-    { date: '2026-11-27', account: 'jess1991', amount: 5600,             note: 'Bulk of Jessica’s Citi 1991 (27.99%* since Sep 29) — the tail dies Dec 15' },
+    { date: '2026-11-27', account: 'jess1991', amount: 5000,             note: 'Bulk of Jessica’s Citi 1991 (27.99%* since Sep 29) — the tail dies Dec 15' },
 
-    { date: '2026-12-15', account: 'jess1991', amount: 300,  kill: true, note: 'PAYOFF — Jessica’s Citi 1991 tail (pay live balance)' },
-    { date: '2026-12-15', account: 5486703, amount: 2150,                note: 'Remainder → Sapphire' },
+    { date: '2026-12-15', account: 'jess1991', amount: 900,  kill: true, note: 'PAYOFF — Jessica’s Citi 1991 tail (pay live balance)' },
+    { date: '2026-12-15', account: 5486703, amount: 1550,                note: 'Remainder → Sapphire' },
 
-    { date: '2026-12-27', account: 5486703, amount: 10900,   kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
+    { date: '2026-12-27', account: 5486703, amount: 11500,   kill: true, note: 'PAYOFF — Chase Sapphire. ALL CARDS DEAD except the 8018 living float (pay live balance)' },
     { date: '2026-12-27', account: 5486708, amount: 11000,   kill: true, note: 'PAYOFF — SoFi (~$11,000*). Request official payoff quote w/ per-diem.' },
-    { date: '2026-12-27', account: 'irs',   amount: 3000,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
+    { date: '2026-12-27', account: 'irs',   amount: 2400,                note: 'Remainder → IRS (extra payment on the installment agreement)' },
 
     { date: '2027-01-15', account: 'irs',   amount: 4400,                note: 'Jessica’s check → IRS' },
 
-    { date: '2027-01-27', account: 'irs',   amount: 6750,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
+    { date: '2027-01-27', account: 'irs',   amount: 7350,    kill: true, note: 'PAYOFF — IRS (pay the balance shown in your IRS online account that day)' },
     { date: '2027-01-27', account: 5486718, amount: 8950,    kill: true, note: 'PAYOFF — Wells Fargo auto (~$8,950*). Request payoff quote. 🏁 Interest-bearing debt gone' },
     { date: '2027-01-27', account: null,    amount: 750,                 note: 'Interest true-up buffer* — sweeps residual card interest and payoff-quote variance' },
 
@@ -165,12 +165,12 @@ window.PLAN = {
   projection: [
     // Revised 2026-09-11 night (grace cards + 8018 living float)*: debt figures include the ~$4,500–5,500 living float on the 8018, paid in full monthly at 0%. savings from Feb ’27 at $29,600/mo after the Discover payoff.
     { label: 'Now',     date: '2026-09-07', debt: -149361, savings: 0 },
-    { label: 'Sep ’26', date: '2026-09-30', debt: -121800, savings: 0 },
-    { label: 'Oct ’26', date: '2026-10-31', debt: -90200,  savings: 0 },
-    { label: 'Nov ’26', date: '2026-11-30', debt: -61600,  savings: 0 },
-    { label: 'Dec ’26', date: '2026-12-31', debt: -32500,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
-    { label: 'Jan ’27', date: '2027-01-31', debt: -12500,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
-    { label: 'Feb ’27', date: '2027-02-28', debt: -5400,       savings: 32500,  note: 'Discover cleared' },
+    { label: 'Sep ’26', date: '2026-09-30', debt: -123000, savings: 0 },
+    { label: 'Oct ’26', date: '2026-10-31', debt: -90700,  savings: 0 },
+    { label: 'Nov ’26', date: '2026-11-30', debt: -62400,  savings: 0 },
+    { label: 'Dec ’26', date: '2026-12-31', debt: -33300,  savings: 0,      note: 'cards + SoFi dead; IRS, auto, Discover remain' },
+    { label: 'Jan ’27', date: '2027-01-31', debt: -12700,   savings: 10000,  note: 'interest-bearing debt gone Jan 27' },
+    { label: 'Feb ’27', date: '2027-02-28', debt: -5500,       savings: 32500,  note: 'Discover cleared' },
     { label: 'Mar ’27', date: '2027-03-31', debt: -4500,       savings: 62100 },
     { label: 'Apr ’27', date: '2027-04-30', debt: -4500,       savings: 91700 },
     { label: 'May ’27', date: '2027-05-31', debt: -4500,       savings: 121300 },
