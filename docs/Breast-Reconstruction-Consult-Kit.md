@@ -359,3 +359,24 @@ Sources: Bennett JAMA Surg 2018 (https://pubmed.ncbi.nlm.nih.gov/29926077/); Jag
 **Note language:** "Grade [ ] ptosis, SN-N [ ] cm, tumor-to-nipple [ ] cm, no NAC involvement. Options discussed: single-stage NSM via inframammary incision with buried DIEP and staged mastopexy; staged mastopexy then NSM and DIEP in 6 to 12 weeks; single-stage skin-reducing NSM with superior dermal pedicle and DIEP paddle at the inferior pole after nipple delay; skin-reducing mastectomy with free nipple graft; skin-sparing mastectomy with nipple reconstruction. Recommended [ ] because [ ]. Intraoperative ICG planned; backup is free nipple graft or nipple excision if perfusion is inadequate. Counseled on nipple necrosis, T-junction breakdown, loss of nipple sensation, malposition requiring mastopexy, flap loss, fat necrosis, donor bulge."
 
 Caution: staged and skin-reducing pathways are technique-dependent with single-center evidence; if the breast surgeon has not done Wise-pattern NSM, the inframammary single-stage plan with delayed mastopexy is the safer default.
+
+---
+
+## 13. Caprini quick reference (2005 model, ASPS-endorsed)
+
+Not an ABPS requirement, but a written VTE risk assessment with a plan is how you satisfy the Safety rating item. Score every sedation or general anesthesia patient; one line suffices for local-only office cases.
+
+- **1 point:** age 41 to 60; BMI over 25; minor surgery; swollen legs or varicose veins; sepsis or pneumonia within 1 month; abnormal pulmonary function or COPD; MI or CHF within 1 month; inflammatory bowel disease; medical bed rest; major surgery within 1 month; oral contraceptives or HRT; pregnancy or postpartum within 1 month; history of stillbirth, recurrent miscarriage, or premature birth with toxemia or growth restriction.
+- **2 points:** age 61 to 74; arthroscopic surgery; laparoscopic surgery over 45 minutes; major open surgery over 45 minutes; malignancy present or previous; bed over 72 hours; immobilizing cast; central venous access.
+- **3 points:** age 75 or over; history of DVT or PE; family history of thrombosis; factor V Leiden; prothrombin 20210A; lupus anticoagulant; anticardiolipin antibodies; elevated homocysteine; HIT; other thrombophilia.
+- **5 points:** stroke within 1 month; elective arthroplasty; hip, pelvis, or leg fracture; acute spinal cord injury within 1 month.
+
+| Score | Risk | Plan |
+|---|---|---|
+| 0 to 2 | Low | Early ambulation, mechanical compression under GA |
+| 3 to 4 | Moderate | Mechanical; chemoprophylaxis at discretion |
+| 5 to 6 | High | Mechanical plus consider chemoprophylaxis, especially inpatients and flaps |
+| 7 to 8 | High | Mechanical plus enoxaparin 40 mg daily (30 mg twice daily if BMI over 40), about 7 days |
+| 9 or more | Highest | Same, extended 2 to 4 weeks |
+
+Breast reconstruction shortcut: start at 4 (cancer 2, surgery over 45 minutes 2); add 1 for age 41 to 60 or 2 for 61 to 74, 1 for BMI over 25, 1 for estrogen or tamoxifen, 3 for personal or family clot history, 2 for a port, 1 for lung disease or leg swelling. Write the number with the plan: "Caprini 8: SCDs before induction, enoxaparin 40 mg nightly from post-op day 0 for 7 days, ambulate day 1."
