@@ -1,259 +1,344 @@
-# ABPS Oral Examination: Case Collection Compliance Protocol and Checklist
+# ABPS Oral Examination: Case Collection Compliance Protocol
 
-**Prepared:** September 16, 2026
-**For:** A plastic surgeon in the ABPS case collection period (July 1, 2026 to March 31, 2027), starting independent practice mid-September 2026, targeting the November 2027 Oral Examination.
+**Version 2. Updated September 16, 2026.**
+**Governing document:** ABPS 2026-2027 Booklet of Information (BOI), Oral Examination section, pages 37 to 62 (supplied by the candidate), plus the ABPS "Oral Exam Process and Requirements" and "Quick Reference Tips" web pages captured September 2026.
+**Candidate cycle:** case collection July 1, 2026 to March 31, 2027. Oral Examination November 11, 12, 13, 2027.
 
-> **Correction on the source.** The body that certifies you and runs the oral boards is the **American Board of Plastic Surgery (ABPS)**, not ASPS. ASPS (American Society of Plastic Surgeons) is the professional society; it runs a prep course and publishes advice but sets none of the rules. Every requirement below is drawn from ABPS documents, with ASPS material used only for practical tips. Source list is in Section 12.
-
-> **Verification status.** Requirements were verified against the ABPS 2024-2025 and 2025-2026 Booklets of Information (BOI) Oral Examination sections, the ABPS Admissibility Policy, the ABPS Advertising Policy for candidates, the ABPS Clinical Case Log manual, and ABPS web pages. The **2026-2027 BOI**, which governs your cycle, is published July 1, 2026 and was not yet indexed for search when this was written. The rules have been stable year to year, but exact **dates, fees, and form names** for your cycle must be confirmed in the 2026-2027 BOI and your Oral Exam tab at abplasticsurgery.org. Items marked **[CONFIRM]** are the ones most likely to shift.
+> The certifying body is the **American Board of Plastic Surgery (ABPS)**. ASPS (the society) sets no requirements; its material is used here only for clinical evidence and prep resources.
 
 ---
 
-## 1. The big picture (what you told me, corrected and completed)
+## Part A. Requirements verified from the 2026-2027 BOI
 
-| What you said | What ABPS actually requires |
+### A1. Dates that matter to you
+
+| Milestone | Date (2026-2027 BOI) |
 |---|---|
-| "Put together at least 50 cases and submit them" | You must enter **every** operative case and **every hospitalized patient** you are the attending plastic surgeon for between July 1 and March 31. Of those, a **minimum of 50 must be MAJOR cases** (auto-classified by CPT code). Minor cases must still be entered but do not count toward 50. Your affidavit reads: "I attest that the patients listed on the attached pages are ALL of my cases." |
-| "I'll need preop photos" | You need **preoperative, intraoperative, AND postoperative** photographs of **every case**, including minor cases, office procedures, ER procedures, and all hand cases. Any case on the list can be selected. |
-| "Certain patient follow-up timelines" | Postoperative photographs must be taken **90 days or more after the day of surgery**. ABPS strongly recommends the operating surgeon take them. Candidates without 3-month photos are told to locate the patient and obtain them before reporting a deficiency. |
-| "Then they agree to let me sit" | The Oral Exam Committee reviews your list for scope and complexity, then selects **5 cases**. You build full case reports for those 5, upload them by a mid-August deadline, and are cleared for the exam in late September to mid-October. |
+| Case collection period | July 1, 2026 to March 31, 2027 |
+| Oral Exam Information materials mailed and posted in your Oral Exam tab | On or about July 1, 2026. Email oral@abplasticsurgery.org if not received by end of July. |
+| Peer evaluation names and contacts submitted online | On or around April 1, 2027 |
+| Data entry, proofing, editing, medical-records notarizations complete | By April 19, 2027 |
+| Case list, affidavits, statistics, privilege letter, accreditation certificates, advertising and CV **physically received** at the Board Office | **April 20, 2027, close of business.** Guaranteed-delivery courier (FedEx, DHL, UPS). USPS certified mail does not qualify. |
+| Late period (late fee auto-charged) | April 21 to 23, 2027. Nothing accepted after April 23. |
+| Notified of site visit, practice biopsy, or Ethics Committee review if peer evaluations raise concerns | Early July 2027 |
+| Email: Announcement Letter, the **5 Board-selected cases**, Registration Form, travel information | July 2027 |
+| Registration Form due (with exam fee, all licenses, all privilege letters, all accreditation certificates) | July 31, 2027 (per ABPS Quick Reference Tips) |
+| Last day to request 3 additional cases for an incomplete selected case | August 16, 2027 |
+| **Case report upload deadline** (all 5 cases, plus any additional cases, finalized) | **August 19, 2027, 12:00 p.m. Eastern.** No exceptions. |
+| Examiner teams review; "Additional Documentation" tab may appear and must be answered promptly | September to October 2027 |
+| Email that case reports are cleared | Late September to mid-October 2027 |
+| Admission Form posted | About 4 weeks before the exam |
+| **Oral Examination** (2.5 days; be present every day) | **November 11, 12, 13, 2027.** 2026 exam was at the Arizona Grand Resort, Phoenix; 2027 location is in the Announcement Letter. |
+| Deadline to request a name change for the certificate | December 1, 2027 |
 
----
+Board Office: 1601 Market Street, Suite 900, Philadelphia, PA 19103. Oral exam questions: oral@abplasticsurgery.org. Phone 215-587-9322.
 
-## 2. Your timeline
+### A2. Standing requirements (BOI "Oral Examination Requirements" 1 to 6)
 
-Dates below are from the 2025 cycle pattern. Your exact 2027 dates are in the 2026-2027 BOI. **[CONFIRM each date]**
+1. **Professionalism.** Advertising and Marketing Requirements and the Code of Ethics and Professionalism apply throughout. The Board may defer you for ethical or professionalism issues.
+2. **Peer evaluations (new to you).** Names and emails go in around April 1. The Board emails the evaluators. Required from your **primary hospital**: Chief of Surgery or Plastic Surgery, Chief of Staff, Chief of Anesthesiology, OR Nursing Supervisor. From **every other hospital** where you hold privileges: Chief of Surgery or Plastic Surgery. Also: any post-residency fellowship director; one ABPS-certified plastic surgeon you designate (anywhere); one ABPS-certified plastic surgeon near you solicited by the Board. If you operate in a surgery center or office OR: its Medical Director, Anesthesiologist, and OR Nursing Supervisor. Solo practice with an office OR: your most-used anesthesiologist and lead OR nurse. Concerns can trigger a site visit, practice biopsy, or Ethics Committee review and can delay your exam.
+3. **Unrestricted license** in every state where you practice, valid continuously through collection and the exam, with an expiration date past November 13, 2027. **Report any restriction or sanction within 30 days.** Restricted status stops case collection until the state board's final order is on file. Investigations, monitoring, mandated CME, evaluations, substance testing, probation, reprimands, fines, citations, and community service all count as restrictions.
+4. **Active practice.** Actively engaged primarily in plastic surgery continuously through collection and certification. No fellowship cases, ever, whether ACGME-approved or not.
+5. **Hospital privileges.** Active inpatient admitting privileges in plastic surgery, obtained **before** the start of clinical surgical practice. Hand or OMFS privileges alone are not acceptable. Outpatient-only privileges are not acceptable. Until admitting privileges are approved, do only strictly local-anesthetic procedures; any IV sedation or general anesthetic case must wait. One medical staff office letter comes with the case list (start date must match your practice start; expiration or reappointment date listed, or letter dated in the current year). Letters from **all** hospitals where you operate come with the Registration Form.
+6. **Outpatient facility accreditation.** Any IV sedation or general anesthesia case must be in an accredited facility (CMS, QuadA, AAAHC, ACHC, state licensure, other). Cases in non-accredited facilities still go on the list with a written explanation. Provide a certificate or a currently dated in-process letter for every non-hospital surgical facility; the facility name in the Case Log must match the certificate. Hospital-based centers accredited by The Joint Commission need no certificate but must be named with the affiliated hospital.
+7. **Physician-patient relationship.** In non-emergent cases you must see the patient **in person at least the day before surgery** so they can consider risks, benefits, and alternatives after your examination. Meeting a patient for the first time in pre-op on the day of surgery is not acceptable. Exempt: urgent or emergent reconstructive consults the day of the procedure, and minor local-only reconstructive procedures such as Mohs repairs. Postoperative care must include you and not be fully delegated. The Board recommends an **in-person visit within 30 days** after surgery. **Postoperative photographs at 90 days or more** are mandatory for all patients. The Board strongly recommends you personally take the initial postoperative photos and the 90-day photos. Telemedicine may be used for intervening visits only.
 
-| Milestone | When (pattern) | Your cycle (expected) |
+### A3. Case list rules
+
+**Scope.** All operative cases from July 1, 2026 to March 31, 2027. A submission shorter than 9 months is accepted only if it has sufficient quality, complexity, and variety. Minimum **50 major operative cases** to finalize. Enter every case, not 50. Minor cases are entered but do not count. **A maximum of three cases per patient counts toward the 50.** You must attest to active admitting privileges before case entry.
+
+**Must include:** every operative procedure (inpatient, outpatient, office); every ER patient who needed a procedure note; repeat procedures on the same patient (same initials and ID number across facilities); co-surgeon cases with another plastic surgeon only if you are surgeon of record with your own operative report, did the initial pre-op assessment, made the final decision, and provided all post-op care (flag as co-surgeon); co-surgeon cases with a non-plastic surgeon (include, do not flag); resident cases where you are the responsible attending on the operative record; research-protocol cases (IRB approval and consent must exist); military deployment cases; office surgery such as skin lesions, cysts, lipomas, keloids, lacerations; laser for hemangioma over 5 cm² or port-wine stain over 100 cm²; awake liposuction.
+
+**Do not include:** volunteer surgery in developing countries; inpatient consults without surgery; non-operative management; assistant-surgeon cases; co-surgeon cases where you are not surgeon of record; injectables and fillers; aesthetic facial lasers, vaginal lasers, hair or tattoo laser; miraDry; CoolSculpting and stand-alone noninvasive or minimally invasive body contouring (BodyTite, Renuvion, Emsculpt Neo); Ultherapy, Sofwave; Cellfina, Aveli; facials and in-office peels; steroid injections; microneedling; Thermi or Thermage; microdermabrasion; office skin biopsy; Epifix; ear molding.
+
+**Fields per case (all required to finalize):** at least two patient initials; a consistent patient ID number (never a full SSN); date of birth (age prints); gender; facility (enter **every** facility where you hold privileges or employment, even with zero cases); admission status (any overnight stay is inpatient); date of procedure (one OR session equals one case); duration skin-to-skin in hours and minutes; anesthesia type (local or block, IV sedation, general, none); free-text diagnosis (add follow-up plans and staged-procedure notes here); free-text procedure description from the op note (not CPT descriptors; state if microsurgery); CPT codes with modifiers **identical to billing** (bilateral as one code with -50; 99 codes not needed; cosmetic and gratis cases still need CPT codes); CPT frequency; Anatomy (Breast, Hand/Upper Extremity, Head and Neck, Lower Extremity, Trunk/Genitalia) and Category (Congenital, Cosmetic, General Reconstructive, Hand, Skin, Trauma, Other) for every CPT; **Outcome at 4 to 6 weeks** with adverse events; **mortality within 30 days** (required).
+
+**Adverse event grading (from the BOI chart). "All cases do not heal without complications."**
+
+| Major | Moderate | Minor |
 |---|---|---|
-| Case collection period | July 1 to March 31 | July 1, 2026 to March 31, 2027 |
-| Your first day of independent practice | | Mid-September 2026 (you will have roughly 6.5 months of collection, see Section 9) |
-| Enter cases into the Clinical Case Log | Ongoing; Board recommends weekly or monthly entry | Start now |
-| Data entry, proofing, editing, notarizations complete | About April 21 | About April 21, 2027 |
-| Case list physically received in Board Office (guaranteed-delivery courier) | April 22 | About April 22, 2027 |
-| Late fee window (auto-charged to card) | April 23 to April 25 | About April 23 to 25, 2027 |
-| Selected cases (5) announced | Summer (historically by mid-July) | Summer 2027 |
-| Case report upload deadline | Mid-August, noon (August 18, 2025, 12:00 p.m. in the 2025 cycle) | About mid-August 2027 |
-| Notified cases are cleared for exam | Late September to mid-October | Fall 2027 |
-| Oral Examination | Thursday to Saturday in mid-November | November 2027 |
+| Unplanned admission | Unplanned re-operation without sedation | Seroma requiring drainage |
+| MI, DVT, CVA, PE | Dressing changes over 6 weeks | Hematoma requiring drainage |
+| Unplanned re-operation with sedation | Infection needing outpatient IV antibiotics | Wound infection requiring drainage |
+| Infection needing inpatient IV antibiotics | Unplanned consult with another specialist | Oral antibiotics |
+| Adverse drug event | | Dressing changes under 6 weeks |
+| Unplanned ED visit | | Increased number of office visits |
+| Flap loss | | |
+| Prolonged hospital stay | | |
 
-**Admissibility clock (ABPS Admissibility Policy):** your approved application grants admissibility for **5 years after residency graduation**. Both the Written and Oral must be passed within **8 years** of residency completion; years 6 to 8 require an approved reapplication.
+Describe every event concisely in the "Describe all Adverse Events" box; the text prints on the list. For February and March cases, select the category as known at submission.
 
----
+**Finalize and submit.** Finalizing produces the per-facility case lists, Candidate Affidavit, Case Statistics Summary Report, and a Medical Records Administration Affidavit for each facility. The Case List Review Fee is charged by credit card at finalization. Data cannot be changed after finalization; call the Board Office to unfinalize if an error is found.
 
-## 3. Standing eligibility requirements (must hold continuously through the collection period AND the exam)
+- **Candidate Affidavit:** you sign and date. **Notarization not required.** Text: "I attest that the patients listed on the attached pages are ALL of my cases. I understand that a minimum of 50 major cases is required by ABPS during the period July 1, 2026 to March 31, 2027. The CPT codes listed are an exact representation of those submitted for billing purposes..."
+- **Medical Records Administration Affidavit, one per facility, including facilities with no cases:** signed by that facility's medical records administrator (for office cases, the office person who can attest to completeness), **then notarized, both signatures dated the same day.** Remote notarization accepted. Only the affidavit generated by "Finalize" may be used. Alert each medical records department in **February or March** so the review is scheduled.
+- **Hospital privilege letter** from one medical staff office.
+- **Accreditation certificates** for all non-hospital facilities.
+- **Advertising, last 12 months (April 2026 to April 2027), plus CV:** business cards, letterhead, brochures, billboards, flyers, print ads, articles; website homepage, About the Doctor page, any credentials page, any page with a Board or society emblem, any page mentioning Board certification; social media profile pages (not every post); links for video ads; third-party physician sites (LinkedIn, RealSelf, Yelp, Healthgrades, Doximity). Everything in English. Search your own name first and fix wrong Board-status wording.
+- **Assembly:** no binders, folders, or sheet protectors. Candidate Affidavit stapled top-left to Facility 1's list. Each facility's list in numerical order with its notarized Medical Records affidavit as the last page. Then the Statistics Summary Report, the privilege letter, the accreditation certificates, then advertising and CV. Improper assembly incurs a Missing Items Fee or Administrative Fee.
+- An inadequate case list means you are not admissible that year (not counted as a failure), you resubmit the next year, and the decision is not appealable.
 
-- [ ] **Medical license:** current, valid, full, and unrestricted, maintained continuously through collection and the entire exam process, with an expiration date valid **through the November exam**. Any restriction, monitoring, or condition stops case collection until fully resolved and a final order is on file with the Board.
-- [ ] **Hospital privileges:** active **inpatient admitting privileges in plastic surgery** at a hospital during collection, throughout the exam process, and into Continuous Certification. Keep every appointment and reappointment letter; each must state the dates privileges were in effect. At least one medical staff office must send verification with your case list.
-- [ ] **Non-hospital facilities:** for every ASC or office-based surgery site where you operate, obtain the accreditation certificate (AAAASF, AAAHC, Medicare certification, state licensure, or other) or a currently dated letter from the accrediting body stating certification is in process.
-- [ ] **Independent practice only:** you must be "actively engaged primarily in the practice of plastic surgery continuously through the case collection period." No cases from any fellowship period count, ACGME-approved or not, inside or outside the fellowship institution, even if you operated independently.
-- [ ] **Attending of record:** hospital and office records must clearly identify you as the attending physician and surgeon. You need not be the admitting physician. Cases performed by a resident under your supervision count and are treated as your own.
-- [ ] **HIPAA Business Associate Agreement (BAA):** presented on first access to the Clinical Case Log; you must accept it. A sample is posted in your Oral Exam tab.
-- [ ] **Code of Ethics and Advertising:** see Section 8. Violations can defer you at least one year.
+### A4. Photograph requirements
 
----
+- Pre-op, intra-op, and post-op photos of **every** case, including minor, office, ER, and hand cases (carpal tunnel included). Start photographing every patient and having the ABPS consent signed from July 1 (for you: from day one of practice).
+- **Post-op at 90 days or more** after the index procedure, preferably after the last procedure. Keep seeing patients until you have them.
+- **Intra-op photo must be taken after incision and before closure.** A closed-incision photo at the end does not count. Show the key step: defect plus raised flap; reduced breast pedicle carrying the nipple-areola; reduced fracture with fixation; liposuction and fat grafting need pre-markings and end-of-case OR photos of the same areas; ultrasound stills if used; each site when multiple procedures; for intra-op consults, pre-op photos from the OR are acceptable. Cases without an incision still need intra-op photos. If your facility bans OR photography, request a written waiver now; you will not be exempt.
+- **Hand cases:** photograph pre-op loss of function and post-op return of function, not just healed incisions.
+- If you use **simulation software** (TouchMD, Crisalix), those images must be submitted with the case.
+- Photos must be original and unaltered. Cropping, scaling, anatomic labels, and blacking out tattoos are allowed. **No generative AI or natural-language processing tools may be used on photos in any form.** You will sign a notarized Photographic Affidavit stating this.
+- Label every photo with date and stage (pre-op, intra-op, post-op) below or beside the image.
+- **Consent language that must appear on your form:** "I hereby grant permission for the use of any of my medical records including illustrations, photographs or other imaging records created in my case, for use in examination, testing, credentialing and/or certifying purposes by The American Board of Plastic Surgery, Inc." with patient signature, witness signature, date. If your institution has its own consent, have the patient sign both.
 
-## 4. Case list rules (Clinical Case Log)
+### A5. Case reports for the 5 selected cases (11 tabs, one PDF per tab)
 
-### 4.1 What goes on the list
-- [ ] **All operative cases** you performed as attending plastic surgeon, July 1 to March 31, at every facility: hospital, ASC, office, ER.
-- [ ] **All hospitalized patients** under your care in that window, including non-operative admissions.
-- [ ] Minor cases, office procedures, ER procedures, and all hand cases. They are entered even though they do not count toward 50.
-- [ ] Non-plastic-surgery procedures. The log auto-classifies each entry as **Major, Minor, or non-Plastic Surgery** based on CPT code.
+Review the 5 case files for photos, records, and consent signatures the day the selection posts. If a case is incomplete, the Board assigns 3 additional cases, and that assignment is final even if you later find the missing items. Everything finalizes by August 19, 2027, noon Eastern.
 
-### 4.2 The 50-major-case floor
-- [ ] Minimum **50 MAJOR** cases "complex enough to require the skill set of a subspecialty trained plastic surgeon." You cannot finalize the list with fewer.
-- [ ] The list must also show "sufficient diversity and complexity" for the Committee to examine you adequately. A list of 50 identical procedures is a risk even if it clears the count.
-- [ ] Submissions covering **less than 9 months are acceptable only if** they meet the quality, complexity, and variety standard. This applies to you (see Section 9).
+1. **Title Page:** your name, patient initials, Clinical Case Log number, Category and Anatomy exactly as on the case list, all diagnoses, all procedures you performed. Do not include your Board ID, the selected-case number, hospital patient number, or SSN.
+2. **Narrative Summary:** pre-op, operative, and post-op course, then a separate paragraph titled **Outcome**. The Board cut the progress-note allowance and wants more here: prolonged dressing changes, erythema treated with oral antibiotics, prolonged therapy, outside consultants, any serious event. Err on inclusive. Mention other procedures on this patient inside or outside the window.
+3. **Initial Evaluation:** your H&P or consult and every pre-op visit note. **Highlight every place risks, alternatives, and benefits were discussed.** Include other consultants' pre-op reports.
+4. **Consent and Photographs:** ABPS records/photo consent first (names blocked except initials, signature blocked except initials), then photos in chronological order with legends, plus any simulation images. A slide deck saved as PDF works well.
+5. **Operative Consent and Operative Reports:** consent precedes each report; every operative report on this patient in the 9 months, including minor office procedures and co-surgeon reports, in chronological order.
+6. **Anesthetic Reports:** all, chronological.
+7. **Laboratory Data:** pertinent only. Do not upload pages of normal labs.
+8. **Pathology:** chronological, key areas highlighted.
+9. **Radiology:** dated images with the radiologist's report adjacent. Mammography reports alone are sufficient.
+10. **Progress Notes:** two PDFs. Hospital: discharge summary first, consultant reports, transfer notes, pertinent daily notes, every adverse-event note. Outpatient: immediate post-op visit, adverse-event notes, readmission notes, pertinent notes, final or most recent note. **50 pages total for both combined.**
+11. **Billing:** the actual bill for each procedure with dollar amounts deleted and CPT descriptors added, including cosmetic, gratis, and co-surgeon bills, each with a **notarized signature** from the person who generated it (or an affidavit that no bill was generated, listing the CPT codes).
 
-### 4.3 Required fields per case (from the Case Log manual)
-- [ ] Patient identifier (initials plus hospital or medical record number). Keep identifiers **consistent** for any patient with more than one procedure in the period.
-- [ ] Gender, age.
-- [ ] Facility.
-- [ ] Date of surgery.
-- [ ] Admission status: **inpatient** = overnight stay of one or more nights; **outpatient** = 23 hours or less.
-- [ ] Diagnosis.
-- [ ] **CPT code(s)** for every case, with the frequency field (number of times) when a code was performed more than once.
-- [ ] **Adverse Events:** select Unknown, Major, Moderate, or Minor. If any is selected, the text box "Describe all Adverse Events" becomes required. Be concise and specific.
-- [ ] Do **not** dismiss complications. The Board's own examples of events that must be reported: "necrosis of tip of flap"; "normal sensation returned, but index finger stiff after tendon repair."
-- [ ] Required fields show a red asterisk; incomplete ones show in red on the Add Case screen.
+Also upload the **notarized Photographic Affidavit** and the **EMR Attestation** (did you edit or append any note after selection: yes or no, with every edit listed; the Board may pull revision history). Handwritten notes must be transcribed and uploaded with the originals. Non-English records need a full translation.
 
-### 4.4 Finalizing and submitting
-- [ ] Enter cases **weekly** (Board recommendation: weekly or monthly, never in the last month). "Do not underestimate the magnitude of the data collection task."
-- [ ] Do a **trial print** well before the deadline to catch formatting problems. Use Adobe Reader or Acrobat Pro to download and print.
-- [ ] Sign and date the **Candidate Affidavit** ("...ALL of my cases... I understand that a minimum of 50 major cases is required..."). Notarize as instructed. Electronic notary services and digital signatures are accepted.
-- [ ] Print and include the statistics sheets the program generates.
-- [ ] Include hospital privilege verification letter(s) and non-hospital facility accreditation certificates.
-- [ ] Ship by a service that **guarantees the delivery date** so the package is physically received by the April deadline. **[CONFIRM whether your cycle is paper, electronic, or both]**
-- [ ] Save an electronic copy of the finalized list. You will need it to prepare for the exam and to answer Board questions.
-- [ ] Incomplete or incorrectly organized submissions incur a **Missing Items Fee** or **Administrative Fee**. Late finalization incurs a **late fee**, auto-charged. Fee amounts: back cover of the BOI. **[CONFIRM amounts]**
+### A6. The examination itself
+
+- 2.5 days. Formal business attire; no uniforms or anything showing institutional or military affiliation; no phones or electronics in sessions. Declare any examiner conflict at registration.
+- Three 45-minute sessions: one Case Report session on your 5 cases; two Theory and Practice sessions on Board-written cases with 10 minutes to review before each. Three teams of two examiners. Late arrival is a FAIL for that section. Pass or fail is on combined performance; scoring is statistically corrected for examiner severity and is not norm-referenced.
+- **Case Report session rating items:** Diagnosis/Planning; Management/Treatment (indications, procedure, anesthesia); Complications/Outcome; **Safety** (within acceptable standards, avoids excessive risk); **Ethics/Professionalism** (honest, ethical, professional in the practice and business of plastic surgery); **Case Report Preparation/Organization** (clarity, completion, detail, honesty). Ratings 1 to 4; a 4 is not available for Safety or Ethics.
+- **Theory and Practice rating items:** Diagnosis/Planning; Management/Treatment; Intraoperative or Early Postoperative Complications; Late Complications.
+- **Passing:** reasonable analysis; one clear, safe initial plan you can defend (not a textbook list); recognition of complications and how to avoid and treat them; a backup plan.
+- **Failing:** ineffective analysis; unsafe or ambiguous plan; evidence of unethical behavior, for example unnecessary procedures, abandonment of a patient with complications, or intentional coding deception.
+- Board guidance: answer with your own approach, commit to a single plan, show concern for patient safety, do not waste time on irrelevant labs or testing, examiners will not lead or clue.
 
 ---
 
-## 5. Photograph protocol (applies to every case, not just the 5 selected)
+## Part B. Per-patient protocol (run on every patient you are primary on)
 
-### 5.1 The rule
-- Preoperative, intraoperative, and postoperative photographs are **mandatory for all cases selected** for case reports, with a **minimum of 1 pre-op, 1 intra-op, and 1 post-op** per case.
-- Because **any** case on your list can be selected, ABPS states that **all** cases "must have photographic documentation, including minor cases, office procedures, emergency room procedures, and all hand cases."
-- **Postoperative photos: 90 days or more after the day of the procedure.** The Board strongly recommends the operating surgeon take them personally.
-- Photos must be **original and unaltered**. You will sign a **notarized affidavit** to that effect for the 5 selected cases. Permitted: cropping that does not impinge on or change the patient image; anatomic labels that do not distort the image. Preferred: black out tattoos and other identifiers.
-- Label each photo with **date** and **clinical stage** (pre-op, intra-op, post-op), placed below or beside the image, not on it.
-- De-identify per HIPAA 45 CFR 164.514. The HIPAA identifier list includes full-face photographs, so mask or crop identifying facial features wherever the anatomy allows; follow the exact photo de-identification instructions in your cycle's BOI and upload screens. **[CONFIRM]**
+### B1. Consult visit
+- [ ] You are attending surgeon of record in the chart and on the booking.
+- [ ] Full note per Part C (this is the document examiners will read and grade).
+- [ ] Risks, alternatives (including no surgery), and benefits documented in a way you can highlight later.
+- [ ] ABPS records/photo consent signed and witnessed (exact language in A4).
+- [ ] Standardized pre-op photos taken; simulation images saved if used.
+- [ ] Tracker row opened (initials, ID, facility, planned date, planned CPTs, anesthesia type).
+- [ ] Imaging, labs, consults ordered as indicated by Part D.
+- [ ] Optimization plan documented: nicotine, glycemic control, weight, VTE risk, medications, oncologic timing.
 
-### 5.2 Photo consent
-- Every patient must sign a consent or release that specifically permits use of illustrations, photographs, or imaging records **"for examination, testing, credentialing and/or certification purposes by the Board."** Standard clinical-photo consents often do not include this language; add it to your practice's form now.
-- In the case report the consent goes **first** in its section. Patient name is blocked out except initials, and the signature is blocked out except first and last initials.
+### B2. Pre-op visit (in person, at least the day before surgery)
+- [ ] In-person exam and discussion documented with the date, satisfying BOI requirement 6.
+- [ ] Procedure-specific operative consent signed.
+- [ ] Any change in plan, markings, or implant selection documented.
 
-### 5.3 Practical standard (not an ABPS rule, but what examiners expect to see)
-- Same views, distance, lighting, and neutral background pre and post. Standard series for the region (for example: face AP, bilateral obliques, bilateral laterals, basal or worm's-eye for rhinoplasty; breast AP, obliques, laterals; body AP, posterior, laterals, obliques; hand dorsal, volar, lateral, and functional positions).
-- No jewelry, makeup, or clothing that hides the operative site; hair pulled back.
-- Intra-op: at least one photo of the defect or markings and one of the reconstruction or closure. Photograph flaps, specimens, and hardware.
-- Store originals in a HIPAA-compliant system with the date captured. Do not keep the only copy on a personal phone.
+### B3. Day of surgery
+- [ ] Intra-op photos after incision and before closure showing the key step (see A4). Every site.
+- [ ] Op note dictated same day: indications, findings, technique, implants and hardware with lot numbers, specimens, EBL, duration skin-to-skin, complications, disposition. You are listed as surgeon.
+- [ ] Anesthesia type, admission status, CPT codes with modifiers as billed.
+- [ ] **Book the 30-day in-person visit and the 90-day photo visit before the patient leaves.**
+- [ ] Case Log entry within the week.
 
----
+### B4. Post-op course
+- [ ] Immediate post-op visit note (this note is required in the case report).
+- [ ] In-person visit within 30 days documented.
+- [ ] Every adverse event recorded in the chart and graded in the Case Log per the A3 chart, including oral antibiotics, extra visits, and dressing changes.
+- [ ] Discharge summary, pathology, consultant notes filed.
+- [ ] Outcome field completed at 4 to 6 weeks; mortality field completed.
 
-## 6. Per-patient protocol (the checklist you run on every patient you are primary on, starting tomorrow)
+### B5. 90-day visit and close-out
+- [ ] Post-op photos at day 90 or later, same views as pre-op; hand cases show function.
+- [ ] Outcome note with patient-reported result and any late complication.
+- [ ] Lost to follow-up: document phone, mail, and portal attempts.
+- [ ] Tracker row closed: photos (3 stages), both consents, op note, H&P, progress notes, discharge summary, path, imaging, anesthesia record, bill retrievable.
 
-### A. Consult / preoperative visit
-- [ ] Verify you will be the attending surgeon of record in the chart and on the OR booking.
-- [ ] Document the initial evaluation with an explicit statement of **risks, alternatives, benefits, and patient education**. The Board reads the H&P for this.
-- [ ] Sign a **photo consent** that includes the ABPS examination/credentialing/certification language (Section 5.2).
-- [ ] Sign a **procedure-specific operative consent**. In the case report it must precede each operative report.
-- [ ] Take **standardized preoperative photographs** (Section 5.3). Label date and "pre-op."
-- [ ] Open a tracking row for the patient (Section 7): initials, MRN, facility, planned date, planned CPT(s).
-- [ ] Order and file relevant imaging, labs, and consults; you may need them in the case report.
-
-### B. Day of surgery
-- [ ] Take **intraoperative photographs** (markings, defect, key steps, closure). Label date and "intra-op."
-- [ ] Dictate the operative note the same day. Include indications, findings, technique, implants or hardware, specimens, EBL, complications, and disposition. Confirm the note lists you as surgeon.
-- [ ] Record inpatient vs outpatient status (overnight or more = inpatient).
-- [ ] Note the final CPT code(s) and frequency.
-- [ ] Within the week, **enter the case in the Clinical Case Log**.
-
-### C. Postoperative course
-- [ ] Every hospital progress note and every office visit note must exist and be retrievable: the case report requires "all post-operative and post-discharge progress notes, both in the hospital and from the office/clinic records."
-- [ ] Obtain the discharge summary for admitted patients.
-- [ ] Record every adverse event, however small, in the chart and in the Case Log entry (Section 4.3). Update the Case Log if a complication appears later.
-- [ ] File pathology reports.
-
-### D. 90-day visit (schedule it at the time of surgery)
-- [ ] Book a visit at or after **post-op day 90** before the patient leaves the surgery encounter; put it on your tracking sheet with the exact date.
-- [ ] Take **postoperative photographs** with the same views as pre-op. Label date and "post-op." Note the day count in the chart.
-- [ ] Document outcome and any late complications.
-- [ ] If the patient is lost to follow-up: call, mail, and message through the portal, and document each attempt. ABPS expects you to try to locate the patient before declaring a deficiency.
-
-### E. Close-out for the tracking sheet
-- [ ] Pre-op photo on file; intra-op photo on file; 90-day post-op photo on file.
-- [ ] Consents (photo and operative) on file.
-- [ ] Op note, H&P, progress notes, discharge summary, pathology, imaging retrievable.
-- [ ] Case Log entry complete and matches the chart (dates, CPTs, adverse events).
+### B6. Tracker columns
+`# | Initials | ID | Facility | DOS | In/Out | Anesthesia | Dx | CPT x n | Major/Minor/Non-PS | Pre-op photo | Intra-op photo | 30-day visit | Post-op photo due (DOS+90) | Post-op photo taken | ABPS consent | Op consent | Adverse event grade | Outcome entered | Case Log entered | Records complete`
 
 ---
 
-## 7. Tracking sheet (keep this outside the EMR, de-identified)
+## Part C. Clinic note standard (so no examiner can say you missed it)
 
-One row per case. Columns:
+Examiners grade Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, and Ethics from your own records. The Board says explicitly that it will highlight where risks were discussed and may corroborate records and consent. Write every consult so that each of those five items can be found in a labeled place.
 
-| # | Initials | MRN (last 4) | Facility | DOS | In/Out | Dx | CPT(s) x n | Major/Minor/Non-PS (per Case Log) | Pre-op photo (date) | Intra-op photo (date) | Post-op photo due (DOS + 90) | Post-op photo taken (date) | Photo consent | Op consent | Adverse event (level, description) | Case Log entered (date) | Records complete (Y/N) |
+### C1. Universal consult note skeleton
 
-Weekly, sort by "Post-op photo due" to see who needs a 90-day visit booked, and count rows with Major = Yes against 50.
+**Identification and goals.** Age, sex, referral source, chief complaint in the patient's words, what result they want, and what they would consider a failure. For cosmetic patients: motivation, who suggested surgery, prior cosmetic procedures and satisfaction, and a BDD screen (BDDQ-AS or equivalent) with the result recorded. Positive screen: mental-health evaluation before any decision.
 
----
+**History of present illness.** Onset, duration, functional impact, prior treatments and response (conservative measures for reduction, prior reconstruction stages, prior wound care), and for oncologic patients the full oncologic timeline: diagnosis date, stage, receptor status, neoadjuvant and adjuvant plans with dates, radiation plan and dose, endocrine or targeted therapy, and the treating oncologists' names.
 
-## 8. Ethics, advertising, and professional conduct (deferral risk)
+**Past medical history, as risk factors, each addressed.** Diabetes with most recent HbA1c; hypertension; cardiac or pulmonary disease; VTE or PE history, clotting disorder, family history of VTE; bleeding disorder; obesity with BMI and weight trend; obstructive sleep apnea; autoimmune or connective tissue disease; immunosuppression or chronic steroids; radiation to the field; prior anesthesia problems and family history of malignant hyperthermia; pregnancy or breastfeeding status and future pregnancy plans; psychiatric history; MRSA history.
 
-- [ ] You may use the term **"Board Eligible"** only after ABPS has approved your application for examination and certification. Never use "board certified," "board qualified," or "board admissible."
-- [ ] You are responsible for **every instance** of advertising about you, including your employer's website, hospital directory, physician-rating sites, and social media. The Board tells candidates to do a web search and correct all listings that misstate Board status **before** submitting materials.
-- [ ] Any advertisement posted before your practice start date must state the start date of independent clinical practice.
-- [ ] You must **submit all advertising materials** to the Board during the Oral Exam process. **[CONFIRM the form and timing in your BOI]**
-- [ ] Documented advertising or Code of Ethics violations can defer you from the exam for **at least one year**. The Board also reserves the right to defer for "ethical or other similar issues."
-- [ ] Ethics is graded in the exam itself (Section 10). Keep informed-consent documentation airtight; the Board reserves the right to independently corroborate medical records and "review issues related to informed consent."
+**Medications and supplements.** Anticoagulants and antiplatelets; estrogen contraception or HRT; tamoxifen or aromatase inhibitor; GLP-1 agonists; steroids; immunosuppressants; isotretinoin; fish oil, vitamin E, ginkgo, garlic, other supplements; nicotine replacement. State the plan for each.
 
----
+**Allergies.** Including latex, adhesive, contrast, antibiotics.
 
-## 9. Your specific situation: starting mid-September
+**Social history.** Cigarettes, vaping, nicotine pouches, cannabis, with quantity and quit date; alcohol; drug use; occupation and physical demands; caregiver availability for recovery; travel plans around surgery.
 
-- You are inside the July 1 to March 31 window but only began independent practice in mid-September. ABPS accepts submissions shorter than 9 months **only if** they meet the quality, complexity, and variety standard. That means you have about **28 weeks** to book, perform, and log **at least 50 major cases**, ideally more, spread across the breadth of plastic surgery you intend to practice.
-- Practical target: **2 to 3 major cases per week** from October onward, with a running count reviewed every Friday. If by early January you are below 25 major cases, escalate: add OR blocks, take call, accept reconstructive and hand referrals, and confirm with the Board Office whether deferring to the next cycle is wiser than submitting a thin list.
-- Cases done in March still need 90-day photos. A March 31 case reaches day 90 on June 29, well before the mid-August case report deadline. Book those visits now, in the same encounter as surgery.
-- Confirm in writing (email to the Board Office) that your practice start date and privilege dates are documented the way they expect, and ask whether they want a start-date letter from your employer. Keep the reply.
-- Ask the Board whether any pre-September activity (for example moonlighting or locums before your official start) is countable. Do not assume.
+**Family history.** Breast or ovarian cancer (and genetic testing status), VTE, malignant hyperthermia, keloids.
 
----
+**Review of systems.** Targeted, including wound-healing history and prior scar quality.
 
-## 10. What happens after the list: case reports and the exam
+**Physical examination.** Vitals, height, weight, BMI. Then the region-specific elements in C2, written as measurements and findings, not "normal." Document asymmetries and pre-existing deficits (nerve function, scars, contour irregularities) that the patient could later attribute to surgery.
 
-### 10.1 Case reports for the 5 selected cases
-- [ ] Upload every tab of each case book to the Board's secure repository; the upload **cannot be finalized until all repositories are filled**. Guidelines for each tab appear on the upload screen.
-- [ ] Contents the Board names: patient consent or release **first**; operative consent **preceding each operative report**; H&P with risks/alternatives/benefits/education documented; operative reports; discharge summaries; **all** post-op and post-discharge progress notes (hospital and office); photographs (at least 1 pre, 1 intra, 1 post at 90+ days) with labels.
-- [ ] Be selective. There is a cap on the number of hospital and medical record pages you can upload; include only the most relevant documentation.
-- [ ] Complete the **Electronic Medical Records Attestation** form (downloaded from the Board site).
-- [ ] Sign the **notarized photograph affidavit** (original, unaltered photos). Electronic notary is acceptable.
-- [ ] Do **not** edit or append chart notes after you are notified of your selected cases unless unavoidable. If you do, you must attest to the accuracy of the edits, and the Board may request the revision history of any note.
-- [ ] Deadline: mid-August at noon. **[CONFIRM exact 2027 date]**
+**Imaging and studies reviewed.** With dates.
 
-### 10.2 Exam format
-- Three sessions of **45 minutes** each: **1 Case Report session** (your 5 cases) and **2 Theory and Practice sessions** (Board-written cases, with embedded ethics questions).
-- Two examiners per session; either may lead, both ask questions.
-- For each of your cases be ready to: discuss evaluation and workup; justify choice and execution of the operation; present alternative plans considered; evaluate the outcome; discuss ethical or economic issues.
-- Scoring guidelines given to examiners: (1) Diagnosis/Planning, (2) Management/Treatment (indications, procedure, anesthesia), (3) Complications/Outcome (unexpected problems, alternative plans), (4) Clinical Judgment/Limitations (Theory and Practice only). In the Case Report session, clinical judgment is replaced by separate grades for **Safety** ("practices within acceptable standards; avoids excessive risks") and **Ethics** ("honest, ethical and professional in the practice and business of plastic surgery").
+**Assessment.** A stated diagnosis for each problem, plus the risk stratification you performed: Caprini score with the number, ASA class, nicotine status, glycemic status, BMI category, oncologic timing status.
 
-### 10.3 Prep resources (ASPS, optional)
-- ASPS Oral Board Preparation Course (virtual, 100+ cases, simulation sessions, faculty-reviewed case book sessions). Registration: PlasticSurgery.org/BoardPrep.
+**Plan.** In this order so it can be highlighted:
+1. Options discussed, including no treatment and non-surgical alternatives, with why each was or was not chosen.
+2. Recommended procedure with the specific technique and rationale (pedicle, incision pattern, implant plane and size range, flap choice and why).
+3. Risks discussed, procedure-specific and general (see C3), and the patient's questions.
+4. Benefits and realistic expected result, including expected scars, asymmetry, sensation change, revision likelihood.
+5. Optimization requirements and thresholds, with dates (nicotine-free 4 weeks before and after, HbA1c target, weight stability, medication holds, oncology clearance).
+6. Perioperative safety plan: VTE prophylaxis mechanical and chemical, antibiotic plan, anesthesia type and facility, expected duration, staged versus combined and why, admission plan.
+7. Follow-up plan: immediate post-op visit, in-person visit within 30 days, 90-day photo visit, longer-term surveillance (implants, cancer).
+8. Statements: patient verbalized understanding, had the opportunity to ask questions, wishes to proceed; photos taken with consent; ABPS records consent signed; consent to be signed at the in-person pre-op visit at least one day before surgery.
+9. Time spent in counseling if relevant.
 
----
+### C2. Region-specific examination elements
 
-## 11. Cadence: what to do when
+**Breast (all breast surgery).** Sternal notch to nipple, nipple to inframammary fold, base width, breast height, ptosis grade, nipple position relative to fold, cup size and desired size, asymmetry (volume, fold height, nipple position), skin quality and striae, skin pinch, chest wall and sternal deformities, spine curvature, existing scars, palpable masses, nipple discharge, nipple sensation, axillary and supraclavicular nodes, mastectomy skin flap quality and thickness, radiation changes (erythema, fibrosis, telangiectasia), abdominal donor site (scars, hernia, pannus, pinch), implant details if present (size, type, plane, date, capsule grade). Screening mammogram status per D. For implants: the FDA Patient Decision Checklist reviewed, initialed, and signed by patient and surgeon, and the boxed warning discussed.
 
-**Tomorrow (first clinic):** photo consent form updated with ABPS language; camera and backdrop set up; tracking sheet created; Case Log login confirmed and BAA accepted.
+**Trunk and body contouring.** Skin excess and laxity by region, fat distribution, rectus diastasis width, hernias (umbilical, incisional), umbilical position and shape, prior scars and their positions relative to planned incisions, pubic ptosis, skin quality, intertrigo or rashes, back rolls, thigh and arm laxity grade, weight history and stability with dates, bariatric history and nutritional status (protein, iron, B12, vitamin D), lymphedema.
 
-**Daily:** photos and consents at every encounter per Section 6.
+**Face and aesthetic facial surgery.** Fitzpatrick type, skin quality and photodamage, symmetry, facial nerve function by branch, brow position and ptosis, upper lid excess and levator function, lower lid tone (snap and distraction tests), scleral show, lagophthalmos, dry eye symptoms, malar position, nasolabial folds, jowls, platysmal bands, submental fat, chin projection and occlusion, dentition, hairline. Rhinoplasty: airway and septum, valves, tip support, skin thickness, prior trauma, and a documented functional history. Body image and expectations with screening result.
 
-**Weekly (Friday, 20 minutes):** enter the week's cases in the Case Log; update tracking sheet; count major cases; book 90-day visits for everyone operated on this week; chase overdue post-op photos.
+**Hand and upper extremity.** Hand dominance, occupation, mechanism and timing of injury, tetanus status, two-point discrimination by digit, Semmes-Weinstein if relevant, motor function by nerve, Allen test and capillary refill, Tinel and Phalen or Durkan, grip and pinch strength, active and passive ROM per joint in degrees, deformities, tendon integrity, wounds with dimensions and exposed structures, radiographs read and documented. Post-op: function documented and photographed.
 
-**Monthly:** trial-print the Case Log; audit 5 random cases end to end (photos, consents, notes retrievable); confirm privileges and license remain active; web-search your name for Board-status wording.
+**Wounds and lower extremity.** Wound dimensions and depth, base, exposed structures (bone, tendon, hardware), infection signs, osteomyelitis workup, pulses and ABI or arterial studies, sensation, edema and venous disease, offloading and footwear, nutrition (albumin, prealbumin), glycemic control, smoking, prior radiation, culture and pathology results.
 
-**January 2027:** hard checkpoint on the 50-major count and case diversity; request hospital privilege verification letters and facility accreditation certificates; download the 2026-2027 BOI OE section and calendar every date.
+**Skin cancer and head and neck oncology.** Lesion size, location, fixation, pathology with subtype and margins, prior treatments, regional nodes, cranial nerve function, dentition and dental clearance before radiation, airway and swallowing, prior radiation dose and fields, tracheostomy and feeding plans, tumor board decision and date, whether reconstruction awaits final margins or SLNB.
 
-**March 2027:** final cases; every March patient booked for a late June visit.
+**Pediatric and craniofacial.** Prenatal and birth history, syndromic features, genetics referral, growth percentiles, feeding, airway, hearing and ENT status, developmental milestones, prior team evaluations, and who consented (parent or guardian documented).
 
-**April 1 to 21, 2027:** proof every entry against the chart; adverse events complete; affidavit notarized; trial print; ship with guaranteed delivery.
+### C3. Risk discussion content that should be visible in the note
+General: bleeding, hematoma, seroma, infection, wound dehiscence and delayed healing, unfavorable or hypertrophic scars and keloid, asymmetry, contour irregularity, numbness and nerve injury, chronic pain, skin or flap necrosis, VTE and PE, anesthesia risks, need for revision or additional surgery, unsatisfactory result. Add the procedure-specific items: nipple necrosis and loss of sensation and inability to breastfeed; capsular contracture, rupture, malposition, rippling, BIA-ALCL and BIA-SCC, breast implant illness, need for implant surveillance and eventual replacement; flap loss and donor-site weakness or bulge or hernia; facial nerve injury and asymmetric animation; lower lid malposition and dry eye; nasal airway obstruction; recurrence of cancer at the site; radiation effects on reconstruction; fat necrosis; lymphedema. Document that alternatives and the option of no surgery were discussed.
 
-**May to July 2027:** finish 90-day photos; assemble draft case books for your 10 most likely-to-be-selected cases so the 5 chosen are fast to upload.
-
-**August 2027:** upload case reports before the noon deadline; attestation and photo affidavit done.
-
-**September to November 2027:** clearance notice; prep course or mock orals; exam.
+### C4. Documentation pitfalls examiners look for
+- No nicotine status, or nicotine use with no cessation plan.
+- No VTE risk score, or a high score with no chemoprophylaxis rationale.
+- Breast surgery in a woman 40 or older with no mammogram result in the chart.
+- No BDD screen or expectation discussion before cosmetic surgery.
+- No mention of alternatives or the option to not operate.
+- First in-person visit on the day of surgery.
+- Combined procedures with no documented reasoning about duration, blood loss, or facility level.
+- Complications recorded as "healing well" while the Case Log lists none; both records are cross-checked, and the Board flags cases where "all cases heal without complications."
+- Post-op notes delegated entirely to midlevels with no surgeon visit within 30 days.
+- Coding on the case list that does not match the bill.
+- Notes edited after case selection without listing the edits on the EMR attestation.
 
 ---
 
-## 12. Sources verified
+## Part D. Evidence-based timing and optimization thresholds
 
-ABPS (the certifying board):
+These are literature-derived standards you can cite in a note and defend to an examiner. Every oncologic timing decision is made jointly with the medical and radiation oncologists and documented as such. Where evidence conflicts, the note should show that you weighed it.
+
+### D1. Systemic therapy and surgery
+
+| Situation | Standard to document | Basis |
+|---|---|---|
+| Surgery after neoadjuvant chemotherapy | Operate **4 to 8 weeks** after the last cycle. Intervals beyond 8 weeks are associated with worse overall and disease-free survival in meta-analyses. Confirm count recovery (ANC and platelets) with oncology. | Systematic reviews and meta-analyses, 2021 and 2025 |
+| Adjuvant chemotherapy after mastectomy with reconstruction | Reconstruction must not delay chemotherapy. Target start **within 30 days, no later than 60 days**; delay past 60 days increases mortality, most in triple-negative, HER2-positive without trastuzumab, and stage III. Manage wound problems aggressively so they do not delay systemic therapy. | Population studies including Chavez-MacGregor 2016 and subtype analyses |
+| Bevacizumab (Avastin) | Hold **at least 28 days before** elective surgery; do not restart until **at least 28 days after** surgery **and** the wound is fully healed. Half-life about 21 days. | FDA prescribing information |
+| Tamoxifen before free-flap reconstruction | Consider holding **28 days** before microsurgery (two half-lives of the active metabolite); Kelley et al. 2012 showed 1.7 times the flap complication rate and higher total flap loss. A 2022 meta-analysis found no significant increase in flap loss, so holding is a shared decision with oncology, and the note should say so. | Kelley PRS 2012; Breast Cancer Res Treat 2022 meta-analysis |
+| Aromatase inhibitors | No evidence requiring a hold; continue unless oncology advises otherwise. | Same literature |
+| Immune checkpoint inhibitors (pembrolizumab, nivolumab) | No signal of impaired wound healing or surgical delay in phase III perioperative trials; no routine hold. Screen for immune-related adverse events before anesthesia (thyroid, adrenal, pneumonitis, colitis). | KEYNOTE-689 and scoping reviews |
+| Endocrine surveillance after reconstruction | Document who is following the cancer and the imaging plan for the contralateral breast. | Standard of care |
+
+### D2. Radiation and reconstruction
+
+| Situation | Standard to document | Basis |
+|---|---|---|
+| Post-mastectomy radiation timing | Typically begins **3 to 6 weeks** after mastectomy, or **3 weeks or more after the last taxane** when chemotherapy comes first; protocols cap the start at about 20 weeks from surgery or chemotherapy. Reconstruction complications must not push radiation past this window. | Cooperative group and institutional protocols |
+| Radiating an expander versus the permanent implant | Major complication rates are similar; reconstruction failure is higher when the expander is radiated. Choose and document the sequence with the radiation oncologist. | 2025 systematic review and meta-analysis (11 studies, 1,628 cases) |
+| Expander-to-implant exchange after radiation | Wait **at least 6 months** after radiation ends; failure 22.4 percent under 6 months versus 7.7 percent at 6 months or more. Recent multicenter data put the lowest 90-day complication risk at about 6.9 months. | Peled 2012; PRS 2024 to 2025 timing studies |
+| Delayed autologous reconstruction after radiation | Traditional teaching is 6 to 12 months. Data show complications are highest at **3 to 6 months** after radiation and lower before 3 months or after 6 months; most surgeons operate at 6 to 12 months. Document tissue condition (erythema resolved, skin supple) as your criterion. | Momoh 2011; PRS 2023 and 2024 timing studies |
+| Fat grafting in an irradiated field | Safe and improves skin quality and symptoms; stage sessions about **3 months** apart and about 3 months before expander exchange; counsel on fat necrosis and infection risk in the 6 to 24 month post-radiation window. | Systematic reviews and PRS Global Open series |
+| Head and neck: adjuvant radiation after free flap | Radiation should start **within 6 weeks** of surgery; plan the reconstruction so healing does not delay it. | Head and neck oncology guidelines |
+| Head and neck: reconstruction after prior radiation | Operate **within 6 weeks** of the last fraction when radiation precedes surgery; complications (flap loss, infection, delayed healing) rise linearly after that, and dose over 60 Gy is a risk factor. Document dental evaluation and hyperbaric considerations for irradiated mandible. | JPRAS 2008; meta-analyses 2014 and 2021 |
+
+### D3. Cutaneous oncology
+
+| Situation | Standard to document |
+|---|---|
+| Melanoma | Sentinel node biopsy when indicated (T1b and thicker) is performed before or with wide excision, in the same setting when possible. For flap or graft reconstruction on the face or in high-recurrence sites, document whether you waited for final margins and why. |
+| Non-melanoma skin cancer | Mohs or margin-controlled excision before flap closure when margins are uncertain; document margin status and the source (Mohs report or permanent section) in the op note. |
+
+### D4. Medical optimization thresholds
+
+| Factor | Standard to document | Basis |
+|---|---|---|
+| Nicotine (cigarettes, vaping, pouches, gum, patch) | **Stop at least 4 weeks before and 4 weeks after** surgery. Consider cotinine testing for flap, facelift, abdominoplasty, and breast surgery. | ASPS position (high-quality evidence) |
+| Diabetes | HbA1c **under 8 percent** for elective surgery is the most common plastic surgery threshold; risk rises sharply above 10 percent. Refer to primary care to optimize and re-test. | Hand and upper-extremity and abdominal surgery cohorts |
+| BMI | Document BMI and procedure-specific limits. Office-based aesthetic surgery: caution above 35 and generally avoid above 40. Post-bariatric contouring: weight **stable 6 to 12 months**, usually **12 to 18 months** after the bariatric operation, BMI ideally **under 30 to 32**, nutrition labs corrected. | ASPS practice parameter for skin redundancy; bariatric literature |
+| VTE | Caprini score on every surgical patient with the number in the note. Mechanical prophylaxis for every general-anesthesia case. Chemoprophylaxis for inpatients with **Caprini 7 or higher**, and consider it at 5 to 6 with additional risk; extended prophylaxis for the highest-risk patients. | ASPS VTE Task Force 2011, ASPS 2023 practice resource |
+| Estrogen contraception or HRT | Consider stopping **4 weeks** before major elective procedures; evidence is inconsistent, so document the discussion and the decision either way. | NICE and regional guidance |
+| GLP-1 receptor agonists | Continue in most patients per 2024 multisociety guidance, with a **24-hour liquid diet** before the procedure and screening for GI symptoms; the alternative ASA 2023 approach is to hold weekly agents for 1 week and daily agents on the day. Coordinate with anesthesia and document. | Multisociety guidance 2024; ASA 2023 |
+| Anticoagulants, antiplatelets, supplements | Hold aspirin, NSAIDs, fish oil, vitamin E, ginkgo, garlic, and similar supplements about 1 to 2 weeks before surgery unless a cardiac indication requires continuing aspirin; DOAC and warfarin holds per the prescribing physician. Document the prescriber's agreement. | Standard perioperative practice |
+| Isotretinoin | No routine delay is needed for cutaneous surgery, superficial peels, laser hair removal, or fractional lasers per the 2017 consensus; remain cautious with mechanical dermabrasion and fully ablative deep resurfacing. | JAMA Dermatology 2017 consensus |
+| Mammography before elective breast surgery | Women **40 and older** (or **35 and older** with personal or family history) need a screening mammogram within the guideline interval before reduction, mastopexy, or augmentation. Routine mammography under 40 is not recommended (ASPS Choosing Wisely 2014). | ASPS Choosing Wisely; screening guidelines |
+| Breast implants | Boxed warning discussed; **FDA Patient Decision Checklist** reviewed, initialed, and signed by patient and surgeon; implant card given; surveillance plan for silicone implants documented. | FDA labeling requirements, October 2021 |
+| Liposuction volume and OR time | ASPS: **no more than 5 liters** total aspirate in an outpatient setting; office-based OR time ideally 2 to 3 hours and **not over 6 hours**. Combined procedures need documented reasoning. | ASPS liposuction practice advisory; office-based surgery standards |
+| Pregnancy | Document pregnancy test or status and counsel on timing relative to breast and abdominal surgery. | Standard of care |
+
+---
+
+## Part E. Your situation and cadence
+
+You started independent practice in mid-September 2026, leaving about 28 weeks in the window. Fifty major cases with adequate variety is achievable at 2 to 3 major cases per week from October. Hard checkpoint the first week of January 2027: under 25 major cases means adding OR blocks, taking call, and asking the Board Office whether to defer a cycle rather than submit a thin list. Remember the three-cases-per-patient cap when counting staged reconstructions.
+
+**Tomorrow:** ABPS consent form in every room; camera and backdrop ready; tracker created; Case Log login confirmed and BAA accepted; verify your admitting privileges are active before any sedation or general case; confirm every surgery center you will use is accredited.
+
+**Weekly (Friday):** enter cases; update tracker; count majors; confirm 30-day and 90-day visits are booked; chase overdue photos.
+
+**Monthly:** trial print; audit five random charts against Part C; confirm license and privileges; search your name for Board-status wording; save advertising screenshots into a dated folder.
+
+**February to March 2027:** notify every facility's medical records office that a notarized affidavit will be needed; list peer evaluators and warn them; final cases; every March patient booked for a late-June photo visit.
+
+**April 1 to 19, 2027:** peer evaluator names submitted; proof every entry against the chart; outcomes and mortality fields complete; finalize; pay the review fee; obtain and notarize each facility affidavit; assemble per A3; ship by guaranteed courier to arrive by April 20.
+
+**July 2027:** open the selection email the day it arrives; audit the 5 cases immediately; register by July 31 with all licenses, all privilege letters, all accreditation certificates, and the fee.
+
+**By August 16, 2027:** request additional cases only if a selected case truly cannot be completed. **August 19, noon Eastern:** all case reports finalized.
+
+**September to October 2027:** answer any Additional Documentation request promptly. **November 11 to 13, 2027:** exam.
+
+---
+
+## Sources
+
+ABPS:
+- 2026-2027 Booklet of Information, Oral Examination section (candidate-supplied PDF, pages 37 to 62).
 - Oral Exam Process and Requirements: https://www.abplasticsurgery.org/candidates/oral-examination/oral-examination-process-requirements/
-- Overview of Oral Exam: https://www.abplasticsurgery.org/candidates/oral-examination/
-- Quick Reference Tips, Oral Exam Candidates: https://www.abplasticsurgery.org/candidates/oral-examination/quick-reference-tips-oral-exam-candidates/
-- Important Dates and Deadlines: https://www.abplasticsurgery.org/candidates/important-dates-deadlines/
-- 2024-2025 BOI, Oral Examination section: https://www.abplasticsurgery.org//media/23092/2024-2025-BOI-OE-Section.pdf
-- 2025-2026 BOI (full): https://www.abplasticsurgery.org/media/24849/2025-26-boi-final-to-post-to-website-7-1-25-updated-page-43-1-14-26.pdf
-- 2023-2024 BOI (notes online notary and digital signatures acceptable): https://www.abplasticsurgery.org//media/23158/2023-24-ABPS-BOI-for-online-publ-FINAL-OE-section-update-online-notary-and-digital-signatures-acceptable.pdf
-- Policy for Admissibility to ABPS Examinations: https://www.abplasticsurgery.org/media/20285/ABPS-Admissibility-Policy-FINAL-5-22.pdf
-- Advertising Policy for Candidates during Admissibility (2025): https://www.abplasticsurgery.org/media/23458/advertising-board-eligible-policy-final-with-boi-code-of-ethics-excerpts-2025.pdf
-- Clinical Case Log Manual: https://www.abplasticsurgery.org/media/11711/2018-CLINICAL-CASE-LOG-WEB-Manual.pdf
-- Board Office for oral exam questions: oral@abplasticsurgery.org (general: 215-587-9322)
+- Quick Reference Tips: https://www.abplasticsurgery.org/candidates/oral-examination/quick-reference-tips-oral-exam-candidates/
+- Policy for Admissibility: https://www.abplasticsurgery.org/media/20285/ABPS-Admissibility-Policy-FINAL-5-22.pdf
+- Advertising Policy for Candidates: https://www.abplasticsurgery.org/media/23458/advertising-board-eligible-policy-final-with-boi-code-of-ethics-excerpts-2025.pdf
 
-ASPS (society; prep and advice only):
-- Be Prepared for Certification (2024): https://www.plasticsurgery.org/for-medical-professionals/publications/plastic-surgery-resident/news/be-prepared-for-certification-2024
-- Be Prepared for Certification (2021): https://www.plasticsurgery.org/for-medical-professionals/publications/plastic-surgery-resident/news/be-prepared-for-certification-2021
-- ASPS Oral Board Preparation Course: https://www.plasticsurgery.org/for-medical-professionals/education/events/board-preparation-course
-
----
-
-## 13. Questions to send the Board Office this week (oral@abplasticsurgery.org)
-
-1. Please confirm the 2026-2027 case list receipt deadline, late-fee window, selected-case notification date, and case report upload deadline.
-2. My independent practice start date is [date]. Do you require a start-date letter from my employer with the case list?
-3. Please confirm the current photo de-identification instructions (facial masking, cropping) and labeling format.
-4. Please confirm the current list of case report tabs and the page cap per case.
-5. Please confirm whether case list submission for my cycle is paper by courier, electronic, or both.
-6. Please confirm current fee amounts (case list, late fee, missing items fee, exam fee).
+Clinical evidence (Part D):
+- Optimal timing of surgery after neoadjuvant chemotherapy, meta-analyses: https://www.sciencedirect.com/science/article/abs/pii/S074879832100055X and https://pubmed.ncbi.nlm.nih.gov/40120518/
+- Adjuvant chemotherapy delay and survival: https://www.medscape.com/viewarticle/916130 and https://pmc.ncbi.nlm.nih.gov/articles/PMC5542291/
+- Bevacizumab FDA label: https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/125085s340lbl.pdf
+- Tamoxifen and free flaps: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3921070/ and https://pubmed.ncbi.nlm.nih.gov/35286525/
+- Delayed autologous reconstruction timing after PMRT: https://pubmed.ncbi.nlm.nih.gov/37751883/ and https://pubmed.ncbi.nlm.nih.gov/21629047/
+- Expander-implant exchange timing after PMRT: https://pubmed.ncbi.nlm.nih.gov/22929235/ and https://pubmed.ncbi.nlm.nih.gov/42424364/
+- Radiating expander versus implant, meta-analysis: https://pmc.ncbi.nlm.nih.gov/articles/PMC12552263/
+- Fat grafting in irradiated tissue: https://pubmed.ncbi.nlm.nih.gov/42202560/
+- Head and neck radiation timing and free flaps: https://www.jprasurg.com/article/S1748-6815(08)00118-6/abstract and https://www.sciencedirect.com/science/article/abs/pii/S1748681521004824
+- Checkpoint inhibitors perioperatively: https://pmc.ncbi.nlm.nih.gov/articles/PMC13510335/
+- Melanoma SLNB guidance: https://jnccn.org/view/journals/jnccn/19/4/article-p364.xml
+- ASPS nicotine position: https://www.plasticsurgery.org/news/press-releases/patients-should-stop-using-e-cigarettes-before-plastic-surgery-experts-conclude
+- HbA1c and elective surgery: https://pmc.ncbi.nlm.nih.gov/articles/PMC10470238/ and https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10699499/
+- ASPS VTE Task Force report and 2023 practice resource: https://www.plasticsurgery.org/documents/medical-professionals/health-policy/key-issues/ASPS_VTE_Report.pdf and https://www.plasticsurgery.org/documents/Health-Policy/Resources/2023-vte-prevention-hospitalized-patients.pdf
+- Perioperative estrogen and VTE: https://evidence.nejm.org/doi/full/10.1056/EVIDtt2100050
+- GLP-1 multisociety guidance 2024: https://pubmed.ncbi.nlm.nih.gov/39480373/
+- Isotretinoin consensus 2017: https://pubmed.ncbi.nlm.nih.gov/28658462/
+- Preoperative mammography and ASPS Choosing Wisely: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6484788/
+- FDA breast implant labeling and checklist: https://www.fda.gov/media/131885/download and https://www.plasticsurgery.org/documents/Patient-Safety/Breast-Implant-Patient-Decision-Checklist-Example.pdf
+- ASPS liposuction advisory: https://www.plasticsurgery.org/documents/medical-professionals/health-policy/key-issues/executive-summary-on-liposuction.pdf
+- ASPS practice parameter, skin redundancy after weight loss: https://www.plasticsurgery.org/documents/health-policy/guidelines/guideline-2017-skin-redundancy.pdf
+- BDD screening evidence review: https://onlinelibrary.wiley.com/doi/10.1111/jocd.15685
