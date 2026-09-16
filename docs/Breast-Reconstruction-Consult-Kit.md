@@ -338,3 +338,24 @@ Caveats: MROC "any complication" for flaps includes donor-site and minor wound p
 - With radiation the evidence is one-sided in favor of autologous tissue.
 
 Sources: Bennett JAMA Surg 2018 (https://pubmed.ncbi.nlm.nih.gov/29926077/); Jagsi JNCI 2018 (https://pmc.ncbi.nlm.nih.gov/articles/PMC6059091/); Santosa JAMA Surg 2018; Nelson Ann Surg 2019 (https://pubmed.ncbi.nlm.nih.gov/31356276/); DIEP flap loss classification (https://pubmed.ncbi.nlm.nih.gov/24281570/); fat necrosis meta-analysis (https://pubmed.ncbi.nlm.nih.gov/42501419/); DIEP vs TRAM (https://pubmed.ncbi.nlm.nih.gov/42394475/); PMRT contracture cohort (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10813520/); obesity and reconstruction MROC (https://pubmed.ncbi.nlm.nih.gov/32097295/); neoadjuvant chemo meta-analyses (https://www.sciencedirect.com/science/article/pii/S0960977620302290; https://pubmed.ncbi.nlm.nih.gov/37804643/); NSM complications meta-analysis (https://pubmed.ncbi.nlm.nih.gov/29464161/); FDA implant risks (https://www.fda.gov/medical-devices/breast-implants/risks-and-complications-breast-implants); Natrelle Core 10-year (https://pubmed.ncbi.nlm.nih.gov/24867717/); Matros cost-effectiveness (https://pubmed.ncbi.nlm.nih.gov/25517411/).
+
+---
+
+## 12. Nipple-sparing mastectomy with immediate DIEP in a ptotic breast
+
+**Eligibility first:** tumor over 2 cm from the nipple, no NAC or skin involvement, no Paget or bloody discharge, negative retroareolar margin. Ptosis is a perfusion and aesthetics problem, not an oncologic one.
+
+| Ptosis and size | Pathway | Incision |
+|---|---|---|
+| Grade 1 to 2, SN-N about 24 to 26 cm or less, C cup or smaller | Single-stage NSM with immediate DIEP | Inframammary fold, lateral half, 8 to 12 cm; lateral radial if more exposure needed; avoid periareolar |
+| Grade 2 to 3, SN-N over 26 cm, D cup or larger, nipple well below fold | Option A: staged mastopexy or reduction on a superomedial or superior pedicle 6 to 12 weeks before NSM, then NSM through the existing scar with DIEP (lowest nipple necrosis; needs oncologic time). Option B: single-stage skin-reducing (Wise or vertical) NSM with the nipple on a superior dermal pedicle and the DIEP paddle replacing the inferior pole so the flap sits at the T-junction; add a nipple delay 2 to 3 weeks before. Option C: skin-reducing mastectomy with free nipple graft onto de-epithelialized flap (take over 90 percent; loses sensation, projection, often pigment). | Per option |
+
+**Intraoperative rules:** ICG of nipple and skin flaps after mastectomy and before inset; poor perfusion means free nipple graft or nipple excision on the spot. Ask for thick even mastectomy flaps, no nipple traction, retroareolar frozen section. Keep the nipple pedicle dermal and superior.
+
+**DIEP details:** buried flap with small monitoring paddle in the IMF incision (Option A or single-stage IMF), or a paddle sized to replace the inferior pole (Option B). Cone the flap, set and fix the fold, suture the flap to the chest wall to prevent bottoming out in a loose envelope. In the single-stage IMF case the nipple sits low and lateral: plan crescent or periareolar mastopexy at 3 to 6 months once the nipple lives off the flap. Contralateral mastopexy or reduction usually at the revision stage for unilateral cases. Consider flap neurotization; the nipple will be numb in most NSM cases.
+
+**Numbers:** nipple necrosis after NSM with implants about 4 to 5 percent; periareolar about 18 versus inframammary or radial about 9 percent. Skin-reducing single-stage NSM in ptotic breasts: partial nipple necrosis 10 to 20 percent, T-junction breakdown dominant when native skin closes the inferior pole. Staged mastopexy then NSM: complete nipple loss under 5 percent with an interval of at least 4 weeks, most series 6 to 12 weeks. DIEP total loss under 2 percent, fat necrosis about 10 to 15 percent.
+
+**Note language:** "Grade [ ] ptosis, SN-N [ ] cm, tumor-to-nipple [ ] cm, no NAC involvement. Options discussed: single-stage NSM via inframammary incision with buried DIEP and staged mastopexy; staged mastopexy then NSM and DIEP in 6 to 12 weeks; single-stage skin-reducing NSM with superior dermal pedicle and DIEP paddle at the inferior pole after nipple delay; skin-reducing mastectomy with free nipple graft; skin-sparing mastectomy with nipple reconstruction. Recommended [ ] because [ ]. Intraoperative ICG planned; backup is free nipple graft or nipple excision if perfusion is inadequate. Counseled on nipple necrosis, T-junction breakdown, loss of nipple sensation, malposition requiring mastopexy, flap loss, fat necrosis, donor bulge."
+
+Caution: staged and skin-reducing pathways are technique-dependent with single-center evidence; if the breast surgeon has not done Wise-pattern NSM, the inframammary single-stage plan with delayed mastopexy is the safer default.
