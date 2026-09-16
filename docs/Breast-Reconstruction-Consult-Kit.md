@@ -215,3 +215,42 @@ Time: [ ] minutes, more than half in counseling.
 - Intraoperative photos: mastectomy defect, ADM or pocket, expander or implant in place, or the raised flap with pedicle, before closure.
 - Outcome at 4 to 6 weeks and 30-day mortality fields on every entry; every oral antibiotic course, extra visit, and prolonged dressing is an adverse event.
 - The consult and the pre-op visit on separate days satisfy the "in person at least the day before surgery" rule; document both dates.
+
+---
+
+## 10. Predicting chemotherapy and radiation (the plastic surgeon's mental model)
+
+Final decisions belong to medical and radiation oncology and the note should say "per oncology," but you should be able to predict them.
+
+### Chemotherapy by subtype
+
+| Subtype | Chemo? | Timing | After surgery |
+|---|---|---|---|
+| Triple negative | Nearly always except tiny T1a-b N0 | Neoadjuvant for cT2+ or node-positive: chemo plus pembrolizumab (KEYNOTE-522) | Pembrolizumab 9 cycles; capecitabine if residual disease (CREATE-X). No wound-healing effect. |
+| HER2-positive | Nearly always | Neoadjuvant TCHP for cT2+ or node-positive; small T1 N0 gets adjuvant paclitaxel-trastuzumab (APT) | Trastuzumab with or without pertuzumab to one year; T-DM1 if residual (KATHERINE). No wound-healing effect. |
+| HR-positive, HER2-negative | Genomics and nodes decide | Usually adjuvant because Oncotype needs surgical pathology | Endocrine 5 to 10 years; abemaciclib for high-risk node-positive (monarchE); ribociclib (NATALEE); ovarian suppression if premenopausal. |
+
+Oncotype rules (TAILORx, RxPONDER): N0 with score 26+ gets chemo; postmenopausal N1 (1 to 3 nodes) with score 25 or lower does not benefit; premenopausal N1 usually gets chemo or ovarian suppression; 4+ nodes gets chemo.
+
+Timing: adjuvant chemo starts 3 to 6 weeks post-op, target under 30 days, worse past 60 days. Mastectomy after neoadjuvant chemo at 4 to 8 weeks. Nadir day 7 to 14; schedule fills between cycles.
+
+### Post-mastectomy radiation (NCCN; ASCO/ASTRO/SSO)
+
+- 4+ positive nodes: PMRT always.
+- 1 to 3 macrometastatic nodes: PMRT recommended and usual in US practice, especially with young age, T2+, grade 3, LVI, extranodal extension, triple negative or HER2-positive. SUPREMO (late 2025) found no survival benefit from chest wall radiation in this group, so practice may loosen; assume PMRT until radiation oncology says otherwise.
+- Micrometastasis or isolated tumor cells alone: usually no PMRT.
+- Node-negative T1-2: no PMRT. T3 N0 debated. Positive margins, T4, inflammatory: PMRT.
+- After neoadjuvant chemo: residual nodal disease (ypN+) means PMRT; converted to ypN0 usually means no nodal radiation (NSABP B-51).
+- Positive sentinel node after mastectomy is often managed with axillary radiation instead of completion dissection (AMAROS).
+- Timing: 4 to 6 weeks post-op if no chemo; after chemo if chemo (about 4 to 6 months post-mastectomy). 5 to 6 weeks conventional or 3 weeks hypofractionated (RT CHARM supports hypofractionation with reconstruction). Endocrine therapy may run concurrently.
+
+### Assumptions when a post-op immediate reconstruction patient reports a positive node
+
+1. Radiation is coming unless micrometastasis only or ypN0 after neoadjuvant chemo. Write it: "pN1 (x/y nodes, macrometastases); anticipate PMRT per radiation oncology; plan adjusted."
+2. Chemo is likely if triple negative, HER2-positive, premenopausal HR-positive, or 4+ nodes, starting within 4 to 6 weeks. Priority: closed, dry, uninfected wound. Low threshold to intervene early rather than delay chemo.
+3. Completion axillary dissection versus axillary radiation is pending; ask, since a second axillary operation may combine with your next stage.
+4. Adjust: expander fully expanded 2 to 4 weeks before simulation, volume agreed with radiation oncology, exchange no sooner than 6 months after radiation; direct-to-implant counseled on contracture and failure; autologous flap warned about fibrosis and fat necrosis, revisions and fat grafting after 6 months; contralateral symmetry waits.
+5. Drugs: tamoxifen may start now (28-day hold discussion before any free flap); trastuzumab and pembrolizumab do not change plans; bevacizumab needs 28-day holds.
+6. Document the expected timeline: chemo start, radiation start and end, endocrine start, earliest date of your next stage.
+
+Patterns: a triple negative or HER2-positive patient above cT1c arriving for immediate reconstruction without prior chemo is unusual, so ask whether neoadjuvant therapy was considered. A postmenopausal HR-positive patient with a clinically negative axilla is the low-radiation-risk case where direct-to-implant or immediate autologous reconstruction is most defensible.
