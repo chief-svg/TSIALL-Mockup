@@ -282,3 +282,59 @@ Fills week 2 to 3 · chemo week 4 to 6 · expansion complete before last cycle �
 
 **Note language once radiation is expected**
 "Final pathology pN1 (x of y sentinel nodes, macrometastases). Anticipate adjuvant chemotherapy per medical oncology, start targeted within 4 to 6 weeks, and post-mastectomy radiation per radiation oncology following chemotherapy. Reconstruction plan adjusted: expander fills weekly between cycles to a target of [ ] mL agreed with radiation oncology, expansion complete before simulation; no volume change after simulation; exchange or autologous conversion no sooner than 6 months after radiation; contralateral symmetry deferred. Counseled regarding increased risk of infection, exposure, capsular contracture, and reconstruction failure with radiation, and regarding autologous conversion as an alternative. Contingency: device explantation without delay if infection or exposure threatens the chemotherapy or radiation schedule. Visits scheduled at start and midpoint of radiation and 4 to 6 weeks after completion with photographs."
+
+---
+
+## 11. Autologous versus implant-based reconstruction: the evidence to cite
+
+### Head-to-head numbers
+
+| Outcome | Implant-based | Autologous (DIEP unless noted) | Source |
+|---|---|---|---|
+| Any complication at 2 years | About 27 percent (reference) | About 40 to 46 percent; odds about 2x for DIEP, free TRAM, latissimus; SIEA 4.7x | MROC, Bennett JAMA Surg 2018 |
+| Reoperative complication at 2 years | 19 percent cohort-wide; implants reference | Odds 2.5 to 3x (DIEP 2.8) | MROC 2018 |
+| Wound infection at 2 years | About 10 percent cohort-wide | DIEP odds 0.45x implants | MROC 2018 |
+| Failure at 2 years, no radiation | 7.1 percent (EI and DTI); 3.7 percent unirradiated subgroup | DIEP 1.3, free TRAM 2.1, pedicled TRAM 1.2, latissimus 2.8, SIEA 0 percent | MROC 2018; Jagsi JNCI 2018 |
+| Failure at 2 years, with radiation | 18.7 percent | 1.0 percent | Jagsi JNCI 2018 |
+| Any complication at 2 years, with radiation | 38.9 percent (21.8 unirradiated) | 25.6 percent (28.3 unirradiated) | Jagsi JNCI 2018 |
+| Total flap loss | n/a | Under 1 to 2 percent; take-back 3 to 6 percent with salvage in about half to two thirds | Systematic reviews, 17,096 DIEP flaps |
+| Partial loss and fat necrosis | n/a | Partial 2 to 3 percent; fat necrosis about 10 to 15 percent (range 7.5 to 59); lower with ICG, lateral-row or 2+ perforators, SIEV augmentation | Meta-analyses 2025 |
+| Donor bulge or hernia | n/a | DIEP 2 to 5 percent; pedicled TRAM higher | DIEP vs TRAM meta-analysis |
+| Capsular contracture Baker III to IV | 0 to 20 percent without radiation (most 5 to 10); 15 to 50 percent with radiation (22.9 percent at 22 months; any grade 47.5) | n/a | Cohort data |
+| Rupture | About 10 percent of women by 10 years | n/a | FDA core studies |
+| BIA-ALCL | Textured 1 in 2,200 to 1 in 30,000; smooth negligible | n/a | FDA |
+| Obesity | Complications and failure rise with BMI | Complications rise; failure does not (0.9 vs 1.2 percent) | MROC obesity analysis 2020 |
+| Neoadjuvant chemo | Overall complications unchanged; device loss RR 1.54 | Flap loss RR 1.23, not significant | Meta-analyses 2020, 2023 |
+| BREAST-Q satisfaction with breasts | Stable over 8 years but lower at every point | Higher at 1, 2, 4 years (MROC) and every point over 8 years (MSKCC, 3,268 patients); higher psychosocial and sexual well-being | Pusic 2017, Santosa 2018, Nelson 2019 |
+| Cost | Lower up front; converges by about 2 years | Cost-effective per quality-adjusted outcome, most for unilateral | Matros 2015 |
+
+Caveats: MROC "any complication" for flaps includes donor-site and minor wound problems; BREAST-Q differences are real but modest (about 5 to 10 points).
+
+### Pros and cons in plain words
+- Implant: 1 to 2 hour operation, 0 to 1 night, 2 to 3 weeks recovery, no donor scar, easy bilateral symmetry, good for small to moderate non-ptotic breasts and nipple-sparing. Against: not lifetime devices (about 1 in 10 rupture by 10 years), contracture and revisions accumulate, firmer feel, radiation raises failure to about 1 in 5. FDA boxed warning and Patient Decision Checklist required.
+- Autologous: durable, warm, ages with the patient, tolerates radiation, best for unilateral next to a ptotic breast, highest long-term satisfaction. Against: 4 to 8 hour operation, 2 to 4 nights, 6 to 8 weeks recovery, abdominal scar with 2 to 5 percent bulge, about double the early complication rate, 1 to 2 percent total flap loss; needs donor tissue and no prior abdominoplasty.
+
+### Surgical factors that shift the decision
+
+| Factor | Direction | Why |
+|---|---|---|
+| PMRT likely or done | Autologous, or delayed-immediate expander with autologous conversion | Failure 18.7 vs 1.0 percent; contracture 15 to 50 percent; lowest satisfaction group in MROC is irradiated implants |
+| Neoadjuvant chemo | Neutral, slight tilt to autologous if device loss would delay adjuvant therapy | Device loss RR 1.54 |
+| Nipple-sparing mastectomy | Implant-based in most centers | Nipple necrosis about 4 to 5 percent with expander or DTI; higher pooled rates with autologous, likely confounded; inframammary or radial incision about 9 percent vs periareolar about 18 percent |
+| Skin-sparing with large ptotic breast | Autologous, or expander with skin reduction | Envelope needs volume and skin management |
+| Unilateral with ptotic contralateral breast | Autologous | Better long-term symmetry |
+| Bilateral, small to moderate breasts | Implant-based | Inherent symmetry; two flaps double donor morbidity |
+| BMI over 30 | Autologous for durability if donor tissue exists | Implant failure rises with BMI; flap failure does not |
+| BMI over 35 to 40, smoker, uncontrolled diabetes | Optimize first | Both pathways fail more |
+| Prior abdominoplasty or extensive liposuction | No DIEP; PAP, TUG, SGAP, latissimus, or implants | Perforators disrupted |
+| Thin patient | Implant or hybrid | Insufficient volume |
+| Fewest lifetime operations, no device surveillance | Autologous | Implants need surveillance and replacement |
+| Shortest recovery, caregiving or work limits, poor anesthetic risk | Implant-based | Operative time and stay |
+| Tamoxifen planned | Neutral; 28-day hold discussion before a free flap | Kelley 2012 vs 2022 meta-analysis |
+
+### Revisions and the long game
+- Implant reconstruction: about 1 in 5 reoperate for a complication by 2 years; elective revisions, exchanges, and contralateral procedures accumulate over a decade.
+- Autologous: risk is front-loaded; after 3 months most additional operations are one planned elective refinement stage; result stable.
+- With radiation the evidence is one-sided in favor of autologous tissue.
+
+Sources: Bennett JAMA Surg 2018 (https://pubmed.ncbi.nlm.nih.gov/29926077/); Jagsi JNCI 2018 (https://pmc.ncbi.nlm.nih.gov/articles/PMC6059091/); Santosa JAMA Surg 2018; Nelson Ann Surg 2019 (https://pubmed.ncbi.nlm.nih.gov/31356276/); DIEP flap loss classification (https://pubmed.ncbi.nlm.nih.gov/24281570/); fat necrosis meta-analysis (https://pubmed.ncbi.nlm.nih.gov/42501419/); DIEP vs TRAM (https://pubmed.ncbi.nlm.nih.gov/42394475/); PMRT contracture cohort (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10813520/); obesity and reconstruction MROC (https://pubmed.ncbi.nlm.nih.gov/32097295/); neoadjuvant chemo meta-analyses (https://www.sciencedirect.com/science/article/pii/S0960977620302290; https://pubmed.ncbi.nlm.nih.gov/37804643/); NSM complications meta-analysis (https://pubmed.ncbi.nlm.nih.gov/29464161/); FDA implant risks (https://www.fda.gov/medical-devices/breast-implants/risks-and-complications-breast-implants); Natrelle Core 10-year (https://pubmed.ncbi.nlm.nih.gov/24867717/); Matros cost-effectiveness (https://pubmed.ncbi.nlm.nih.gov/25517411/).
