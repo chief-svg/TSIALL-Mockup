@@ -254,3 +254,31 @@ Timing: adjuvant chemo starts 3 to 6 weeks post-op, target under 30 days, worse 
 6. Document the expected timeline: chemo start, radiation start and end, endocrine start, earliest date of your next stage.
 
 Patterns: a triple negative or HER2-positive patient above cT1c arriving for immediate reconstruction without prior chemo is unusual, so ask whether neoadjuvant therapy was considered. A postmenopausal HR-positive patient with a clinically negative axilla is the low-radiation-risk case where direct-to-implant or immediate autologous reconstruction is most defensible.
+
+### Item 4 expanded: adjusting the reconstruction once radiation is likely
+
+**Tissue expander in place**
+- Decide with radiation oncology which device gets radiated. Radiate the expander (most common; exchange or flap conversion 6+ months after radiation; similar major complications to radiating the implant but higher reconstruction failure, mostly infection and exposure) or radiate the implant (complete expansion during chemo, exchange 4 to 6 weeks after last chemo, radiation about 4 weeks after exchange; only if the team agrees the timeline holds).
+- Fills from week 2 to 3, 50 to 100 mL weekly or every two weeks, between chemo cycles and away from the day 7 to 14 nadir. Expansion complete 2 to 4 weeks before simulation. No volume change after simulation. Record the agreed volume and date.
+- Magnetic port: tell radiation oncology the device model and port position; modern planning accounts for scatter and artifact.
+- Prepectoral: at least equivalent outcomes with radiation, no animation. Subpectoral: counsel on animation and tightening. Do not change planes before radiation.
+- See the patient at the start and midpoint of radiation. Moist desquamation is expected; cellulitis, purulence, or exposure means explant, close, and let radiation finish without interruption; plan delayed autologous reconstruction 6 to 12 months later.
+- Exchange no sooner than 6 months after radiation (failure roughly triples before 6 months). Consider fat grafting 3 months before or at exchange. Counsel contracture 30 to 50 percent and failure or salvage 15 to 30 percent over time. Offer autologous conversion as a first-line option and document the choice.
+
+**Direct-to-implant already done**
+- Counsel before radiation: contracture, malposition, skin thinning; later capsulectomy with exchange, fat grafting, or flap conversion. No revisions until 6 months after radiation; contralateral symmetry at 9 to 12 months. Wound problem before chemo or radiation: remove the implant rather than delay treatment; write this contingency down. Visits at radiation midpoint and 4 to 6 weeks after, with photos.
+
+**Autologous flap already done**
+- Expect fibrosis, 10 to 20 percent volume loss, and fat necrosis evident at 6 to 12 months; counsel that the breast gets firmer and smaller before it settles. No revisions, fat grafting, or nipple reconstruction until 6 months after radiation; symmetry often at 12 months. Latissimus with implant behaves like an implant reconstruction. If a second flap is coming and tamoxifen has started, plan the 28-day hold discussion.
+
+**Delayed-immediate pathway**
+- Radiation confirmed: keep the expander, expand fully before simulation, choose exchange or autologous conversion at 6 to 12 months after radiation. Radiation not needed: proceed to exchange or flap once chemo is done and counts recovered. Document the branch.
+
+**Axilla**
+- Ask whether completion dissection or axillary radiation is planned; dissection plus radiation carries the highest lymphedema risk. Consider combining a dissection with your next stage; refer for lymphedema surveillance and immediate lymphatic reconstruction where available. Document counseling.
+
+**Timeline with adjuvant chemo and radiation (from mastectomy)**
+Fills week 2 to 3 · chemo week 4 to 6 · expansion complete before last cycle · simulation 3 to 4 weeks after last chemo · radiation 3 weeks hypofractionated or 5 to 6 weeks conventional · exchange or conversion 6 months after radiation (month 11 to 14) · revisions and fat grafting 6 to 12 months after radiation · contralateral symmetry 9 to 12 months after radiation. Without chemo, radiation starts 4 to 6 weeks post-op and everything moves up about 4 months.
+
+**Note language once radiation is expected**
+"Final pathology pN1 (x of y sentinel nodes, macrometastases). Anticipate adjuvant chemotherapy per medical oncology, start targeted within 4 to 6 weeks, and post-mastectomy radiation per radiation oncology following chemotherapy. Reconstruction plan adjusted: expander fills weekly between cycles to a target of [ ] mL agreed with radiation oncology, expansion complete before simulation; no volume change after simulation; exchange or autologous conversion no sooner than 6 months after radiation; contralateral symmetry deferred. Counseled regarding increased risk of infection, exposure, capsular contracture, and reconstruction failure with radiation, and regarding autologous conversion as an alternative. Contingency: device explantation without delay if infection or exposure threatens the chemotherapy or radiation schedule. Visits scheduled at start and midpoint of radiation and 4 to 6 weeks after completion with photographs."
