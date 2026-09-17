@@ -198,6 +198,28 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 9 (Provider C): large DCIS, grade III pendulous breasts, bilateral DIEP with nipples removed, genetics pending
+
+**Situation:** DCIS grade 2, 5 cm extent, ER-positive; strong family history (mother diagnosed under 50), genetics pending; never smoker; BMI mid-20s; D cup, grade III pendulous, notch-to-nipple 32 and 29 cm; open appendectomy scar; wants DIEP and a smaller size; plan is bilateral DIEP with nipples removed, CT angiogram, A1C under 8 without a stated diabetes history.
+
+**Kept (good):** nipple removal recommended with the reason (degree of ptosis) and patient agreement; volume expectation explicit (D to about B, matching the goal); appendectomy scar tied to the CTA in one sentence; measurements, ptosis grade, "pendulous"; autologous risk list and expectations paragraph; CTA protocol.
+
+**Problems, ranked:**
+1. Free nipple graft not offered as the alternative to nipple removal; no documented reason for choosing removal.
+2. Skin envelope management for a grade III pendulous breast with a flap (Wise-pattern skin reduction with flap paddle versus skin-sparing with later mastopexy) not planned.
+3. Large DCIS treated as trivial: no sentinel node mention, no upstaging contingency (about 1 in 4 at this extent), no medical oncology, no radiation contingency; "chemotherapy between stages" boilerplate.
+4. Genetics pending with an early-onset maternal history; bilateral mastectomy planned without a sentence on how the result could change timing or counseling.
+5. Implant boilerplate and gel-implant consent in a flap note.
+6. A 3 cm notch-to-nipple asymmetry measured and ignored in the plan.
+7. A1C target without a documented diabetes diagnosis.
+8. Usual gaps: vitals, medications, allergies, pinch, VTE score, backup, photos, ABPS consent, follow-up, billing-language data review, inconsistent stay and recovery figures.
+
+**Template written:** large DCIS with pendulous breasts, bilateral DIEP, nipple removal versus free graft, skin pattern stated, genetics gating (see chat, September 17, 2026).
+
+**Reusable language from this note:** "Due to her degree of ptosis, I recommend the nipples be removed at the time of mastectomy. She agrees with this plan." (add the free-graft alternative and the reason).
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -217,6 +239,8 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 - Plans committed before pending records, genetics, imaging, or oncology consultation, with no statement of what is pending and what would change the plan.
 - Risk and consent language for a modality the patient is not receiving (implant consent in a flap note).
 - Inconsistent operative time, stay, and recovery figures for the same operation across notes.
+- Measured findings (asymmetry, contracture, scars) that never reach the plan.
+- Pre-op requirements without a documented indication (A1C target with no diabetes history).
 - Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
 
 ## Rules for the final template (running list)
@@ -239,6 +263,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft I: large DCIS, pendulous grade III breasts, bilateral DIEP
+(Assessment items: DCIS with extent and the higher upstaging contingency; contralateral counseling contingent on genetics; adjuvant sentence; candidacy with pinch, volume to a smaller cup, nipple removal versus free graft with the reason, skin pattern chosen, asymmetry addressed; perioperative risk with diabetes status explicit. Plan: options including the nipple choice; recommendation gated on genetics and records; backups; autologous risk list with T-junction risk if skin-reducing; staging; safety; coordination; orders; follow-up; closing.)
 
 ### Draft H: DCIS, bilateral DIEP, workup incomplete
 (Assessment items: DCIS with grade, receptors, extent, and nipple distance as pending fields; contralateral counseling contingent on genetics; adjuvant sentence with endocrine and upstaging contingencies; candidacy with pinch, volume estimate, and size expectation resolved; nipple-sparing anatomic versus oncologic; perioperative risk. Plan: options; recommendation gated on records, genetics, imaging; backups; autologous risk list only; staging; safety; coordination including genetics before scheduling; orders; follow-up; closing.)
