@@ -174,6 +174,30 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 8 (Provider C): DCIS, bilateral DIEP, strong nipple-sparing candidate, workup incomplete
+
+**Situation:** DCIS with outside records pending, grade and receptors not in the note, dense breasts, strong family history without genetic testing, medical oncology not yet seen, "no chemo or radiation anticipated per the breast surgeon"; BMI high-20s; C cup, grade I ptosis, notch-to-nipple 22 to 23 cm; wants same size with own tissue; plan is bilateral DIEP with nipple-sparing if oncologically acceptable, CT angiogram with protocol.
+
+**Kept (good):** oncologic deferral of the nipple decision; measurements and asymmetry noted; CTA with thin-cut protocol; complete autologous risk list and expectations paragraph; time, stay, recovery stated.
+
+**Problems, ranked:**
+1. Plan committed before records, genetics, imaging extent, and medical oncology exist; DCIS contingencies (sentinel node at mastectomy, about 1 in 5 upstaged, BRCA effect on contralateral) absent.
+2. Implant boilerplate in a flap note: implant risks, FDA guidance, MRI surveillance, vendor materials, and a gel-implant consent form documented for a patient receiving no implant.
+3. "Chemotherapy between stage one and two" in a DCIS patient with none anticipated.
+4. CTA justified by "previous abdominal surgical history" with no surgical history in the note.
+5. Size expectation ("fuller cup") contradicts the goal (same size) with no documented resolution and no pinch measurement.
+6. Nipple-sparing anatomically strong but DCIS extent, nipple distance, and MRI not recorded; "Data reviewed" is billing language.
+7. "Asymmetry to the sternal wall" is uninterpretable.
+8. Contralateral prophylactic mastectomy planned without counseling and before genetics.
+9. No adjuvant sentence with the upstaging contingency; no backup plan.
+10. Usual gaps: vitals, medications, allergies, VTE score, photos, ABPS consent, follow-up; stay and recovery figures inconsistent with the provider's other DIEP notes.
+
+**Template written:** DCIS bilateral DIEP with workup gating and nipple-sparing split into anatomic and oncologic (see chat, September 17, 2026).
+
+**Reusable language from this note:** "nipple sparing if acceptable from an oncologic standpoint" (as a deferral phrase); the CTA order protocol.
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -190,6 +214,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 - Comorbidities recorded in the history but not converted into a plan (MRSA, anticoagulation, obesity, abnormal vitals during chemotherapy).
 - Alternatives rejected without a documented reason (autologous non-candidacy extended from the abdomen to all donor sites; delayed reconstruction not offered when radiation is certain).
 - Hedged sentences that contradict established facts ("if radiation is recommended" when it is planned).
+- Plans committed before pending records, genetics, imaging, or oncology consultation, with no statement of what is pending and what would change the plan.
+- Risk and consent language for a modality the patient is not receiving (implant consent in a flap note).
+- Inconsistent operative time, stay, and recovery figures for the same operation across notes.
 - Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
 
 ## Rules for the final template (running list)
@@ -212,6 +239,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft H: DCIS, bilateral DIEP, workup incomplete
+(Assessment items: DCIS with grade, receptors, extent, and nipple distance as pending fields; contralateral counseling contingent on genetics; adjuvant sentence with endocrine and upstaging contingencies; candidacy with pinch, volume estimate, and size expectation resolved; nipple-sparing anatomic versus oncologic; perioperative risk. Plan: options; recommendation gated on records, genetics, imaging; backups; autologous risk list only; staging; safety; coordination including genetics before scheduling; orders; follow-up; closing.)
 
 ### Draft G: delayed-immediate expander, node-positive after neoadjuvant chemo, thin, prior contracture
 (Assessment items: cancer with nipple involvement, neoadjuvant completion date, prior implants and contracture grades, contralateral counseling; adjuvant sentence with radiation planned regardless of response; candidacy with all donor sites assessed, the failure and contracture figures, and the patient's documented choice among named alternatives; perioperative risk with count recovery and cardiac evaluation. Plan: options with rejected items and reasons; recommendation with intraoperative fill volume agreed with radiation oncology and the 6-month rule; backups including explant during radiation and conversion for contracture; Provider C risk list with radiation emphasis; safety gated on counts and cardiac workup; coordination including radiation oncology before surgery; orders; follow-up including radiation visits; closing.)
