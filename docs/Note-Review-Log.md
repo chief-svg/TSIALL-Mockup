@@ -76,6 +76,32 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 4 (Provider B): node-positive, radiation certain, Goldilocks bridge to delayed DIEP
+
+**Situation:** invasive ductal carcinoma with lobular features and LCIS, positive margins after excisional biopsy and re-excision, 5 of 6 nodes positive, staging CT showing only a seroma, genetics pending, medical oncology consultation pending; remote former smoker; moderate cup with ptosis, nipple displaced by tethered lumpectomy scar; abdominal pinch 4 cm; patient declines implants and prosthesis, values sensation, wants to keep the contralateral breast, wishes to avoid chemotherapy; plan is completion mastectomy with Goldilocks local tissue rearrangement, radiation, then delayed DIEP, with contralateral symmetry later.
+
+**Kept (good):** correct sequencing for certain radiation (autologous delayed, no implant); radiation stated as expected and patient agreement recorded; radiation effects on reconstruction explained in a reusable paragraph; patient values recorded in her words; flat closure and prosthesis offered and declined; abdominal pinch recorded; honesty that the full abdomen may be needed; CTA deferred until the flap is scheduled; photos taken; contralateral symmetry planned.
+
+**Problems, ranked:**
+1. Chemotherapy refusal recorded without framing: no statement that the decision belongs to medical oncology, that she was encouraged to keep the consultation, and that the reconstruction sequence does not depend on it.
+2. Axillary management (completion dissection versus axillary radiation) not mentioned despite 5 of 6 positive nodes; lymphedema not counseled.
+3. Staging CT not closed out with "no distant disease."
+4. No interval given for the delayed flap (6 months minimum after radiation, usually 6 to 12).
+5. Radiation effect on the Goldilocks tissue itself (shrinkage, fibrosis, possible need for a skin paddle) not stated.
+6. Sensation expectation not reconciled: nipple-sparing not possible and not stated as such; neurotization not offered.
+7. Typo reading as a contradiction: "quit 35 years ago and has smoked since."
+8. Patient's apprehension about mastectomy recorded without the oncologic recommendation and the reconstructive rationale that addresses it.
+9. No risk block for the index Goldilocks operation; only the DIEP education paragraph.
+10. No backup plans (inadequate local tissue, inadequate abdomen, severe radiation damage, wound complication before radiation).
+11. Genetics pending with contralateral preserved by preference; no statement that a positive result reopens the discussion; no contralateral surveillance imaging mentioned.
+12. Usual gaps: VTE score, medications, allergies, vitals, glycemic status, follow-up schedule, ABPS items.
+
+**Template written:** node-positive, radiation certain, delayed autologous with Goldilocks bridge (see chat, September 17, 2026).
+
+**Reusable language from this note:** the radiation-effects paragraph; the values sentence ("She tells me retaining sensation is very important to her"); the alternatives sentence ("I discussed that there are options for flat aesthetic closure and the use of an external prosthetic. She is not interested in these options."); the volume honesty sentence.
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -108,6 +134,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft D: node-positive, radiation certain, Goldilocks bridge to delayed DIEP
+(Assessment items: cancer with margins, nodes, staging closed out, and the oncologic recommendation; adjuvant estimate with the chemotherapy refusal framed and axillary management named; candidacy stating why nipple-sparing and immediate implants are out and why delayed DIEP is in, with pinch and volume honesty; bridge plan with radiation effect on the local tissue; perioperative risk. Plan: options with declined items; recommendation with the dated sequence, neurotization offer, and contralateral symmetry; backups; index-operation and delayed-flap risk blocks; safety; coordination including medical and radiation oncology and genetics; orders; follow-up including radiation-midpoint visits; closing.)
 
 ### Draft C: small breast, normal BMI, undecided patient electing DIEP, nipple-sparing borderline
 (Assessment items: cancer with contralateral counseling and prior contralateral surgery; adjuvant estimate; nipple-sparing candidacy split into anatomic and oncologic with the decision deferred; reconstruction candidacy with the bridging sentence, pinch measurements, and flap-volume estimate; perioperative risk. Plan: options with flat closure declined; recommendation with mastectomy type contingent on the breast surgeon; CTA-driven and intraoperative backups; flap risk block; staging; safety; coordination including genetics; orders with CTA protocol; follow-up; closing.)
