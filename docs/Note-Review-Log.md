@@ -124,6 +124,32 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 6 (Provider C): large ptotic breast, obese, aortic thrombus on rivaroxaban, recurrent MRSA, unilateral expander with contralateral reduction
+
+**Situation:** multicentric right breast disease (ER/PR-negative invasive ductal carcinoma at 6 o'clock plus ER/PR-positive DCIS in the lower outer quadrant), HER2 and tumor size and node status not in the note, MRI and genetics pending; recurrent MRSA; descending aortic thrombus on rivaroxaban; remote former smoker; BMI low-30s; G cup, notch-to-nipple 31 cm; vertical laparotomy scar without explanation; wants to be smaller, undecided on reconstruction type, interested in contralateral reduction; plan is expander with mesh, plane decided intraoperatively, flap deferred pending thrombosis-risk discussion.
+
+**Kept (good):** complete and specific implant and autologous risk lists including BIA-ALCL, BIA-SCC, BII, FDA guidance, MRI surveillance, gel-implant consent, recipient-vessel and vein-graft specifics; expectations paragraph with "no promise of exact symmetry"; three-circumstances nipple paragraph; thrombus history flagged as high risk for a flap with a plan to consult the treating physician; A1C under 8 as a pre-op requirement; anticoagulation clearance with start-stop instructions; expander plane stated as intraoperative; time, stay, recovery stated.
+
+**Problems, ranked:**
+1. Laterality contradiction: history says right mastectomy with left reduction; plan says bilateral expanders. Unilateral symmetry strategy against a large native breast not addressed.
+2. "No neoadjuvant chemotherapy, radiation not anticipated" asserted without HER2 status, tumor size, node status, or the oncologist's name; ER/PR-negative disease may be triple-negative, where neoadjuvant therapy is standard at cT1c or larger. Boilerplate "chemotherapy between stages" follows.
+3. Two lesions with different biology not reconciled as multicentric disease justifying mastectomy.
+4. Recurrent MRSA in an implant plan with no decolonization, prophylaxis, or explant threshold; obesity not named as an implant-failure risk.
+5. Nipple-sparing discussed generically for a non-candidate (SN-N 31 cm, G cup, inferior tumor).
+6. Skin-reducing mastectomy pattern for the large breast not discussed.
+7. Thrombus on anticoagulation without VTE score, bridging plan, or thrombophilia workup mention.
+8. Vertical laparotomy scar without surgical history.
+9. No radiation contingency for the expander; no expander backup plan; ptosis grade inconsistent with measurements.
+10. Usual gaps: blank vitals, medications and allergies beyond rivaroxaban, photos, ABPS consent, follow-up schedule, "Data reviewed" empty.
+
+**Template written:** unilateral expander with contralateral reduction in a hypercoagulable, MRSA-colonized, obese patient with subtype-driven sequencing conditional on HER2 (see chat, September 17, 2026).
+
+**Reusable language from this note:** both risk lists; the expectations paragraph; the three-circumstances nipple paragraph; "the expander can be placed above or below the pectoralis muscle; this is an intraoperative decision."
+
+**Style comparison, Provider C:** most complete consent and risk language of the three providers; still carries laterality and boilerplate contradictions, asserts oncologic sequencing without supporting facts, and leaves a major infection risk factor unaddressed.
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -136,6 +162,8 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 - Data reviewed section does not show the imaging and pathology were read.
 - Vitals incomplete (blood pressure blank).
 - Subtype-specific systemic therapy (HER2-positive, triple negative) not named; neoadjuvant-versus-adjuvant decision not documented before scheduling; tumor size sometimes absent.
+- Laterality and staging statements in the plan that contradict the history (bilateral vs unilateral).
+- Comorbidities recorded in the history but not converted into a plan (MRSA, anticoagulation, obesity).
 - Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
 
 ## Rules for the final template (running list)
@@ -158,6 +186,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft F: unilateral expander with contralateral reduction, hypercoagulable, MRSA, obese, subtype pending
+(Assessment items: multicentric disease with both lesions and pending MRI and genetics; adjuvant sentence with the HER2-conditional neoadjuvant branch and the oncologist named; candidacy stating why unilateral autologous would match best and why the thrombus defers it, non-candidacy for nipple-sparing, skin-reducing pattern, donor scar; perioperative risk with Caprini, obesity, MRSA mitigation, HbA1c target, anticoagulation dates. Plan: options with the flap deferred; recommendation with plane and mesh and intraoperative decision rule; backups including explant threshold and conversion to flap; Provider C risk lists plus patient-specific items; safety with decolonization and bridging; coordination; orders; follow-up; closing.)
 
 ### Draft E: HER2-positive, node negative, immediate bilateral DIEP
 (Assessment items: cancer with tumor size and tumor-to-nipple distance; adjuvant sentence with the neoadjuvant-versus-adjuvant branch, trastuzumab duration, cardiac baseline, and the positive-node radiation contingency; candidacy with pinch, volume estimate, and nipple-sparing split into anatomic and oncologic; perioperative risk. Plan: options; recommendation timed to systemic therapy; backups including protection of the adjuvant window; flap risk block with adjuvant-delay risk; staging around trastuzumab; safety; coordination with medical oncology before a date is set; orders including echocardiogram; follow-up; closing.)
