@@ -14,17 +14,19 @@ The history may arrive as the argument on the same line as the command or in the
 1. Read `docs/Consult-Template-Final.md`, `docs/Interview-Exam-Reminders.md`, and Sections 10, 11, 12 of `docs/Breast-Reconstruction-Consult-Kit.md` if not already in context.
 2. Choose a patient id: initials only plus today's date, for example `P-AB-20260917`. Never use full names, DOB, or MRN in file names or headings.
 3. Create `patients/<id>.md` (create the `patients/` folder if missing; it is gitignored and must never be committed). If the file exists, add a new dated section instead of overwriting.
-4. Write these sections, in this order, concisely:
+4. If the paste looks truncated (no past medical or surgical history, no social history, no family history, no reconstruction preference), say so in one line and ask for the rest before writing anything; write only when the user confirms that is all there is.
+5. Write these sections, in this order. Total length about 700 words; this is read between patients on a phone.
+   - **Read first**: five lines at most. Stage and subtype stated plainly (a 5 mm tumor is T1a; do not hedge). The one oncologic fact that constrains reconstruction. Radiation likelihood. The provisional recommendation in one line. The single most important unanswered question.
    - **Brief**: five to eight lines of what the history already establishes.
-   - **Predicted oncology plan**: chemotherapy (none, neoadjuvant, adjuvant, pending genomics), radiation (unlikely, possible, planned, done) with the basis, endocrine or targeted therapy, and the timing rules that apply (surgery 4 to 8 weeks after neoadjuvant chemo; adjuvant within 30 to 60 days; exchange or revision 6 months after radiation).
+   - **Predicted oncology plan**: chemotherapy (none, neoadjuvant, adjuvant, pending genomics), radiation (unlikely, possible, planned, done) with the basis, endocrine or targeted therapy, and only the timing rules that apply to this patient (surgery 4 to 8 weeks after neoadjuvant chemo; adjuvant within 30 to 60 days; exchange or revision 6 months after radiation). Keep oncology detail to what changes the reconstruction; do not list regimens or trials that do not apply.
    - **Reconstruction options that fit and do not fit**, each with a one-line reason.
    - **Provisional recommendation** with the facts it depends on, and the backup plan.
-   - **Questions to ask**: numbered, specific to this patient, drawn from the reminders file; omit anything already answered.
+   - **Questions to ask**: at most 12, numbered, ordered by how much each answer changes the plan, specific to this patient, drawn from the reminders file; omit anything already answered.
    - **Exam to record**: the measurements that decide this patient's plan.
    - **Watch for**: the red flags from the reminders file that apply.
    - **Modules likely needed**: list template module ids (M1 to M13) that will apply.
    - **Board note**: case-list handling for this case (co-surgeon rules, intra-op photo to take, outcome fields).
-5. Print the brief in chat exactly as written to the file, then say the file path.
+6. Print the brief in chat exactly as written to the file, then say the file path. No preamble about tasks or tracking.
 
 ## Rules
 - Never commit or stage anything under `patients/`.
