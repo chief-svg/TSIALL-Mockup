@@ -1,65 +1,71 @@
 # ABPS Boards Prep: Complete Reference (single file)
 
-Regenerated September 16, 2026 by concatenating the handoff, protocol, and consult kit. The three source files remain authoritative.
+Regenerated September 17, 2026 by concatenating the handoff, concerns assessment, protocol, and consult kit. The source files remain authoritative.
 
 ---
 
 # ABPS Oral Boards Prep: Handoff and Summary
 
-**Last updated:** September 16, 2026 (web session). Continue from here in Claude Code desktop.
-**Branch:** `claude/plastic-surgery-boards-checklist-du429b` (all work is committed and pushed here).
+**Last updated:** September 17, 2026. Continue from here in Claude Code desktop.
+**Branch:** `claude/plastic-surgery-boards-checklist-du429b` (all work committed and pushed).
 
 ## Who and what
 
-Plastic surgeon (chief@stentandsculpt.com) in the ABPS case collection period **July 1, 2026 to March 31, 2027**, started independent practice mid-September 2026, first clinic September 17, 2026 (3 immediate breast reconstruction consults, 1 delayed). Target: **November 11 to 13, 2027 Oral Examination**.
+Plastic surgeon (chief@stentandsculpt.com) in the ABPS case collection period **July 1, 2026 to March 31, 2027**, independent practice started mid-September 2026, first clinic September 17, 2026 (3 immediate breast reconstruction consults, 1 delayed). Target: **November 11 to 13, 2027 Oral Examination**.
 
-The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASPS. Every requirement in these files was verified against the ABPS 2026-2027 Booklet of Information Oral Exam section (pages 37 to 62, supplied by the candidate as a PDF) plus ABPS candidate web pages.
+The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASPS. Every requirement was verified against the ABPS 2026-2027 Booklet of Information Oral Exam section (pages 37 to 62, supplied as a PDF) and ABPS candidate web pages.
 
 ## Files in this folder
 
 | File | What it is |
 |---|---|
-| `ABPS-Oral-Boards-Compliance-Protocol.md` | The master protocol. Part A: every ABPS requirement and date for this cycle. Part B: per-patient checklist. Part C: clinic note standard. Part D: evidence-based timing and optimization thresholds with sources. Part E: cadence. |
-| `Breast-Reconstruction-Consult-Kit.md` | Tomorrow's clinic kit: chart review, scribe brief, in-room flow, measured exam, decision framework, risk language, scribe-ready template, sign-off check, board notes, and the chemo/radiation prediction model with the expanded "what to change when radiation is coming" section. |
-| `00-START-HERE.md` | This file. |
+| `00-START-HERE.md` | This handoff. |
+| `Concerns-Assessment.md` | The six concerns your questions revealed, each rated for real risk, with the fix and a priority order. Read this second. |
+| `ABPS-Oral-Boards-Compliance-Protocol.md` | The master protocol. Part A: every ABPS requirement and date. Part B: per-patient checklist. Part C: clinic note standard. Part D: evidence-based timing and optimization thresholds. Part E: cadence. |
+| `Breast-Reconstruction-Consult-Kit.md` | Clinic kit: chart review, scribe brief, in-room flow, measured exam, decision framework, risk language, scribe-ready template, sign-off check (Sections 1 to 9); chemo and radiation prediction model and what to change when radiation is coming (Section 10); autologous versus implant evidence with MROC and MSKCC numbers (Section 11); nipple-sparing mastectomy with immediate DIEP in a ptotic breast, including the grade 3 plan without staged mastopexy or nipple delay (Section 12 and 12a); Caprini quick reference (Section 13). |
+| `ABPS-Boards-Prep-Complete.md` | All of the above concatenated into one file for reading or sending. Regenerated September 17, 2026. |
 
 Published pages (private, checkboxes save per browser):
 - Protocol page: https://claude.ai/artifact/F6VVvajeUBdLN5vbPqDegf
-- Consult kit page: https://claude.ai/artifact/5K2BmFbfxD95u6nn5V5DFR
+- Consult kit page: https://claude.ai/artifact/5K2BmFbfxD95u6nn5V5DFR (does not yet include Sections 10 to 13; the markdown is current)
 
 ## The ten facts that drive everything
 
-1. Enter **every** operative case July 1 to March 31 at every facility; at least **50 must be Major** (auto-classified by CPT); **max 3 cases per patient** count toward 50. Affidavit: "ALL of my cases."
+1. Enter **every** operative case July 1 to March 31 at every facility; at least **50 must be Major** (auto-classified by CPT); **max 3 cases per patient** count. Affidavit: "ALL of my cases."
 2. **Pre-op, intra-op, and post-op photos of every case**, including minor, office, ER, and hand. Intra-op means after incision and before closure. Post-op at **90 days or more**, preferably taken by you.
-3. **In-person visit at least the day before surgery** for non-emergent cases; in-person post-op visit **within 30 days**; telemedicine only for intervening visits.
-4. ABPS records/photo consent with the Board's verbatim language on every patient.
-5. **Peer evaluations** (chiefs of surgery, staff, anesthesia, OR nursing at each facility, plus two ABPS surgeons) around April 1, 2027.
+3. **In-person visit at least the day before surgery** for non-emergent cases; in-person post-op **within 30 days**; telemedicine only in between.
+4. ABPS records and photo consent with the Board's verbatim language on every patient.
+5. **Peer evaluations** from chiefs of surgery, staff, anesthesia, and OR nursing at each facility plus two ABPS surgeons, around April 1, 2027.
 6. Case list package **physically received April 20, 2027**; late window April 21 to 23. Candidate Affidavit signed, not notarized; **one notarized Medical Records affidavit per facility**, including zero-case facilities.
-7. Advertising from April 2026 to April 2027 plus CV submitted; "Board Eligible" only after application approval; never "board certified."
-8. July 2027: 5 selected cases and Registration (due July 31). **Case reports (11 tabs) finalized August 19, 2027, noon Eastern**; extra-case requests by August 16 and they are final.
-9. Exam rating items: Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, Ethics/Professionalism, Case Report Organization. Pass requires one clear safe plan you can defend plus a backup plan.
-10. Outcome at 4 to 6 weeks and 30-day mortality on every entry; oral antibiotics, extra visits, and prolonged dressings are adverse events. "All cases do not heal without complications."
+7. Advertising April 2026 to April 2027 plus CV submitted; "Board Eligible" only after application approval; never "board certified."
+8. July 2027: 5 selected cases and Registration (due July 31). **Case reports (11 tabs) finalized August 19, 2027, noon Eastern**; extra-case requests by August 16 are final.
+9. Rating items: Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, Ethics/Professionalism, Case Report Organization. Pass requires one clear safe plan you can defend plus a backup.
+10. Outcome at 4 to 6 weeks and 30-day mortality on every entry; oral antibiotics, extra visits, and prolonged dressings are adverse events.
 
-## Clinical rules of thumb captured (Part D of the protocol and Section 10 of the kit)
+## Clinical rules of thumb captured
 
-- Surgery 4 to 8 weeks after neoadjuvant chemo; adjuvant chemo within 30 to 60 days of surgery; bevacizumab 28-day holds; tamoxifen 28-day hold before free flaps as a shared decision; no hold for checkpoint inhibitors or aromatase inhibitors.
-- PMRT: 4+ nodes always; 1 to 3 macrometastatic nodes usually (SUPREMO may loosen this); ypN+ after neoadjuvant yes; ypN0 usually no (B-51). Expander exchange 6+ months after radiation; delayed autologous at 6 to 12 months avoiding the 3 to 6 month window; head and neck reconstruction within 6 weeks of prior radiation.
-- Nicotine 4 weeks before and after; HbA1c under 8; Caprini as a number with chemoprophylaxis at 7+; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
+- Surgery 4 to 8 weeks after neoadjuvant chemo; adjuvant chemo within 30 to 60 days; bevacizumab 28-day holds; tamoxifen 28-day hold before free flaps as a shared decision; no hold for checkpoint inhibitors or aromatase inhibitors.
+- Radiation: 4+ nodes always; 1 to 3 macrometastatic nodes usually; ypN+ yes; ypN0 usually no. Expander exchange 6+ months after radiation; delayed autologous at 6 to 12 months avoiding the 3 to 6 month window.
+- Autologous versus implant: failure with radiation 18.7 versus 1.0 percent (MROC); DIEP total loss under 2 percent; radiated implant contracture 15 to 50 percent; autologous satisfaction higher at every time point over 8 years.
+- Ptotic NSM with DIEP and no staged mastopexy or nipple delay: lateral inframammary incision, buried DIEP, nipple left in place with ICG-guided fallback to free graft or excision, mastopexy at 3 to 6 months.
+- Caprini: not a Board requirement, but score every sedation or general anesthesia patient with the plan attached; breast reconstruction patients start at 4.
+- Nicotine 4 weeks before and after; HbA1c under 8; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
 
 ## Where we stopped
 
-The user planned to review the four clinic patients tonight and wanted pre-filled notes. Agreed workflow:
-- Send patients as Patient 1 to 4 with initials only, no names, DOB, MRN, or exact dates.
-- Per patient send: one-line summary and breast surgeon's plan; pathology and receptors; imaging with tumor-to-nipple distance; genetics; systemic therapy status and dates; radiation status; tumor board note; risk factors; patient goals from the referral.
-- Return per patient: a pre-filled note in the kit's template format, the questions still to ask, exam findings that decide the plan, a draft assessment and plan with recommendation, backup plan, and risk block, and a board note if relevant.
-- **Do not commit patient-specific content to the repo.** Keep pre-filled notes in chat or local untracked files.
+Clinic day, September 17, 2026. The plan for the grade 3 ptotic nipple-sparing DIEP patient is decided (Section 12a of the kit). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
+- Send patients as Patient 1 to 4 with initials only; no names, DOB, MRN, or exact dates.
+- Per patient: one-line summary and breast surgeon's plan; pathology and receptors; imaging with tumor-to-nipple distance; genetics; systemic therapy status and dates; radiation status; tumor board note; risk factors; patient goals.
+- Return per patient: pre-filled note in the kit's template, questions still to ask, exam findings that decide the plan, draft assessment and plan with recommendation, backup, and risk block, and a board note if relevant.
+- **Do not commit patient-specific content to the repo.**
 
 ## Open items
 
-- Ask the Board Office (oral@abplasticsurgery.org): fee schedule for 2026-2027; whether an employer start-date letter is wanted with the case list; the case report webinar link.
-- Confirm the four surgery centers' accreditation and that admitting privileges are active before any sedation or general case.
-- Update the practice photo consent with the ABPS language before tomorrow's clinic.
-- Build the tracker spreadsheet with the columns in the kit (could be generated as an .xlsx next session).
+- Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
+- Update the practice photo consent with the ABPS language (should be done before the first clinic).
+- Confirm surgery center accreditation and active admitting privileges before any sedation or general case; request an OR photography waiver if any facility restricts it.
+- Build the tracker spreadsheet (twenty columns in the kit); can be generated as a workbook next session.
+- Republish the consult kit page with Sections 10 to 13 if the phone version is wanted.
 
 ## How to continue on Claude Code desktop
 
@@ -67,7 +73,92 @@ The user planned to review the four clinic patients tonight and wanted pre-fille
 git fetch origin claude/plastic-surgery-boards-checklist-du429b
 git checkout claude/plastic-surgery-boards-checklist-du429b
 ```
-Then open Claude Code in the repo and say: "Read docs/00-START-HERE.md and the two docs it lists, then continue with the patient review workflow." The root `CLAUDE.md` points there automatically.
+Open Claude Code in the repo and say: "Read docs/00-START-HERE.md and docs/Concerns-Assessment.md, then continue." The root `CLAUDE.md` points here automatically.
+
+---
+
+# Concerns Assessment: What Your Questions Reveal and What Actually Matters
+
+**Prepared September 17, 2026.** Based on the questions asked across this preparation session, read against the ABPS 2026-2027 Booklet of Information and the examiner scoring criteria.
+
+You asked, in order: what ABPS requires of every patient; whether your clinic notes will be judged incomplete; how to time surgery around chemotherapy and radiation; how to run a new clinic efficiently with a scribe; how to predict who gets chemotherapy and radiation; what to change when a positive node appears; the statistics for autologous versus implant reconstruction; how to handle nipple-sparing mastectomy in a ptotic breast with a DIEP; whether to stage the nipple; and whether you must calculate a Caprini score on everyone. Those questions cluster into six concerns. Each is rated below for how real the risk is, with the evidence and the fix.
+
+---
+
+## Concern 1: "I could be disqualified on a technicality I did not know about"
+
+**Risk: real, and the most preventable.** Almost every deferral the Board describes is procedural, not clinical: missing photos, a consent without the Board's language, a facility affidavit not notarized, advertising that says "board certified," a case list mailed by USPS certified mail, or a case report finalized after noon on August 19.
+
+**What the questions showed.** You knew about the 50 cases and pre-op photos. You did not know about intra-op photos on every case, the 90-day post-op photo rule, the in-person visit the day before surgery, the 30-day in-person post-op visit, peer evaluations, the three-cases-per-patient cap, the exclusion list, or the notarized affidavit for every facility including ones with no cases. Those are now in the protocol.
+
+**Fix.** Part A of the protocol is the checklist. The four items that need action this week: ABPS consent language on your photo consent form; a written waiver request if any facility restricts OR photography; confirmation that admitting privileges are active before any sedation or general case; and a dated folder of your advertising screenshots. Everything else is cadence.
+
+---
+
+## Concern 2: "An examiner will find something I failed to document or examine"
+
+**Risk: moderate, and it is a systems problem, not a knowledge problem.** The Board does not audit for completeness against a list. Examiners read your five case books and grade Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, and Ethics. What fails candidates is a plan that cannot be reconstructed from the record: no alternatives, no rationale, no risk discussion, complications that appear in the bill but not the notes, or notes edited after selection.
+
+**What the questions showed.** Your instinct to document risk factors, measurements, and evidence-based timing is correct. The gap is that your practice's templates were built for billing, not for defending a plan. A scribe writing "normal breast exam" and "risks and benefits discussed" satisfies billing and fails the Board.
+
+**Fix.** The consult template in the kit forces the six elements examiners grade into labeled places, leaves blanks where you did not say something, and uses "for the record" as the cue for verbatim capture. The same-day sign-off checklist catches the rest. Keep the Board's own language in mind: they will highlight where risks were discussed and may pull revision history.
+
+---
+
+## Concern 3: "I do not fully understand how oncologists sequence chemotherapy and radiation"
+
+**Risk: real for the exam, manageable in practice.** In practice you will always have the tumor board and the oncologists. In the exam room you will be asked, without them, why a triple-negative patient with a positive node after neoadjuvant chemotherapy is getting radiation and what that does to the expander you placed. A candidate who cannot predict the adjuvant plan looks unsafe.
+
+**What the questions showed.** You asked the right question in the right form: "what should I assume when I hear a positive node." That is exactly how examiners frame it.
+
+**Fix.** Section 10 of the kit is the model: subtype predicts chemotherapy, nodes predict radiation, and the timing rules (surgery 4 to 8 weeks after neoadjuvant chemotherapy, adjuvant chemotherapy within 30 to 60 days, radiation after chemotherapy, exchange 6 months after radiation) are the numbers to memorize. Test yourself on each of the four clinic patients: before reading the tumor board note, predict the adjuvant plan, then check.
+
+---
+
+## Concern 4: "I will choose the wrong reconstruction in a complex case"
+
+**Risk: low, provided the plan is defended.** Your questions about ptotic nipple-sparing mastectomy with DIEP, incision choice, and staging the nipple are the questions of someone who already knows the options. The Board's own pass criteria ask for one clear, safe initial plan you can explain, recognition of complications, and a backup plan. They do not ask for the plan the examiner would have chosen.
+
+**What the questions showed.** Two things to watch. First, the institutional constraints you described (no staged mastopexy, no nipple delay) narrow the options, and you should say so in the note rather than let it look like you did not consider them. Second, you gravitated toward the single-stage answer; the safer answer in a grade 3 breast without delay is the two-stage one, and the record should show you chose safety.
+
+**Fix.** Sections 11 and 12 of the kit give the numbers (failure 18.7 versus 1.0 percent with radiation, nipple necrosis about 9 percent inframammary versus 18 percent periareolar, DIEP loss under 2 percent) and the note language. Cite them in the plan.
+
+---
+
+## Concern 5: "I cannot do all of this and still run an efficient clinic"
+
+**Risk: real for the first month, then it disappears.** The requirements add about ten minutes per new patient: consent, standardized photos, measurements dictated as numbers, and the structured plan. Most of that can be moved off you.
+
+**What the questions showed.** You already have a scribe and templates, which is the hard part. The remaining work is redesigning the template once and moving photos and consent to the medical assistant before you enter the room.
+
+**Fix.** The scribe brief and in-room flow in the kit. Fifteen minutes of chart review the night before turns the consult into confirmation. The tracker (twenty columns, one row per case) replaces memory. Budget two clinics to reach the new rhythm.
+
+---
+
+## Concern 6: "Am I over-documenting things the Board does not ask for, like a Caprini score on every patient?"
+
+**Risk: none, in the direction you fear.** The Board does not require a Caprini score. It does score Safety, and VTE prophylaxis is the most predictable Safety question. Documentation that is short but complete is never penalized; documentation that is long and vague is.
+
+**What the questions showed.** Good instinct to ask what is required versus what is habit. The honest answer is that the Board's list is short (consent, photos, in-person visits, outcomes, adverse events) and everything else in the protocol is there because examiners ask about it, not because the Board audits it.
+
+**Fix.** Score every sedation or general anesthesia patient in one line with the plan attached; one sentence for local-only cases. Do not add anything to a note that you would not defend in the exam.
+
+---
+
+## Priority order
+
+1. Consent form with ABPS language, photo workflow with intra-op photos, facility waiver if needed, privileges confirmed. This week.
+2. Consult template adopted, scribe briefed, same-day sign-off habit. First two clinics.
+3. Weekly Case Log entry and tracker, with the major-case count reviewed every Friday. Ongoing.
+4. Oncology sequencing self-test on every breast reconstruction patient. Ongoing.
+5. Peer evaluator relationships at every facility. Start now, needed April 2027.
+6. Advertising audit and dated screenshots. Monthly.
+
+## What is not a concern
+
+- Volume: 50 major cases in 28 weeks at 2 to 3 per week is achievable, and the Board accepts a shorter collection period if quality and variety are adequate.
+- Being a new surgeon: the Board grades safety and judgment, not experience, and a two-stage plan chosen for safety is graded well.
+- Getting the "wrong" answer on a debated point (radiate the expander or the implant, hold tamoxifen or not): the record needs to show you knew the debate and chose with the oncology team.
 
 ---
 
@@ -758,3 +849,59 @@ Caveats: MROC "any complication" for flaps includes donor-site and minor wound p
 - With radiation the evidence is one-sided in favor of autologous tissue.
 
 Sources: Bennett JAMA Surg 2018 (https://pubmed.ncbi.nlm.nih.gov/29926077/); Jagsi JNCI 2018 (https://pmc.ncbi.nlm.nih.gov/articles/PMC6059091/); Santosa JAMA Surg 2018; Nelson Ann Surg 2019 (https://pubmed.ncbi.nlm.nih.gov/31356276/); DIEP flap loss classification (https://pubmed.ncbi.nlm.nih.gov/24281570/); fat necrosis meta-analysis (https://pubmed.ncbi.nlm.nih.gov/42501419/); DIEP vs TRAM (https://pubmed.ncbi.nlm.nih.gov/42394475/); PMRT contracture cohort (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10813520/); obesity and reconstruction MROC (https://pubmed.ncbi.nlm.nih.gov/32097295/); neoadjuvant chemo meta-analyses (https://www.sciencedirect.com/science/article/pii/S0960977620302290; https://pubmed.ncbi.nlm.nih.gov/37804643/); NSM complications meta-analysis (https://pubmed.ncbi.nlm.nih.gov/29464161/); FDA implant risks (https://www.fda.gov/medical-devices/breast-implants/risks-and-complications-breast-implants); Natrelle Core 10-year (https://pubmed.ncbi.nlm.nih.gov/24867717/); Matros cost-effectiveness (https://pubmed.ncbi.nlm.nih.gov/25517411/).
+
+---
+
+## 12. Nipple-sparing mastectomy with immediate DIEP in a ptotic breast
+
+**Eligibility first:** tumor over 2 cm from the nipple, no NAC or skin involvement, no Paget or bloody discharge, negative retroareolar margin. Ptosis is a perfusion and aesthetics problem, not an oncologic one.
+
+| Ptosis and size | Pathway | Incision |
+|---|---|---|
+| Grade 1 to 2, SN-N about 24 to 26 cm or less, C cup or smaller | Single-stage NSM with immediate DIEP | Inframammary fold, lateral half, 8 to 12 cm; lateral radial if more exposure needed; avoid periareolar |
+| Grade 2 to 3, SN-N over 26 cm, D cup or larger, nipple well below fold | Option A: staged mastopexy or reduction on a superomedial or superior pedicle 6 to 12 weeks before NSM, then NSM through the existing scar with DIEP (lowest nipple necrosis; needs oncologic time). Option B: single-stage skin-reducing (Wise or vertical) NSM with the nipple on a superior dermal pedicle and the DIEP paddle replacing the inferior pole so the flap sits at the T-junction; add a nipple delay 2 to 3 weeks before. Option C: skin-reducing mastectomy with free nipple graft onto de-epithelialized flap (take over 90 percent; loses sensation, projection, often pigment). | Per option |
+
+**Intraoperative rules:** ICG of nipple and skin flaps after mastectomy and before inset; poor perfusion means free nipple graft or nipple excision on the spot. Ask for thick even mastectomy flaps, no nipple traction, retroareolar frozen section. Keep the nipple pedicle dermal and superior.
+
+**DIEP details:** buried flap with small monitoring paddle in the IMF incision (Option A or single-stage IMF), or a paddle sized to replace the inferior pole (Option B). Cone the flap, set and fix the fold, suture the flap to the chest wall to prevent bottoming out in a loose envelope. In the single-stage IMF case the nipple sits low and lateral: plan crescent or periareolar mastopexy at 3 to 6 months once the nipple lives off the flap. Contralateral mastopexy or reduction usually at the revision stage for unilateral cases. Consider flap neurotization; the nipple will be numb in most NSM cases.
+
+**Numbers:** nipple necrosis after NSM with implants about 4 to 5 percent; periareolar about 18 versus inframammary or radial about 9 percent. Skin-reducing single-stage NSM in ptotic breasts: partial nipple necrosis 10 to 20 percent, T-junction breakdown dominant when native skin closes the inferior pole. Staged mastopexy then NSM: complete nipple loss under 5 percent with an interval of at least 4 weeks, most series 6 to 12 weeks. DIEP total loss under 2 percent, fat necrosis about 10 to 15 percent.
+
+**Note language:** "Grade [ ] ptosis, SN-N [ ] cm, tumor-to-nipple [ ] cm, no NAC involvement. Options discussed: single-stage NSM via inframammary incision with buried DIEP and staged mastopexy; staged mastopexy then NSM and DIEP in 6 to 12 weeks; single-stage skin-reducing NSM with superior dermal pedicle and DIEP paddle at the inferior pole after nipple delay; skin-reducing mastectomy with free nipple graft; skin-sparing mastectomy with nipple reconstruction. Recommended [ ] because [ ]. Intraoperative ICG planned; backup is free nipple graft or nipple excision if perfusion is inadequate. Counseled on nipple necrosis, T-junction breakdown, loss of nipple sensation, malposition requiring mastopexy, flap loss, fat necrosis, donor bulge."
+
+Caution: staged and skin-reducing pathways are technique-dependent with single-center evidence; if the breast surgeon has not done Wise-pattern NSM, the inframammary single-stage plan with delayed mastopexy is the safer default.
+
+---
+
+## 13. Caprini quick reference (2005 model, ASPS-endorsed)
+
+Not an ABPS requirement, but a written VTE risk assessment with a plan is how you satisfy the Safety rating item. Score every sedation or general anesthesia patient; one line suffices for local-only office cases.
+
+- **1 point:** age 41 to 60; BMI over 25; minor surgery; swollen legs or varicose veins; sepsis or pneumonia within 1 month; abnormal pulmonary function or COPD; MI or CHF within 1 month; inflammatory bowel disease; medical bed rest; major surgery within 1 month; oral contraceptives or HRT; pregnancy or postpartum within 1 month; history of stillbirth, recurrent miscarriage, or premature birth with toxemia or growth restriction.
+- **2 points:** age 61 to 74; arthroscopic surgery; laparoscopic surgery over 45 minutes; major open surgery over 45 minutes; malignancy present or previous; bed over 72 hours; immobilizing cast; central venous access.
+- **3 points:** age 75 or over; history of DVT or PE; family history of thrombosis; factor V Leiden; prothrombin 20210A; lupus anticoagulant; anticardiolipin antibodies; elevated homocysteine; HIT; other thrombophilia.
+- **5 points:** stroke within 1 month; elective arthroplasty; hip, pelvis, or leg fracture; acute spinal cord injury within 1 month.
+
+| Score | Risk | Plan |
+|---|---|---|
+| 0 to 2 | Low | Early ambulation, mechanical compression under GA |
+| 3 to 4 | Moderate | Mechanical; chemoprophylaxis at discretion |
+| 5 to 6 | High | Mechanical plus consider chemoprophylaxis, especially inpatients and flaps |
+| 7 to 8 | High | Mechanical plus enoxaparin 40 mg daily (30 mg twice daily if BMI over 40), about 7 days |
+| 9 or more | Highest | Same, extended 2 to 4 weeks |
+
+Breast reconstruction shortcut: start at 4 (cancer 2, surgery over 45 minutes 2); add 1 for age 41 to 60 or 2 for 61 to 74, 1 for BMI over 25, 1 for estrogen or tamoxifen, 3 for personal or family clot history, 2 for a port, 1 for lung disease or leg swelling. Write the number with the plan: "Caprini 8: SCDs before induction, enoxaparin 40 mg nightly from post-op day 0 for 7 days, ambulate day 1."
+
+### 12a. Grade 3 ptosis, NSM with immediate DIEP, no pre-mastectomy mastopexy available
+
+**Recommended:** lateral inframammary incision (lateral two thirds of the fold, 10 to 12 cm, extend laterally, short lateral radial extension if more access is needed, nothing periareolar). Buried DIEP with a monitoring paddle in the incision; set and fix the fold, cone and suspend the flap. Leave the nipple ptotic. **Stage 2 at 3 to 6 months:** mastopexy of the envelope over the flap with the nipple on a wide dermal base (crescent or periareolar for small lifts; vertical or Wise with de-epithelialization for grade 3, at 6 months if the envelope is thin or after chemo), plus fat grafting and contralateral symmetry. ICG after mastectomy; poor nipple perfusion means free nipple graft onto the flap or nipple excision.
+
+**Alternative A:** single-stage skin-reducing (Wise or vertical) NSM with the nipple on a superior or superomedial dermal pedicle and the DIEP paddle replacing the inferior pole. Partial nipple necrosis 10 to 20 percent in ptotic series; needs a breast surgeon who does Wise-pattern mastectomies. A nipple delay 2 to 3 weeks before through the planned incisions lowers the risk and is not a mastopexy, so it may be institutionally acceptable.
+
+**Alternative B:** skin-reducing mastectomy with free nipple graft onto the flap for SN-N over 30 cm or breast weight over 800 to 1,000 g, or any perfusion doubt. Take over 90 percent; no sensation, flat projection, possible depigmentation.
+
+**Choose:** grade 3 with SN-N 26 to 30 cm and a patient who accepts a planned second stage: recommended plan. Surgeon comfortable with Wise NSM, delay feasible, patient wants one operation and accepts nipple risk: A. Very large breast or perfusion doubt: B, or skin-sparing mastectomy with nipple reconstruction.
+
+**Note language:** "Grade 3 ptosis, SN-N [ ] cm, N-IMF [ ] cm, tumor-to-nipple [ ] cm. Institutional practice does not include pre-mastectomy mastopexy. Options discussed: (1) NSM via lateral inframammary incision with buried DIEP and planned mastopexy of the envelope at 3 to 6 months; (2) single-stage skin-reducing NSM with superior dermal pedicle and DIEP paddle at the inferior pole, with nipple delay if feasible; (3) skin-reducing mastectomy with free nipple graft; (4) skin-sparing mastectomy with nipple reconstruction. Recommended option 1 because it preserves nipple perfusion in a long-flap envelope and allows repositioning once neovascularized, at the cost of a planned second stage. Intraoperative ICG; backup is free nipple graft or nipple excision. Counseled on nipple necrosis, malposition, loss of nipple sensation, staged mastopexy and contralateral symmetry, flap loss, fat necrosis, donor bulge."
+
+**Decision without nipple delay or staged mastopexy:** lateral inframammary incision (lateral two thirds, 10 to 12 cm toward the anterior axillary line; 3 to 4 cm lateral radial extension only if needed; nothing periareolar), buried DIEP with monitoring paddle in the incision, fold set and flap suspended superiorly, nipple left in place. ICG after mastectomy: nipple or areola under about 25 to 30 percent of reference perfusion or non-perfused areola means free nipple graft onto the flap or nipple excision; marginal means close without tension and warn. Stage 2 at 3 to 6 months (6 if thin envelope, chemo, or radiation): vertical or Wise mastopexy of the envelope with the nipple on a broad dermal base, de-epithelialize rather than undermine, excise the paddle, fat graft, contralateral symmetry. Single-stage skin-reducing NSM without delay carries 10 to 20 percent nipple necrosis and is offered only to a patient who insists on one operation and accepts that on the record.
