@@ -1,6 +1,6 @@
 # Breast Reconstruction Consultation: Assessment and Plan Template
 
-**Version 1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
+**Version 1.1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
 
 ---
 
@@ -18,8 +18,9 @@
 ## Part 2. Fixed practice lines
 
 - Bilateral DIEP: 6 to 8 hours under general anesthesia, at least 2 inpatient nights, 6 to 8 weeks to full activity.
-- Expander or implant reconstruction: about [3 to 4] hours under general anesthesia, 23-hour observation, 4 to 6 weeks to full activity.
+- Expander or implant reconstruction: 3 to 4 hours under general anesthesia, 23-hour observation, 4 to 6 weeks to full activity.
 - Expander plane is an intraoperative decision (paragraph in Part 4, module E).
+- For a grade III breast reconstructed with a flap, the skin pattern (Wise-pattern skin-reducing mastectomy versus skin-sparing mastectomy with a later mastopexy) is discussed with the breast surgeon before the surgical date is set (module M3).
 - Risks are listed in every note where a surgical plan is offered.
 - A1C is ordered only for diabetic patients.
 - Every stage is at least 3 months apart; the definitive stage after radiation is at least 6 months from the completion of radiation.
@@ -113,7 +114,7 @@ I explained that the nipple cannot be preserved because [tumor involvement / ret
 
 ### M3. Grade III breast with a flap: skin plan
 
-I explained that because of her degree of ptosis the skin envelope will be managed by [a skin-reducing mastectomy with the flap skin at the inferior pole, which carries a risk of breakdown at the junction of the incisions / a skin-sparing mastectomy with the envelope left loose and a mastopexy at a later revision stage once the blood supply has recovered]. Patient verbalized understanding that a second stage is planned rather than a complication.
+I explained that because of her degree of ptosis the skin envelope requires a plan of its own. I explained that there are two approaches: a Wise-pattern skin-reducing mastectomy in which the flap skin fills the lower pole, which lifts the breast at the first operation but carries a risk of breakdown at the junction of the incisions, or a skin-sparing mastectomy in which the envelope is left loose and lifted at a later revision stage once the blood supply has recovered. I explained that I will discuss the skin pattern with Dr. [breast surgeon] and that the plan will be finalized with the patient at the preoperative visit. Patient verbalized understanding that a second stage is part of the plan rather than a complication.
 
 ### M4. Delayed-immediate expander when radiation is likely
 

@@ -1,6 +1,6 @@
 # ABPS Boards Prep: Complete Reference (single file)
 
-Regenerated September 17, 2026 (evening). Order: handoff, concerns assessment, consult template, protocol, consult kit, oncology timing algorithm, note review log. The source files remain authoritative.
+Regenerated September 17, 2026 (evening, v1.1 template). Order: handoff, concerns assessment, consult template, protocol, consult kit, oncology timing algorithm, note review log. The source files remain authoritative.
 
 ---
 
@@ -52,7 +52,7 @@ Published pages (private, checkboxes save per browser):
 - Autologous versus implant: failure with radiation 18.7 versus 1.0 percent (MROC); DIEP total loss under 2 percent; radiated implant contracture 15 to 50 percent; autologous satisfaction higher at every time point over 8 years.
 - Ptotic NSM with DIEP and no staged mastopexy or nipple delay: lateral inframammary incision, buried DIEP, nipple left in place with ICG-guided fallback to free graft or excision, mastopexy at 3 to 6 months.
 - Caprini: not a Board requirement, but score every sedation or general anesthesia patient with the plan attached; breast reconstruction patients start at 4.
-- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics.
+- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics; expander or direct-to-implant case 3 to 4 hours with 23-hour observation; Wise-pattern versus skin-sparing for grade III flap patients discussed with the breast surgeon case by case.
 - The colleague notes shared five failure patterns worth remembering: template text contradicting the history, boilerplate "chemotherapy between stages" in flap and neoadjuvant plans, no adjuvant estimate or oncologist named, no risk block or alternatives, and comorbidities recorded but never converted into a plan.
 - Nicotine 4 weeks before and after; HbA1c under 8; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
 
@@ -66,7 +66,6 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 
 ## Open items
 
-- Template placeholders only the user can fill: operative time for an expander or direct-to-implant case (placeholder 3 to 4 hours); whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default in module M3).
 - Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
 - Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
 
@@ -173,7 +172,7 @@ You asked, in order: what ABPS requires of every patient; whether your clinic no
 
 # Breast Reconstruction Consultation: Assessment and Plan Template
 
-**Version 1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
+**Version 1.1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
 
 ---
 
@@ -191,8 +190,9 @@ You asked, in order: what ABPS requires of every patient; whether your clinic no
 ## Part 2. Fixed practice lines
 
 - Bilateral DIEP: 6 to 8 hours under general anesthesia, at least 2 inpatient nights, 6 to 8 weeks to full activity.
-- Expander or implant reconstruction: about [3 to 4] hours under general anesthesia, 23-hour observation, 4 to 6 weeks to full activity.
+- Expander or implant reconstruction: 3 to 4 hours under general anesthesia, 23-hour observation, 4 to 6 weeks to full activity.
 - Expander plane is an intraoperative decision (paragraph in Part 4, module E).
+- For a grade III breast reconstructed with a flap, the skin pattern (Wise-pattern skin-reducing mastectomy versus skin-sparing mastectomy with a later mastopexy) is discussed with the breast surgeon before the surgical date is set (module M3).
 - Risks are listed in every note where a surgical plan is offered.
 - A1C is ordered only for diabetic patients.
 - Every stage is at least 3 months apart; the definitive stage after radiation is at least 6 months from the completion of radiation.
@@ -286,7 +286,7 @@ I explained that the nipple cannot be preserved because [tumor involvement / ret
 
 ### M3. Grade III breast with a flap: skin plan
 
-I explained that because of her degree of ptosis the skin envelope will be managed by [a skin-reducing mastectomy with the flap skin at the inferior pole, which carries a risk of breakdown at the junction of the incisions / a skin-sparing mastectomy with the envelope left loose and a mastopexy at a later revision stage once the blood supply has recovered]. Patient verbalized understanding that a second stage is planned rather than a complication.
+I explained that because of her degree of ptosis the skin envelope requires a plan of its own. I explained that there are two approaches: a Wise-pattern skin-reducing mastectomy in which the flap skin fills the lower pole, which lifts the breast at the first operation but carries a risk of breakdown at the junction of the incisions, or a skin-sparing mastectomy in which the envelope is left loose and lifted at a later revision stage once the blood supply has recovered. I explained that I will discuss the skin pattern with Dr. [breast surgeon] and that the plan will be finalized with the patient at the preoperative visit. Patient verbalized understanding that a second stage is part of the plan rather than a complication.
 
 ### M4. Delayed-immediate expander when radiation is likely
 
@@ -1523,6 +1523,7 @@ Full text of all drafts is in the chat transcript of September 17, 2026 and will
 - Expander plane: intraoperative decision. Factors to document: mastectomy flap thickness and quality; ICG perfusion of flaps and nipple (about 25 to 30 percent of reference as the excision or downgrade line if a threshold is used); area of poorly perfused skin needing excision; pectoralis integrity; breast size, ptosis, and expected implant volume; anticipated radiation; BMI, nicotine, diabetes, prior radiation. Good flaps favor prepectoral with mesh; thin or marginal flaps favor subpectoral, lower fill, or deflated expander or delay.
 - Risks listed in every note where a surgical plan is offered.
 - A1C only for diabetic patients.
-- Open: whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default skin plan for grade III breasts).
+- Expander or direct-to-implant case: 3 to 4 hours, 23-hour observation, 4 to 6 weeks.
+- Grade III breast with a flap: the Wise-pattern versus skin-sparing decision is discussed with the breast surgeon case by case (module M3 presents both).
 - No further colleague notes to review; nine notes across three providers are logged.
 

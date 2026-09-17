@@ -293,5 +293,6 @@ Full text of all drafts is in the chat transcript of September 17, 2026 and will
 - Expander plane: intraoperative decision. Factors to document: mastectomy flap thickness and quality; ICG perfusion of flaps and nipple (about 25 to 30 percent of reference as the excision or downgrade line if a threshold is used); area of poorly perfused skin needing excision; pectoralis integrity; breast size, ptosis, and expected implant volume; anticipated radiation; BMI, nicotine, diabetes, prior radiation. Good flaps favor prepectoral with mesh; thin or marginal flaps favor subpectoral, lower fill, or deflated expander or delay.
 - Risks listed in every note where a surgical plan is offered.
 - A1C only for diabetic patients.
-- Open: whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default skin plan for grade III breasts).
+- Expander or direct-to-implant case: 3 to 4 hours, 23-hour observation, 4 to 6 weeks.
+- Grade III breast with a flap: the Wise-pattern versus skin-sparing decision is discussed with the breast surgeon case by case (module M3 presents both).
 - No further colleague notes to review; nine notes across three providers are logged.

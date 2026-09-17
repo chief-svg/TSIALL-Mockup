@@ -46,7 +46,7 @@ Published pages (private, checkboxes save per browser):
 - Autologous versus implant: failure with radiation 18.7 versus 1.0 percent (MROC); DIEP total loss under 2 percent; radiated implant contracture 15 to 50 percent; autologous satisfaction higher at every time point over 8 years.
 - Ptotic NSM with DIEP and no staged mastopexy or nipple delay: lateral inframammary incision, buried DIEP, nipple left in place with ICG-guided fallback to free graft or excision, mastopexy at 3 to 6 months.
 - Caprini: not a Board requirement, but score every sedation or general anesthesia patient with the plan attached; breast reconstruction patients start at 4.
-- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics.
+- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics; expander or direct-to-implant case 3 to 4 hours with 23-hour observation; Wise-pattern versus skin-sparing for grade III flap patients discussed with the breast surgeon case by case.
 - The colleague notes shared five failure patterns worth remembering: template text contradicting the history, boilerplate "chemotherapy between stages" in flap and neoadjuvant plans, no adjuvant estimate or oncologist named, no risk block or alternatives, and comorbidities recorded but never converted into a plan.
 - Nicotine 4 weeks before and after; HbA1c under 8; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
 
@@ -60,7 +60,6 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 
 ## Open items
 
-- Template placeholders only the user can fill: operative time for an expander or direct-to-implant case (placeholder 3 to 4 hours); whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default in module M3).
 - Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
 - Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
 
