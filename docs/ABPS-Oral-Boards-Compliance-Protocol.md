@@ -130,6 +130,8 @@ Also upload the **notarized Photographic Affidavit** and the **EMR Attestation**
 - [ ] Tracker row opened (initials, ID, facility, planned date, planned CPTs, anesthesia type).
 - [ ] Imaging, labs, consults ordered as indicated by Part D.
 - [ ] Optimization plan documented: nicotine, glycemic control, weight, VTE risk, medications, oncologic timing.
+- [ ] Every consultant report reviewed is named with its date (their reports go in the Initial Evaluation tab); trial enrollment stated; modeling software stated as used or not.
+- [ ] Case Log fields set from the note (template Part 8): anesthesia type, admission status, procedure in words, CPT with modifiers, estimated plastic-portion duration, Anatomy and Category, co-surgeon handling, stages expected.
 
 ### B2. Pre-op visit (in person, at least the day before surgery)
 - [ ] In-person exam and discussion documented with the date, satisfying BOI requirement 6.
@@ -192,7 +194,7 @@ Examiners grade Diagnosis/Planning, Management/Treatment, Complications/Outcome,
 **Plan.** In this order so it can be highlighted:
 1. Options discussed, including no treatment and non-surgical alternatives, with why each was or was not chosen.
 2. Recommended procedure with the specific technique and rationale (pedicle, incision pattern, implant plane and size range, flap choice and why).
-3. Risks discussed, procedure-specific and general (see C3), and the patient's questions.
+3. Risks discussed, procedure-specific and general (see C3), how each is prevented and how it would be treated, and the patient's questions.
 4. Benefits and realistic expected result, including expected scars, asymmetry, sensation change, revision likelihood.
 5. Optimization requirements and thresholds, with dates (nicotine-free 4 weeks before and after, HbA1c target, weight stability, medication holds, oncology clearance).
 6. Perioperative safety plan: VTE prophylaxis mechanical and chemical, antibiotic plan, anesthesia type and facility, expected duration, staged versus combined and why, admission plan.
@@ -231,6 +233,10 @@ General: bleeding, hematoma, seroma, infection, wound dehiscence and delayed hea
 - Post-op notes delegated entirely to midlevels with no surgeon visit within 30 days.
 - Coding on the case list that does not match the bill.
 - Notes edited after case selection without listing the edits on the EMR attestation.
+- A second or third stage booked without its own in-person pre-op visit, consent, risk documentation, and photographs.
+- 23-hour observation entered as outpatient (any overnight stay is inpatient on the Log).
+- A breast-surgeon case flagged as co-surgeon, or the mastectomy time counted in the duration.
+- Office debridements or aspirations done without a procedure note, photos, and a Log entry.
 
 ---
 

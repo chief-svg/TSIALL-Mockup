@@ -19,7 +19,8 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Breast-Reconstruction-Consult-Kit.md` | Clinic kit: chart review, scribe brief, in-room flow, measured exam, decision framework, risk language, scribe-ready template, sign-off check (Sections 1 to 9); chemo and radiation prediction model and what to change when radiation is coming (Section 10); autologous versus implant evidence with MROC and MSKCC numbers (Section 11); nipple-sparing mastectomy with immediate DIEP in a ptotic breast, including the grade 3 plan without staged mastopexy or nipple delay (Section 12 and 12a); Caprini quick reference (Section 13). |
 | `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
 | `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
-| `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `Consult-Template-Final.md` and `.pdf` | v1.2. The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `BOI-Coverage-Map.md` | Every requirement in the 2026-2027 Booklet Oral Exam section (pages 37 to 62) mapped to the template part, reminder, skill, or protocol section that carries it, with what was added on September 17 and two items to confirm with the practice. |
 | `STANDING-INSTRUCTIONS.md` | The contract for any new session: outputs, two-document format, voice rules with the five anchor sentences, fixed practice lines, ABPS rules, evidence, failure patterns, privacy. Read first. |
 | `Portable-Context-Pack.md` | Standing instructions plus template, reminders, and evidence in one file to paste into a chat session without file access. |
 | `Global-CLAUDE-snippet.md` | Block to paste into `~/.claude/CLAUDE.md` on the laptop so every session knows the workflow. |
@@ -56,6 +57,8 @@ Published pages (private, checkboxes save per browser):
 
 ## Where we stopped
 
+**September 17, 2026, late.** The Booklet's Oral Exam section (the July 14 file, identical to the earlier copy) was re-read in full against the template, reminders, and skills. Result: the administrative requirements were already in the protocol; the note-level gaps were closed in template v1.2 (Part 3 item 5 records reviewed with consultant dates and trial status; Part 4 C prevention-and-treatment sentence; I orders with indications; J surgeon-owned follow-up and per-stage visits; K modeling software and witnessed consent; Part 7 same-day signing and addenda; new Part 8 Case Log fields decided at the consult), in the reminders (four new questions, four new mentions, Case Log fields, and the 4-to-6-week outcome documentation), and in the four skills. The map is `BOI-Coverage-Map.md`. Patients 3 and 4 are still to come.
+
 Evening of September 17, 2026. Nine colleague notes were reviewed and logged, the user supplied five sentences in their own voice, and the consolidated template was written around them (`Consult-Template-Final.md`). The user has read the template and approved it ("looks good"). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
 - Send patients as Patient 1 to 4 with initials only; no names, DOB, MRN, or exact dates.
 - Per patient: one-line summary and breast surgeon's plan; pathology and receptors; imaging with tumor-to-nipple distance; genetics; systemic therapy status and dates; radiation status; tumor board note; risk factors; patient goals.
@@ -69,7 +72,8 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 - Set up the laptop workflow per `docs/Clinic-Workflow.md`; Patients 1 and 2 briefs from September 17 exist only in the web chat and should be re-run locally with `/patient-brief`.
 
 - Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
-- Update the practice photo consent with the ABPS language (should be done before the first clinic).
+- Update the practice photo consent with the ABPS language and a witness line (should be done before the first clinic).
+- Confirm that every facility allows intraoperative photography, or request the waiver now (`BOI-Coverage-Map.md` Part D).
 - Confirm surgery center accreditation and active admitting privileges before any sedation or general case; request an OR photography waiver if any facility restricts it.
 - Build the tracker spreadsheet (twenty columns in the kit); can be generated as a workbook next session.
 - Republish the consult kit page with Sections 10 to 13 if the phone version is wanted.

@@ -54,6 +54,8 @@ The five anchor sentences, verbatim:
 - Outcome at 4 to 6 weeks and 30-day mortality on every entry; oral antibiotics, extra visits, and prolonged dressings are adverse events.
 - Examiners grade Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, Ethics/Professionalism, and Case Report Organization. Passing requires one clear safe plan you can defend, recognition of complications, and a backup plan. Failing includes an unsafe or ambiguous plan and coding deception.
 - Immediate reconstruction with a breast surgeon is entered but not flagged as co-surgeon, with the surgeon's own operative report and bill and only the plastic surgery portion's duration.
+- Every stage is its own case with its own in-person pre-op visit, consent, note with risks, and three sets of photographs; any overnight stay including 23-hour observation is inpatient; consultants' reports go in the Initial Evaluation tab, so each is named with its date; modeling-software images, if any, are submitted; notes are signed the same day and nothing in a selected case is edited after the July 2027 notice without listing it on the EMR attestation.
+- The template's Part 8 lists the Case Log fields to set at the consult; the full requirement-by-requirement map is `docs/BOI-Coverage-Map.md`.
 
 ## Evidence the notes cite
 
@@ -73,4 +75,4 @@ Initials only in file names and headings. Patient files stay in the local `patie
 
 ## Where the full material lives
 
-Repository branch `claude/plastic-surgery-boards-checklist-du429b`, folder `docs/`: `Consult-Template-Final.md` (the template), `Interview-Exam-Reminders.md`, `Breast-Reconstruction-Consult-Kit.md` (Sections 10 to 13 hold the oncology model and evidence), `ABPS-Oral-Boards-Compliance-Protocol.md`, `Note-Review-Log.md`, `Oncology-Timing-Algorithm.md`, `Clinic-Workflow.md`. Commands in `.claude/skills/`: `/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`, `/patient-package`. For a chat session without files, paste `docs/Portable-Context-Pack.md`.
+Repository branch `claude/plastic-surgery-boards-checklist-du429b`, folder `docs/`: `Consult-Template-Final.md` (the template, v1.2 with Part 8 Case Log fields), `BOI-Coverage-Map.md` (every Booklet requirement mapped to its prompt), `Interview-Exam-Reminders.md`, `Breast-Reconstruction-Consult-Kit.md` (Sections 10 to 13 hold the oncology model and evidence), `ABPS-Oral-Boards-Compliance-Protocol.md`, `Note-Review-Log.md`, `Oncology-Timing-Algorithm.md`, `Clinic-Workflow.md`. Commands in `.claude/skills/`: `/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`, `/patient-package`. For a chat session without files, paste `docs/Portable-Context-Pack.md`.

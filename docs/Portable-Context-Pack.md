@@ -86,7 +86,7 @@ Repository branch `claude/plastic-surgery-boards-checklist-du429b`, folder `docs
 
 # Breast Reconstruction Consultation: Assessment and Plan Template
 
-**Version 1.1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
+**Version 1.2, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements (re-read in full against this template on September 17, 2026; the coverage map is `docs/BOI-Coverage-Map.md`), the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
 
 ---
 
@@ -110,6 +110,10 @@ Repository branch `claude/plastic-surgery-boards-checklist-du429b`, folder `docs
 - Risks are listed in every note where a surgical plan is offered.
 - A1C is ordered only for diabetic patients.
 - Every stage is at least 3 months apart; the definitive stage after radiation is at least 6 months from the completion of radiation.
+- Every stage is its own case on the Case Log: its own in-person preoperative visit at least the day before that surgery, its own operative consent, its own note with a risk sentence, its own preoperative, intraoperative, and 90-day photographs. At most three cases per patient count toward the 50.
+- The breast surgeon is a non-plastic-surgery co-surgeon: the case is entered, not flagged as a co-surgeon case, with my own operative report, my own bill, and only the plastic surgery portion's skin-to-skin time.
+- Any overnight stay, including 23-hour observation, is entered as inpatient on the Case Log.
+- Every consultant whose report shaped the plan is named with the date of the report, because their reports go into the Initial Evaluation tab of the case report.
 
 ---
 
@@ -119,6 +123,7 @@ Repository branch `claude/plastic-surgery-boards-checklist-du429b`, folder `docs
 2. Adjuvant therapy anticipated: [chemotherapy: none / neoadjuvant, last cycle (date), surgery 4 to 8 weeks after / adjuvant, to start within 30 to 60 days of surgery / pending Oncotype]; radiation [unlikely / possible / planned], based on [nodes, T stage, margins, response]; endocrine or targeted therapy [ ]. Systemic decisions are per Dr. [medical oncology]; radiation per Dr. [radiation oncology].
 3. Reconstruction candidacy: patient prefers [own tissue / implants / undecided] and a [same / smaller / larger] size. [Donor site: abdominal pinch ( ) cm above and ( ) cm below the umbilicus, scars ( ), estimated flap volume ( ) mL per side against breast volume about ( ) mL / abdomen unavailable because ( ), thigh and gluteal tissue ( ).] [Nipple-sparing: anatomically (favorable/borderline/not a candidate) with SN-N ( ) cm, N-IMF ( ) cm, ptosis grade ( ); oncologic eligibility per Dr. ( ).]
 4. Perioperative risk: ASA [ ], Caprini [number], nicotine [never / quit (date) / current], BMI [ ], [diabetes with HbA1c ( ) / no diabetes], anticoagulation [ ], hormone therapy [ ], medications [ ], allergies [ ], [MRSA history / prior radiation / thrombotic history].
+5. Records reviewed at this visit: pathology dated [ ], [mammogram / ultrasound / MRI] dated [ ], consult notes from Dr. [breast surgeon] dated [ ], Dr. [medical oncology] dated [ ], [Dr. (radiation oncology) dated ( )], [genetics dated ( )], [tumor board dated ( )]. [Clinical trial enrollment: none / enrolled in ( ) with protocol consent in the chart.]
 
 ---
 
@@ -134,7 +139,7 @@ After discussion of the surgical options, I recommended [procedure, laterality, 
 
 ### C. Risks (every note)
 
-After discussion of the surgical options, I explained the risks of the surgery, specifically stating the risks of [insert the list from Part 5 for the chosen pathway, plus the patient-specific items], as well as the alternatives to the surgical plan and the expected benefits. I explained that exact symmetry is rare and difficult to achieve surgically, and that no promise of exact symmetry has been made nor should be expected. Patient verbalized understanding.
+After discussion of the surgical options, I explained the risks of the surgery, specifically stating the risks of [insert the list from Part 5 for the chosen pathway, plus the patient-specific items], as well as the alternatives to the surgical plan and the expected benefits. I explained that exact symmetry is rare and difficult to achieve surgically, and that no promise of exact symmetry has been made nor should be expected. I explained how each of these risks is reduced, specifically [ICG angiography of the skin flaps, perioperative antibiotics, sequential compression devices and enoxaparin, drains, nicotine abstinence, glycemic control], and how each would be treated if it occurred, including [return to the operating room, removal of the device, debridement, or delayed reconstruction]. [I provided written information about ( ).] Patient verbalized understanding.
 
 ### D. Backup plan (every note)
 
@@ -158,19 +163,19 @@ I explained that the reconstruction will involve [number] stages, each at least 
 
 ### H. Safety and coordination (every note)
 
-The surgery will be performed at [facility, accredited] under general anesthesia. Her Caprini score is [number], and she will receive sequential compression devices [and enoxaparin for ( ) days]. [Nicotine, glycemic, anticoagulation, or MRSA line as applicable.] I will coordinate with Dr. [breast surgeon] regarding [incision, skin pattern, nipple decision, axilla], with Dr. [medical oncology] regarding [timing of systemic therapy], [with Dr. (radiation oncology) regarding volume and timing], [and with genetics regarding the pending result].
+The surgery will be performed at [facility, accredited] under general anesthesia. Her Caprini score is [number], and she will receive sequential compression devices [and enoxaparin for ( ) days]. [Nicotine, glycemic, anticoagulation, or MRSA line as applicable.] [She is enrolled in the ( ) clinical trial; the protocol consent and IRB approval are in the chart.] I will coordinate with Dr. [breast surgeon] regarding [incision, skin pattern, nipple decision, axilla], with Dr. [medical oncology] regarding [timing of systemic therapy], [with Dr. (radiation oncology) regarding volume and timing], [and with genetics regarding the pending result].
 
-### I. Orders (every note)
+### I. Orders, each with its indication (every note)
 
-Routine labs [with PT and PTT for microsurgery], chest radiograph, ECG [per anesthesia], [A1C for diabetic patients], [CT angiogram abdomen and pelvis with 0.75 to 1 mm cuts and creatinine first], [echocardiogram per oncology], [MRSA screen], [anticoagulation clearance letter], [genetic testing].
+Routine labs [with PT and PTT because microsurgery is planned], chest radiograph, ECG [per anesthesia], [A1C because she is diabetic], [CT angiogram abdomen and pelvis with 0.75 to 1 mm cuts, creatinine first, to map the perforators], [echocardiogram per oncology], [MRSA screen because of her history], [anticoagulation clearance letter from Dr. ( )], [genetic testing because of ( )], [mammogram because she is 40 or older and none is on file]. Nothing is ordered without an indication that a reader can find in this note.
 
 ### J. Follow-up (every note)
 
-I will see the patient in person for a preoperative visit at least one day before surgery on [date] in order to sign consent and mark. She will be seen immediately after surgery, in person within 30 days of surgery, [at the start and midpoint of radiation,] and at 90 days after surgery on [date] for postoperative photographs. [For radiated patients: "She will return at 6 months from the completion of radiation to schedule the definitive stage."]
+I will see the patient in person for a preoperative visit at least one day before surgery on [date] in order to examine her again, sign consent, and mark. I will see her myself immediately after surgery and in person within 30 days of surgery on [date], [at the start and midpoint of radiation,] and at 90 days after surgery on [date], when I will take her postoperative photographs; visits in between may be by telemedicine. [Each later stage will have its own in-person preoperative visit at least the day before that surgery.] [For radiated patients: "She will return at 6 months from the completion of radiation to schedule the definitive stage."]
 
 ### K. Closing (every note)
 
-At the conclusion of the consultation, the patient verbalized her understanding of the plan back to me and stated that all of her questions had been answered. Patient wishes to proceed. Preoperative photographs were taken with the patient's consent, and the patient signed the records and photograph consent for examination and certification purposes by The American Board of Plastic Surgery. We will obtain insurance authorization; coverage of all stages, contralateral symmetry, and prostheses under WHCRA was explained.
+At the conclusion of the consultation, the patient verbalized her understanding of the plan back to me and stated that all of her questions had been answered. Patient wishes to proceed. Preoperative photographs were taken with the patient's consent, [no modeling software was used / images generated with ( ) were reviewed with her and saved to the chart], and I explained that photographs will also be taken during surgery and at each visit as part of her surgical record. The patient signed and dated the records and photograph consent for examination and certification purposes by The American Board of Plastic Surgery, which was witnessed, together with the practice's own consent. We will obtain insurance authorization; coverage of all stages, contralateral symmetry, and prostheses under WHCRA was explained.
 
 ---
 
@@ -251,7 +256,27 @@ I explained that matching a single reconstructed breast to her native breast is 
 
 ## Part 7. Sign-off consistency check
 
-Before signing, confirm that the laterality, the mastectomy type, the nipple decision, the reconstruction type, and the staging are the same in the history, the exam, the assessment, and every paragraph of the plan; that every option set aside has a reason; that the adjuvant sentence names the oncologists and the basis for the radiation estimate; that the Caprini score is a number with a plan; that the risk sentence matches the chosen pathway; that no education or consent text remains for a modality the patient is not receiving; and that the three visits (preoperative in person, within 30 days, 90-day photographs) carry dates.
+Before signing, confirm that the laterality, the mastectomy type, the nipple decision, the reconstruction type, and the staging are the same in the history, the exam, the assessment, and every paragraph of the plan; that every option set aside has a reason; that the adjuvant sentence names the oncologists and the basis for the radiation estimate; that the Caprini score is a number with a plan; that the risk sentence matches the chosen pathway; that no education or consent text remains for a modality the patient is not receiving; and that the three visits (preoperative in person, within 30 days, 90-day photographs) carry dates. Confirm also that every consultant is named with the date of the report; that the anesthesia type, the admission plan, and the estimated duration are stated; that every order carries its indication; that the ABPS consent is described as signed, dated, and witnessed; and that the note is signed today. Any later addendum is dated and labeled as an addendum; nothing in a selected case is edited after the July 2027 selection notice without listing it on the EMR attestation.
+
+---
+
+## Part 8. Case Log fields decided at this visit (tracker entry, not note text)
+
+Fill the tracker row from the note before the patient leaves; the same facts print on the Case Log and on the case report title page.
+
+1. **Anesthesia type:** general (the Log's choices are local only including nerve block, IV sedation, general, none).
+2. **Admission status:** inpatient for any overnight stay, including 23-hour observation; outpatient only for a same-day discharge.
+3. **Planned procedure description, in words, not CPT descriptors:** name the flap and say "microsurgical" or "free flap" when it applies; name the plane, mesh, and device for expanders and implants; list every site.
+4. **Planned CPT codes with modifiers, as they will be billed** (verify with billing; the Log designates Major or Minor from these). Bilateral procedures are one code with -50, for example 19357-50. Common codes in this practice: 19357 tissue expander placement; 19340 immediate implant at mastectomy; 19342 delayed implant; 11970 expander to implant exchange; 11971 expander removal without implant; 19364 free flap breast reconstruction (DIEP, PAP, SGAP); 19361 latissimus flap; 19367 to 19369 pedicled TRAM; 15777 biologic mesh add-on; 15771 and 15772 fat grafting to the breast; 19380 revision of reconstructed breast; 19350 nipple reconstruction; 19370 and 19371 capsule procedures; 19318 reduction, 19316 mastopexy, and 19325 augmentation for contralateral symmetry; 15860 ICG perfusion assessment.
+5. **Estimated duration, skin to skin, plastic surgery portion only:** [3 to 4 hours for expander or implant / 6 to 8 hours for bilateral DIEP].
+6. **Anatomy and Category:** Breast; General Reconstructive (contralateral symmetry procedures under WHCRA are also General Reconstructive).
+7. **Co-surgeon field:** not checked when the mastectomy is by a breast surgeon; checked only for a case with another plastic surgeon where I did the preoperative assessment, made the final decision, and provided all postoperative care, with my name on a separate operative report.
+8. **Patient identifier:** the same number and at least two initials on every case for this patient at every facility.
+9. **Stages expected inside July 1, 2026 to March 31, 2027:** [ ]; only three per patient count toward the 50, all are entered.
+10. **Intraoperative photograph plan, after incision and before closure, every site, every side:** expander or implant: the pocket with the mesh and device in place and the ICG still images; flap: the defect, the raised flap on its perforators, the flap inset before closure, and the donor site; nipple graft: the harvested graft and the recipient bed; office procedures: the wound before and after debridement.
+11. **Imaging to keep for the radiology tab:** dated key images with reports (CT angiogram perforator images, MRI); mammography reports without images are sufficient.
+12. **Research protocol:** [no / yes, with IRB approval and study consent on file].
+13. **Office procedures later in this patient's course** (debridement, seroma aspiration, revision under local) are cases too: each gets a procedure note, photographs before and after, and a CPT code, and each is entered on the Log.
 
 
 ---
@@ -269,6 +294,10 @@ Before signing, confirm that the laterality, the mastectomy type, the nipple dec
 - Prior breast surgery or biopsies, especially near the nipple; prior abdominal surgery, liposuction, or abdominoplasty.
 - Weight history and stability; work and caregiving constraints; who is helping at home.
 - Whether anyone has explained sentinel node biopsy and the chance of upstaging (DCIS) or the chance of a positive node changing the plan.
+- Which consultants she has seen and when (breast surgery, medical oncology, radiation oncology, genetics, tumor board), so each report can be named with its date and pulled for the case report.
+- Whether she is enrolled in a clinical trial or research protocol (neoadjuvant or surgical), and whether the protocol consent is in the chart.
+- Whether any simulation or modeling software images were shown to her by anyone (those images must be submitted with the case).
+- Whether she can return in person within 30 days and at 90 days for photographs, and who helps her get there.
 
 ## Always mention
 - Every option including no reconstruction with flat closure or prosthesis and delayed reconstruction, with a reason each was or was not chosen.
@@ -276,7 +305,27 @@ Before signing, confirm that the laterality, the mastectomy type, the nipple dec
 - The risk list for the chosen pathway, alternatives, benefits, and that exact symmetry is not promised.
 - The radiation contingency and the 6-month rule; the adjuvant chemotherapy window of 30 to 60 days if chemotherapy may follow surgery.
 - The three visits: in-person pre-op at least the day before surgery, in-person within 30 days, 90-day photographs.
-- Photographs with consent and the ABPS records consent.
+- How each risk is reduced and how it would be treated if it occurred (the examiners' passing criterion is recognition of complications with methods to avoid and treat them).
+- That photographs will be taken before, during, and after surgery, and at 90 days, and that each later stage has its own in-person preoperative visit, consent, and photographs.
+- Photographs with consent and the ABPS records consent, signed, dated, and witnessed, alongside the practice consent.
+- That I will see her myself after surgery; postoperative care is not delegated.
+
+## Case Log fields decided at this visit (template Part 8)
+- Anesthesia type; admission status (any overnight stay, including 23-hour observation, is inpatient); estimated skin-to-skin duration of the plastic surgery portion.
+- Planned procedure in words (say "free flap" or "microsurgical" when it applies) and planned CPT codes with modifiers as they will be billed; bilateral is one code with -50.
+- Anatomy Breast, Category General Reconstructive; breast surgeon cases entered but not flagged as co-surgeon.
+- Consistent patient identifier and at least two initials across facilities; number of stages expected inside the collection period (three per patient count).
+- Intraoperative photograph plan for every site and side, after incision and before closure; key imaging to keep with dates.
+- Research protocol yes or no.
+
+## Postoperative documentation the outcome field needs (4 to 6 weeks)
+- Grade and describe every event in the chart the way the Log grades it. Major: unplanned admission or prolonged stay, return to the operating room with sedation, IV antibiotics as an inpatient, DVT, PE, MI, CVA, flap loss, adverse drug event, unplanned ED visit. Moderate: return to the operating room without sedation, dressing changes beyond 6 weeks, outpatient IV antibiotics, unplanned consult with another specialist. Minor: seroma or hematoma requiring drainage, wound infection requiring drainage, oral antibiotics, dressing changes under 6 weeks, extra office visits.
+- "All cases do not heal without complications": the note and the Log must agree.
+- A discharge summary exists for every admission, including 23-hour observation; it is the first page of the hospital notes tab.
+- Every office procedure (debridement, seroma aspiration, revision under local) is its own case with a procedure note, before and after photographs, and a CPT code.
+- Mortality within 30 days is a required field for every case.
+- The immediate postoperative visit note, the in-person visit within 30 days, and the 90-day photograph visit each exist with dates; the surgeon takes the first and the 90-day photographs.
+- Notes are signed the same day; addenda are dated and labeled; nothing in a selected case is edited after the July 2027 notice without listing it on the EMR attestation.
 
 ## Look out for
 - Subtype that gets chemotherapy first (triple negative at cT1c or larger, HER2-positive at cT2 or larger) arriving without oncology input.
