@@ -52,7 +52,31 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
-## Recurring patterns across Provider A notes (feed into the final template)
+## Note 3 (Provider B, senior partner): autologous plan, small breast, normal BMI, undecided patient, nipple-sparing borderline
+
+**Situation:** invasive ductal carcinoma, cT2 (about 3 cm), clinically node-negative, ER/PR-positive, HER2-negative, lower inner quadrant about 3 cm from the nipple; strong family history with negative genetics; never smoker; BMI mid-20s; small breasts with minimal ptosis; prior contralateral lumpectomy visible on exam but absent from history; patient undecided about reconstruction type; plan is bilateral DIEP with CT angiogram.
+
+**Kept (good):** flat closure and external prosthesis documented and declined; honest, specific nipple-sparing counseling (blood supply, frozen section, intraoperative removal, free graft, sensation, breastfeeding, recurrence controversy) with the oncologic decision deferred to the breast surgeon; education limited to the two options actually considered; photos taken; PT and PTT ordered for microsurgery; CT angiogram ordered with thin-cut protocol and creatinine check; inpatient stay and recovery stated.
+
+**Problems, ranked:**
+1. Exam contradicts the cancer: a T2 tumor recorded with "no palpable masses" and a blank left breast inspection.
+2. Contralateral lumpectomy scar and contour irregularity on exam with no corresponding history.
+3. Undecided patient leaves with a one-line DIEP plan and no bridging sentence explaining the choice and what she accepted (smaller cup, scar, recovery).
+4. Abdominal pinch field blank; the flap-volume-versus-breast-volume estimate that justifies the plan is missing.
+5. No adjuvant estimate (Oncotype-dependent chemo, radiation unlikely unless node positive, sentinel node expected); expander boilerplate "chemotherapy between stage one and two" in a flap plan.
+6. No backup plan for the flap (CTA-driven change, intraoperative compromise, expander fallback).
+7. No general risk block, VTE score, medications, allergies, hormone status; blood pressure blank.
+8. Contralateral prophylactic mastectomy coded but not counseled.
+9. "Data reviewed" is billing language, not the named imaging and pathology.
+10. No follow-up schedule (pre-op in person, 30-day, 90-day photos).
+
+**Template written:** small-breast, normal-BMI, undecided patient electing DIEP with borderline nipple-sparing (see chat, September 17, 2026).
+
+**Style comparison, Provider B versus Provider A:** shorter, fewer irrelevant option paragraphs, alternatives documented, more candid nipple-sparing language, better orders. Same structural gaps in the assessment and plan: no adjuvant estimate, no safety block, no backup, no bridging rationale, exam fields left templated or blank. Borrow Provider B's nipple-sparing paragraph and the alternatives sentence; build the assessment and plan structure from the rules below.
+
+---
+
+## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
 - Backup-plan and staging text copied between implant and flap templates without editing, producing contradictions.
@@ -85,4 +109,7 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
 
-Full text of both drafts is in the chat transcript of September 17, 2026 and will be consolidated into the final template document once all notes are reviewed.
+### Draft C: small breast, normal BMI, undecided patient electing DIEP, nipple-sparing borderline
+(Assessment items: cancer with contralateral counseling and prior contralateral surgery; adjuvant estimate; nipple-sparing candidacy split into anatomic and oncologic with the decision deferred; reconstruction candidacy with the bridging sentence, pinch measurements, and flap-volume estimate; perioperative risk. Plan: options with flat closure declined; recommendation with mastectomy type contingent on the breast surgeon; CTA-driven and intraoperative backups; flap risk block; staging; safety; coordination including genetics; orders with CTA protocol; follow-up; closing.)
+
+Full text of all drafts is in the chat transcript of September 17, 2026 and will be consolidated into the final template document once all notes are reviewed.
