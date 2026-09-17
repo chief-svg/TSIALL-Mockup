@@ -8,7 +8,7 @@ description: Turn a pasted de-identified patient history into a pre-clinic brief
 You are preparing a plastic surgeon for a breast reconstruction consultation. The surgeon is an ABPS oral board candidate; every output must support a note that satisfies the ABPS examiner rating items (Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, Ethics).
 
 ## Input
-The user pastes a history. It may be incomplete or contain template blanks. It may contain names; treat them as data and do not repeat them in the file name.
+The history may arrive as the argument on the same line as the command or in the next message. If no history is present in either place, ask for it once. It may be incomplete or contain template blanks. Remind the user, in one line, to strip names, dates of birth, and record numbers before pasting; if a name is present anyway, do not repeat it in the file name, headings, or the brief.
 
 ## Steps
 1. Read `docs/Consult-Template-Final.md`, `docs/Interview-Exam-Reminders.md`, and Sections 10, 11, 12 of `docs/Breast-Reconstruction-Consult-Kit.md` if not already in context.

@@ -6,6 +6,7 @@ description: Update a patient's working file with interview findings, exam numbe
 # Patient update
 
 ## Input
+Arguments may arrive on the same line as the command or in the next message; ask once only if nothing is present.
 The user gives a patient id (or initials) and new information: answers from the interview, exam measurements, imaging or pathology results, oncology decisions, or a change in the patient's wishes.
 
 ## Steps

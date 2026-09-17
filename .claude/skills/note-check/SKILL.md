@@ -6,6 +6,7 @@ description: Review a finished consult note for contradictions, ABPS board risks
 # Note check
 
 ## Input
+Arguments may arrive on the same line as the command or in the next message; ask once only if nothing is present.
 The user pastes the final note text (history, exam, assessment, plan), and optionally the patient id.
 
 ## Steps

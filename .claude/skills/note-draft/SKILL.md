@@ -6,6 +6,7 @@ description: Produce the copy-paste assessment and plan for a patient from their
 # Note draft
 
 ## Input
+Arguments may arrive on the same line as the command or in the next message; ask once only if nothing is present.
 A patient id (or initials). Optionally, last-minute facts to include.
 
 ## Steps
