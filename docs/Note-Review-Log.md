@@ -102,6 +102,28 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 5 (Provider B): HER2-positive, node negative, immediate bilateral DIEP
+
+**Situation:** invasive ductal carcinoma with DCIS at 12 o'clock, ER/PR-negative, HER2-positive, clinically node-negative, tumor size not recorded; genetics negative with a second-degree family history; remote former smoker; one cesarean; small breast without ptosis on inspection but nipple-to-fold 12 to 12.5 cm recorded; wants own tissue and the same size; plan is bilateral mastectomy with immediate bilateral DIEP and a CT angiogram.
+
+**Kept (good):** alternatives offered and declined; education limited to the chosen option; CTA for the cesarean scar; PT and PTT; operative time, stay, recovery; bilateral measurements.
+
+**Problems, ranked:**
+1. HER2-positive disease planned to immediate surgery with no mention of HER2-directed therapy, tumor size, medical oncology, or the neoadjuvant-versus-adjuvant decision. Neoadjuvant chemotherapy with dual HER2 blockade is standard at cT2 or larger or node-positive, with surgery 4 to 8 weeks after; T1 N0 gets surgery first with adjuvant paclitaxel and trastuzumab within 30 to 60 days. "Chemotherapy between stage one and two" is wrong for this subtype and an 8-hour bilateral free flap threatens the adjuvant window.
+2. Tumor size absent; T stage unknown.
+3. No radiation contingency for a flap already in place (positive node means an irradiated DIEP).
+4. Nipple-sparing not discussed in the patient whose anatomy suits it best; tumor-to-nipple distance not recorded.
+5. Exam contradiction: nipple-to-fold 12 to 12.5 cm with "without ptosis" in a 36B.
+6. Bilateral flap volume asserted without pinch or an estimate against target volume.
+7. Contralateral prophylactic mastectomy not counseled.
+8. Usual gaps: adjuvant sentence, backup, general risks, VTE, medications, allergies, vitals, cardiac baseline for trastuzumab, follow-up, ABPS items.
+
+**Template written:** HER2-positive node-negative autologous plan with the sequencing conditional on tumor size (see chat, September 17, 2026).
+
+**New pattern category:** oncologic sequencing errors, not only documentation gaps. Subtype-specific therapy (HER2, triple negative) must be named in the assessment before a surgical date is set.
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -113,6 +135,8 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 - No ABPS-specific items (photos, records consent, in-person pre-op visit, 30-day visit, 90-day photos).
 - Data reviewed section does not show the imaging and pathology were read.
 - Vitals incomplete (blood pressure blank).
+- Subtype-specific systemic therapy (HER2-positive, triple negative) not named; neoadjuvant-versus-adjuvant decision not documented before scheduling; tumor size sometimes absent.
+- Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
 
 ## Rules for the final template (running list)
 
@@ -134,6 +158,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft E: HER2-positive, node negative, immediate bilateral DIEP
+(Assessment items: cancer with tumor size and tumor-to-nipple distance; adjuvant sentence with the neoadjuvant-versus-adjuvant branch, trastuzumab duration, cardiac baseline, and the positive-node radiation contingency; candidacy with pinch, volume estimate, and nipple-sparing split into anatomic and oncologic; perioperative risk. Plan: options; recommendation timed to systemic therapy; backups including protection of the adjuvant window; flap risk block with adjuvant-delay risk; staging around trastuzumab; safety; coordination with medical oncology before a date is set; orders including echocardiogram; follow-up; closing.)
 
 ### Draft D: node-positive, radiation certain, Goldilocks bridge to delayed DIEP
 (Assessment items: cancer with margins, nodes, staging closed out, and the oncologic recommendation; adjuvant estimate with the chemotherapy refusal framed and axillary management named; candidacy stating why nipple-sparing and immediate implants are out and why delayed DIEP is in, with pinch and volume honesty; bridge plan with radiation effect on the local tissue; perioperative risk. Plan: options with declined items; recommendation with the dated sequence, neurotization offer, and contralateral symmetry; backups; index-operation and delayed-flap risk blocks; safety; coordination including medical and radiation oncology and genetics; orders; follow-up including radiation-midpoint visits; closing.)
