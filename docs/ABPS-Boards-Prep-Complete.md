@@ -1,12 +1,12 @@
 # ABPS Boards Prep: Complete Reference (single file)
 
-Regenerated September 17, 2026 by concatenating the handoff, concerns assessment, protocol, and consult kit. The source files remain authoritative.
+Regenerated September 17, 2026 (evening). Order: handoff, concerns assessment, consult template, protocol, consult kit, oncology timing algorithm, note review log. The source files remain authoritative.
 
 ---
 
 # ABPS Oral Boards Prep: Handoff and Summary
 
-**Last updated:** September 17, 2026. Continue from here in Claude Code desktop.
+**Last updated:** September 17, 2026 (evening). Continue from here in Claude Code desktop.
 **Branch:** `claude/plastic-surgery-boards-checklist-du429b` (all work committed and pushed).
 
 ## Who and what
@@ -23,7 +23,10 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Concerns-Assessment.md` | The six concerns your questions revealed, each rated for real risk, with the fix and a priority order. Read this second. |
 | `ABPS-Oral-Boards-Compliance-Protocol.md` | The master protocol. Part A: every ABPS requirement and date. Part B: per-patient checklist. Part C: clinic note standard. Part D: evidence-based timing and optimization thresholds. Part E: cadence. |
 | `Breast-Reconstruction-Consult-Kit.md` | Clinic kit: chart review, scribe brief, in-room flow, measured exam, decision framework, risk language, scribe-ready template, sign-off check (Sections 1 to 9); chemo and radiation prediction model and what to change when radiation is coming (Section 10); autologous versus implant evidence with MROC and MSKCC numbers (Section 11); nipple-sparing mastectomy with immediate DIEP in a ptotic breast, including the grade 3 plan without staged mastopexy or nipple delay (Section 12 and 12a); Caprini quick reference (Section 13). |
-| `ABPS-Boards-Prep-Complete.md` | All of the above concatenated into one file for reading or sending. Regenerated September 17, 2026. |
+| `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
+| `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
+| `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `ABPS-Boards-Prep-Complete.md` | All markdown files concatenated into one for reading or sending. Regenerated September 17, 2026 (evening). |
 
 Published pages (private, checkboxes save per browser):
 - Protocol page: https://claude.ai/artifact/F6VVvajeUBdLN5vbPqDegf
@@ -49,17 +52,23 @@ Published pages (private, checkboxes save per browser):
 - Autologous versus implant: failure with radiation 18.7 versus 1.0 percent (MROC); DIEP total loss under 2 percent; radiated implant contracture 15 to 50 percent; autologous satisfaction higher at every time point over 8 years.
 - Ptotic NSM with DIEP and no staged mastopexy or nipple delay: lateral inframammary incision, buried DIEP, nipple left in place with ICG-guided fallback to free graft or excision, mastopexy at 3 to 6 months.
 - Caprini: not a Board requirement, but score every sedation or general anesthesia patient with the plan attached; breast reconstruction patients start at 4.
+- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics.
+- The colleague notes shared five failure patterns worth remembering: template text contradicting the history, boilerplate "chemotherapy between stages" in flap and neoadjuvant plans, no adjuvant estimate or oncologist named, no risk block or alternatives, and comorbidities recorded but never converted into a plan.
 - Nicotine 4 weeks before and after; HbA1c under 8; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
 
 ## Where we stopped
 
-Clinic day, September 17, 2026. The plan for the grade 3 ptotic nipple-sparing DIEP patient is decided (Section 12a of the kit). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
+Evening of September 17, 2026. Nine colleague notes were reviewed and logged, the user supplied five sentences in their own voice, and the consolidated template was written around them (`Consult-Template-Final.md`). The user has read the template and approved it ("looks good"). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
 - Send patients as Patient 1 to 4 with initials only; no names, DOB, MRN, or exact dates.
 - Per patient: one-line summary and breast surgeon's plan; pathology and receptors; imaging with tumor-to-nipple distance; genetics; systemic therapy status and dates; radiation status; tumor board note; risk factors; patient goals.
 - Return per patient: pre-filled note in the kit's template, questions still to ask, exam findings that decide the plan, draft assessment and plan with recommendation, backup, and risk block, and a board note if relevant.
 - **Do not commit patient-specific content to the repo.**
 
 ## Open items
+
+- Template placeholders only the user can fill: operative time for an expander or direct-to-implant case (placeholder 3 to 4 hours); whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default in module M3).
+- Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
+- Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
 
 - Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
 - Update the practice photo consent with the ABPS language (should be done before the first clinic).
@@ -73,7 +82,7 @@ Clinic day, September 17, 2026. The plan for the grade 3 ptotic nipple-sparing D
 git fetch origin claude/plastic-surgery-boards-checklist-du429b
 git checkout claude/plastic-surgery-boards-checklist-du429b
 ```
-Open Claude Code in the repo and say: "Read docs/00-START-HERE.md and docs/Concerns-Assessment.md, then continue." The root `CLAUDE.md` points here automatically.
+Open Claude Code in the repo and say: "Read docs/00-START-HERE.md, docs/Concerns-Assessment.md, and docs/Consult-Template-Final.md, then continue." The root `CLAUDE.md` points here automatically.
 
 ---
 
@@ -159,6 +168,176 @@ You asked, in order: what ABPS requires of every patient; whether your clinic no
 - Volume: 50 major cases in 28 weeks at 2 to 3 per week is achievable, and the Board accepts a shorter collection period if quality and variety are adequate.
 - Being a new surgeon: the Board grades safety and judgment, not experience, and a two-stage plan chosen for safety is graded well.
 - Getting the "wrong" answer on a debated point (radiate the expander or the implant, hold tamoxifen or not): the record needs to show you knew the debate and chose with the oncology team.
+
+---
+
+# Breast Reconstruction Consultation: Assessment and Plan Template
+
+**Version 1, September 17, 2026.** Built from the review of nine colleague notes across three providers, the ABPS 2026-2027 Booklet of Information requirements, the examiner rating items, and the user's own dictated sentences. Every paragraph is written in the user's voice. Brackets are dictated fields; the scribe leaves them blank if not stated so gaps are visible at sign-off. Delete any module that does not apply; never leave education or consent text for a modality the patient is not receiving.
+
+---
+
+## Part 1. Style rules (apply to anything added later)
+
+1. First person, past tense, for what you did: "I reviewed," "I explained," "I recommended."
+2. The patient's response is its own sentence with the patient as subject: "Patient verbalized understanding that..." "Patient wishes to proceed."
+3. Conditions carry an explicit then: "If [ ], then [ ], and in that case [ ]."
+4. Paragraphs open with a sequence marker where one fits: "After discussion of...," "At the conclusion of the consultation..."
+5. Sentences close with purpose or contrast where it adds meaning: "in order to...," "rather than risk...," "as well as..."
+6. Use the recurring nouns: surgical plan, surgical option, reconstructive goals, her concerns, a later stage, revision stage.
+7. Plain sentences of 20 to 35 words, one idea each, in prose; the only list is inside the risk sentence.
+8. No sentence may contradict the history, the exam, or another sentence in the plan.
+
+## Part 2. Fixed practice lines
+
+- Bilateral DIEP: 6 to 8 hours under general anesthesia, at least 2 inpatient nights, 6 to 8 weeks to full activity.
+- Expander or implant reconstruction: about [3 to 4] hours under general anesthesia, 23-hour observation, 4 to 6 weeks to full activity.
+- Expander plane is an intraoperative decision (paragraph in Part 4, module E).
+- Risks are listed in every note where a surgical plan is offered.
+- A1C is ordered only for diabetic patients.
+- Every stage is at least 3 months apart; the definitive stage after radiation is at least 6 months from the completion of radiation.
+
+---
+
+## Part 3. Assessment (numbered, declarative)
+
+1. [Age]-year-old [pre/postmenopausal] woman with [side] breast [histology], [grade], cT[ ] ([ ] cm at [clock position], [ ] cm from the nipple) cN[ ], ER/PR [ ], HER2 [ ], genetics [negative/pending/not indicated], family history [ ]. [Second lesion if multicentric.] Planned [unilateral/bilateral] [nipple-sparing/skin-sparing/skin-reducing] mastectomy with [sentinel node biopsy/axillary dissection] by Dr. [ ] on [date]. [Contralateral mastectomy is risk-reducing by informed preference.]
+2. Adjuvant therapy anticipated: [chemotherapy: none / neoadjuvant, last cycle (date), surgery 4 to 8 weeks after / adjuvant, to start within 30 to 60 days of surgery / pending Oncotype]; radiation [unlikely / possible / planned], based on [nodes, T stage, margins, response]; endocrine or targeted therapy [ ]. Systemic decisions are per Dr. [medical oncology]; radiation per Dr. [radiation oncology].
+3. Reconstruction candidacy: patient prefers [own tissue / implants / undecided] and a [same / smaller / larger] size. [Donor site: abdominal pinch ( ) cm above and ( ) cm below the umbilicus, scars ( ), estimated flap volume ( ) mL per side against breast volume about ( ) mL / abdomen unavailable because ( ), thigh and gluteal tissue ( ).] [Nipple-sparing: anatomically (favorable/borderline/not a candidate) with SN-N ( ) cm, N-IMF ( ) cm, ptosis grade ( ); oncologic eligibility per Dr. ( ).]
+4. Perioperative risk: ASA [ ], Caprini [number], nicotine [never / quit (date) / current], BMI [ ], [diabetes with HbA1c ( ) / no diabetes], anticoagulation [ ], hormone therapy [ ], medications [ ], allergies [ ], [MRSA history / prior radiation / thrombotic history].
+
+---
+
+## Part 4. Plan (narrative, in order)
+
+### A. Options (every note)
+
+I reviewed the options with the patient, which included no surgical reconstruction with a flat closure or external prosthesis, delayed reconstruction after cancer treatment, implant-based reconstruction done in a one or two stage manner, and autologous reconstruction as well. For each surgical option I explained how it could or could not address her concerns and reconstructive goals. [One sentence per option that was set aside and why: "Abdominal flap reconstruction is not possible because of her prior abdominoplasty." "Immediate implant reconstruction is not recommended because radiation is expected." "She is not interested in a flat closure or a prosthesis."]
+
+### B. Recommendation (every note)
+
+After discussion of the surgical options, I recommended [procedure, laterality, staging], because [the two or three facts from the assessment that decide it: measurements, oncologic timing, radiation likelihood, donor site, patient goals]. Patient [agrees with this plan / elected ( ) after discussion of ( )].
+
+### C. Risks (every note)
+
+After discussion of the surgical options, I explained the risks of the surgery, specifically stating the risks of [insert the list from Part 5 for the chosen pathway, plus the patient-specific items], as well as the alternatives to the surgical plan and the expected benefits. I explained that exact symmetry is rare and difficult to achieve surgically, and that no promise of exact symmetry has been made nor should be expected. Patient verbalized understanding.
+
+### D. Backup plan (every note)
+
+I explained that if [the mastectomy skin flaps are poorly perfused on ICG angiography], then [the expander will be left deflated or reconstruction delayed], and that if [ ], then [ ]. [For flaps: "If the CT angiogram does not show adequate perforators, then the plan will change to a muscle-sparing TRAM or a thigh flap. If the flap is not viable during surgery, then a tissue expander will be placed as a staged alternative."] Patient verbalized understanding that the plan may change in the operating room in order to protect the skin envelope and the reconstruction.
+
+### E. Expander plane (implant-based notes)
+
+I explained that the expander plane will be decided in the operating room after the mastectomy. This decision is based on the thickness and quality of the mastectomy skin flaps on direct inspection, the perfusion of the skin flaps and nipples on ICG angiography, the amount of any poorly perfused skin that may need to be excised, the integrity of the pectoralis major after the mastectomy, the size and ptosis of the breast and the expected final implant volume, whether radiation is anticipated, and her own risk factors including BMI, nicotine exposure, diabetes, and prior radiation. I explained that well-perfused flaps of adequate thickness favor prepectoral placement with mesh in order to avoid animation deformity, and that thin or marginally perfused flaps favor subpectoral placement for muscle coverage, a lower initial fill, or a deflated expander. Patient verbalized understanding that either plane may be used.
+
+### F. Radiation contingency (every note where radiation is possible)
+
+*Expander version.* I explained that if the final pathology of the specimen demonstrates a positive node, then radiation becomes likely, and in that case the expander will stay in place through radiation and be exchanged at a later stage, at least 6 months from the completion of radiation. Patient verbalized understanding that the need for radiation can change her expander fill and timing, and that conversion to her own tissue at that stage would be discussed.
+
+*Flap version.* I explained that if the final pathology of the specimen demonstrates a positive node, then radiation becomes likely, and in that case the flap will be radiated, which can cause firmness, shrinkage, and fat necrosis, and any revision will wait at least 6 months from the completion of radiation. Patient verbalized understanding.
+
+*Radiation already planned.* I explained that radiation is planned after her mastectomy, and that in that case [the expander will be filled in the operating room to the volume agreed with Dr. (radiation oncology) with no fills after simulation / the reconstruction will be delayed until at least 6 months from the completion of radiation]. I explained that implant reconstruction after radiation carries a much higher risk of infection, capsular contracture, thinning of the skin, exposure, and removal, and that reconstruction with her own tissue tolerates radiation far better. Patient verbalized understanding.
+
+### G. Staging and timeline (every note)
+
+I explained that the reconstruction will involve [number] stages, each at least 3 months apart, with [exchange at about 3 months if no adjuvant treatment / exchange or conversion at least 6 months from the completion of radiation / revisions, nipple reconstruction, and contralateral symmetry at 3 months or later]. [If chemotherapy is planned after surgery: "I explained that chemotherapy is expected to start within 30 to 60 days of surgery, and that the first priority of the reconstruction is a healed wound so that treatment is not delayed."] The index operation is expected to take [hours] under general anesthesia with [23-hour observation / at least 2 inpatient nights] and a recovery of [4 to 6 / 6 to 8] weeks.
+
+### H. Safety and coordination (every note)
+
+The surgery will be performed at [facility, accredited] under general anesthesia. Her Caprini score is [number], and she will receive sequential compression devices [and enoxaparin for ( ) days]. [Nicotine, glycemic, anticoagulation, or MRSA line as applicable.] I will coordinate with Dr. [breast surgeon] regarding [incision, skin pattern, nipple decision, axilla], with Dr. [medical oncology] regarding [timing of systemic therapy], [with Dr. (radiation oncology) regarding volume and timing], [and with genetics regarding the pending result].
+
+### I. Orders (every note)
+
+Routine labs [with PT and PTT for microsurgery], chest radiograph, ECG [per anesthesia], [A1C for diabetic patients], [CT angiogram abdomen and pelvis with 0.75 to 1 mm cuts and creatinine first], [echocardiogram per oncology], [MRSA screen], [anticoagulation clearance letter], [genetic testing].
+
+### J. Follow-up (every note)
+
+I will see the patient in person for a preoperative visit at least one day before surgery on [date] in order to sign consent and mark. She will be seen immediately after surgery, in person within 30 days of surgery, [at the start and midpoint of radiation,] and at 90 days after surgery on [date] for postoperative photographs. [For radiated patients: "She will return at 6 months from the completion of radiation to schedule the definitive stage."]
+
+### K. Closing (every note)
+
+At the conclusion of the consultation, the patient verbalized her understanding of the plan back to me and stated that all of her questions had been answered. Patient wishes to proceed. Preoperative photographs were taken with the patient's consent, and the patient signed the records and photograph consent for examination and certification purposes by The American Board of Plastic Surgery. We will obtain insurance authorization; coverage of all stages, contralateral symmetry, and prostheses under WHCRA was explained.
+
+---
+
+## Part 5. Risk lists (insert into paragraph C)
+
+**General, every plan:** bleeding, hematoma, seroma, infection, delayed wound healing and dehiscence, mastectomy skin flap necrosis, unfavorable scarring, asymmetry, contour irregularity, chronic pain, numbness of the chest and reconstructed breast, deep venous thrombosis and pulmonary embolism, anesthetic complications, need for revision or additional surgery, need for contralateral procedures, and dissatisfaction with the final result.
+
+**Implant-based, add:** capsular contracture, implant rupture or leakage, malposition or rotation, rippling, animation deformity with subpectoral placement, implant exposure and removal, breast implant-associated anaplastic large cell lymphoma and squamous cell carcinoma, systemic symptoms reported with implants, the fact that implants are not lifetime devices and will likely need replacement, the need for MRI or ultrasound surveillance of silicone implants, and mesh-related infection or seroma. [Add: "I reviewed the FDA boxed warning and the Patient Decision Checklist, which will be signed at the preoperative visit."]
+
+**Autologous, add:** partial or total flap loss with return to the operating room, fat necrosis, abdominal bulge or hernia, abdominal weakness, umbilical problems, donor-site seroma and delayed healing, need for a vein graft or alternate recipient vessels, injury to the intrathoracic or intraabdominal structures, transfusion, longer hospital stay and recovery, and the fact that the abdomen can be used only once.
+
+**Nipple-sparing, add:** partial or complete nipple necrosis, nipple malposition, loss of nipple sensation, inability to breastfeed, and the small possibility of cancer in retained breast tissue behind the nipple.
+
+**Patient-specific, add as applicable:** higher infection risk with MRSA history or obesity; higher implant failure with obesity or radiation; thrombotic risk with interruption of anticoagulation; higher flap risk with a thrombotic history; delay of adjuvant chemotherapy if a wound complication occurs; T-junction breakdown with a skin-reducing pattern.
+
+---
+
+## Part 6. Modules (insert where they apply)
+
+### M1. Borderline nipple-sparing
+
+The patient's anatomy raises my concern for nipple preservation, specifically [SN-N ( ) cm, N-IMF ( ) cm, ptosis grade ( ), prior periareolar scars]. I explained that due to the anatomy the risk of losing part or all of the nipple is higher than usual. I explained that due to positioning her nipples will sit low after reconstruction and will likely need to be repositioned at a later revision stage in order to correct their position. I also explained that if the nipples look poorly perfused during surgery, then I will either convert them to a free nipple graft or remove them rather than risk a wound problem. Patient verbalized understanding and wishes to attempt nipple preservation with these risks in mind. Oncologic eligibility for nipple preservation rests with Dr. [breast surgeon].
+
+### M2. Nipple not a candidate
+
+I explained that the nipple cannot be preserved because [tumor involvement / retroareolar location / positive margins / SN-N ( ) cm with grade III ptosis], and that the nipple will be removed with the specimen and reconstructed or tattooed at a later stage. [For pendulous breasts: "I explained that a free nipple graft onto the flap is an alternative, with the expected loss of sensation, projection, and pigment, and the patient (elected / declined) this option."] Patient verbalized understanding.
+
+### M3. Grade III breast with a flap: skin plan
+
+I explained that because of her degree of ptosis the skin envelope will be managed by [a skin-reducing mastectomy with the flap skin at the inferior pole, which carries a risk of breakdown at the junction of the incisions / a skin-sparing mastectomy with the envelope left loose and a mastopexy at a later revision stage once the blood supply has recovered]. Patient verbalized understanding that a second stage is planned rather than a complication.
+
+### M4. Delayed-immediate expander when radiation is likely
+
+I recommended a tissue expander at the time of mastectomy in order to preserve the skin envelope while radiation is completed, with the definitive decision between an implant and her own tissue made at least 6 months from the completion of radiation. I explained that an implant radiated in this setting fails in roughly one of five patients and develops significant capsular contracture in a large minority, and that conversion to her own tissue at that stage avoids most of that risk. Patient verbalized understanding and prefers this approach to [a flat closure with delayed reconstruction / an immediate flap that would be radiated].
+
+### M5. Delayed reconstruction after completed radiation
+
+I explained that the best window for reconstruction with her own tissue is 6 to 12 months from the completion of radiation, once the skin has softened and the acute changes have resolved, and that complications are highest between 3 and 6 months after radiation. I explained that an expander in radiated skin carries a higher risk of failure and would likely require a latissimus flap or fat grafting to help the skin. Patient verbalized understanding and elected [ ].
+
+### M6. Contralateral prophylactic mastectomy
+
+I explained that removal of the contralateral breast does not improve survival from her current cancer, that it removes the need for future surveillance of that breast and can simplify symmetry, and that the decision is hers in consultation with Dr. [breast surgeon]. [If genetics pending: "I explained that a positive genetic result would change this discussion and would add counseling regarding her ovaries."] Patient elected [ ].
+
+### M7. Pending results gate the date
+
+I explained that the surgical date will be set after [outside records, the MRI, genetic testing, the medical oncology consultation] are reviewed, because [the extent of disease decides nipple preservation / the subtype decides whether chemotherapy comes before surgery / the genetic result changes the contralateral discussion]. Patient verbalized understanding.
+
+### M8. DCIS contingency
+
+I explained that in about one of five patients with DCIS the final pathology shows invasive cancer, that a sentinel node biopsy will be performed at the mastectomy because it cannot be performed afterward, and that if invasive disease or a positive node is found, then chemotherapy or radiation may become part of her treatment and the reconstruction will be sequenced around it. Patient verbalized understanding.
+
+### M9. Subtype-driven sequencing (triple negative or HER2-positive)
+
+I explained that for her cancer type chemotherapy [with pembrolizumab / with trastuzumab and pertuzumab] is usually given before surgery, that the mastectomy and reconstruction are planned 4 to 8 weeks after the last cycle once her counts have recovered, and that the final pathology after chemotherapy will determine whether radiation is needed. [For surgery first: "I explained that chemotherapy is expected to start within 30 to 60 days of surgery, and that a wound complication could delay it, which is a risk of immediate reconstruction that she accepts."] Patient verbalized understanding. Systemic therapy decisions are per Dr. [medical oncology].
+
+### M10. Patient declining recommended systemic therapy
+
+The patient stated that she would like to avoid chemotherapy even if it is recommended. I explained that this decision belongs to her and her medical oncologist, that I encouraged her to keep that consultation, and that the reconstruction plan does not depend on her decision. Patient verbalized understanding.
+
+### M11. Bridging sentence when preference and plan differ
+
+The patient initially asked about [implant reconstruction]. After discussion of [her BMI and implant failure risk / her wish to keep her current size / the expected radiation / the durability of her own tissue], she elected [autologous reconstruction] in order to [ ]. Patient verbalized understanding of the longer recovery and the abdominal scar.
+
+### M12. Unilateral reconstruction against a native breast
+
+I explained that matching a single reconstructed breast to her native breast is more difficult than a bilateral reconstruction, that her own tissue matches a native breast better over time than an implant, and that a contralateral [reduction / lift / augmentation] at a later stage is likely to be needed for symmetry and is covered under WHCRA. Patient verbalized understanding.
+
+### M13. Comorbidity lines
+
+*Obesity.* I explained that her BMI of [ ] raises the risk of wound complications with either approach and raises the risk of implant failure specifically, which favors her own tissue if she is otherwise a candidate.
+*Nicotine.* I explained that she must be free of nicotine in all forms for at least 4 weeks before and 4 weeks after surgery, and that I may test for this before surgery.
+*Diabetes.* I explained that her hemoglobin A1C must be below 8 before elective surgery, and that she will be referred to her primary physician if it is not.
+*Anticoagulation.* I explained that her anticoagulation will be held and restarted per written instructions from Dr. [ ], and that her thrombotic history raises the risk of flap thrombosis, which is why [ ].
+*MRSA.* I explained that her history of MRSA raises the risk of implant infection, that she will complete a decolonization protocol before surgery and receive appropriate antibiotics, and that I will have a low threshold to remove the device if infection develops.
+*Hormone therapy.* I explained that [estrogen-containing medication will be stopped 4 weeks before surgery / tamoxifen may be held for 28 days before a free flap as a decision shared with her oncologist].
+
+---
+
+## Part 7. Sign-off consistency check
+
+Before signing, confirm that the laterality, the mastectomy type, the nipple decision, the reconstruction type, and the staging are the same in the history, the exam, the assessment, and every paragraph of the plan; that every option set aside has a reason; that the adjuvant sentence names the oncologists and the basis for the radiation estimate; that the Caprini score is a number with a plan; that the risk sentence matches the chosen pathway; that no education or consent text remains for a modality the patient is not receiving; and that the three visits (preoperative in person, within 30 days, 90-day photographs) carry dates.
 
 ---
 
@@ -905,3 +1084,445 @@ Breast reconstruction shortcut: start at 4 (cancer 2, surgery over 45 minutes 2)
 **Note language:** "Grade 3 ptosis, SN-N [ ] cm, N-IMF [ ] cm, tumor-to-nipple [ ] cm. Institutional practice does not include pre-mastectomy mastopexy. Options discussed: (1) NSM via lateral inframammary incision with buried DIEP and planned mastopexy of the envelope at 3 to 6 months; (2) single-stage skin-reducing NSM with superior dermal pedicle and DIEP paddle at the inferior pole, with nipple delay if feasible; (3) skin-reducing mastectomy with free nipple graft; (4) skin-sparing mastectomy with nipple reconstruction. Recommended option 1 because it preserves nipple perfusion in a long-flap envelope and allows repositioning once neovascularized, at the cost of a planned second stage. Intraoperative ICG; backup is free nipple graft or nipple excision. Counseled on nipple necrosis, malposition, loss of nipple sensation, staged mastopexy and contralateral symmetry, flap loss, fat necrosis, donor bulge."
 
 **Decision without nipple delay or staged mastopexy:** lateral inframammary incision (lateral two thirds, 10 to 12 cm toward the anterior axillary line; 3 to 4 cm lateral radial extension only if needed; nothing periareolar), buried DIEP with monitoring paddle in the incision, fold set and flap suspended superiorly, nipple left in place. ICG after mastectomy: nipple or areola under about 25 to 30 percent of reference perfusion or non-perfused areola means free nipple graft onto the flap or nipple excision; marginal means close without tension and warn. Stage 2 at 3 to 6 months (6 if thin envelope, chemo, or radiation): vertical or Wise mastopexy of the envelope with the nipple on a broad dermal base, de-epithelialize rather than undermine, excise the paddle, fat graft, contralateral symmetry. Single-stage skin-reducing NSM without delay carries 10 to 20 percent nipple necrosis and is offered only to a patient who insists on one operation and accepts that on the record.
+
+---
+
+# Breast Reconstruction Timing Algorithm (Mermaid version)
+
+Companion to the published page. GitHub and Claude Code desktop render these Mermaid diagrams. Oncology makes the final call; this is what the reconstructive surgeon should predict and counsel.
+
+## Master algorithm: subtype to reconstruction plan
+
+```mermaid
+flowchart TB
+  A[New breast cancer: subtype, cT, cN, tumor board] --> TN[Triple negative]
+  A --> H2[HER2-positive]
+  A --> HR[HR-positive, HER2-negative]
+  TN --> TN1{cT1c or larger,<br/>or cN+?}
+  TN1 -- yes --> TNAC[NEOADJUVANT chemo + pembrolizumab<br/>18 to 24 wk]
+  TN1 -- no --> SF1[Surgery first]
+  H2 --> H21{cT2 or larger,<br/>or cN+?}
+  H21 -- yes --> HNAC[NEOADJUVANT TCHP 18 wk<br/>anti-HER2 continues 1 yr]
+  H21 -- no --> SF2[Surgery first, adjuvant paclitaxel + trastuzumab]
+  HR --> SF3[Surgery first<br/>chemo decided by Oncotype + nodes<br/>RS 26+, 4+ nodes, or premenopausal N+ = chemo<br/>otherwise endocrine only]
+  TNAC --> W[Wait 4 to 8 wk after last cycle]
+  HNAC --> W
+  W --> S[Mastectomy + immediate reconstruction]
+  SF1 --> S
+  SF2 --> S
+  SF3 --> S2[Mastectomy + immediate reconstruction<br/>adjuvant chemo, if any, starts within 30 to 60 d]
+  S --> P{Radiation likely?<br/>cN+, cT3+, inflammatory, close margin, ypN+ = likely<br/>cN0 T1-2 or ypN0 = unlikely}
+  S2 --> P
+  P -- unlikely --> R1[Any immediate option:<br/>DTI if flaps perfuse; two-stage expander, exchange ~3 mo;<br/>immediate DIEP, revisions 3 to 6 mo]
+  P -- likely or done --> R2[Plan around radiation:<br/>delayed-immediate expander, radiate it,<br/>exchange or flap conversion at 6+ mo;<br/>or delayed autologous 6 to 12 mo after RT.<br/>Avoid direct-to-implant: failure 18.7% vs 1.0%]
+```
+
+## Radiation decision after mastectomy
+
+```mermaid
+flowchart TB
+  F[Final mastectomy pathology] --> Q{Neoadjuvant chemo given?}
+  Q -- no --> N{Positive nodes}
+  N -- "pN0, N0(i+), N1mi and T1-2" --> NO[No PMRT]
+  N -- "1 to 3 macrometastases" --> USU[Usually PMRT in US practice<br/>SUPREMO 2025 may loosen; assume PMRT]
+  N -- "4+ nodes, T3, T4, inflammatory, positive margin" --> YES[PMRT chest wall + nodes]
+  Q -- yes --> Y{Residual nodal disease?}
+  Y -- "ypN0 (was cN+)" --> NO2[Usually no PMRT, B-51]
+  Y -- "ypN+ or residual T3+" --> YES2[PMRT]
+```
+
+Positive sentinel node after mastectomy is often treated with axillary radiation instead of dissection (AMAROS), so a positive node almost always means radiation. Timing: no chemo, RT starts 3 to 6 weeks after surgery; with adjuvant chemo, RT follows chemo, about 4 to 6 months after mastectomy.
+
+## Calendar timelines (weeks)
+
+```mermaid
+gantt
+  title A. Neoadjuvant pathway (anchor: chemo start)
+  dateFormat X
+  axisFormat wk %s
+  section Systemic
+  Chemo 18 wk            :a1, 0, 18
+  Wait 4 to 8 wk         :a2, 18, 24
+  section Surgery
+  Mastectomy + recon     :milestone, m1, 24, 0
+  section Radiation
+  RT 3 to 5 wk (starts 3 to 6 wk post-op) :a3, 28, 33
+  Wait 6 months           :a4, 33, 59
+  Exchange or flap conversion :milestone, m2, 59, 0
+```
+
+```mermaid
+gantt
+  title B. Surgery first, adjuvant chemo + RT (anchor: mastectomy)
+  dateFormat X
+  axisFormat wk %s
+  section Surgery
+  Mastectomy + expander  :milestone, m1, 0, 0
+  Chemo must start       :b0, 0, 4
+  section Systemic
+  Chemo 12 to 16 wk (fill between cycles) :b1, 4, 20
+  Wait 3 to 4 wk         :b2, 20, 24
+  section Radiation
+  RT 3 to 5 wk           :b3, 24, 29
+  Wait 6 months          :b4, 29, 55
+  Exchange or flap conversion :milestone, m2, 55, 0
+  Symmetry and fat grafting 9 to 12 mo after RT :milestone, m3, 65, 0
+```
+
+```mermaid
+gantt
+  title C. No chemo, no radiation (anchor: mastectomy)
+  dateFormat X
+  axisFormat wk %s
+  section Surgery
+  Mastectomy + DTI, expander, or flap :milestone, m1, 0, 0
+  Heal and expand        :c1, 0, 12
+  Exchange (expander)    :milestone, m2, 12, 0
+  Flap revisions, symmetry, nipple 3 to 6 mo :milestone, m3, 24, 0
+```
+
+```mermaid
+gantt
+  title D. Delayed reconstruction after radiation (anchor: last fraction)
+  dateFormat X
+  axisFormat wk %s
+  section After RT
+  Acute changes 0 to 3 mo        :d1, 0, 12
+  Complications peak 3 to 6 mo, avoid :crit, d2, 12, 26
+  Delayed DIEP or conversion window 6 to 12 mo :active, d3, 26, 52
+```
+
+## Reconstruction options against radiation status
+
+| Option | Radiation unlikely | Radiation possible or planned | Radiation already given |
+|---|---|---|---|
+| Direct-to-implant | Recommended if flaps perfuse; small to moderate, minimal ptosis | **Avoid** (failure 18.7%, contracture 15 to 50%) | **Avoid** |
+| Expander then implant | Recommended; exchange about 3 months | Acceptable with counseling; radiate expander, exchange 6+ months | Acceptable, higher failure; often needs latissimus or fat grafting |
+| Immediate autologous flap | Recommended; best long-term satisfaction | Acceptable with counseling; fibrosis, 10 to 20% volume loss, fat necrosis | n/a |
+| Delayed-immediate | Acceptable when pathology could surprise | **Recommended**; expander now, flap or implant at 6+ months | n/a |
+| Delayed autologous | Acceptable by preference or medical delay | Acceptable; flat closure now, flap after RT | **Recommended**; 6 to 12 months after RT, failure 1% |
+
+## Waiting intervals
+
+| After this | Wait | Before | Why |
+|---|---|---|---|
+| Last neoadjuvant chemo cycle | 4 to 8 wk | Mastectomy and reconstruction | Count recovery; beyond 8 weeks survival worsens |
+| Mastectomy, adjuvant chemo planned | ≤ 30 to 60 d | Chemo must start; wound closed and dry | Delay past 60 d increases mortality |
+| Mastectomy, radiation without chemo | 3 to 6 wk | Radiation; expansion complete before simulation | Volume fixed at simulation |
+| Last chemo cycle, radiation to follow | 3 to 4 wk | Radiation | Marrow recovery |
+| Radiation ends, expander in place | ≥ 6 mo | Exchange or flap conversion | Failure 22.4% under 6 mo vs 7.7% |
+| Radiation ends, no reconstruction | 6 to 12 mo | Delayed autologous | Complications peak 3 to 6 mo |
+| Radiation ends, flap in place | ≥ 6 mo | Revisions, fat grafting, nipple | Fibrosis declares by 6 to 12 mo |
+| Radiation ends, any reconstruction | 9 to 12 mo | Contralateral symmetry | Radiated side stabilizes |
+| Fat grafting in irradiated tissue | ~3 mo | Next session or exchange | Graft take |
+| Bevacizumab last dose | ≥ 28 d | Elective surgery; restart ≥ 28 d after and healed | FDA label |
+| Tamoxifen, free flap planned | 28 d hold | Microsurgery, shared decision | Kelley 2012 vs 2022 meta-analysis |
+| Nicotine | 4 wk before and after | Any reconstruction | ASPS |
+| Expander fills during chemo | avoid days 7 to 14 | Fill between cycles | Nadir |
+
+No hold and no healing effect: pembrolizumab, trastuzumab, pertuzumab, T-DM1, capecitabine, aromatase inhibitors. Screen checkpoint-inhibitor patients for thyroid and adrenal effects before anesthesia.
+
+## The sentence for every note
+
+"Adjuvant plan anticipated: [chemo yes/no, timing], [radiation likely/unlikely, basis]; reconstruction sequenced accordingly with [expander / flap / implant] and definitive stage no earlier than [date]."
+
+---
+
+# Colleague Note Review Log
+
+De-identified reviews of colleagues' breast reconstruction consult notes, evaluated against the ABPS 2026-2027 Booklet of Information and the examiner rating items (Diagnosis/Planning, Management/Treatment, Complications/Outcome, Safety, Ethics/Professionalism, Case Report Preparation). No names, dates, or ages are recorded. Purpose: extract what to keep, what to fix, and recurring failure patterns so the final template is evidence-based, board-safe, internally consistent, and in the user's own voice.
+
+---
+
+## Note 1 (Provider A): implant-based plan, prior abdominoplasty, grade 3 ptosis, invasive lobular carcinoma
+
+**Situation:** clinically node-negative, ER/PR-positive, HER2-negative invasive lobular carcinoma; BRCA negative; prior abdominoplasty and prior breast reduction with lift; never smoker; BMI high-20s; large ptotic breasts; wants implants and a smaller size; bilateral nipple-sparing mastectomy planned.
+
+**Kept (good):** bilateral measurements (SN-N, N-IMF, base width, areola, ptosis grade); explicit nipple-sparing risk counseling with patient acceptance of surveillance; staging and intervals; drains and scars discussed; breast surgeon, anesthesia time, stay, recovery stated.
+
+**Problems, ranked:**
+1. Template text contradicting the history: "adequate lower abdominal adiposity for autologous reconstruction" after abdominoplasty (and filed under "Thighs"); latissimus described as a partial-reconstruction option for lumpectomy; free-flap backup paragraphs (expander if flap not viable, vein graft) pasted into an implant plan. Reads as not written for this patient; hits Case Report Preparation (honesty/integrity).
+2. "Good candidate for nipple-sparing mastectomy and it will significantly add to her results" in a patient with grade 3 ptosis, N-IMF 13 to 14 cm, large cup, and prior periareolar scars. Unsupported assertion plus overpromise; no reasoning, no elevated-risk statement, no fallback.
+3. Internal contradiction: education text says large breasts are difficult in one stage; plan offers direct-to-implant in a DDD breast.
+4. No risk list beyond nipple loss; no alternatives (no reconstruction, delayed, prosthesis); no benefits; no FDA Patient Decision Checklist.
+5. No oncologic timing estimate (chemo unlikely pending Oncotype and nodes; radiation unlikely unless node positive); no medical or radiation oncologist; no sentinel node mention; no MRI for lobular disease; no contingency if a node is found.
+6. Lobular histology not addressed (multifocality, margins, MRI).
+7. Prior reduction technique and scar pattern not described; determines nipple perfusion.
+8. Tumor not examined (no palpation, skin, supraclavicular nodes).
+9. No medications, allergies, menopausal status, hormone use, VTE score; blood pressure blank in a hypertensive patient.
+10. Contralateral prophylactic mastectomy not counseled (BRCA negative, no family history).
+11. No photographs, no ABPS consent, no in-person pre-op, 30-day, or 90-day visits.
+12. Implant plane not specified; education text says "generally under the pectoralis," conflicting with ADM-based practice; facility accreditation not stated.
+
+**Template written:** implant-based, marginal nipple-sparing candidate, radiation unlikely (see chat, September 17, 2026; reproduced in the final template section below).
+
+---
+
+## Note 2 (Provider A): autologous plan, obesity class I, DCIS, prior lap band and cesareans
+
+**Situation:** DCIS described as retroareolar (and, contradictorily, at 2 o'clock 8 cm from the nipple); receptors and BRCA pending; prior left lumpectomy with partial nipple excision; prior lap band placement and removal; two cesareans; former smoker quit several years ago; BMI mid-30s; grade 3 ptosis; wants implants and the same size; bilateral mastectomy planned; plan is bilateral DIEP with CT angiogram.
+
+**Kept (good):** donor-site logic (prior abdominal surgery, adequate tissue, same-size goal) and the CT angiogram order; DIEP education covers flap loss, fat necrosis, bulge, hernia, scars; backup plan matches the flap plan; operative time, inpatient stay, recovery stated; smoking history captured.
+
+**Problems, ranked:**
+1. Plan contradicts stated preference (implants, same size) with no bridging sentence explaining why the patient chose DIEP.
+2. Tumor location contradicts itself (retroareolar vs 2 o'clock 8 cm); determines nipple-sparing eligibility.
+3. Mastectomy type and skin management unspecified for a grade 3 ptotic breast with a flap (skin-sparing with later mastopexy vs Wise-pattern skin reduction with flap paddle); right nipple fate not addressed; left nipple already partially excised.
+4. Obesity (class I) not addressed: supports flap choice, raises Caprini, weight stability after lap band removal unknown.
+5. No VTE assessment for an 8-hour bilateral free flap in an obese cancer patient.
+6. DCIS oncologic reasoning absent: no chemo, radiation only for positive margin, endocrine if ER-positive, sentinel node at mastectomy, about 1 in 5 upstaged to invasive; "chemotherapy between stage one and two" is expander boilerplate misapplied to a flap.
+7. Pending receptor and BRCA results treated as settled; contralateral risk-reducing mastectomy not counseled in that light.
+8. Abdominal exam generic: no pinch measurements, no Pfannenstiel or port-site scar description, no diastasis, no umbilicus.
+9. Left nipple appearance after partial excision not described; breast measurements truncated to ptosis grade.
+10. Data reviewed lists only the CTA order; no pathology, mammogram, ultrasound, or MRI reviewed.
+11. Same missing blocks as Note 1: risk list outside boilerplate, alternatives, benefits, photographs, ABPS consent, pre-op/30-day/90-day visits, medications, allergies, blood pressure, oncology coordination.
+12. Language: "vein graft from her arm"; "chemotherapy between stages" in a single-stage flap plan.
+
+**Template written:** obese DCIS patient choosing autologous reconstruction (see chat, September 17, 2026; reproduced below).
+
+---
+
+## Note 3 (Provider B, senior partner): autologous plan, small breast, normal BMI, undecided patient, nipple-sparing borderline
+
+**Situation:** invasive ductal carcinoma, cT2 (about 3 cm), clinically node-negative, ER/PR-positive, HER2-negative, lower inner quadrant about 3 cm from the nipple; strong family history with negative genetics; never smoker; BMI mid-20s; small breasts with minimal ptosis; prior contralateral lumpectomy visible on exam but absent from history; patient undecided about reconstruction type; plan is bilateral DIEP with CT angiogram.
+
+**Kept (good):** flat closure and external prosthesis documented and declined; honest, specific nipple-sparing counseling (blood supply, frozen section, intraoperative removal, free graft, sensation, breastfeeding, recurrence controversy) with the oncologic decision deferred to the breast surgeon; education limited to the two options actually considered; photos taken; PT and PTT ordered for microsurgery; CT angiogram ordered with thin-cut protocol and creatinine check; inpatient stay and recovery stated.
+
+**Problems, ranked:**
+1. Exam contradicts the cancer: a T2 tumor recorded with "no palpable masses" and a blank left breast inspection.
+2. Contralateral lumpectomy scar and contour irregularity on exam with no corresponding history.
+3. Undecided patient leaves with a one-line DIEP plan and no bridging sentence explaining the choice and what she accepted (smaller cup, scar, recovery).
+4. Abdominal pinch field blank; the flap-volume-versus-breast-volume estimate that justifies the plan is missing.
+5. No adjuvant estimate (Oncotype-dependent chemo, radiation unlikely unless node positive, sentinel node expected); expander boilerplate "chemotherapy between stage one and two" in a flap plan.
+6. No backup plan for the flap (CTA-driven change, intraoperative compromise, expander fallback).
+7. No general risk block, VTE score, medications, allergies, hormone status; blood pressure blank.
+8. Contralateral prophylactic mastectomy coded but not counseled.
+9. "Data reviewed" is billing language, not the named imaging and pathology.
+10. No follow-up schedule (pre-op in person, 30-day, 90-day photos).
+
+**Template written:** small-breast, normal-BMI, undecided patient electing DIEP with borderline nipple-sparing (see chat, September 17, 2026).
+
+**Style comparison, Provider B versus Provider A:** shorter, fewer irrelevant option paragraphs, alternatives documented, more candid nipple-sparing language, better orders. Same structural gaps in the assessment and plan: no adjuvant estimate, no safety block, no backup, no bridging rationale, exam fields left templated or blank. Borrow Provider B's nipple-sparing paragraph and the alternatives sentence; build the assessment and plan structure from the rules below.
+
+---
+
+## Note 4 (Provider B): node-positive, radiation certain, Goldilocks bridge to delayed DIEP
+
+**Situation:** invasive ductal carcinoma with lobular features and LCIS, positive margins after excisional biopsy and re-excision, 5 of 6 nodes positive, staging CT showing only a seroma, genetics pending, medical oncology consultation pending; remote former smoker; moderate cup with ptosis, nipple displaced by tethered lumpectomy scar; abdominal pinch 4 cm; patient declines implants and prosthesis, values sensation, wants to keep the contralateral breast, wishes to avoid chemotherapy; plan is completion mastectomy with Goldilocks local tissue rearrangement, radiation, then delayed DIEP, with contralateral symmetry later.
+
+**Kept (good):** correct sequencing for certain radiation (autologous delayed, no implant); radiation stated as expected and patient agreement recorded; radiation effects on reconstruction explained in a reusable paragraph; patient values recorded in her words; flat closure and prosthesis offered and declined; abdominal pinch recorded; honesty that the full abdomen may be needed; CTA deferred until the flap is scheduled; photos taken; contralateral symmetry planned.
+
+**Problems, ranked:**
+1. Chemotherapy refusal recorded without framing: no statement that the decision belongs to medical oncology, that she was encouraged to keep the consultation, and that the reconstruction sequence does not depend on it.
+2. Axillary management (completion dissection versus axillary radiation) not mentioned despite 5 of 6 positive nodes; lymphedema not counseled.
+3. Staging CT not closed out with "no distant disease."
+4. No interval given for the delayed flap (6 months minimum after radiation, usually 6 to 12).
+5. Radiation effect on the Goldilocks tissue itself (shrinkage, fibrosis, possible need for a skin paddle) not stated.
+6. Sensation expectation not reconciled: nipple-sparing not possible and not stated as such; neurotization not offered.
+7. Typo reading as a contradiction: "quit 35 years ago and has smoked since."
+8. Patient's apprehension about mastectomy recorded without the oncologic recommendation and the reconstructive rationale that addresses it.
+9. No risk block for the index Goldilocks operation; only the DIEP education paragraph.
+10. No backup plans (inadequate local tissue, inadequate abdomen, severe radiation damage, wound complication before radiation).
+11. Genetics pending with contralateral preserved by preference; no statement that a positive result reopens the discussion; no contralateral surveillance imaging mentioned.
+12. Usual gaps: VTE score, medications, allergies, vitals, glycemic status, follow-up schedule, ABPS items.
+
+**Template written:** node-positive, radiation certain, delayed autologous with Goldilocks bridge (see chat, September 17, 2026).
+
+**Reusable language from this note:** the radiation-effects paragraph; the values sentence ("She tells me retaining sensation is very important to her"); the alternatives sentence ("I discussed that there are options for flat aesthetic closure and the use of an external prosthetic. She is not interested in these options."); the volume honesty sentence.
+
+---
+
+## Note 5 (Provider B): HER2-positive, node negative, immediate bilateral DIEP
+
+**Situation:** invasive ductal carcinoma with DCIS at 12 o'clock, ER/PR-negative, HER2-positive, clinically node-negative, tumor size not recorded; genetics negative with a second-degree family history; remote former smoker; one cesarean; small breast without ptosis on inspection but nipple-to-fold 12 to 12.5 cm recorded; wants own tissue and the same size; plan is bilateral mastectomy with immediate bilateral DIEP and a CT angiogram.
+
+**Kept (good):** alternatives offered and declined; education limited to the chosen option; CTA for the cesarean scar; PT and PTT; operative time, stay, recovery; bilateral measurements.
+
+**Problems, ranked:**
+1. HER2-positive disease planned to immediate surgery with no mention of HER2-directed therapy, tumor size, medical oncology, or the neoadjuvant-versus-adjuvant decision. Neoadjuvant chemotherapy with dual HER2 blockade is standard at cT2 or larger or node-positive, with surgery 4 to 8 weeks after; T1 N0 gets surgery first with adjuvant paclitaxel and trastuzumab within 30 to 60 days. "Chemotherapy between stage one and two" is wrong for this subtype and an 8-hour bilateral free flap threatens the adjuvant window.
+2. Tumor size absent; T stage unknown.
+3. No radiation contingency for a flap already in place (positive node means an irradiated DIEP).
+4. Nipple-sparing not discussed in the patient whose anatomy suits it best; tumor-to-nipple distance not recorded.
+5. Exam contradiction: nipple-to-fold 12 to 12.5 cm with "without ptosis" in a 36B.
+6. Bilateral flap volume asserted without pinch or an estimate against target volume.
+7. Contralateral prophylactic mastectomy not counseled.
+8. Usual gaps: adjuvant sentence, backup, general risks, VTE, medications, allergies, vitals, cardiac baseline for trastuzumab, follow-up, ABPS items.
+
+**Template written:** HER2-positive node-negative autologous plan with the sequencing conditional on tumor size (see chat, September 17, 2026).
+
+**New pattern category:** oncologic sequencing errors, not only documentation gaps. Subtype-specific therapy (HER2, triple negative) must be named in the assessment before a surgical date is set.
+
+---
+
+## Note 6 (Provider C): large ptotic breast, obese, aortic thrombus on rivaroxaban, recurrent MRSA, unilateral expander with contralateral reduction
+
+**Situation:** multicentric right breast disease (ER/PR-negative invasive ductal carcinoma at 6 o'clock plus ER/PR-positive DCIS in the lower outer quadrant), HER2 and tumor size and node status not in the note, MRI and genetics pending; recurrent MRSA; descending aortic thrombus on rivaroxaban; remote former smoker; BMI low-30s; G cup, notch-to-nipple 31 cm; vertical laparotomy scar without explanation; wants to be smaller, undecided on reconstruction type, interested in contralateral reduction; plan is expander with mesh, plane decided intraoperatively, flap deferred pending thrombosis-risk discussion.
+
+**Kept (good):** complete and specific implant and autologous risk lists including BIA-ALCL, BIA-SCC, BII, FDA guidance, MRI surveillance, gel-implant consent, recipient-vessel and vein-graft specifics; expectations paragraph with "no promise of exact symmetry"; three-circumstances nipple paragraph; thrombus history flagged as high risk for a flap with a plan to consult the treating physician; A1C under 8 as a pre-op requirement; anticoagulation clearance with start-stop instructions; expander plane stated as intraoperative; time, stay, recovery stated.
+
+**Problems, ranked:**
+1. Laterality contradiction: history says right mastectomy with left reduction; plan says bilateral expanders. Unilateral symmetry strategy against a large native breast not addressed.
+2. "No neoadjuvant chemotherapy, radiation not anticipated" asserted without HER2 status, tumor size, node status, or the oncologist's name; ER/PR-negative disease may be triple-negative, where neoadjuvant therapy is standard at cT1c or larger. Boilerplate "chemotherapy between stages" follows.
+3. Two lesions with different biology not reconciled as multicentric disease justifying mastectomy.
+4. Recurrent MRSA in an implant plan with no decolonization, prophylaxis, or explant threshold; obesity not named as an implant-failure risk.
+5. Nipple-sparing discussed generically for a non-candidate (SN-N 31 cm, G cup, inferior tumor).
+6. Skin-reducing mastectomy pattern for the large breast not discussed.
+7. Thrombus on anticoagulation without VTE score, bridging plan, or thrombophilia workup mention.
+8. Vertical laparotomy scar without surgical history.
+9. No radiation contingency for the expander; no expander backup plan; ptosis grade inconsistent with measurements.
+10. Usual gaps: blank vitals, medications and allergies beyond rivaroxaban, photos, ABPS consent, follow-up schedule, "Data reviewed" empty.
+
+**Template written:** unilateral expander with contralateral reduction in a hypercoagulable, MRSA-colonized, obese patient with subtype-driven sequencing conditional on HER2 (see chat, September 17, 2026).
+
+**Reusable language from this note:** both risk lists; the expectations paragraph; the three-circumstances nipple paragraph; "the expander can be placed above or below the pectoralis muscle; this is an intraoperative decision."
+
+**Style comparison, Provider C:** most complete consent and risk language of the three providers; still carries laterality and boilerplate contradictions, asserts oncologic sequencing without supporting facts, and leaves a major infection risk factor unaddressed.
+
+---
+
+## Note 7 (Provider C): node-positive after neoadjuvant chemo, radiation certain, thin, prior implants with contracture, delayed-immediate expander
+
+**Situation:** high-grade invasive ductal carcinoma, ER/PR-positive, HER2-negative, node-positive with nipple involvement, finishing neoadjuvant chemotherapy; radiation planned about 3 weeks after mastectomy; genetics negative with strong family history; never smoker; three cesareans, tubal ligation, two prior augmentations with grade II and grade III capsular contracture; BMI low-20s, minimal abdominal fat; resting pulse 112 and blood pressure 138/98 at the visit; bilateral mastectomy planned, undecided on reconstruction; plan is bilateral capsulectomy with expanders and mesh, surgery 4 to 6 weeks after chemotherapy.
+
+**Kept (good):** correct chemotherapy-to-surgery interval; radiation named as required with a specific paragraph on its effect on implants; prior implants and contracture grades documented; capsulectomy in the plan; autologous non-candidacy stated with a reason and patient understanding recorded; complete implant risk list, expectations paragraph, FDA guidance, gel-implant consent; expander plane as an intraoperative decision.
+
+**Problems, ranked:**
+1. Radiating an expander in a patient with grade III contracture history without documenting why latissimus with implant, thigh or gluteal flaps, or delayed reconstruction were rejected; "not a DIEP candidate" silently became "not an autologous candidate" with no thigh, gluteal, or back assessment; no failure figure quoted.
+2. Hedge contradicting the facts: "if radiation is recommended the plan will need to be re-evaluated" in a note that states radiation is required; the post-radiation plan (exchange or conversion no sooner than 6 months after radiation) is never stated.
+3. Nipple involvement positive but nipple management (removal, later reconstruction) never stated.
+4. "Chemotherapy between stage one and two" boilerplate in a patient who completed neoadjuvant chemotherapy.
+5. Radiation 3 weeks after surgery with no intraoperative fill plan, no agreed volume, no statement that fills stop at simulation.
+6. Tachycardia and hypertension during chemotherapy unaddressed; "plus or minus EKG"; no count recovery or cardiac evaluation plan.
+7. Pathologic response and its effect on the radiation decision not mentioned.
+8. Contralateral prophylactic mastectomy and contralateral explant not counseled separately.
+9. No backup plan (perfusion, infection during radiation, contracture after radiation).
+10. Usual gaps: medications, allergies, menopausal status, endocrine plan, VTE score, photos, ABPS consent, follow-up, data reviewed.
+
+**Template written:** delayed-immediate expander in a thin, contracture-prone, node-positive patient after neoadjuvant chemotherapy with alternatives documented (see chat, September 17, 2026).
+
+**Reusable language from this note:** the radiation-effect-on-implants paragraph (with numbers added); "Based on her physical exam, she is not a candidate for autologous reconstruction due to [reason]. She verbalized understanding."
+
+---
+
+## Note 8 (Provider C): DCIS, bilateral DIEP, strong nipple-sparing candidate, workup incomplete
+
+**Situation:** DCIS with outside records pending, grade and receptors not in the note, dense breasts, strong family history without genetic testing, medical oncology not yet seen, "no chemo or radiation anticipated per the breast surgeon"; BMI high-20s; C cup, grade I ptosis, notch-to-nipple 22 to 23 cm; wants same size with own tissue; plan is bilateral DIEP with nipple-sparing if oncologically acceptable, CT angiogram with protocol.
+
+**Kept (good):** oncologic deferral of the nipple decision; measurements and asymmetry noted; CTA with thin-cut protocol; complete autologous risk list and expectations paragraph; time, stay, recovery stated.
+
+**Problems, ranked:**
+1. Plan committed before records, genetics, imaging extent, and medical oncology exist; DCIS contingencies (sentinel node at mastectomy, about 1 in 5 upstaged, BRCA effect on contralateral) absent.
+2. Implant boilerplate in a flap note: implant risks, FDA guidance, MRI surveillance, vendor materials, and a gel-implant consent form documented for a patient receiving no implant.
+3. "Chemotherapy between stage one and two" in a DCIS patient with none anticipated.
+4. CTA justified by "previous abdominal surgical history" with no surgical history in the note.
+5. Size expectation ("fuller cup") contradicts the goal (same size) with no documented resolution and no pinch measurement.
+6. Nipple-sparing anatomically strong but DCIS extent, nipple distance, and MRI not recorded; "Data reviewed" is billing language.
+7. "Asymmetry to the sternal wall" is uninterpretable.
+8. Contralateral prophylactic mastectomy planned without counseling and before genetics.
+9. No adjuvant sentence with the upstaging contingency; no backup plan.
+10. Usual gaps: vitals, medications, allergies, VTE score, photos, ABPS consent, follow-up; stay and recovery figures inconsistent with the provider's other DIEP notes.
+
+**Template written:** DCIS bilateral DIEP with workup gating and nipple-sparing split into anatomic and oncologic (see chat, September 17, 2026).
+
+**Reusable language from this note:** "nipple sparing if acceptable from an oncologic standpoint" (as a deferral phrase); the CTA order protocol.
+
+---
+
+## Note 9 (Provider C): large DCIS, grade III pendulous breasts, bilateral DIEP with nipples removed, genetics pending
+
+**Situation:** DCIS grade 2, 5 cm extent, ER-positive; strong family history (mother diagnosed under 50), genetics pending; never smoker; BMI mid-20s; D cup, grade III pendulous, notch-to-nipple 32 and 29 cm; open appendectomy scar; wants DIEP and a smaller size; plan is bilateral DIEP with nipples removed, CT angiogram, A1C under 8 without a stated diabetes history.
+
+**Kept (good):** nipple removal recommended with the reason (degree of ptosis) and patient agreement; volume expectation explicit (D to about B, matching the goal); appendectomy scar tied to the CTA in one sentence; measurements, ptosis grade, "pendulous"; autologous risk list and expectations paragraph; CTA protocol.
+
+**Problems, ranked:**
+1. Free nipple graft not offered as the alternative to nipple removal; no documented reason for choosing removal.
+2. Skin envelope management for a grade III pendulous breast with a flap (Wise-pattern skin reduction with flap paddle versus skin-sparing with later mastopexy) not planned.
+3. Large DCIS treated as trivial: no sentinel node mention, no upstaging contingency (about 1 in 4 at this extent), no medical oncology, no radiation contingency; "chemotherapy between stages" boilerplate.
+4. Genetics pending with an early-onset maternal history; bilateral mastectomy planned without a sentence on how the result could change timing or counseling.
+5. Implant boilerplate and gel-implant consent in a flap note.
+6. A 3 cm notch-to-nipple asymmetry measured and ignored in the plan.
+7. A1C target without a documented diabetes diagnosis.
+8. Usual gaps: vitals, medications, allergies, pinch, VTE score, backup, photos, ABPS consent, follow-up, billing-language data review, inconsistent stay and recovery figures.
+
+**Template written:** large DCIS with pendulous breasts, bilateral DIEP, nipple removal versus free graft, skin pattern stated, genetics gating (see chat, September 17, 2026).
+
+**Reusable language from this note:** "Due to her degree of ptosis, I recommend the nipples be removed at the time of mastectomy. She agrees with this plan." (add the free-graft alternative and the reason).
+
+---
+
+## Recurring patterns across all notes reviewed (feed into the final template)
+
+- Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
+- Backup-plan and staging text copied between implant and flap templates without editing, producing contradictions.
+- Candidacy statements (nipple-sparing, direct-to-implant) asserted without the measurements or reasoning that support them.
+- No structured risk block, alternatives, or benefits; consent language lives only in the education text.
+- No adjuvant-therapy estimate or contingency; oncology team not named.
+- No perioperative safety block (VTE score, medications, nicotine status with date, BMI addressed, HbA1c where relevant).
+- No ABPS-specific items (photos, records consent, in-person pre-op visit, 30-day visit, 90-day photos).
+- Data reviewed section does not show the imaging and pathology were read.
+- Vitals incomplete (blood pressure blank).
+- Subtype-specific systemic therapy (HER2-positive, triple negative) not named; neoadjuvant-versus-adjuvant decision not documented before scheduling; tumor size sometimes absent.
+- Laterality and staging statements in the plan that contradict the history (bilateral vs unilateral).
+- Comorbidities recorded in the history but not converted into a plan (MRSA, anticoagulation, obesity, abnormal vitals during chemotherapy).
+- Alternatives rejected without a documented reason (autologous non-candidacy extended from the abdomen to all donor sites; delayed reconstruction not offered when radiation is certain).
+- Hedged sentences that contradict established facts ("if radiation is recommended" when it is planned).
+- Plans committed before pending records, genetics, imaging, or oncology consultation, with no statement of what is pending and what would change the plan.
+- Risk and consent language for a modality the patient is not receiving (implant consent in a flap note).
+- Inconsistent operative time, stay, and recovery figures for the same operation across notes.
+- Measured findings (asymmetry, contracture, scars) that never reach the plan.
+- Pre-op requirements without a documented indication (A1C target with no diabetes history).
+- Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
+
+## Rules for the final template (running list)
+
+1. Options in one paragraph, each with a reason it was or was not chosen, including no reconstruction and delayed reconstruction.
+2. One recommendation with the measurements and oncologic facts that justify it.
+3. Backup plan specific to that recommendation (perfusion failure, nipple ischemia, flap compromise, unexpected node or radiation).
+4. Risk block specific to the chosen pathway plus general risks, alternatives, and benefits, written so it can be highlighted as one block.
+5. Adjuvant-therapy sentence: "Adjuvant plan anticipated: [chemo], [radiation likely/unlikely, basis]; reconstruction sequenced accordingly; definitive stage no earlier than [date]."
+6. Safety line: ASA, Caprini number with the prophylaxis plan, nicotine status with quit date, BMI addressed, glycemic status where relevant, facility and accreditation, expected duration and stay.
+7. Coordination line naming the breast surgeon, medical oncology, radiation oncology when relevant, genetics when pending.
+8. Follow-up line with the in-person pre-op visit, immediate post-op visit, 30-day in-person visit, and 90-day photograph visit, each with a date.
+9. Closing line: photographs taken with consent; ABPS consent signed and witnessed; patient repeated the plan; questions answered; wishes to proceed.
+10. No sentence in the note may contradict the history, the exam, or another sentence in the plan. Delete education text for options that do not apply to the patient.
+
+## Template drafts to consolidate at the end
+
+### Draft A: implant-based, marginal nipple-sparing candidate, radiation unlikely
+(Assessment items: cancer and planned surgery with contralateral counseling; adjuvant estimate with contingency; candidacy by pathway with donor-site availability; nipple-sparing candidacy with measurements and elevated-risk statement; perioperative risk with Caprini. Plan: options with reasons; recommendation with plane, ADM, ICG, and intraoperative direct-to-implant decision rule; backup; risk block including FDA checklist; staging; safety; coordination; orders; follow-up; closing.)
+
+### Draft B: obese DCIS patient choosing autologous reconstruction
+(Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft I: large DCIS, pendulous grade III breasts, bilateral DIEP
+(Assessment items: DCIS with extent and the higher upstaging contingency; contralateral counseling contingent on genetics; adjuvant sentence; candidacy with pinch, volume to a smaller cup, nipple removal versus free graft with the reason, skin pattern chosen, asymmetry addressed; perioperative risk with diabetes status explicit. Plan: options including the nipple choice; recommendation gated on genetics and records; backups; autologous risk list with T-junction risk if skin-reducing; staging; safety; coordination; orders; follow-up; closing.)
+
+### Draft H: DCIS, bilateral DIEP, workup incomplete
+(Assessment items: DCIS with grade, receptors, extent, and nipple distance as pending fields; contralateral counseling contingent on genetics; adjuvant sentence with endocrine and upstaging contingencies; candidacy with pinch, volume estimate, and size expectation resolved; nipple-sparing anatomic versus oncologic; perioperative risk. Plan: options; recommendation gated on records, genetics, imaging; backups; autologous risk list only; staging; safety; coordination including genetics before scheduling; orders; follow-up; closing.)
+
+### Draft G: delayed-immediate expander, node-positive after neoadjuvant chemo, thin, prior contracture
+(Assessment items: cancer with nipple involvement, neoadjuvant completion date, prior implants and contracture grades, contralateral counseling; adjuvant sentence with radiation planned regardless of response; candidacy with all donor sites assessed, the failure and contracture figures, and the patient's documented choice among named alternatives; perioperative risk with count recovery and cardiac evaluation. Plan: options with rejected items and reasons; recommendation with intraoperative fill volume agreed with radiation oncology and the 6-month rule; backups including explant during radiation and conversion for contracture; Provider C risk list with radiation emphasis; safety gated on counts and cardiac workup; coordination including radiation oncology before surgery; orders; follow-up including radiation visits; closing.)
+
+### Draft F: unilateral expander with contralateral reduction, hypercoagulable, MRSA, obese, subtype pending
+(Assessment items: multicentric disease with both lesions and pending MRI and genetics; adjuvant sentence with the HER2-conditional neoadjuvant branch and the oncologist named; candidacy stating why unilateral autologous would match best and why the thrombus defers it, non-candidacy for nipple-sparing, skin-reducing pattern, donor scar; perioperative risk with Caprini, obesity, MRSA mitigation, HbA1c target, anticoagulation dates. Plan: options with the flap deferred; recommendation with plane and mesh and intraoperative decision rule; backups including explant threshold and conversion to flap; Provider C risk lists plus patient-specific items; safety with decolonization and bridging; coordination; orders; follow-up; closing.)
+
+### Draft E: HER2-positive, node negative, immediate bilateral DIEP
+(Assessment items: cancer with tumor size and tumor-to-nipple distance; adjuvant sentence with the neoadjuvant-versus-adjuvant branch, trastuzumab duration, cardiac baseline, and the positive-node radiation contingency; candidacy with pinch, volume estimate, and nipple-sparing split into anatomic and oncologic; perioperative risk. Plan: options; recommendation timed to systemic therapy; backups including protection of the adjuvant window; flap risk block with adjuvant-delay risk; staging around trastuzumab; safety; coordination with medical oncology before a date is set; orders including echocardiogram; follow-up; closing.)
+
+### Draft D: node-positive, radiation certain, Goldilocks bridge to delayed DIEP
+(Assessment items: cancer with margins, nodes, staging closed out, and the oncologic recommendation; adjuvant estimate with the chemotherapy refusal framed and axillary management named; candidacy stating why nipple-sparing and immediate implants are out and why delayed DIEP is in, with pinch and volume honesty; bridge plan with radiation effect on the local tissue; perioperative risk. Plan: options with declined items; recommendation with the dated sequence, neurotization offer, and contralateral symmetry; backups; index-operation and delayed-flap risk blocks; safety; coordination including medical and radiation oncology and genetics; orders; follow-up including radiation-midpoint visits; closing.)
+
+### Draft C: small breast, normal BMI, undecided patient electing DIEP, nipple-sparing borderline
+(Assessment items: cancer with contralateral counseling and prior contralateral surgery; adjuvant estimate; nipple-sparing candidacy split into anatomic and oncologic with the decision deferred; reconstruction candidacy with the bridging sentence, pinch measurements, and flap-volume estimate; perioperative risk. Plan: options with flat closure declined; recommendation with mastectomy type contingent on the breast surgeon; CTA-driven and intraoperative backups; flap risk block; staging; safety; coordination including genetics; orders with CTA protocol; follow-up; closing.)
+
+Full text of all drafts is in the chat transcript of September 17, 2026 and will be consolidated into the final template document once all notes are reviewed.
+
+## Practice defaults confirmed by the user (September 17, 2026)
+
+- Bilateral DIEP: 6 to 8 hours, at least 2 inpatient nights, 6 to 8 weeks to full activity (providers A and B say 6 to 8 weeks; provider C says 4 to 6; use 6 to 8 for consistency with the evidence).
+- Expander plane: intraoperative decision. Factors to document: mastectomy flap thickness and quality; ICG perfusion of flaps and nipple (about 25 to 30 percent of reference as the excision or downgrade line if a threshold is used); area of poorly perfused skin needing excision; pectoralis integrity; breast size, ptosis, and expected implant volume; anticipated radiation; BMI, nicotine, diabetes, prior radiation. Good flaps favor prepectoral with mesh; thin or marginal flaps favor subpectoral, lower fill, or deflated expander or delay.
+- Risks listed in every note where a surgical plan is offered.
+- A1C only for diabetic patients.
+- Open: whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default skin plan for grade III breasts).
+- No further colleague notes to review; nine notes across three providers are logged.
+

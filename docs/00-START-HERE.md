@@ -1,6 +1,6 @@
 # ABPS Oral Boards Prep: Handoff and Summary
 
-**Last updated:** September 17, 2026. Continue from here in Claude Code desktop.
+**Last updated:** September 17, 2026 (evening). Continue from here in Claude Code desktop.
 **Branch:** `claude/plastic-surgery-boards-checklist-du429b` (all work committed and pushed).
 
 ## Who and what
@@ -17,7 +17,10 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Concerns-Assessment.md` | The six concerns your questions revealed, each rated for real risk, with the fix and a priority order. Read this second. |
 | `ABPS-Oral-Boards-Compliance-Protocol.md` | The master protocol. Part A: every ABPS requirement and date. Part B: per-patient checklist. Part C: clinic note standard. Part D: evidence-based timing and optimization thresholds. Part E: cadence. |
 | `Breast-Reconstruction-Consult-Kit.md` | Clinic kit: chart review, scribe brief, in-room flow, measured exam, decision framework, risk language, scribe-ready template, sign-off check (Sections 1 to 9); chemo and radiation prediction model and what to change when radiation is coming (Section 10); autologous versus implant evidence with MROC and MSKCC numbers (Section 11); nipple-sparing mastectomy with immediate DIEP in a ptotic breast, including the grade 3 plan without staged mastopexy or nipple delay (Section 12 and 12a); Caprini quick reference (Section 13). |
-| `ABPS-Boards-Prep-Complete.md` | All of the above concatenated into one file for reading or sending. Regenerated September 17, 2026. |
+| `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
+| `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
+| `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `ABPS-Boards-Prep-Complete.md` | All markdown files concatenated into one for reading or sending. Regenerated September 17, 2026 (evening). |
 
 Published pages (private, checkboxes save per browser):
 - Protocol page: https://claude.ai/artifact/F6VVvajeUBdLN5vbPqDegf
@@ -43,17 +46,23 @@ Published pages (private, checkboxes save per browser):
 - Autologous versus implant: failure with radiation 18.7 versus 1.0 percent (MROC); DIEP total loss under 2 percent; radiated implant contracture 15 to 50 percent; autologous satisfaction higher at every time point over 8 years.
 - Ptotic NSM with DIEP and no staged mastopexy or nipple delay: lateral inframammary incision, buried DIEP, nipple left in place with ICG-guided fallback to free graft or excision, mastopexy at 3 to 6 months.
 - Caprini: not a Board requirement, but score every sedation or general anesthesia patient with the plan attached; breast reconstruction patients start at 4.
+- Practice defaults: bilateral DIEP 6 to 8 hours, at least 2 nights, 6 to 8 weeks recovery; expander plane decided intraoperatively on flap thickness, ICG perfusion, pectoralis integrity, breast size, expected radiation, and patient risk factors; risks listed in every note with a plan; A1C only for diabetics.
+- The colleague notes shared five failure patterns worth remembering: template text contradicting the history, boilerplate "chemotherapy between stages" in flap and neoadjuvant plans, no adjuvant estimate or oncologist named, no risk block or alternatives, and comorbidities recorded but never converted into a plan.
 - Nicotine 4 weeks before and after; HbA1c under 8; mammogram at 40+ before elective breast surgery; FDA implant checklist; 5 L liposuction and 6-hour office OR limits.
 
 ## Where we stopped
 
-Clinic day, September 17, 2026. The plan for the grade 3 ptotic nipple-sparing DIEP patient is decided (Section 12a of the kit). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
+Evening of September 17, 2026. Nine colleague notes were reviewed and logged, the user supplied five sentences in their own voice, and the consolidated template was written around them (`Consult-Template-Final.md`). The user has read the template and approved it ("looks good"). The patient-by-patient review with pre-filled notes has not happened yet. Agreed workflow when it does:
 - Send patients as Patient 1 to 4 with initials only; no names, DOB, MRN, or exact dates.
 - Per patient: one-line summary and breast surgeon's plan; pathology and receptors; imaging with tumor-to-nipple distance; genetics; systemic therapy status and dates; radiation status; tumor board note; risk factors; patient goals.
 - Return per patient: pre-filled note in the kit's template, questions still to ask, exam findings that decide the plan, draft assessment and plan with recommendation, backup, and risk block, and a board note if relevant.
 - **Do not commit patient-specific content to the repo.**
 
 ## Open items
+
+- Template placeholders only the user can fill: operative time for an expander or direct-to-implant case (placeholder 3 to 4 hours); whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default in module M3).
+- Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
+- Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
 
 - Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
 - Update the practice photo consent with the ABPS language (should be done before the first clinic).
@@ -67,4 +76,4 @@ Clinic day, September 17, 2026. The plan for the grade 3 ptotic nipple-sparing D
 git fetch origin claude/plastic-surgery-boards-checklist-du429b
 git checkout claude/plastic-surgery-boards-checklist-du429b
 ```
-Open Claude Code in the repo and say: "Read docs/00-START-HERE.md and docs/Concerns-Assessment.md, then continue." The root `CLAUDE.md` points here automatically.
+Open Claude Code in the repo and say: "Read docs/00-START-HERE.md, docs/Concerns-Assessment.md, and docs/Consult-Template-Final.md, then continue." The root `CLAUDE.md` points here automatically.
