@@ -1,6 +1,6 @@
 # ABPS Boards Prep: Complete Reference (single file)
 
-Regenerated September 17, 2026 (evening, v1.1 template). Order: handoff, concerns assessment, consult template, protocol, consult kit, oncology timing algorithm, note review log. The source files remain authoritative.
+Regenerated September 17, 2026 (night). Order: handoff, clinic workflow, concerns assessment, consult template, interview and exam reminders, protocol, consult kit, oncology timing algorithm, note review log. The source files remain authoritative.
 
 ---
 
@@ -26,6 +26,7 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
 | `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
 | `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `Clinic-Workflow.md` and `Interview-Exam-Reminders.md` | Laptop workflow: four Claude Code commands (`/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`) in `.claude/skills/`, local gitignored `patients/` folder, and the reminder reference the commands read. |
 | `ABPS-Boards-Prep-Complete.md` | All markdown files concatenated into one for reading or sending. Regenerated September 17, 2026 (evening). |
 
 Published pages (private, checkboxes save per browser):
@@ -68,6 +69,7 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 
 - Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
 - Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
+- Set up the laptop workflow per `docs/Clinic-Workflow.md`; Patients 1 and 2 briefs from September 17 exist only in the web chat and should be re-run locally with `/patient-brief`.
 
 - Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
 - Update the practice photo consent with the ABPS language (should be done before the first clinic).
@@ -82,6 +84,70 @@ git fetch origin claude/plastic-surgery-boards-checklist-du429b
 git checkout claude/plastic-surgery-boards-checklist-du429b
 ```
 Open Claude Code in the repo and say: "Read docs/00-START-HERE.md, docs/Concerns-Assessment.md, and docs/Consult-Template-Final.md, then continue." The root `CLAUDE.md` points here automatically.
+
+---
+
+# Clinic Workflow on Your Laptop
+
+Claude Code desktop open on one half of the screen, the EMR on the other. Four commands carry a patient from referral to signed note. Patient files live in `patients/` inside this repo folder on your laptop, which is gitignored and never leaves your machine.
+
+## One-time setup (5 minutes)
+
+1. Install Claude Code desktop and sign in.
+2. Clone this repository to your laptop and check out the branch:
+   ```
+   git clone <repo url>
+   cd TSIALL-Mockup
+   git checkout claude/plastic-surgery-boards-checklist-du429b
+   ```
+3. Open the folder in Claude Code desktop. The root `CLAUDE.md` loads the rules and the four commands appear when you type `/`.
+4. Confirm `patients/` is listed in `.gitignore` (it is). Never run `git add patients`.
+
+## The four commands
+
+| When | Command | What you paste | What you get |
+|---|---|---|---|
+| Night before or between patients | `/patient-brief` | The referral history, de-identified (initials, no DOB or MRN) | A brief, the predicted chemo and radiation plan, which options fit, a provisional recommendation with backup, numbered questions to ask, the exam numbers to record, red flags, the template modules you will need, and the board note. Saved to `patients/P-XX-date.md`. |
+| In the room or right after | `/patient-update P-XX` | Interview answers, exam numbers, the patient's stated goals, anything new | A dated update: what changed, what it does to the plan, the revised recommendation, questions still open. The file keeps every version. |
+| Any later day | `/patient-update P-XX` | New pathology, oncology decision, a changed wish, a complication | Same. Use it every time the situation changes, through every stage. |
+| At your desk writing the note | `/note-draft P-XX` | Nothing, or last-minute facts | The full assessment and plan in your voice inside one code block, ready to copy into the EMR, plus a list of blanks to fill. |
+| Before signing | `/note-check P-XX` | The finished note text from the EMR | Contradictions quoted, board risks, missing paragraphs, style drift, then "Did you discuss..." questions, then corrected paragraphs only. |
+
+## A clinic day
+
+**Night before.** For each new patient, paste the referral into `/patient-brief`. Read the brief on your phone or laptop in the morning. Ten minutes for four patients.
+
+**In the room.** Keep the brief open beside the EMR. Ask the numbered questions in order; dictate exam findings as numbers to the scribe. Say "for the record" before the options, the risks, and the patient's goals so the scribe captures them verbatim.
+
+**Between patients, 60 seconds.** Paste the answers and measurements into `/patient-update`. The recommendation revises itself and the questions you skipped stay listed.
+
+**At your desk.** Run `/note-draft`. Copy the code block into the EMR assessment and plan. Fill the blanks from the scribe's note. Delete any module that did not apply.
+
+**Before signing.** Copy the whole note out of the EMR and paste it into `/note-check`. Fix what it quotes. Answer its "Did you discuss" questions honestly: if you did not discuss it, either add it at the pre-op visit and document it then, or leave it out. Sign within 24 hours.
+
+**Pre-op visit, post-op visits, radiation, exchange.** Each visit is a `/patient-update`. When the case is selected for the Board, the file is the timeline you will need for the narrative summary.
+
+## What the files look like
+
+```
+patients/
+  P-AB-20260917.md     one file per patient, dated sections appended over time
+  P-CD-20260917.md
+```
+
+Each file: Brief, Predicted oncology plan, Options, Provisional recommendation (revised dates), Questions, Exam to record, Watch for, Modules, Board note, then `## Update`, `## Note draft`, `## Note check` sections in the order they happened.
+
+## Privacy rules
+
+- Initials only in file names and headings. If a pasted history contains a name, the commands will not carry it into the file name; you should still strip names before pasting when practical.
+- The `patients/` folder is excluded from git and stays on the laptop. Back it up with your other local clinical files, not through the repository.
+- Do not paste patient content into the shared web session; use the desktop app on the laptop.
+
+## Keeping the system current
+
+- Template changes go in `docs/Consult-Template-Final.md`; the commands read it live, so an edit applies to the next note.
+- New reminders go in `docs/Interview-Exam-Reminders.md`.
+- New evidence or thresholds go in the consult kit or the protocol; the update command cites them.
 
 ---
 
@@ -338,6 +404,57 @@ I explained that matching a single reconstructed breast to her native breast is 
 ## Part 7. Sign-off consistency check
 
 Before signing, confirm that the laterality, the mastectomy type, the nipple decision, the reconstruction type, and the staging are the same in the history, the exam, the assessment, and every paragraph of the plan; that every option set aside has a reason; that the adjuvant sentence names the oncologists and the basis for the radiation estimate; that the Caprini score is a number with a plan; that the risk sentence matches the chosen pathway; that no education or consent text remains for a modality the patient is not receiving; and that the three visits (preoperative in person, within 30 days, 90-day photographs) carry dates.
+
+---
+
+# Interview and Exam Reminders (reference read by the clinic skills)
+
+## Always ask
+- Why mastectomy, and unilateral or bilateral; who recommended it.
+- Oncologic timeline with dates: chemotherapy given or planned and last cycle; radiation planned, possible, or done; endocrine or targeted therapy; medical and radiation oncologist names; tumor board recommendation.
+- Menopausal status and hormone use.
+- Cup size now and desired size.
+- Priorities in the patient's words: own tissue or implants, one operation or staged, recovery time, sensation, donor scars, keeping the other breast.
+- Family history and genetics: tested, pending, or not done; result and whether it was explained as actionable.
+- Nicotine in every form with quit date; diabetes and last HbA1c; VTE or clotting history; anticoagulants; steroids; autoimmune disease; MRSA history; prior radiation; sleep apnea; anesthesia problems; medications; allergies.
+- Prior breast surgery or biopsies, especially near the nipple; prior abdominal surgery, liposuction, or abdominoplasty.
+- Weight history and stability; work and caregiving constraints; who is helping at home.
+- Whether anyone has explained sentinel node biopsy and the chance of upstaging (DCIS) or the chance of a positive node changing the plan.
+
+## Always mention
+- Every option including no reconstruction with flat closure or prosthesis and delayed reconstruction, with a reason each was or was not chosen.
+- One recommendation with the facts behind it, and the backup plan.
+- The risk list for the chosen pathway, alternatives, benefits, and that exact symmetry is not promised.
+- The radiation contingency and the 6-month rule; the adjuvant chemotherapy window of 30 to 60 days if chemotherapy may follow surgery.
+- The three visits: in-person pre-op at least the day before surgery, in-person within 30 days, 90-day photographs.
+- Photographs with consent and the ABPS records consent.
+
+## Look out for
+- Subtype that gets chemotherapy first (triple negative at cT1c or larger, HER2-positive at cT2 or larger) arriving without oncology input.
+- Node-positive or T3 disease where radiation is certain and an implant is being requested.
+- Retroareolar or nipple-involving disease, positive margins, or prior periareolar surgery when nipple-sparing is expected.
+- Grade III ptosis or SN-N over 26 cm when nipple-sparing is expected.
+- Prior abdominoplasty or extensive liposuction when a DIEP is expected.
+- BMI over 30 with an implant request; BMI over 35 to 40 with any elective plan.
+- Current nicotine use; HbA1c over 8; thrombotic history; anticoagulation; MRSA.
+- Pending genetics with a bilateral plan; pending records or imaging with a surgical date already set.
+- Abnormal vitals at the visit (blood pressure, pulse) especially during chemotherapy.
+- Patient declining recommended systemic therapy.
+
+## Exam, recorded as numbers
+- Height, weight, BMI, blood pressure, pulse.
+- Each breast: SN-N, N-IMF on stretch, base width, breast height, cup and volume estimate, ptosis grade, nipple position relative to fold, asymmetry.
+- Skin: quality, striae, scars with location and pattern, biopsy site, radiation change, pinch thickness.
+- Tumor: palpable or not, size, clock position, distance from nipple, tethering, dimpling, erythema, nipple inversion or discharge.
+- Nipple-areola: diameter, position, sensation, prior surgery.
+- Nodes: axillary, supraclavicular, infraclavicular.
+- Chest wall: pectoralis integrity, pectus, sternum, port.
+- Existing implants: size, type, plane, year, capsular contracture grade.
+- Abdomen: pinch above and below the umbilicus, laxity, pannus, diastasis width, hernia, umbilicus, every scar and its relation to the lower abdominal flap.
+- Thighs and buttocks: pinch and laxity if the abdomen is thin.
+- Back: latissimus function on resisted adduction, scars.
+- Vascular: radial and dorsalis pedis pulses, capillary refill, edema, varicosities.
+- Upper extremity: lymphedema, shoulder range of motion.
 
 ---
 
