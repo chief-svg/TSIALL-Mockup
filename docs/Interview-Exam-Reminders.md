@@ -58,7 +58,7 @@
 
 ## Exam, recorded as numbers
 - Height, weight, BMI, blood pressure, pulse.
-- Each breast: SN-N, N-IMF on stretch, base width, breast height, cup and volume estimate, ptosis grade, nipple position relative to fold, asymmetry.
+- Each breast: SN-N, SN to the inframammary fold (Pitanguy point), N-IMF on stretch, base width, breast height, cup and volume estimate, ptosis grade, nipple position relative to fold, asymmetry, nipple eversion or inversion, palpable masses in breast and axilla.
 - Skin: quality, striae, scars with location and pattern, biopsy site, radiation change, pinch thickness.
 - Tumor: palpable or not, size, clock position, distance from nipple, tethering, dimpling, erythema, nipple inversion or discharge.
 - Nipple-areola: diameter, position, sensation, prior surgery.

@@ -296,3 +296,28 @@ Full text of all drafts is in the chat transcript of September 17, 2026 and will
 - Expander or direct-to-implant case: 3 to 4 hours, 23-hour observation, 4 to 6 weeks.
 - Grade III breast with a flap: the Wise-pattern versus skin-sparing decision is discussed with the breast surgeon case by case (module M3 presents both).
 - No further colleague notes to review; nine notes across three providers are logged.
+
+---
+
+## Provider D: procedure templates (reviewed September 18, 2026)
+
+A colleague who used these templates for his own oral boards shared his note templates (exam block; general reconstruction opening; mastectomy and nipple-sparing counseling; general options; implant assessment and plan; immediate DIEP assessment and plan; oncoplastic reduction; breast reduction with free nipple graft; mastopexy-augmentation; abdominoplasty). De-identified here; one template carried a patient name, which was not retained.
+
+**What was adopted (now modules M14 to M17 and additions to the Part 5 risk lists and the exam reminders).**
+- The opening: diagnosis, anticipated treatment, goals, in the context of the history; reconstruction is elective; the goal is to replace volume with a device or living tissue; each option compared on the initial operation, sites and scars, secondary operations, maintenance, stay, recovery, benefits, and complications.
+- Mastectomy counseling: all identifiable breast tissue is removed but some cells remain, so risk is reduced, not eliminated; nipple-sparing leaves ductal tissue behind the nipple and is oncologically valid in appropriate patients with eligibility resting with the breast surgeon; the alternative of skin-sparing with nipple reconstruction or tattoo; inframammary versus oblique or transverse scar; pigmentation loss and sensation change; continued surveillance of the nipple-areola complex.
+- DIEP explanation: the ellipse between umbilicus and pubis, perforators followed through the rectus, preservation of muscle, fascia, and motor nerves, conversion to muscle-sparing TRAM with mesh if needed, CT angiogram for candidacy and planning, internal mammary recipients, thrombosis requiring emergent return for salvage, rare total loss, inpatient monitoring, scar pattern visible without clothing, monitoring skin island, abdominal closure and its difference from abdominoplasty, possible umbilectomy with neoumbilicoplasty at revision.
+- Implant explanation: expander versus direct implant decided in the operating room on skin flaps and pocket with ICG; rare abandonment to delayed reconstruction; serial expansions; saline versus silicone chosen; acellular dermal matrix as off-label with its own risks named; FDA screening of silicone implants at 5 to 6 years and every 2 to 3 years; secondary procedures named.
+- Risk lists gained: damage to adjacent vessels, nerves, muscles, and viscera of chest and abdomen; sensation change of chest and abdomen; contour irregularity at the donor site; loss of pigmentation; rippling and palpability with prepectoral placement; ADM-specific risks.
+- Exam: SN to the inframammary fold (Pitanguy point) alongside SN-N, N-IMF, and base width; nipple eversion; masses in breast and axilla.
+
+**What was not adopted, and why.**
+- "We use a co-surgeon model in our group." For the Board, a case with another plastic surgeon counts only if the candidate is surgeon of record with a separate operative report, did the preoperative assessment, made the final decision, and provided all postoperative care, and it must be flagged as a co-surgeon case with the whole procedure's duration. If a second plastic surgeon raises the flaps, the note must say who is the surgeon of record and the Case Log must be flagged. The user's practice line stays: the breast surgeon is a non-plastic co-surgeon, not flagged.
+- "If adjuvant therapy is needed, she will complete that between stage one and two." This is the same pattern flagged in Providers A to C; adjuvant therapy starts within 30 to 60 days of stage one and revisions wait for it. Rewritten in paragraph F.
+- "2-3 day hospital stay." The user's fixed line is at least 2 inpatient nights.
+- "Ideal anatomic candidate for nipple-sparing" with no measurements in the paragraph. Candidacy is stated with SN-N, N-IMF, and ptosis grade.
+- "Caprini score is 3 (low risk for VTE)." A score of 3 to 4 is moderate risk in the 2005 model; the note states the number and the prophylaxis plan without a label that understates it.
+- "She expresses full understanding" and "She understands these points." Converted to the user's sentence: "Patient verbalized understanding."
+- "I did tell her" and "I did discuss" openings. Converted to "I explained."
+- Long implant education inside a flap note. Modules are inserted only for the modality the patient is receiving.
+

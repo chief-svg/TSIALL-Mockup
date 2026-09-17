@@ -24,7 +24,7 @@ The history may arrive as the argument on the same line as the command or in the
    - **Questions to ask**: at most 12, numbered, ordered by how much each answer changes the plan, specific to this patient, drawn from the reminders file; omit anything already answered.
    - **Exam to record**: the measurements that decide this patient's plan.
    - **Watch for**: the red flags from the reminders file that apply.
-   - **Modules likely needed**: list template module ids (M1 to M13) that will apply.
+   - **Modules likely needed**: list template module ids (M1 to M17) that will apply; M14 and M15 apply to every mastectomy note, M16 to autologous notes, M17 to implant notes.
    - **Board note**: the Case Log fields from template Part 8 for this patient, each on one line: anesthesia type; admission status (overnight or 23-hour observation is inpatient); planned procedure in words with "free flap" or "microsurgical" where it applies; planned CPT codes with modifiers (bilateral as one code with -50) and estimated skin-to-skin duration of the plastic portion; Anatomy Breast, Category General Reconstructive; breast surgeon case entered but not flagged as co-surgeon; stages expected inside July 1, 2026 to March 31, 2027 (three per patient count); intraoperative photographs to take for each site and side; imaging to keep with dates; research protocol yes or no; modeling software yes or no.
 6. Print the brief in chat exactly as written to the file, then say the file path. No preamble about tasks or tracking.
 
