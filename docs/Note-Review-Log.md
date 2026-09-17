@@ -286,3 +286,12 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 (Assessment items: cancer with contralateral counseling and prior contralateral surgery; adjuvant estimate; nipple-sparing candidacy split into anatomic and oncologic with the decision deferred; reconstruction candidacy with the bridging sentence, pinch measurements, and flap-volume estimate; perioperative risk. Plan: options with flat closure declined; recommendation with mastectomy type contingent on the breast surgeon; CTA-driven and intraoperative backups; flap risk block; staging; safety; coordination including genetics; orders with CTA protocol; follow-up; closing.)
 
 Full text of all drafts is in the chat transcript of September 17, 2026 and will be consolidated into the final template document once all notes are reviewed.
+
+## Practice defaults confirmed by the user (September 17, 2026)
+
+- Bilateral DIEP: 6 to 8 hours, at least 2 inpatient nights, 6 to 8 weeks to full activity (providers A and B say 6 to 8 weeks; provider C says 4 to 6; use 6 to 8 for consistency with the evidence).
+- Expander plane: intraoperative decision. Factors to document: mastectomy flap thickness and quality; ICG perfusion of flaps and nipple (about 25 to 30 percent of reference as the excision or downgrade line if a threshold is used); area of poorly perfused skin needing excision; pectoralis integrity; breast size, ptosis, and expected implant volume; anticipated radiation; BMI, nicotine, diabetes, prior radiation. Good flaps favor prepectoral with mesh; thin or marginal flaps favor subpectoral, lower fill, or deflated expander or delay.
+- Risks listed in every note where a surgical plan is offered.
+- A1C only for diabetic patients.
+- Open: whether the breast surgeons perform Wise-pattern skin-reducing mastectomies (sets the default skin plan for grade III breasts).
+- No further colleague notes to review; nine notes across three providers are logged.
