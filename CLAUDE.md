@@ -9,6 +9,8 @@ Rules for boards work:
 - Keep the two detailed docs as the source of truth: `docs/ABPS-Oral-Boards-Compliance-Protocol.md` and `docs/Breast-Reconstruction-Consult-Kit.md`.
 
 Clinic workflow (Claude Code desktop, laptop):
-- Four commands: `/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`. Their instructions are in `.claude/skills/`. Guide: `docs/Clinic-Workflow.md`.
+- Read `docs/STANDING-INSTRUCTIONS.md` at the start of any session that touches patient notes; it is the contract for outputs, voice, evidence, and privacy.
+- Five commands: `/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`, `/patient-package`. Their instructions are in `.claude/skills/`. Guide: `docs/Clinic-Workflow.md`.
+- If the user pastes a patient history with no command, treat it as `/patient-brief`. If the user asks for "the package," "the PDFs," or "the summary and the note," run `/patient-package`.
 - Patient working files live in `patients/` (gitignored). Never stage, commit, or push anything under `patients/`. Use initials only in file names and headings.
 - The note template is `docs/Consult-Template-Final.md`; reminders are `docs/Interview-Exam-Reminders.md`.

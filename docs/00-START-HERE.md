@@ -20,6 +20,9 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
 | `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
 | `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `STANDING-INSTRUCTIONS.md` | The contract for any new session: outputs, two-document format, voice rules with the five anchor sentences, fixed practice lines, ABPS rules, evidence, failure patterns, privacy. Read first. |
+| `Portable-Context-Pack.md` | Standing instructions plus template, reminders, and evidence in one file to paste into a chat session without file access. |
+| `Global-CLAUDE-snippet.md` | Block to paste into `~/.claude/CLAUDE.md` on the laptop so every session knows the workflow. |
 | `Clinic-Workflow.md` and `Interview-Exam-Reminders.md` | Laptop workflow: four Claude Code commands (`/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`) in `.claude/skills/`, local gitignored `patients/` folder, and the reminder reference the commands read. |
 | `ABPS-Boards-Prep-Complete.md` | All markdown files concatenated into one for reading or sending. Regenerated September 17, 2026 (evening). |
 
@@ -77,4 +80,4 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 git fetch origin claude/plastic-surgery-boards-checklist-du429b
 git checkout claude/plastic-surgery-boards-checklist-du429b
 ```
-Open Claude Code in the repo and say: "Read docs/00-START-HERE.md, docs/Concerns-Assessment.md, and docs/Consult-Template-Final.md, then continue." The root `CLAUDE.md` points here automatically.
+Open Claude Code in the repo and say: "Read docs/STANDING-INSTRUCTIONS.md and docs/00-START-HERE.md, then continue." Laptop status as of September 17, 2026: repository cloned, branch checked out, login working, `/patient-brief` tested on Patient 1; Patients 1 and 2 also have Summary and Consult Note PDFs built in the web session (not in the repository). The root `CLAUDE.md` points here automatically.

@@ -14,7 +14,7 @@ Claude Code desktop open on one half of the screen, the EMR on the other. Four c
 3. Open the folder in Claude Code desktop. The root `CLAUDE.md` loads the rules and the four commands appear when you type `/`.
 4. Confirm `patients/` is listed in `.gitignore` (it is). Never run `git add patients`.
 
-## The four commands
+## The five commands
 
 | When | Command | What you paste | What you get |
 |---|---|---|---|
@@ -22,6 +22,7 @@ Claude Code desktop open on one half of the screen, the EMR on the other. Four c
 | In the room or right after | `/patient-update P-XX` | Interview answers, exam numbers, the patient's stated goals, anything new | A dated update: what changed, what it does to the plan, the revised recommendation, questions still open. The file keeps every version. |
 | Any later day | `/patient-update P-XX` | New pathology, oncology decision, a changed wish, a complication | Same. Use it every time the situation changes, through every stage. |
 | At your desk writing the note | `/note-draft P-XX` | Nothing, or last-minute facts | The full assessment and plan in your voice inside one code block, ready to copy into the EMR, plus a list of blanks to fill. |
+| Any time, or as the backup path | `/patient-package P-XX` (or paste a history) | Nothing, or the history | Two files in `patients/`: `P-XX-Summary` (summary, what it means, questions, what to document, two plans, board note) and `P-XX-Consult-Note` (the note in ten copy-paste sections with add-if-discussed cues beside the assessment and plan), as HTML that opens in the browser and as PDF when Chrome is installed. |
 | Before signing | `/note-check P-XX` | The finished note text from the EMR | Contradictions quoted, board risks, missing paragraphs, style drift, then "Did you discuss..." questions, then corrected paragraphs only. |
 
 ## A clinic day
@@ -47,6 +48,10 @@ patients/
 ```
 
 Each file: Brief, Predicted oncology plan, Options, Provisional recommendation (revised dates), Questions, Exam to record, Watch for, Modules, Board note, then `## Update`, `## Note draft`, `## Note check` sections in the order they happened.
+
+## Backup path when Claude Code is not available
+
+Open a chat session, paste `docs/Portable-Context-Pack.md` (about 15,000 words: standing instructions, template, reminders, evidence), then paste the patient history and ask for the summary and the note. The output matches what the commands produce; save it yourself, initials only.
 
 ## Privacy rules
 
