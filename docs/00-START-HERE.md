@@ -20,6 +20,7 @@ The certifying body is the **American Board of Plastic Surgery (ABPS)**, not ASP
 | `Oncology-Timing-Algorithm.md` | Mermaid flowcharts and timelines: subtype to reconstruction, radiation decision tree, four calendar pathways, option-by-radiation matrix, waiting intervals, counseling lines. Published page: https://claude.ai/artifact/ANsVZbRpEoWBsg9fzhCMy6 |
 | `Note-Review-Log.md` | De-identified reviews of nine colleague consult notes (Providers A, B, C), reusable language, fourteen recurring failure patterns, ten template rules, and the practice defaults the user confirmed. |
 | `Consult-Template-Final.md` and `.pdf` | The consolidated assessment-and-plan template in the user's voice: style rules, fixed lines, assessment block, eleven plan paragraphs, three risk lists, thirteen modules, sign-off check. Published page: https://claude.ai/artifact/LNb9JXD6C6zkEXxwuwUMxh |
+| `Clinic-Workflow.md` and `Interview-Exam-Reminders.md` | Laptop workflow: four Claude Code commands (`/patient-brief`, `/patient-update`, `/note-draft`, `/note-check`) in `.claude/skills/`, local gitignored `patients/` folder, and the reminder reference the commands read. |
 | `ABPS-Boards-Prep-Complete.md` | All markdown files concatenated into one for reading or sending. Regenerated September 17, 2026 (evening). |
 
 Published pages (private, checkboxes save per browser):
@@ -62,6 +63,7 @@ Evening of September 17, 2026. Nine colleague notes were reviewed and logged, th
 
 - Any template paragraph the user wants re-voiced: quote it and rewrite; conform the rest to the seven style rules in Part 1.
 - Load the template into the practice's scribe system; run the sign-off check (Part 7) on the first five notes.
+- Set up the laptop workflow per `docs/Clinic-Workflow.md`; Patients 1 and 2 briefs from September 17 exist only in the web chat and should be re-run locally with `/patient-brief`.
 
 - Email oral@abplasticsurgery.org: 2026-2027 fee schedule, whether an employer start-date letter is wanted with the case list, case report webinar link.
 - Update the practice photo consent with the ABPS language (should be done before the first clinic).
