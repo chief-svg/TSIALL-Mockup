@@ -150,6 +150,30 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ---
 
+## Note 7 (Provider C): node-positive after neoadjuvant chemo, radiation certain, thin, prior implants with contracture, delayed-immediate expander
+
+**Situation:** high-grade invasive ductal carcinoma, ER/PR-positive, HER2-negative, node-positive with nipple involvement, finishing neoadjuvant chemotherapy; radiation planned about 3 weeks after mastectomy; genetics negative with strong family history; never smoker; three cesareans, tubal ligation, two prior augmentations with grade II and grade III capsular contracture; BMI low-20s, minimal abdominal fat; resting pulse 112 and blood pressure 138/98 at the visit; bilateral mastectomy planned, undecided on reconstruction; plan is bilateral capsulectomy with expanders and mesh, surgery 4 to 6 weeks after chemotherapy.
+
+**Kept (good):** correct chemotherapy-to-surgery interval; radiation named as required with a specific paragraph on its effect on implants; prior implants and contracture grades documented; capsulectomy in the plan; autologous non-candidacy stated with a reason and patient understanding recorded; complete implant risk list, expectations paragraph, FDA guidance, gel-implant consent; expander plane as an intraoperative decision.
+
+**Problems, ranked:**
+1. Radiating an expander in a patient with grade III contracture history without documenting why latissimus with implant, thigh or gluteal flaps, or delayed reconstruction were rejected; "not a DIEP candidate" silently became "not an autologous candidate" with no thigh, gluteal, or back assessment; no failure figure quoted.
+2. Hedge contradicting the facts: "if radiation is recommended the plan will need to be re-evaluated" in a note that states radiation is required; the post-radiation plan (exchange or conversion no sooner than 6 months after radiation) is never stated.
+3. Nipple involvement positive but nipple management (removal, later reconstruction) never stated.
+4. "Chemotherapy between stage one and two" boilerplate in a patient who completed neoadjuvant chemotherapy.
+5. Radiation 3 weeks after surgery with no intraoperative fill plan, no agreed volume, no statement that fills stop at simulation.
+6. Tachycardia and hypertension during chemotherapy unaddressed; "plus or minus EKG"; no count recovery or cardiac evaluation plan.
+7. Pathologic response and its effect on the radiation decision not mentioned.
+8. Contralateral prophylactic mastectomy and contralateral explant not counseled separately.
+9. No backup plan (perfusion, infection during radiation, contracture after radiation).
+10. Usual gaps: medications, allergies, menopausal status, endocrine plan, VTE score, photos, ABPS consent, follow-up, data reviewed.
+
+**Template written:** delayed-immediate expander in a thin, contracture-prone, node-positive patient after neoadjuvant chemotherapy with alternatives documented (see chat, September 17, 2026).
+
+**Reusable language from this note:** the radiation-effect-on-implants paragraph (with numbers added); "Based on her physical exam, she is not a candidate for autologous reconstruction due to [reason]. She verbalized understanding."
+
+---
+
 ## Recurring patterns across all notes reviewed (feed into the final template)
 
 - Long generic education paragraphs for every option, including options that do not apply, followed by a one-line plan. Examiners want the reverse: short option list with reasons, detailed individualized plan.
@@ -163,7 +187,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 - Vitals incomplete (blood pressure blank).
 - Subtype-specific systemic therapy (HER2-positive, triple negative) not named; neoadjuvant-versus-adjuvant decision not documented before scheduling; tumor size sometimes absent.
 - Laterality and staging statements in the plan that contradict the history (bilateral vs unilateral).
-- Comorbidities recorded in the history but not converted into a plan (MRSA, anticoagulation, obesity).
+- Comorbidities recorded in the history but not converted into a plan (MRSA, anticoagulation, obesity, abnormal vitals during chemotherapy).
+- Alternatives rejected without a documented reason (autologous non-candidacy extended from the abdomen to all donor sites; delayed reconstruction not offered when radiation is certain).
+- Hedged sentences that contradict established facts ("if radiation is recommended" when it is planned).
 - Boilerplate "chemotherapy between stage one and two" carried into flap plans and into subtypes where chemotherapy precedes surgery.
 
 ## Rules for the final template (running list)
@@ -186,6 +212,9 @@ De-identified reviews of colleagues' breast reconstruction consult notes, evalua
 
 ### Draft B: obese DCIS patient choosing autologous reconstruction
 (Assessment items: DCIS with sentinel node and upstaging contingency; adjuvant estimate; candidacy with BMI reasoning and donor-site exam including scars and CTA; nipple status per side; perioperative risk with Caprini and nicotine history. Plan: options with the bridging sentence explaining the change from implant preference; recommendation with skin pattern and flap volume estimate; backup including CTA-driven change and expander fallback; flap-specific risk block; staging; safety with extended chemoprophylaxis; coordination including genetics; orders; follow-up; closing.)
+
+### Draft G: delayed-immediate expander, node-positive after neoadjuvant chemo, thin, prior contracture
+(Assessment items: cancer with nipple involvement, neoadjuvant completion date, prior implants and contracture grades, contralateral counseling; adjuvant sentence with radiation planned regardless of response; candidacy with all donor sites assessed, the failure and contracture figures, and the patient's documented choice among named alternatives; perioperative risk with count recovery and cardiac evaluation. Plan: options with rejected items and reasons; recommendation with intraoperative fill volume agreed with radiation oncology and the 6-month rule; backups including explant during radiation and conversion for contracture; Provider C risk list with radiation emphasis; safety gated on counts and cardiac workup; coordination including radiation oncology before surgery; orders; follow-up including radiation visits; closing.)
 
 ### Draft F: unilateral expander with contralateral reduction, hypercoagulable, MRSA, obese, subtype pending
 (Assessment items: multicentric disease with both lesions and pending MRI and genetics; adjuvant sentence with the HER2-conditional neoadjuvant branch and the oncologist named; candidacy stating why unilateral autologous would match best and why the thrombus defers it, non-candidacy for nipple-sparing, skin-reducing pattern, donor scar; perioperative risk with Caprini, obesity, MRSA mitigation, HbA1c target, anticoagulation dates. Plan: options with the flap deferred; recommendation with plane and mesh and intraoperative decision rule; backups including explant threshold and conversion to flap; Provider C risk lists plus patient-specific items; safety with decolonization and bridging; coordination; orders; follow-up; closing.)
